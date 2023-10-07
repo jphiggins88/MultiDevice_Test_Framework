@@ -1,0 +1,16 @@
+﻿The server provides capabilities to monitor multiple groups of multiple systems testing multiple devices.
+Each PC in a test group should be named PC-##. If not, edit this code to refplect the actual PC names.
+This is currently setup to test generic/standard devices and "type2" devices. Type2 is a placeholder for any unique types of devices that may be tested.
+
+
+Email alerts will be sent to specific groups regarding failures and daily status updates.
+Two separate email lists are provided for you to update.
+One list will send to the "owners" of the environment the tests are being run in. For example, actual technicians/engineers doing the testing.
+This list should be used to send all info to the people closest to the test. Any potential issues are sent to these "owners" without being sent to outside entities, other teams, or managers.
+The second list is provided to designate members outside the direct list of technicians/engineers doing the testing. This is used for sending important updates/errors to managers or other teams.
+
+
+
+
+Socket message parsing...
+Addresses...

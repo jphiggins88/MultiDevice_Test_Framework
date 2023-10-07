@@ -411,182 +411,6 @@ namespace Server_GUI
             this.textBox665 = new System.Windows.Forms.TextBox();
             this.textBox666 = new System.Windows.Forms.TextBox();
             this.textBox667 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel_chamber07 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel_PC22 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox336 = new System.Windows.Forms.TextBox();
-            this.textBox337 = new System.Windows.Forms.TextBox();
-            this.textBox338 = new System.Windows.Forms.TextBox();
-            this.textBox339 = new System.Windows.Forms.TextBox();
-            this.textBox340 = new System.Windows.Forms.TextBox();
-            this.textBox341 = new System.Windows.Forms.TextBox();
-            this.textBox342 = new System.Windows.Forms.TextBox();
-            this.textBox343 = new System.Windows.Forms.TextBox();
-            this.textBox344 = new System.Windows.Forms.TextBox();
-            this.textBox345 = new System.Windows.Forms.TextBox();
-            this.textBox346 = new System.Windows.Forms.TextBox();
-            this.textBox347 = new System.Windows.Forms.TextBox();
-            this.textBox348 = new System.Windows.Forms.TextBox();
-            this.textBox349 = new System.Windows.Forms.TextBox();
-            this.textBox350 = new System.Windows.Forms.TextBox();
-            this.textBox351 = new System.Windows.Forms.TextBox();
-            this.textBox352 = new System.Windows.Forms.TextBox();
-            this.textBox353 = new System.Windows.Forms.TextBox();
-            this.textBox354 = new System.Windows.Forms.TextBox();
-            this.textBox355 = new System.Windows.Forms.TextBox();
-            this.textBox356 = new System.Windows.Forms.TextBox();
-            this.textBox357 = new System.Windows.Forms.TextBox();
-            this.textBox358 = new System.Windows.Forms.TextBox();
-            this.textBox359 = new System.Windows.Forms.TextBox();
-            this.textBox360 = new System.Windows.Forms.TextBox();
-            this.textBox361 = new System.Windows.Forms.TextBox();
-            this.textBox362 = new System.Windows.Forms.TextBox();
-            this.textBox363 = new System.Windows.Forms.TextBox();
-            this.textBox364 = new System.Windows.Forms.TextBox();
-            this.textBox365 = new System.Windows.Forms.TextBox();
-            this.textBox366 = new System.Windows.Forms.TextBox();
-            this.textBox367 = new System.Windows.Forms.TextBox();
-            this.textBox368 = new System.Windows.Forms.TextBox();
-            this.textBox369 = new System.Windows.Forms.TextBox();
-            this.textBox370 = new System.Windows.Forms.TextBox();
-            this.textBox371 = new System.Windows.Forms.TextBox();
-            this.textBox372 = new System.Windows.Forms.TextBox();
-            this.textBox373 = new System.Windows.Forms.TextBox();
-            this.textBox374 = new System.Windows.Forms.TextBox();
-            this.textBox375 = new System.Windows.Forms.TextBox();
-            this.textBox376 = new System.Windows.Forms.TextBox();
-            this.textBox377 = new System.Windows.Forms.TextBox();
-            this.textBox378 = new System.Windows.Forms.TextBox();
-            this.textBox379 = new System.Windows.Forms.TextBox();
-            this.textBox380 = new System.Windows.Forms.TextBox();
-            this.textBox381 = new System.Windows.Forms.TextBox();
-            this.textBox382 = new System.Windows.Forms.TextBox();
-            this.textBox383 = new System.Windows.Forms.TextBox();
-            this.textBox384 = new System.Windows.Forms.TextBox();
-            this.textBox385 = new System.Windows.Forms.TextBox();
-            this.textBox386 = new System.Windows.Forms.TextBox();
-            this.textBox387 = new System.Windows.Forms.TextBox();
-            this.textBox388 = new System.Windows.Forms.TextBox();
-            this.textBox389 = new System.Windows.Forms.TextBox();
-            this.textBox390 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel_PC21 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox391 = new System.Windows.Forms.TextBox();
-            this.textBox392 = new System.Windows.Forms.TextBox();
-            this.textBox393 = new System.Windows.Forms.TextBox();
-            this.textBox394 = new System.Windows.Forms.TextBox();
-            this.textBox395 = new System.Windows.Forms.TextBox();
-            this.textBox396 = new System.Windows.Forms.TextBox();
-            this.textBox397 = new System.Windows.Forms.TextBox();
-            this.textBox398 = new System.Windows.Forms.TextBox();
-            this.textBox399 = new System.Windows.Forms.TextBox();
-            this.textBox400 = new System.Windows.Forms.TextBox();
-            this.textBox401 = new System.Windows.Forms.TextBox();
-            this.textBox402 = new System.Windows.Forms.TextBox();
-            this.textBox403 = new System.Windows.Forms.TextBox();
-            this.textBox404 = new System.Windows.Forms.TextBox();
-            this.textBox405 = new System.Windows.Forms.TextBox();
-            this.textBox406 = new System.Windows.Forms.TextBox();
-            this.textBox407 = new System.Windows.Forms.TextBox();
-            this.textBox408 = new System.Windows.Forms.TextBox();
-            this.textBox409 = new System.Windows.Forms.TextBox();
-            this.textBox410 = new System.Windows.Forms.TextBox();
-            this.textBox411 = new System.Windows.Forms.TextBox();
-            this.textBox412 = new System.Windows.Forms.TextBox();
-            this.textBox413 = new System.Windows.Forms.TextBox();
-            this.textBox414 = new System.Windows.Forms.TextBox();
-            this.textBox415 = new System.Windows.Forms.TextBox();
-            this.textBox416 = new System.Windows.Forms.TextBox();
-            this.textBox417 = new System.Windows.Forms.TextBox();
-            this.textBox418 = new System.Windows.Forms.TextBox();
-            this.textBox419 = new System.Windows.Forms.TextBox();
-            this.textBox420 = new System.Windows.Forms.TextBox();
-            this.textBox421 = new System.Windows.Forms.TextBox();
-            this.textBox422 = new System.Windows.Forms.TextBox();
-            this.textBox423 = new System.Windows.Forms.TextBox();
-            this.textBox424 = new System.Windows.Forms.TextBox();
-            this.textBox425 = new System.Windows.Forms.TextBox();
-            this.textBox426 = new System.Windows.Forms.TextBox();
-            this.textBox427 = new System.Windows.Forms.TextBox();
-            this.textBox428 = new System.Windows.Forms.TextBox();
-            this.textBox429 = new System.Windows.Forms.TextBox();
-            this.textBox430 = new System.Windows.Forms.TextBox();
-            this.textBox431 = new System.Windows.Forms.TextBox();
-            this.textBox432 = new System.Windows.Forms.TextBox();
-            this.textBox433 = new System.Windows.Forms.TextBox();
-            this.textBox434 = new System.Windows.Forms.TextBox();
-            this.textBox435 = new System.Windows.Forms.TextBox();
-            this.textBox436 = new System.Windows.Forms.TextBox();
-            this.textBox437 = new System.Windows.Forms.TextBox();
-            this.textBox438 = new System.Windows.Forms.TextBox();
-            this.textBox439 = new System.Windows.Forms.TextBox();
-            this.textBox440 = new System.Windows.Forms.TextBox();
-            this.textBox441 = new System.Windows.Forms.TextBox();
-            this.textBox442 = new System.Windows.Forms.TextBox();
-            this.textBox443 = new System.Windows.Forms.TextBox();
-            this.textBox444 = new System.Windows.Forms.TextBox();
-            this.textBox445 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox446 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel_PC20 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox447 = new System.Windows.Forms.TextBox();
-            this.textBox448 = new System.Windows.Forms.TextBox();
-            this.textBox449 = new System.Windows.Forms.TextBox();
-            this.textBox450 = new System.Windows.Forms.TextBox();
-            this.textBox451 = new System.Windows.Forms.TextBox();
-            this.textBox452 = new System.Windows.Forms.TextBox();
-            this.textBox453 = new System.Windows.Forms.TextBox();
-            this.textBox454 = new System.Windows.Forms.TextBox();
-            this.textBox455 = new System.Windows.Forms.TextBox();
-            this.textBox456 = new System.Windows.Forms.TextBox();
-            this.textBox457 = new System.Windows.Forms.TextBox();
-            this.textBox458 = new System.Windows.Forms.TextBox();
-            this.textBox459 = new System.Windows.Forms.TextBox();
-            this.textBox460 = new System.Windows.Forms.TextBox();
-            this.textBox461 = new System.Windows.Forms.TextBox();
-            this.textBox462 = new System.Windows.Forms.TextBox();
-            this.textBox463 = new System.Windows.Forms.TextBox();
-            this.textBox464 = new System.Windows.Forms.TextBox();
-            this.textBox465 = new System.Windows.Forms.TextBox();
-            this.textBox466 = new System.Windows.Forms.TextBox();
-            this.textBox467 = new System.Windows.Forms.TextBox();
-            this.textBox468 = new System.Windows.Forms.TextBox();
-            this.textBox469 = new System.Windows.Forms.TextBox();
-            this.textBox470 = new System.Windows.Forms.TextBox();
-            this.textBox471 = new System.Windows.Forms.TextBox();
-            this.textBox472 = new System.Windows.Forms.TextBox();
-            this.textBox473 = new System.Windows.Forms.TextBox();
-            this.textBox474 = new System.Windows.Forms.TextBox();
-            this.textBox475 = new System.Windows.Forms.TextBox();
-            this.textBox476 = new System.Windows.Forms.TextBox();
-            this.textBox477 = new System.Windows.Forms.TextBox();
-            this.textBox478 = new System.Windows.Forms.TextBox();
-            this.textBox479 = new System.Windows.Forms.TextBox();
-            this.textBox480 = new System.Windows.Forms.TextBox();
-            this.textBox481 = new System.Windows.Forms.TextBox();
-            this.textBox482 = new System.Windows.Forms.TextBox();
-            this.textBox483 = new System.Windows.Forms.TextBox();
-            this.textBox484 = new System.Windows.Forms.TextBox();
-            this.textBox485 = new System.Windows.Forms.TextBox();
-            this.textBox486 = new System.Windows.Forms.TextBox();
-            this.textBox487 = new System.Windows.Forms.TextBox();
-            this.textBox488 = new System.Windows.Forms.TextBox();
-            this.textBox489 = new System.Windows.Forms.TextBox();
-            this.textBox490 = new System.Windows.Forms.TextBox();
-            this.textBox491 = new System.Windows.Forms.TextBox();
-            this.textBox492 = new System.Windows.Forms.TextBox();
-            this.textBox493 = new System.Windows.Forms.TextBox();
-            this.textBox494 = new System.Windows.Forms.TextBox();
-            this.textBox495 = new System.Windows.Forms.TextBox();
-            this.textBox496 = new System.Windows.Forms.TextBox();
-            this.textBox497 = new System.Windows.Forms.TextBox();
-            this.textBox498 = new System.Windows.Forms.TextBox();
-            this.textBox499 = new System.Windows.Forms.TextBox();
-            this.textBox500 = new System.Windows.Forms.TextBox();
-            this.textBox501 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_chamber06 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_PC19 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox168 = new System.Windows.Forms.TextBox();
@@ -973,11 +797,6 @@ namespace Server_GUI
             this.tableLayoutPanel_PCSC2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel_PCSC1.SuspendLayout();
-            this.tableLayoutPanel_chamber07.SuspendLayout();
-            this.tableLayoutPanel_PC22.SuspendLayout();
-            this.tableLayoutPanel_PC21.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel_PC20.SuspendLayout();
             this.tableLayoutPanel_chamber06.SuspendLayout();
             this.tableLayoutPanel_PC19.SuspendLayout();
             this.tableLayoutPanel_PC18.SuspendLayout();
@@ -1127,7 +946,7 @@ namespace Server_GUI
             this.serialNum.MinimumWidth = 8;
             this.serialNum.Name = "serialNum";
             this.serialNum.ReadOnly = true;
-            this.serialNum.Width = 117;
+            this.serialNum.Width = 128;
             // 
             // dateConnected
             // 
@@ -1263,13 +1082,14 @@ namespace Server_GUI
             // 
             // tableLayoutPanel_main
             // 
-            this.tableLayoutPanel_main.ColumnCount = 3;
+            this.tableLayoutPanel_main.AutoSize = true;
+            this.tableLayoutPanel_main.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel_main.ColumnCount = 2;
             this.tableLayoutPanel_main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75451F));
             this.tableLayoutPanel_main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.79182F));
             this.tableLayoutPanel_main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.4F));
             this.tableLayoutPanel_main.Controls.Add(this.tableLayoutPanel_chamber01, 1, 1);
             this.tableLayoutPanel_main.Controls.Add(this.tableLayoutPanel_chamberSC, 0, 1);
-            this.tableLayoutPanel_main.Controls.Add(this.tableLayoutPanel_chamber07, 2, 0);
             this.tableLayoutPanel_main.Controls.Add(this.tableLayoutPanel_chamber06, 1, 0);
             this.tableLayoutPanel_main.Controls.Add(this.tableLayoutPanel_chamber05, 0, 0);
             this.tableLayoutPanel_main.Location = new System.Drawing.Point(3, 7);
@@ -1277,7 +1097,7 @@ namespace Server_GUI
             this.tableLayoutPanel_main.RowCount = 2;
             this.tableLayoutPanel_main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel_main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_main.Size = new System.Drawing.Size(2374, 1433);
+            this.tableLayoutPanel_main.Size = new System.Drawing.Size(2374, 1434);
             this.tableLayoutPanel_main.TabIndex = 0;
             // 
             // tableLayoutPanel_chamber01
@@ -1296,7 +1116,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber01.Controls.Add(this.label29, 0, 2);
             this.tableLayoutPanel_chamber01.Controls.Add(this.label30, 0, 3);
             this.tableLayoutPanel_chamber01.Controls.Add(this.tableLayoutPanel_PC01, 1, 1);
-            this.tableLayoutPanel_chamber01.Location = new System.Drawing.Point(804, 719);
+            this.tableLayoutPanel_chamber01.Location = new System.Drawing.Point(1207, 720);
             this.tableLayoutPanel_chamber01.Name = "tableLayoutPanel_chamber01";
             this.tableLayoutPanel_chamber01.RowCount = 4;
             this.tableLayoutPanel_chamber01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -1304,7 +1124,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamber01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamber01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_chamber01.Size = new System.Drawing.Size(772, 711);
+            this.tableLayoutPanel_chamber01.Size = new System.Drawing.Size(1164, 711);
             this.tableLayoutPanel_chamber01.TabIndex = 4;
             // 
             // tableLayoutPanel_PC03
@@ -1376,7 +1196,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC03.Controls.Add(this.textBox720, 10, 0);
             this.tableLayoutPanel_PC03.Controls.Add(this.textBox721, 0, 1);
             this.tableLayoutPanel_PC03.Controls.Add(this.textBox722, 0, 2);
-            this.tableLayoutPanel_PC03.Location = new System.Drawing.Point(81, 502);
+            this.tableLayoutPanel_PC03.Location = new System.Drawing.Point(120, 502);
             this.tableLayoutPanel_PC03.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC03.Name = "tableLayoutPanel_PC03";
             this.tableLayoutPanel_PC03.RowCount = 5;
@@ -2140,7 +1960,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC02.Controls.Add(this.textBox775, 10, 0);
             this.tableLayoutPanel_PC02.Controls.Add(this.textBox776, 0, 1);
             this.tableLayoutPanel_PC02.Controls.Add(this.textBox777, 0, 2);
-            this.tableLayoutPanel_PC02.Location = new System.Drawing.Point(81, 289);
+            this.tableLayoutPanel_PC02.Location = new System.Drawing.Point(120, 289);
             this.tableLayoutPanel_PC02.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC02.Name = "tableLayoutPanel_PC02";
             this.tableLayoutPanel_PC02.RowCount = 5;
@@ -2845,9 +2665,10 @@ namespace Server_GUI
             this.label23.Location = new System.Drawing.Point(3, 3);
             this.label23.Margin = new System.Windows.Forms.Padding(3);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(71, 65);
+            this.label23.Size = new System.Drawing.Size(110, 65);
             this.label23.TabIndex = 0;
-            this.label23.Text = "TS-01";
+            this.label23.Text = "Group 4";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label27
             // 
@@ -2858,7 +2679,7 @@ namespace Server_GUI
             this.label27.Location = new System.Drawing.Point(3, 74);
             this.label27.Margin = new System.Windows.Forms.Padding(3);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(71, 25);
+            this.label27.Size = new System.Drawing.Size(110, 25);
             this.label27.TabIndex = 1;
             this.label27.Text = "PC-01";
             // 
@@ -2872,20 +2693,20 @@ namespace Server_GUI
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel8.Controls.Add(this.textBox778, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label28, 0, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(80, 3);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(119, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(689, 65);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(1042, 65);
             this.tableLayoutPanel8.TabIndex = 5;
             // 
             // textBox778
             // 
             this.textBox778.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox778.Location = new System.Drawing.Point(554, 3);
+            this.textBox778.Location = new System.Drawing.Point(836, 3);
             this.textBox778.Name = "textBox778";
-            this.textBox778.Size = new System.Drawing.Size(132, 31);
+            this.textBox778.Size = new System.Drawing.Size(203, 31);
             this.textBox778.TabIndex = 7;
             this.textBox778.Text = "--";
             this.textBox778.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -2898,7 +2719,7 @@ namespace Server_GUI
             this.label28.Location = new System.Drawing.Point(3, 3);
             this.label28.Margin = new System.Windows.Forms.Padding(3);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(545, 25);
+            this.label28.Size = new System.Drawing.Size(827, 25);
             this.label28.TabIndex = 8;
             this.label28.Text = "Temperature: ";
             this.label28.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -2912,7 +2733,7 @@ namespace Server_GUI
             this.label29.Location = new System.Drawing.Point(3, 287);
             this.label29.Margin = new System.Windows.Forms.Padding(3);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(71, 25);
+            this.label29.Size = new System.Drawing.Size(110, 25);
             this.label29.TabIndex = 2;
             this.label29.Text = "PC-02";
             // 
@@ -2925,7 +2746,7 @@ namespace Server_GUI
             this.label30.Location = new System.Drawing.Point(3, 500);
             this.label30.Margin = new System.Windows.Forms.Padding(3);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(71, 25);
+            this.label30.Size = new System.Drawing.Size(110, 25);
             this.label30.TabIndex = 3;
             this.label30.Text = "PC-03";
             // 
@@ -2998,7 +2819,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC01.Controls.Add(this.textBox831, 10, 0);
             this.tableLayoutPanel_PC01.Controls.Add(this.textBox832, 0, 1);
             this.tableLayoutPanel_PC01.Controls.Add(this.textBox833, 0, 2);
-            this.tableLayoutPanel_PC01.Location = new System.Drawing.Point(81, 76);
+            this.tableLayoutPanel_PC01.Location = new System.Drawing.Point(120, 76);
             this.tableLayoutPanel_PC01.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC01.Name = "tableLayoutPanel_PC01";
             this.tableLayoutPanel_PC01.RowCount = 5;
@@ -3709,7 +3530,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamberSC.Controls.Add(this.label21, 0, 2);
             this.tableLayoutPanel_chamberSC.Controls.Add(this.label22, 0, 3);
             this.tableLayoutPanel_chamberSC.Controls.Add(this.tableLayoutPanel_PCSC1, 1, 1);
-            this.tableLayoutPanel_chamberSC.Location = new System.Drawing.Point(3, 719);
+            this.tableLayoutPanel_chamberSC.Location = new System.Drawing.Point(3, 720);
             this.tableLayoutPanel_chamberSC.Name = "tableLayoutPanel_chamberSC";
             this.tableLayoutPanel_chamberSC.RowCount = 4;
             this.tableLayoutPanel_chamberSC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -3717,7 +3538,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamberSC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamberSC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamberSC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_chamberSC.Size = new System.Drawing.Size(795, 711);
+            this.tableLayoutPanel_chamberSC.Size = new System.Drawing.Size(1198, 711);
             this.tableLayoutPanel_chamberSC.TabIndex = 3;
             // 
             // tableLayoutPanel_PCSC3
@@ -3789,7 +3610,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PCSC3.Controls.Add(this.textBox554, 10, 0);
             this.tableLayoutPanel_PCSC3.Controls.Add(this.textBox555, 0, 1);
             this.tableLayoutPanel_PCSC3.Controls.Add(this.textBox556, 0, 2);
-            this.tableLayoutPanel_PCSC3.Location = new System.Drawing.Point(83, 502);
+            this.tableLayoutPanel_PCSC3.Location = new System.Drawing.Point(123, 502);
             this.tableLayoutPanel_PCSC3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PCSC3.Name = "tableLayoutPanel_PCSC3";
             this.tableLayoutPanel_PCSC3.RowCount = 5;
@@ -4553,7 +4374,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PCSC2.Controls.Add(this.textBox609, 10, 0);
             this.tableLayoutPanel_PCSC2.Controls.Add(this.textBox610, 0, 1);
             this.tableLayoutPanel_PCSC2.Controls.Add(this.textBox611, 0, 2);
-            this.tableLayoutPanel_PCSC2.Location = new System.Drawing.Point(83, 289);
+            this.tableLayoutPanel_PCSC2.Location = new System.Drawing.Point(123, 289);
             this.tableLayoutPanel_PCSC2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PCSC2.Name = "tableLayoutPanel_PCSC2";
             this.tableLayoutPanel_PCSC2.RowCount = 5;
@@ -5257,9 +5078,10 @@ namespace Server_GUI
             this.label18.Location = new System.Drawing.Point(3, 3);
             this.label18.Margin = new System.Windows.Forms.Padding(3);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(73, 65);
+            this.label18.Size = new System.Drawing.Size(113, 65);
             this.label18.TabIndex = 0;
-            this.label18.Text = "TS-SC";
+            this.label18.Text = "Group 3";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label19
             // 
@@ -5270,7 +5092,7 @@ namespace Server_GUI
             this.label19.Location = new System.Drawing.Point(3, 74);
             this.label19.Margin = new System.Windows.Forms.Padding(3);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(73, 25);
+            this.label19.Size = new System.Drawing.Size(113, 25);
             this.label19.TabIndex = 1;
             this.label19.Text = "PC-SC1";
             // 
@@ -5284,20 +5106,20 @@ namespace Server_GUI
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel7.Controls.Add(this.textBox612, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.label20, 0, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(82, 3);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(122, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(710, 65);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1073, 65);
             this.tableLayoutPanel7.TabIndex = 5;
             // 
             // textBox612
             // 
             this.textBox612.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox612.Location = new System.Drawing.Point(571, 3);
+            this.textBox612.Location = new System.Drawing.Point(861, 3);
             this.textBox612.Name = "textBox612";
-            this.textBox612.Size = new System.Drawing.Size(136, 31);
+            this.textBox612.Size = new System.Drawing.Size(209, 31);
             this.textBox612.TabIndex = 7;
             this.textBox612.Text = "--";
             this.textBox612.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -5310,7 +5132,7 @@ namespace Server_GUI
             this.label20.Location = new System.Drawing.Point(3, 3);
             this.label20.Margin = new System.Windows.Forms.Padding(3);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(562, 25);
+            this.label20.Size = new System.Drawing.Size(852, 25);
             this.label20.TabIndex = 8;
             this.label20.Text = "Temperature: ";
             this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -5324,7 +5146,7 @@ namespace Server_GUI
             this.label21.Location = new System.Drawing.Point(3, 287);
             this.label21.Margin = new System.Windows.Forms.Padding(3);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(73, 25);
+            this.label21.Size = new System.Drawing.Size(113, 25);
             this.label21.TabIndex = 2;
             this.label21.Text = "PC-SC2";
             // 
@@ -5337,7 +5159,7 @@ namespace Server_GUI
             this.label22.Location = new System.Drawing.Point(3, 500);
             this.label22.Margin = new System.Windows.Forms.Padding(3);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(73, 25);
+            this.label22.Size = new System.Drawing.Size(113, 25);
             this.label22.TabIndex = 3;
             this.label22.Text = "PC-SC3";
             // 
@@ -5410,7 +5232,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PCSC1.Controls.Add(this.textBox665, 10, 0);
             this.tableLayoutPanel_PCSC1.Controls.Add(this.textBox666, 0, 1);
             this.tableLayoutPanel_PCSC1.Controls.Add(this.textBox667, 0, 2);
-            this.tableLayoutPanel_PCSC1.Location = new System.Drawing.Point(83, 76);
+            this.tableLayoutPanel_PCSC1.Location = new System.Drawing.Point(123, 76);
             this.tableLayoutPanel_PCSC1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PCSC1.Name = "tableLayoutPanel_PCSC1";
             this.tableLayoutPanel_PCSC1.RowCount = 5;
@@ -6105,2418 +5927,6 @@ namespace Server_GUI
             this.textBox667.TabIndex = 22;
             this.textBox667.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tableLayoutPanel_chamber07
-            // 
-            this.tableLayoutPanel_chamber07.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel_chamber07.ColumnCount = 2;
-            this.tableLayoutPanel_chamber07.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel_chamber07.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel_chamber07.Controls.Add(this.tableLayoutPanel_PC22, 1, 3);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.tableLayoutPanel_PC21, 1, 2);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.label14, 0, 1);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.tableLayoutPanel6, 1, 0);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.label16, 0, 2);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.label17, 0, 3);
-            this.tableLayoutPanel_chamber07.Controls.Add(this.tableLayoutPanel_PC20, 1, 1);
-            this.tableLayoutPanel_chamber07.Location = new System.Drawing.Point(1582, 3);
-            this.tableLayoutPanel_chamber07.Name = "tableLayoutPanel_chamber07";
-            this.tableLayoutPanel_chamber07.RowCount = 4;
-            this.tableLayoutPanel_chamber07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel_chamber07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel_chamber07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel_chamber07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel_chamber07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_chamber07.Size = new System.Drawing.Size(789, 710);
-            this.tableLayoutPanel_chamber07.TabIndex = 2;
-            // 
-            // tableLayoutPanel_PC22
-            // 
-            this.tableLayoutPanel_PC22.ColumnCount = 11;
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox336, 10, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox337, 9, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox338, 8, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox339, 7, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox340, 6, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox341, 5, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox342, 4, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox343, 3, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox344, 2, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox345, 1, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox346, 0, 4);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox347, 10, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox348, 9, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox349, 8, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox350, 7, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox351, 6, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox352, 5, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox353, 4, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox354, 3, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox355, 2, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox356, 1, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox357, 0, 3);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox358, 10, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox359, 9, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox360, 8, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox361, 7, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox362, 6, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox363, 5, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox364, 4, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox365, 3, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox366, 2, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox367, 1, 2);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox368, 10, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox369, 9, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox370, 8, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox371, 7, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox372, 6, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox373, 5, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox374, 4, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox375, 3, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox376, 2, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox377, 1, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox378, 0, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox379, 1, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox380, 2, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox381, 3, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox382, 4, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox383, 5, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox384, 6, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox385, 7, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox386, 8, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox387, 9, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox388, 10, 0);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox389, 0, 1);
-            this.tableLayoutPanel_PC22.Controls.Add(this.textBox390, 0, 2);
-            this.tableLayoutPanel_PC22.Location = new System.Drawing.Point(82, 502);
-            this.tableLayoutPanel_PC22.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel_PC22.Name = "tableLayoutPanel_PC22";
-            this.tableLayoutPanel_PC22.RowCount = 5;
-            this.tableLayoutPanel_PC22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel_PC22.Size = new System.Drawing.Size(701, 202);
-            this.tableLayoutPanel_PC22.TabIndex = 9;
-            // 
-            // textBox336
-            // 
-            this.textBox336.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox336.Location = new System.Drawing.Point(631, 162);
-            this.textBox336.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox336.Name = "textBox336";
-            this.textBox336.Size = new System.Drawing.Size(69, 31);
-            this.textBox336.TabIndex = 54;
-            this.textBox336.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox337
-            // 
-            this.textBox337.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox337.Location = new System.Drawing.Point(568, 162);
-            this.textBox337.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox337.Name = "textBox337";
-            this.textBox337.Size = new System.Drawing.Size(61, 31);
-            this.textBox337.TabIndex = 53;
-            this.textBox337.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox338
-            // 
-            this.textBox338.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox338.Location = new System.Drawing.Point(505, 162);
-            this.textBox338.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox338.Name = "textBox338";
-            this.textBox338.Size = new System.Drawing.Size(61, 31);
-            this.textBox338.TabIndex = 52;
-            this.textBox338.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox339
-            // 
-            this.textBox339.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox339.Location = new System.Drawing.Point(442, 162);
-            this.textBox339.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox339.Name = "textBox339";
-            this.textBox339.Size = new System.Drawing.Size(61, 31);
-            this.textBox339.TabIndex = 51;
-            this.textBox339.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox340
-            // 
-            this.textBox340.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox340.Location = new System.Drawing.Point(379, 162);
-            this.textBox340.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox340.Name = "textBox340";
-            this.textBox340.Size = new System.Drawing.Size(61, 31);
-            this.textBox340.TabIndex = 50;
-            this.textBox340.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox341
-            // 
-            this.textBox341.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox341.Location = new System.Drawing.Point(316, 162);
-            this.textBox341.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox341.Name = "textBox341";
-            this.textBox341.Size = new System.Drawing.Size(61, 31);
-            this.textBox341.TabIndex = 49;
-            this.textBox341.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox342
-            // 
-            this.textBox342.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox342.Location = new System.Drawing.Point(253, 162);
-            this.textBox342.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox342.Name = "textBox342";
-            this.textBox342.Size = new System.Drawing.Size(61, 31);
-            this.textBox342.TabIndex = 48;
-            this.textBox342.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox343
-            // 
-            this.textBox343.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox343.Location = new System.Drawing.Point(190, 162);
-            this.textBox343.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox343.Name = "textBox343";
-            this.textBox343.Size = new System.Drawing.Size(61, 31);
-            this.textBox343.TabIndex = 47;
-            this.textBox343.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox344
-            // 
-            this.textBox344.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox344.Location = new System.Drawing.Point(127, 162);
-            this.textBox344.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox344.Name = "textBox344";
-            this.textBox344.Size = new System.Drawing.Size(61, 31);
-            this.textBox344.TabIndex = 46;
-            this.textBox344.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox345
-            // 
-            this.textBox345.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox345.Location = new System.Drawing.Point(64, 162);
-            this.textBox345.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox345.Name = "textBox345";
-            this.textBox345.Size = new System.Drawing.Size(61, 31);
-            this.textBox345.TabIndex = 45;
-            this.textBox345.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox346
-            // 
-            this.textBox346.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox346.Location = new System.Drawing.Point(1, 162);
-            this.textBox346.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox346.Name = "textBox346";
-            this.textBox346.Size = new System.Drawing.Size(61, 31);
-            this.textBox346.TabIndex = 44;
-            this.textBox346.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox347
-            // 
-            this.textBox347.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox347.Location = new System.Drawing.Point(631, 122);
-            this.textBox347.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox347.Name = "textBox347";
-            this.textBox347.Size = new System.Drawing.Size(69, 31);
-            this.textBox347.TabIndex = 43;
-            this.textBox347.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox348
-            // 
-            this.textBox348.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox348.Location = new System.Drawing.Point(568, 122);
-            this.textBox348.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox348.Name = "textBox348";
-            this.textBox348.Size = new System.Drawing.Size(61, 31);
-            this.textBox348.TabIndex = 42;
-            this.textBox348.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox349
-            // 
-            this.textBox349.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox349.Location = new System.Drawing.Point(505, 122);
-            this.textBox349.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox349.Name = "textBox349";
-            this.textBox349.Size = new System.Drawing.Size(61, 31);
-            this.textBox349.TabIndex = 41;
-            this.textBox349.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox350
-            // 
-            this.textBox350.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox350.Location = new System.Drawing.Point(442, 122);
-            this.textBox350.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox350.Name = "textBox350";
-            this.textBox350.Size = new System.Drawing.Size(61, 31);
-            this.textBox350.TabIndex = 40;
-            this.textBox350.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox351
-            // 
-            this.textBox351.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox351.Location = new System.Drawing.Point(379, 122);
-            this.textBox351.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox351.Name = "textBox351";
-            this.textBox351.Size = new System.Drawing.Size(61, 31);
-            this.textBox351.TabIndex = 39;
-            this.textBox351.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox352
-            // 
-            this.textBox352.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox352.Location = new System.Drawing.Point(316, 122);
-            this.textBox352.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox352.Name = "textBox352";
-            this.textBox352.Size = new System.Drawing.Size(61, 31);
-            this.textBox352.TabIndex = 38;
-            this.textBox352.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox353
-            // 
-            this.textBox353.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox353.Location = new System.Drawing.Point(253, 122);
-            this.textBox353.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox353.Name = "textBox353";
-            this.textBox353.Size = new System.Drawing.Size(61, 31);
-            this.textBox353.TabIndex = 37;
-            this.textBox353.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox354
-            // 
-            this.textBox354.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox354.Location = new System.Drawing.Point(190, 122);
-            this.textBox354.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox354.Name = "textBox354";
-            this.textBox354.Size = new System.Drawing.Size(61, 31);
-            this.textBox354.TabIndex = 36;
-            this.textBox354.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox355
-            // 
-            this.textBox355.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox355.Location = new System.Drawing.Point(127, 122);
-            this.textBox355.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox355.Name = "textBox355";
-            this.textBox355.Size = new System.Drawing.Size(61, 31);
-            this.textBox355.TabIndex = 35;
-            this.textBox355.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox356
-            // 
-            this.textBox356.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox356.Location = new System.Drawing.Point(64, 122);
-            this.textBox356.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox356.Name = "textBox356";
-            this.textBox356.Size = new System.Drawing.Size(61, 31);
-            this.textBox356.TabIndex = 34;
-            this.textBox356.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox357
-            // 
-            this.textBox357.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox357.Location = new System.Drawing.Point(1, 122);
-            this.textBox357.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox357.Name = "textBox357";
-            this.textBox357.Size = new System.Drawing.Size(61, 31);
-            this.textBox357.TabIndex = 33;
-            this.textBox357.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox358
-            // 
-            this.textBox358.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox358.Location = new System.Drawing.Point(631, 82);
-            this.textBox358.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox358.Name = "textBox358";
-            this.textBox358.Size = new System.Drawing.Size(69, 31);
-            this.textBox358.TabIndex = 32;
-            this.textBox358.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox359
-            // 
-            this.textBox359.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox359.Location = new System.Drawing.Point(568, 82);
-            this.textBox359.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox359.Name = "textBox359";
-            this.textBox359.Size = new System.Drawing.Size(61, 31);
-            this.textBox359.TabIndex = 31;
-            this.textBox359.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox360
-            // 
-            this.textBox360.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox360.Location = new System.Drawing.Point(505, 82);
-            this.textBox360.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox360.Name = "textBox360";
-            this.textBox360.Size = new System.Drawing.Size(61, 31);
-            this.textBox360.TabIndex = 30;
-            this.textBox360.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox361
-            // 
-            this.textBox361.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox361.Location = new System.Drawing.Point(442, 82);
-            this.textBox361.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox361.Name = "textBox361";
-            this.textBox361.Size = new System.Drawing.Size(61, 31);
-            this.textBox361.TabIndex = 29;
-            this.textBox361.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox362
-            // 
-            this.textBox362.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox362.Location = new System.Drawing.Point(379, 82);
-            this.textBox362.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox362.Name = "textBox362";
-            this.textBox362.Size = new System.Drawing.Size(61, 31);
-            this.textBox362.TabIndex = 28;
-            this.textBox362.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox363
-            // 
-            this.textBox363.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox363.Location = new System.Drawing.Point(316, 82);
-            this.textBox363.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox363.Name = "textBox363";
-            this.textBox363.Size = new System.Drawing.Size(61, 31);
-            this.textBox363.TabIndex = 27;
-            this.textBox363.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox364
-            // 
-            this.textBox364.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox364.Location = new System.Drawing.Point(253, 82);
-            this.textBox364.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox364.Name = "textBox364";
-            this.textBox364.Size = new System.Drawing.Size(61, 31);
-            this.textBox364.TabIndex = 26;
-            this.textBox364.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox365
-            // 
-            this.textBox365.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox365.Location = new System.Drawing.Point(190, 82);
-            this.textBox365.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox365.Name = "textBox365";
-            this.textBox365.Size = new System.Drawing.Size(61, 31);
-            this.textBox365.TabIndex = 25;
-            this.textBox365.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox366
-            // 
-            this.textBox366.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox366.Location = new System.Drawing.Point(127, 82);
-            this.textBox366.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox366.Name = "textBox366";
-            this.textBox366.Size = new System.Drawing.Size(61, 31);
-            this.textBox366.TabIndex = 24;
-            this.textBox366.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox367
-            // 
-            this.textBox367.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox367.Location = new System.Drawing.Point(64, 82);
-            this.textBox367.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox367.Name = "textBox367";
-            this.textBox367.Size = new System.Drawing.Size(61, 31);
-            this.textBox367.TabIndex = 23;
-            this.textBox367.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox368
-            // 
-            this.textBox368.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox368.Location = new System.Drawing.Point(631, 42);
-            this.textBox368.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox368.Name = "textBox368";
-            this.textBox368.Size = new System.Drawing.Size(69, 31);
-            this.textBox368.TabIndex = 21;
-            this.textBox368.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox369
-            // 
-            this.textBox369.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox369.Location = new System.Drawing.Point(568, 42);
-            this.textBox369.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox369.Name = "textBox369";
-            this.textBox369.Size = new System.Drawing.Size(61, 31);
-            this.textBox369.TabIndex = 20;
-            this.textBox369.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox370
-            // 
-            this.textBox370.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox370.Location = new System.Drawing.Point(505, 42);
-            this.textBox370.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox370.Name = "textBox370";
-            this.textBox370.Size = new System.Drawing.Size(61, 31);
-            this.textBox370.TabIndex = 19;
-            this.textBox370.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox371
-            // 
-            this.textBox371.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox371.Location = new System.Drawing.Point(442, 42);
-            this.textBox371.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox371.Name = "textBox371";
-            this.textBox371.Size = new System.Drawing.Size(61, 31);
-            this.textBox371.TabIndex = 18;
-            this.textBox371.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox372
-            // 
-            this.textBox372.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox372.Location = new System.Drawing.Point(379, 42);
-            this.textBox372.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox372.Name = "textBox372";
-            this.textBox372.Size = new System.Drawing.Size(61, 31);
-            this.textBox372.TabIndex = 17;
-            this.textBox372.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox373
-            // 
-            this.textBox373.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox373.Location = new System.Drawing.Point(316, 42);
-            this.textBox373.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox373.Name = "textBox373";
-            this.textBox373.Size = new System.Drawing.Size(61, 31);
-            this.textBox373.TabIndex = 16;
-            this.textBox373.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox374
-            // 
-            this.textBox374.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox374.Location = new System.Drawing.Point(253, 42);
-            this.textBox374.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox374.Name = "textBox374";
-            this.textBox374.Size = new System.Drawing.Size(61, 31);
-            this.textBox374.TabIndex = 15;
-            this.textBox374.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox375
-            // 
-            this.textBox375.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox375.Location = new System.Drawing.Point(190, 42);
-            this.textBox375.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox375.Name = "textBox375";
-            this.textBox375.Size = new System.Drawing.Size(61, 31);
-            this.textBox375.TabIndex = 14;
-            this.textBox375.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox376
-            // 
-            this.textBox376.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox376.Location = new System.Drawing.Point(127, 42);
-            this.textBox376.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox376.Name = "textBox376";
-            this.textBox376.Size = new System.Drawing.Size(61, 31);
-            this.textBox376.TabIndex = 13;
-            this.textBox376.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox377
-            // 
-            this.textBox377.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox377.Location = new System.Drawing.Point(64, 42);
-            this.textBox377.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox377.Name = "textBox377";
-            this.textBox377.Size = new System.Drawing.Size(61, 31);
-            this.textBox377.TabIndex = 12;
-            this.textBox377.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox378
-            // 
-            this.textBox378.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox378.Location = new System.Drawing.Point(1, 2);
-            this.textBox378.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox378.Name = "textBox378";
-            this.textBox378.ReadOnly = true;
-            this.textBox378.Size = new System.Drawing.Size(61, 31);
-            this.textBox378.TabIndex = 1;
-            this.textBox378.Text = "1";
-            this.textBox378.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox379
-            // 
-            this.textBox379.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox379.Location = new System.Drawing.Point(64, 2);
-            this.textBox379.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox379.Name = "textBox379";
-            this.textBox379.ReadOnly = true;
-            this.textBox379.Size = new System.Drawing.Size(61, 31);
-            this.textBox379.TabIndex = 4;
-            this.textBox379.Text = "2";
-            this.textBox379.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox380
-            // 
-            this.textBox380.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox380.Location = new System.Drawing.Point(127, 2);
-            this.textBox380.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox380.Name = "textBox380";
-            this.textBox380.ReadOnly = true;
-            this.textBox380.Size = new System.Drawing.Size(61, 31);
-            this.textBox380.TabIndex = 3;
-            this.textBox380.Text = "3";
-            this.textBox380.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox381
-            // 
-            this.textBox381.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox381.Location = new System.Drawing.Point(190, 2);
-            this.textBox381.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox381.Name = "textBox381";
-            this.textBox381.ReadOnly = true;
-            this.textBox381.Size = new System.Drawing.Size(61, 31);
-            this.textBox381.TabIndex = 5;
-            this.textBox381.Text = "4";
-            this.textBox381.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox382
-            // 
-            this.textBox382.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox382.Location = new System.Drawing.Point(253, 2);
-            this.textBox382.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox382.Name = "textBox382";
-            this.textBox382.ReadOnly = true;
-            this.textBox382.Size = new System.Drawing.Size(61, 31);
-            this.textBox382.TabIndex = 2;
-            this.textBox382.Text = "5";
-            this.textBox382.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox383
-            // 
-            this.textBox383.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox383.Location = new System.Drawing.Point(316, 2);
-            this.textBox383.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox383.Name = "textBox383";
-            this.textBox383.ReadOnly = true;
-            this.textBox383.Size = new System.Drawing.Size(61, 31);
-            this.textBox383.TabIndex = 11;
-            this.textBox383.Text = "6";
-            this.textBox383.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox384
-            // 
-            this.textBox384.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox384.Location = new System.Drawing.Point(379, 2);
-            this.textBox384.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox384.Name = "textBox384";
-            this.textBox384.ReadOnly = true;
-            this.textBox384.Size = new System.Drawing.Size(61, 31);
-            this.textBox384.TabIndex = 9;
-            this.textBox384.Text = "7";
-            this.textBox384.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox385
-            // 
-            this.textBox385.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox385.Location = new System.Drawing.Point(442, 2);
-            this.textBox385.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox385.Name = "textBox385";
-            this.textBox385.ReadOnly = true;
-            this.textBox385.Size = new System.Drawing.Size(61, 31);
-            this.textBox385.TabIndex = 8;
-            this.textBox385.Text = "8";
-            this.textBox385.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox386
-            // 
-            this.textBox386.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox386.Location = new System.Drawing.Point(505, 2);
-            this.textBox386.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox386.Name = "textBox386";
-            this.textBox386.ReadOnly = true;
-            this.textBox386.Size = new System.Drawing.Size(61, 31);
-            this.textBox386.TabIndex = 10;
-            this.textBox386.Text = "9";
-            this.textBox386.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox387
-            // 
-            this.textBox387.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox387.Location = new System.Drawing.Point(568, 2);
-            this.textBox387.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox387.Name = "textBox387";
-            this.textBox387.ReadOnly = true;
-            this.textBox387.Size = new System.Drawing.Size(61, 31);
-            this.textBox387.TabIndex = 7;
-            this.textBox387.Text = "10";
-            this.textBox387.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox388
-            // 
-            this.textBox388.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox388.Location = new System.Drawing.Point(631, 2);
-            this.textBox388.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox388.Name = "textBox388";
-            this.textBox388.ReadOnly = true;
-            this.textBox388.Size = new System.Drawing.Size(69, 31);
-            this.textBox388.TabIndex = 6;
-            this.textBox388.Text = "11";
-            this.textBox388.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox389
-            // 
-            this.textBox389.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox389.Location = new System.Drawing.Point(1, 42);
-            this.textBox389.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox389.Name = "textBox389";
-            this.textBox389.Size = new System.Drawing.Size(61, 31);
-            this.textBox389.TabIndex = 11;
-            this.textBox389.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox390
-            // 
-            this.textBox390.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox390.Location = new System.Drawing.Point(1, 82);
-            this.textBox390.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox390.Name = "textBox390";
-            this.textBox390.Size = new System.Drawing.Size(61, 31);
-            this.textBox390.TabIndex = 22;
-            this.textBox390.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tableLayoutPanel_PC21
-            // 
-            this.tableLayoutPanel_PC21.ColumnCount = 11;
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox391, 10, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox392, 9, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox393, 8, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox394, 7, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox395, 6, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox396, 5, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox397, 4, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox398, 3, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox399, 2, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox400, 1, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox401, 0, 4);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox402, 10, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox403, 9, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox404, 8, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox405, 7, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox406, 6, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox407, 5, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox408, 4, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox409, 3, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox410, 2, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox411, 1, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox412, 0, 3);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox413, 10, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox414, 9, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox415, 8, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox416, 7, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox417, 6, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox418, 5, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox419, 4, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox420, 3, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox421, 2, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox422, 1, 2);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox423, 10, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox424, 9, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox425, 8, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox426, 7, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox427, 6, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox428, 5, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox429, 4, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox430, 3, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox431, 2, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox432, 1, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox433, 0, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox434, 1, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox435, 2, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox436, 3, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox437, 4, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox438, 5, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox439, 6, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox440, 7, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox441, 8, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox442, 9, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox443, 10, 0);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox444, 0, 1);
-            this.tableLayoutPanel_PC21.Controls.Add(this.textBox445, 0, 2);
-            this.tableLayoutPanel_PC21.Location = new System.Drawing.Point(82, 289);
-            this.tableLayoutPanel_PC21.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel_PC21.Name = "tableLayoutPanel_PC21";
-            this.tableLayoutPanel_PC21.RowCount = 5;
-            this.tableLayoutPanel_PC21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel_PC21.Size = new System.Drawing.Size(701, 202);
-            this.tableLayoutPanel_PC21.TabIndex = 8;
-            // 
-            // textBox391
-            // 
-            this.textBox391.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox391.Location = new System.Drawing.Point(631, 162);
-            this.textBox391.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox391.Name = "textBox391";
-            this.textBox391.Size = new System.Drawing.Size(69, 31);
-            this.textBox391.TabIndex = 54;
-            this.textBox391.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox392
-            // 
-            this.textBox392.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox392.Location = new System.Drawing.Point(568, 162);
-            this.textBox392.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox392.Name = "textBox392";
-            this.textBox392.Size = new System.Drawing.Size(61, 31);
-            this.textBox392.TabIndex = 53;
-            this.textBox392.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox393
-            // 
-            this.textBox393.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox393.Location = new System.Drawing.Point(505, 162);
-            this.textBox393.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox393.Name = "textBox393";
-            this.textBox393.Size = new System.Drawing.Size(61, 31);
-            this.textBox393.TabIndex = 52;
-            this.textBox393.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox394
-            // 
-            this.textBox394.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox394.Location = new System.Drawing.Point(442, 162);
-            this.textBox394.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox394.Name = "textBox394";
-            this.textBox394.Size = new System.Drawing.Size(61, 31);
-            this.textBox394.TabIndex = 51;
-            this.textBox394.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox395
-            // 
-            this.textBox395.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox395.Location = new System.Drawing.Point(379, 162);
-            this.textBox395.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox395.Name = "textBox395";
-            this.textBox395.Size = new System.Drawing.Size(61, 31);
-            this.textBox395.TabIndex = 50;
-            this.textBox395.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox396
-            // 
-            this.textBox396.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox396.Location = new System.Drawing.Point(316, 162);
-            this.textBox396.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox396.Name = "textBox396";
-            this.textBox396.Size = new System.Drawing.Size(61, 31);
-            this.textBox396.TabIndex = 49;
-            this.textBox396.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox397
-            // 
-            this.textBox397.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox397.Location = new System.Drawing.Point(253, 162);
-            this.textBox397.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox397.Name = "textBox397";
-            this.textBox397.Size = new System.Drawing.Size(61, 31);
-            this.textBox397.TabIndex = 48;
-            this.textBox397.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox398
-            // 
-            this.textBox398.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox398.Location = new System.Drawing.Point(190, 162);
-            this.textBox398.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox398.Name = "textBox398";
-            this.textBox398.Size = new System.Drawing.Size(61, 31);
-            this.textBox398.TabIndex = 47;
-            this.textBox398.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox399
-            // 
-            this.textBox399.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox399.Location = new System.Drawing.Point(127, 162);
-            this.textBox399.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox399.Name = "textBox399";
-            this.textBox399.Size = new System.Drawing.Size(61, 31);
-            this.textBox399.TabIndex = 46;
-            this.textBox399.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox400
-            // 
-            this.textBox400.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox400.Location = new System.Drawing.Point(64, 162);
-            this.textBox400.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox400.Name = "textBox400";
-            this.textBox400.Size = new System.Drawing.Size(61, 31);
-            this.textBox400.TabIndex = 45;
-            this.textBox400.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox401
-            // 
-            this.textBox401.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox401.Location = new System.Drawing.Point(1, 162);
-            this.textBox401.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox401.Name = "textBox401";
-            this.textBox401.Size = new System.Drawing.Size(61, 31);
-            this.textBox401.TabIndex = 44;
-            this.textBox401.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox402
-            // 
-            this.textBox402.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox402.Location = new System.Drawing.Point(631, 122);
-            this.textBox402.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox402.Name = "textBox402";
-            this.textBox402.Size = new System.Drawing.Size(69, 31);
-            this.textBox402.TabIndex = 43;
-            this.textBox402.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox403
-            // 
-            this.textBox403.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox403.Location = new System.Drawing.Point(568, 122);
-            this.textBox403.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox403.Name = "textBox403";
-            this.textBox403.Size = new System.Drawing.Size(61, 31);
-            this.textBox403.TabIndex = 42;
-            this.textBox403.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox404
-            // 
-            this.textBox404.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox404.Location = new System.Drawing.Point(505, 122);
-            this.textBox404.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox404.Name = "textBox404";
-            this.textBox404.Size = new System.Drawing.Size(61, 31);
-            this.textBox404.TabIndex = 41;
-            this.textBox404.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox405
-            // 
-            this.textBox405.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox405.Location = new System.Drawing.Point(442, 122);
-            this.textBox405.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox405.Name = "textBox405";
-            this.textBox405.Size = new System.Drawing.Size(61, 31);
-            this.textBox405.TabIndex = 40;
-            this.textBox405.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox406
-            // 
-            this.textBox406.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox406.Location = new System.Drawing.Point(379, 122);
-            this.textBox406.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox406.Name = "textBox406";
-            this.textBox406.Size = new System.Drawing.Size(61, 31);
-            this.textBox406.TabIndex = 39;
-            this.textBox406.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox407
-            // 
-            this.textBox407.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox407.Location = new System.Drawing.Point(316, 122);
-            this.textBox407.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox407.Name = "textBox407";
-            this.textBox407.Size = new System.Drawing.Size(61, 31);
-            this.textBox407.TabIndex = 38;
-            this.textBox407.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox408
-            // 
-            this.textBox408.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox408.Location = new System.Drawing.Point(253, 122);
-            this.textBox408.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox408.Name = "textBox408";
-            this.textBox408.Size = new System.Drawing.Size(61, 31);
-            this.textBox408.TabIndex = 37;
-            this.textBox408.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox409
-            // 
-            this.textBox409.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox409.Location = new System.Drawing.Point(190, 122);
-            this.textBox409.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox409.Name = "textBox409";
-            this.textBox409.Size = new System.Drawing.Size(61, 31);
-            this.textBox409.TabIndex = 36;
-            this.textBox409.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox410
-            // 
-            this.textBox410.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox410.Location = new System.Drawing.Point(127, 122);
-            this.textBox410.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox410.Name = "textBox410";
-            this.textBox410.Size = new System.Drawing.Size(61, 31);
-            this.textBox410.TabIndex = 35;
-            this.textBox410.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox411
-            // 
-            this.textBox411.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox411.Location = new System.Drawing.Point(64, 122);
-            this.textBox411.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox411.Name = "textBox411";
-            this.textBox411.Size = new System.Drawing.Size(61, 31);
-            this.textBox411.TabIndex = 34;
-            this.textBox411.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox412
-            // 
-            this.textBox412.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox412.Location = new System.Drawing.Point(1, 122);
-            this.textBox412.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox412.Name = "textBox412";
-            this.textBox412.Size = new System.Drawing.Size(61, 31);
-            this.textBox412.TabIndex = 33;
-            this.textBox412.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox413
-            // 
-            this.textBox413.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox413.Location = new System.Drawing.Point(631, 82);
-            this.textBox413.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox413.Name = "textBox413";
-            this.textBox413.Size = new System.Drawing.Size(69, 31);
-            this.textBox413.TabIndex = 32;
-            this.textBox413.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox414
-            // 
-            this.textBox414.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox414.Location = new System.Drawing.Point(568, 82);
-            this.textBox414.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox414.Name = "textBox414";
-            this.textBox414.Size = new System.Drawing.Size(61, 31);
-            this.textBox414.TabIndex = 31;
-            this.textBox414.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox415
-            // 
-            this.textBox415.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox415.Location = new System.Drawing.Point(505, 82);
-            this.textBox415.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox415.Name = "textBox415";
-            this.textBox415.Size = new System.Drawing.Size(61, 31);
-            this.textBox415.TabIndex = 30;
-            this.textBox415.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox416
-            // 
-            this.textBox416.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox416.Location = new System.Drawing.Point(442, 82);
-            this.textBox416.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox416.Name = "textBox416";
-            this.textBox416.Size = new System.Drawing.Size(61, 31);
-            this.textBox416.TabIndex = 29;
-            this.textBox416.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox417
-            // 
-            this.textBox417.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox417.Location = new System.Drawing.Point(379, 82);
-            this.textBox417.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox417.Name = "textBox417";
-            this.textBox417.Size = new System.Drawing.Size(61, 31);
-            this.textBox417.TabIndex = 28;
-            this.textBox417.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox418
-            // 
-            this.textBox418.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox418.Location = new System.Drawing.Point(316, 82);
-            this.textBox418.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox418.Name = "textBox418";
-            this.textBox418.Size = new System.Drawing.Size(61, 31);
-            this.textBox418.TabIndex = 27;
-            this.textBox418.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox419
-            // 
-            this.textBox419.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox419.Location = new System.Drawing.Point(253, 82);
-            this.textBox419.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox419.Name = "textBox419";
-            this.textBox419.Size = new System.Drawing.Size(61, 31);
-            this.textBox419.TabIndex = 26;
-            this.textBox419.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox420
-            // 
-            this.textBox420.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox420.Location = new System.Drawing.Point(190, 82);
-            this.textBox420.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox420.Name = "textBox420";
-            this.textBox420.Size = new System.Drawing.Size(61, 31);
-            this.textBox420.TabIndex = 25;
-            this.textBox420.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox421
-            // 
-            this.textBox421.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox421.Location = new System.Drawing.Point(127, 82);
-            this.textBox421.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox421.Name = "textBox421";
-            this.textBox421.Size = new System.Drawing.Size(61, 31);
-            this.textBox421.TabIndex = 24;
-            this.textBox421.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox422
-            // 
-            this.textBox422.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox422.Location = new System.Drawing.Point(64, 82);
-            this.textBox422.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox422.Name = "textBox422";
-            this.textBox422.Size = new System.Drawing.Size(61, 31);
-            this.textBox422.TabIndex = 23;
-            this.textBox422.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox423
-            // 
-            this.textBox423.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox423.Location = new System.Drawing.Point(631, 42);
-            this.textBox423.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox423.Name = "textBox423";
-            this.textBox423.Size = new System.Drawing.Size(69, 31);
-            this.textBox423.TabIndex = 21;
-            this.textBox423.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox424
-            // 
-            this.textBox424.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox424.Location = new System.Drawing.Point(568, 42);
-            this.textBox424.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox424.Name = "textBox424";
-            this.textBox424.Size = new System.Drawing.Size(61, 31);
-            this.textBox424.TabIndex = 20;
-            this.textBox424.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox425
-            // 
-            this.textBox425.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox425.Location = new System.Drawing.Point(505, 42);
-            this.textBox425.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox425.Name = "textBox425";
-            this.textBox425.Size = new System.Drawing.Size(61, 31);
-            this.textBox425.TabIndex = 19;
-            this.textBox425.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox426
-            // 
-            this.textBox426.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox426.Location = new System.Drawing.Point(442, 42);
-            this.textBox426.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox426.Name = "textBox426";
-            this.textBox426.Size = new System.Drawing.Size(61, 31);
-            this.textBox426.TabIndex = 18;
-            this.textBox426.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox427
-            // 
-            this.textBox427.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox427.Location = new System.Drawing.Point(379, 42);
-            this.textBox427.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox427.Name = "textBox427";
-            this.textBox427.Size = new System.Drawing.Size(61, 31);
-            this.textBox427.TabIndex = 17;
-            this.textBox427.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox428
-            // 
-            this.textBox428.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox428.Location = new System.Drawing.Point(316, 42);
-            this.textBox428.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox428.Name = "textBox428";
-            this.textBox428.Size = new System.Drawing.Size(61, 31);
-            this.textBox428.TabIndex = 16;
-            this.textBox428.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox429
-            // 
-            this.textBox429.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox429.Location = new System.Drawing.Point(253, 42);
-            this.textBox429.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox429.Name = "textBox429";
-            this.textBox429.Size = new System.Drawing.Size(61, 31);
-            this.textBox429.TabIndex = 15;
-            this.textBox429.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox430
-            // 
-            this.textBox430.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox430.Location = new System.Drawing.Point(190, 42);
-            this.textBox430.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox430.Name = "textBox430";
-            this.textBox430.Size = new System.Drawing.Size(61, 31);
-            this.textBox430.TabIndex = 14;
-            this.textBox430.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox431
-            // 
-            this.textBox431.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox431.Location = new System.Drawing.Point(127, 42);
-            this.textBox431.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox431.Name = "textBox431";
-            this.textBox431.Size = new System.Drawing.Size(61, 31);
-            this.textBox431.TabIndex = 13;
-            this.textBox431.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox432
-            // 
-            this.textBox432.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox432.Location = new System.Drawing.Point(64, 42);
-            this.textBox432.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox432.Name = "textBox432";
-            this.textBox432.Size = new System.Drawing.Size(61, 31);
-            this.textBox432.TabIndex = 12;
-            this.textBox432.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox433
-            // 
-            this.textBox433.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox433.Location = new System.Drawing.Point(1, 2);
-            this.textBox433.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox433.Name = "textBox433";
-            this.textBox433.ReadOnly = true;
-            this.textBox433.Size = new System.Drawing.Size(61, 31);
-            this.textBox433.TabIndex = 1;
-            this.textBox433.Text = "1";
-            this.textBox433.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox434
-            // 
-            this.textBox434.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox434.Location = new System.Drawing.Point(64, 2);
-            this.textBox434.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox434.Name = "textBox434";
-            this.textBox434.ReadOnly = true;
-            this.textBox434.Size = new System.Drawing.Size(61, 31);
-            this.textBox434.TabIndex = 4;
-            this.textBox434.Text = "2";
-            this.textBox434.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox435
-            // 
-            this.textBox435.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox435.Location = new System.Drawing.Point(127, 2);
-            this.textBox435.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox435.Name = "textBox435";
-            this.textBox435.ReadOnly = true;
-            this.textBox435.Size = new System.Drawing.Size(61, 31);
-            this.textBox435.TabIndex = 3;
-            this.textBox435.Text = "3";
-            this.textBox435.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox436
-            // 
-            this.textBox436.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox436.Location = new System.Drawing.Point(190, 2);
-            this.textBox436.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox436.Name = "textBox436";
-            this.textBox436.ReadOnly = true;
-            this.textBox436.Size = new System.Drawing.Size(61, 31);
-            this.textBox436.TabIndex = 5;
-            this.textBox436.Text = "4";
-            this.textBox436.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox437
-            // 
-            this.textBox437.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox437.Location = new System.Drawing.Point(253, 2);
-            this.textBox437.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox437.Name = "textBox437";
-            this.textBox437.ReadOnly = true;
-            this.textBox437.Size = new System.Drawing.Size(61, 31);
-            this.textBox437.TabIndex = 2;
-            this.textBox437.Text = "5";
-            this.textBox437.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox438
-            // 
-            this.textBox438.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox438.Location = new System.Drawing.Point(316, 2);
-            this.textBox438.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox438.Name = "textBox438";
-            this.textBox438.ReadOnly = true;
-            this.textBox438.Size = new System.Drawing.Size(61, 31);
-            this.textBox438.TabIndex = 11;
-            this.textBox438.Text = "6";
-            this.textBox438.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox439
-            // 
-            this.textBox439.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox439.Location = new System.Drawing.Point(379, 2);
-            this.textBox439.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox439.Name = "textBox439";
-            this.textBox439.ReadOnly = true;
-            this.textBox439.Size = new System.Drawing.Size(61, 31);
-            this.textBox439.TabIndex = 9;
-            this.textBox439.Text = "7";
-            this.textBox439.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox440
-            // 
-            this.textBox440.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox440.Location = new System.Drawing.Point(442, 2);
-            this.textBox440.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox440.Name = "textBox440";
-            this.textBox440.ReadOnly = true;
-            this.textBox440.Size = new System.Drawing.Size(61, 31);
-            this.textBox440.TabIndex = 8;
-            this.textBox440.Text = "8";
-            this.textBox440.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox441
-            // 
-            this.textBox441.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox441.Location = new System.Drawing.Point(505, 2);
-            this.textBox441.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox441.Name = "textBox441";
-            this.textBox441.ReadOnly = true;
-            this.textBox441.Size = new System.Drawing.Size(61, 31);
-            this.textBox441.TabIndex = 10;
-            this.textBox441.Text = "9";
-            this.textBox441.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox442
-            // 
-            this.textBox442.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox442.Location = new System.Drawing.Point(568, 2);
-            this.textBox442.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox442.Name = "textBox442";
-            this.textBox442.ReadOnly = true;
-            this.textBox442.Size = new System.Drawing.Size(61, 31);
-            this.textBox442.TabIndex = 7;
-            this.textBox442.Text = "10";
-            this.textBox442.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox443
-            // 
-            this.textBox443.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox443.Location = new System.Drawing.Point(631, 2);
-            this.textBox443.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox443.Name = "textBox443";
-            this.textBox443.ReadOnly = true;
-            this.textBox443.Size = new System.Drawing.Size(69, 31);
-            this.textBox443.TabIndex = 6;
-            this.textBox443.Text = "11";
-            this.textBox443.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox444
-            // 
-            this.textBox444.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox444.Location = new System.Drawing.Point(1, 42);
-            this.textBox444.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox444.Name = "textBox444";
-            this.textBox444.Size = new System.Drawing.Size(61, 31);
-            this.textBox444.TabIndex = 11;
-            this.textBox444.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox445
-            // 
-            this.textBox445.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox445.Location = new System.Drawing.Point(1, 82);
-            this.textBox445.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox445.Name = "textBox445";
-            this.textBox445.Size = new System.Drawing.Size(61, 31);
-            this.textBox445.TabIndex = 22;
-            this.textBox445.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 3);
-            this.label13.Margin = new System.Windows.Forms.Padding(3);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(72, 65);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "TS-07";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(3, 74);
-            this.label14.Margin = new System.Windows.Forms.Padding(3);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(72, 25);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "PC-20";
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.Controls.Add(this.textBox446, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label15, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(81, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(705, 65);
-            this.tableLayoutPanel6.TabIndex = 5;
-            // 
-            // textBox446
-            // 
-            this.textBox446.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox446.Location = new System.Drawing.Point(567, 3);
-            this.textBox446.Name = "textBox446";
-            this.textBox446.Size = new System.Drawing.Size(135, 31);
-            this.textBox446.TabIndex = 7;
-            this.textBox446.Text = "--";
-            this.textBox446.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 3);
-            this.label15.Margin = new System.Windows.Forms.Padding(3);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(558, 25);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Temperature: ";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(3, 287);
-            this.label16.Margin = new System.Windows.Forms.Padding(3);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(72, 25);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "PC-21";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(3, 500);
-            this.label17.Margin = new System.Windows.Forms.Padding(3);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(72, 25);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "PC-22";
-            // 
-            // tableLayoutPanel_PC20
-            // 
-            this.tableLayoutPanel_PC20.ColumnCount = 11;
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox447, 10, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox448, 9, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox449, 8, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox450, 7, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox451, 6, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox452, 5, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox453, 4, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox454, 3, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox455, 2, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox456, 1, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox457, 0, 4);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox458, 10, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox459, 9, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox460, 8, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox461, 7, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox462, 6, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox463, 5, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox464, 4, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox465, 3, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox466, 2, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox467, 1, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox468, 0, 3);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox469, 10, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox470, 9, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox471, 8, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox472, 7, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox473, 6, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox474, 5, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox475, 4, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox476, 3, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox477, 2, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox478, 1, 2);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox479, 10, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox480, 9, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox481, 8, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox482, 7, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox483, 6, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox484, 5, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox485, 4, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox486, 3, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox487, 2, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox488, 1, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox489, 0, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox490, 1, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox491, 2, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox492, 3, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox493, 4, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox494, 5, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox495, 6, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox496, 7, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox497, 8, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox498, 9, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox499, 10, 0);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox500, 0, 1);
-            this.tableLayoutPanel_PC20.Controls.Add(this.textBox501, 0, 2);
-            this.tableLayoutPanel_PC20.Location = new System.Drawing.Point(82, 76);
-            this.tableLayoutPanel_PC20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel_PC20.Name = "tableLayoutPanel_PC20";
-            this.tableLayoutPanel_PC20.RowCount = 5;
-            this.tableLayoutPanel_PC20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_PC20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel_PC20.Size = new System.Drawing.Size(701, 202);
-            this.tableLayoutPanel_PC20.TabIndex = 7;
-            // 
-            // textBox447
-            // 
-            this.textBox447.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox447.Location = new System.Drawing.Point(631, 162);
-            this.textBox447.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox447.Name = "textBox447";
-            this.textBox447.Size = new System.Drawing.Size(69, 31);
-            this.textBox447.TabIndex = 54;
-            this.textBox447.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox448
-            // 
-            this.textBox448.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox448.Location = new System.Drawing.Point(568, 162);
-            this.textBox448.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox448.Name = "textBox448";
-            this.textBox448.Size = new System.Drawing.Size(61, 31);
-            this.textBox448.TabIndex = 53;
-            this.textBox448.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox449
-            // 
-            this.textBox449.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox449.Location = new System.Drawing.Point(505, 162);
-            this.textBox449.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox449.Name = "textBox449";
-            this.textBox449.Size = new System.Drawing.Size(61, 31);
-            this.textBox449.TabIndex = 52;
-            this.textBox449.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox450
-            // 
-            this.textBox450.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox450.Location = new System.Drawing.Point(442, 162);
-            this.textBox450.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox450.Name = "textBox450";
-            this.textBox450.Size = new System.Drawing.Size(61, 31);
-            this.textBox450.TabIndex = 51;
-            this.textBox450.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox451
-            // 
-            this.textBox451.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox451.Location = new System.Drawing.Point(379, 162);
-            this.textBox451.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox451.Name = "textBox451";
-            this.textBox451.Size = new System.Drawing.Size(61, 31);
-            this.textBox451.TabIndex = 50;
-            this.textBox451.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox452
-            // 
-            this.textBox452.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox452.Location = new System.Drawing.Point(316, 162);
-            this.textBox452.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox452.Name = "textBox452";
-            this.textBox452.Size = new System.Drawing.Size(61, 31);
-            this.textBox452.TabIndex = 49;
-            this.textBox452.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox453
-            // 
-            this.textBox453.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox453.Location = new System.Drawing.Point(253, 162);
-            this.textBox453.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox453.Name = "textBox453";
-            this.textBox453.Size = new System.Drawing.Size(61, 31);
-            this.textBox453.TabIndex = 48;
-            this.textBox453.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox454
-            // 
-            this.textBox454.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox454.Location = new System.Drawing.Point(190, 162);
-            this.textBox454.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox454.Name = "textBox454";
-            this.textBox454.Size = new System.Drawing.Size(61, 31);
-            this.textBox454.TabIndex = 47;
-            this.textBox454.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox455
-            // 
-            this.textBox455.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox455.Location = new System.Drawing.Point(127, 162);
-            this.textBox455.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox455.Name = "textBox455";
-            this.textBox455.Size = new System.Drawing.Size(61, 31);
-            this.textBox455.TabIndex = 46;
-            this.textBox455.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox456
-            // 
-            this.textBox456.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox456.Location = new System.Drawing.Point(64, 162);
-            this.textBox456.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox456.Name = "textBox456";
-            this.textBox456.Size = new System.Drawing.Size(61, 31);
-            this.textBox456.TabIndex = 45;
-            this.textBox456.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox457
-            // 
-            this.textBox457.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox457.Location = new System.Drawing.Point(1, 162);
-            this.textBox457.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox457.Name = "textBox457";
-            this.textBox457.Size = new System.Drawing.Size(61, 31);
-            this.textBox457.TabIndex = 44;
-            this.textBox457.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox458
-            // 
-            this.textBox458.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox458.Location = new System.Drawing.Point(631, 122);
-            this.textBox458.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox458.Name = "textBox458";
-            this.textBox458.Size = new System.Drawing.Size(69, 31);
-            this.textBox458.TabIndex = 43;
-            this.textBox458.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox459
-            // 
-            this.textBox459.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox459.Location = new System.Drawing.Point(568, 122);
-            this.textBox459.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox459.Name = "textBox459";
-            this.textBox459.Size = new System.Drawing.Size(61, 31);
-            this.textBox459.TabIndex = 42;
-            this.textBox459.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox460
-            // 
-            this.textBox460.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox460.Location = new System.Drawing.Point(505, 122);
-            this.textBox460.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox460.Name = "textBox460";
-            this.textBox460.Size = new System.Drawing.Size(61, 31);
-            this.textBox460.TabIndex = 41;
-            this.textBox460.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox461
-            // 
-            this.textBox461.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox461.Location = new System.Drawing.Point(442, 122);
-            this.textBox461.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox461.Name = "textBox461";
-            this.textBox461.Size = new System.Drawing.Size(61, 31);
-            this.textBox461.TabIndex = 40;
-            this.textBox461.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox462
-            // 
-            this.textBox462.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox462.Location = new System.Drawing.Point(379, 122);
-            this.textBox462.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox462.Name = "textBox462";
-            this.textBox462.Size = new System.Drawing.Size(61, 31);
-            this.textBox462.TabIndex = 39;
-            this.textBox462.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox463
-            // 
-            this.textBox463.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox463.Location = new System.Drawing.Point(316, 122);
-            this.textBox463.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox463.Name = "textBox463";
-            this.textBox463.Size = new System.Drawing.Size(61, 31);
-            this.textBox463.TabIndex = 38;
-            this.textBox463.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox464
-            // 
-            this.textBox464.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox464.Location = new System.Drawing.Point(253, 122);
-            this.textBox464.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox464.Name = "textBox464";
-            this.textBox464.Size = new System.Drawing.Size(61, 31);
-            this.textBox464.TabIndex = 37;
-            this.textBox464.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox465
-            // 
-            this.textBox465.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox465.Location = new System.Drawing.Point(190, 122);
-            this.textBox465.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox465.Name = "textBox465";
-            this.textBox465.Size = new System.Drawing.Size(61, 31);
-            this.textBox465.TabIndex = 36;
-            this.textBox465.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox466
-            // 
-            this.textBox466.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox466.Location = new System.Drawing.Point(127, 122);
-            this.textBox466.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox466.Name = "textBox466";
-            this.textBox466.Size = new System.Drawing.Size(61, 31);
-            this.textBox466.TabIndex = 35;
-            this.textBox466.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox467
-            // 
-            this.textBox467.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox467.Location = new System.Drawing.Point(64, 122);
-            this.textBox467.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox467.Name = "textBox467";
-            this.textBox467.Size = new System.Drawing.Size(61, 31);
-            this.textBox467.TabIndex = 34;
-            this.textBox467.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox468
-            // 
-            this.textBox468.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox468.Location = new System.Drawing.Point(1, 122);
-            this.textBox468.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox468.Name = "textBox468";
-            this.textBox468.Size = new System.Drawing.Size(61, 31);
-            this.textBox468.TabIndex = 33;
-            this.textBox468.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox469
-            // 
-            this.textBox469.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox469.Location = new System.Drawing.Point(631, 82);
-            this.textBox469.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox469.Name = "textBox469";
-            this.textBox469.Size = new System.Drawing.Size(69, 31);
-            this.textBox469.TabIndex = 32;
-            this.textBox469.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox470
-            // 
-            this.textBox470.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox470.Location = new System.Drawing.Point(568, 82);
-            this.textBox470.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox470.Name = "textBox470";
-            this.textBox470.Size = new System.Drawing.Size(61, 31);
-            this.textBox470.TabIndex = 31;
-            this.textBox470.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox471
-            // 
-            this.textBox471.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox471.Location = new System.Drawing.Point(505, 82);
-            this.textBox471.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox471.Name = "textBox471";
-            this.textBox471.Size = new System.Drawing.Size(61, 31);
-            this.textBox471.TabIndex = 30;
-            this.textBox471.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox472
-            // 
-            this.textBox472.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox472.Location = new System.Drawing.Point(442, 82);
-            this.textBox472.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox472.Name = "textBox472";
-            this.textBox472.Size = new System.Drawing.Size(61, 31);
-            this.textBox472.TabIndex = 29;
-            this.textBox472.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox473
-            // 
-            this.textBox473.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox473.Location = new System.Drawing.Point(379, 82);
-            this.textBox473.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox473.Name = "textBox473";
-            this.textBox473.Size = new System.Drawing.Size(61, 31);
-            this.textBox473.TabIndex = 28;
-            this.textBox473.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox474
-            // 
-            this.textBox474.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox474.Location = new System.Drawing.Point(316, 82);
-            this.textBox474.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox474.Name = "textBox474";
-            this.textBox474.Size = new System.Drawing.Size(61, 31);
-            this.textBox474.TabIndex = 27;
-            this.textBox474.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox475
-            // 
-            this.textBox475.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox475.Location = new System.Drawing.Point(253, 82);
-            this.textBox475.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox475.Name = "textBox475";
-            this.textBox475.Size = new System.Drawing.Size(61, 31);
-            this.textBox475.TabIndex = 26;
-            this.textBox475.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox476
-            // 
-            this.textBox476.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox476.Location = new System.Drawing.Point(190, 82);
-            this.textBox476.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox476.Name = "textBox476";
-            this.textBox476.Size = new System.Drawing.Size(61, 31);
-            this.textBox476.TabIndex = 25;
-            this.textBox476.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox477
-            // 
-            this.textBox477.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox477.Location = new System.Drawing.Point(127, 82);
-            this.textBox477.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox477.Name = "textBox477";
-            this.textBox477.Size = new System.Drawing.Size(61, 31);
-            this.textBox477.TabIndex = 24;
-            this.textBox477.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox478
-            // 
-            this.textBox478.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox478.Location = new System.Drawing.Point(64, 82);
-            this.textBox478.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox478.Name = "textBox478";
-            this.textBox478.Size = new System.Drawing.Size(61, 31);
-            this.textBox478.TabIndex = 23;
-            this.textBox478.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox479
-            // 
-            this.textBox479.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox479.Location = new System.Drawing.Point(631, 42);
-            this.textBox479.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox479.Name = "textBox479";
-            this.textBox479.Size = new System.Drawing.Size(69, 31);
-            this.textBox479.TabIndex = 21;
-            this.textBox479.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox480
-            // 
-            this.textBox480.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox480.Location = new System.Drawing.Point(568, 42);
-            this.textBox480.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox480.Name = "textBox480";
-            this.textBox480.Size = new System.Drawing.Size(61, 31);
-            this.textBox480.TabIndex = 20;
-            this.textBox480.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox481
-            // 
-            this.textBox481.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox481.Location = new System.Drawing.Point(505, 42);
-            this.textBox481.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox481.Name = "textBox481";
-            this.textBox481.Size = new System.Drawing.Size(61, 31);
-            this.textBox481.TabIndex = 19;
-            this.textBox481.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox482
-            // 
-            this.textBox482.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox482.Location = new System.Drawing.Point(442, 42);
-            this.textBox482.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox482.Name = "textBox482";
-            this.textBox482.Size = new System.Drawing.Size(61, 31);
-            this.textBox482.TabIndex = 18;
-            this.textBox482.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox483
-            // 
-            this.textBox483.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox483.Location = new System.Drawing.Point(379, 42);
-            this.textBox483.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox483.Name = "textBox483";
-            this.textBox483.Size = new System.Drawing.Size(61, 31);
-            this.textBox483.TabIndex = 17;
-            this.textBox483.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox484
-            // 
-            this.textBox484.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox484.Location = new System.Drawing.Point(316, 42);
-            this.textBox484.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox484.Name = "textBox484";
-            this.textBox484.Size = new System.Drawing.Size(61, 31);
-            this.textBox484.TabIndex = 16;
-            this.textBox484.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox485
-            // 
-            this.textBox485.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox485.Location = new System.Drawing.Point(253, 42);
-            this.textBox485.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox485.Name = "textBox485";
-            this.textBox485.Size = new System.Drawing.Size(61, 31);
-            this.textBox485.TabIndex = 15;
-            this.textBox485.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox486
-            // 
-            this.textBox486.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox486.Location = new System.Drawing.Point(190, 42);
-            this.textBox486.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox486.Name = "textBox486";
-            this.textBox486.Size = new System.Drawing.Size(61, 31);
-            this.textBox486.TabIndex = 14;
-            this.textBox486.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox487
-            // 
-            this.textBox487.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox487.Location = new System.Drawing.Point(127, 42);
-            this.textBox487.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox487.Name = "textBox487";
-            this.textBox487.Size = new System.Drawing.Size(61, 31);
-            this.textBox487.TabIndex = 13;
-            this.textBox487.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox488
-            // 
-            this.textBox488.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox488.Location = new System.Drawing.Point(64, 42);
-            this.textBox488.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox488.Name = "textBox488";
-            this.textBox488.Size = new System.Drawing.Size(61, 31);
-            this.textBox488.TabIndex = 12;
-            this.textBox488.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox489
-            // 
-            this.textBox489.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox489.Location = new System.Drawing.Point(1, 2);
-            this.textBox489.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox489.Name = "textBox489";
-            this.textBox489.ReadOnly = true;
-            this.textBox489.Size = new System.Drawing.Size(61, 31);
-            this.textBox489.TabIndex = 1;
-            this.textBox489.Text = "1";
-            this.textBox489.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox490
-            // 
-            this.textBox490.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox490.Location = new System.Drawing.Point(64, 2);
-            this.textBox490.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox490.Name = "textBox490";
-            this.textBox490.ReadOnly = true;
-            this.textBox490.Size = new System.Drawing.Size(61, 31);
-            this.textBox490.TabIndex = 4;
-            this.textBox490.Text = "2";
-            this.textBox490.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox491
-            // 
-            this.textBox491.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox491.Location = new System.Drawing.Point(127, 2);
-            this.textBox491.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox491.Name = "textBox491";
-            this.textBox491.ReadOnly = true;
-            this.textBox491.Size = new System.Drawing.Size(61, 31);
-            this.textBox491.TabIndex = 3;
-            this.textBox491.Text = "3";
-            this.textBox491.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox492
-            // 
-            this.textBox492.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox492.Location = new System.Drawing.Point(190, 2);
-            this.textBox492.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox492.Name = "textBox492";
-            this.textBox492.ReadOnly = true;
-            this.textBox492.Size = new System.Drawing.Size(61, 31);
-            this.textBox492.TabIndex = 5;
-            this.textBox492.Text = "4";
-            this.textBox492.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox493
-            // 
-            this.textBox493.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox493.Location = new System.Drawing.Point(253, 2);
-            this.textBox493.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox493.Name = "textBox493";
-            this.textBox493.ReadOnly = true;
-            this.textBox493.Size = new System.Drawing.Size(61, 31);
-            this.textBox493.TabIndex = 2;
-            this.textBox493.Text = "5";
-            this.textBox493.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox494
-            // 
-            this.textBox494.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox494.Location = new System.Drawing.Point(316, 2);
-            this.textBox494.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox494.Name = "textBox494";
-            this.textBox494.ReadOnly = true;
-            this.textBox494.Size = new System.Drawing.Size(61, 31);
-            this.textBox494.TabIndex = 11;
-            this.textBox494.Text = "6";
-            this.textBox494.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox495
-            // 
-            this.textBox495.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox495.Location = new System.Drawing.Point(379, 2);
-            this.textBox495.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox495.Name = "textBox495";
-            this.textBox495.ReadOnly = true;
-            this.textBox495.Size = new System.Drawing.Size(61, 31);
-            this.textBox495.TabIndex = 9;
-            this.textBox495.Text = "7";
-            this.textBox495.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox496
-            // 
-            this.textBox496.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox496.Location = new System.Drawing.Point(442, 2);
-            this.textBox496.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox496.Name = "textBox496";
-            this.textBox496.ReadOnly = true;
-            this.textBox496.Size = new System.Drawing.Size(61, 31);
-            this.textBox496.TabIndex = 8;
-            this.textBox496.Text = "8";
-            this.textBox496.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox497
-            // 
-            this.textBox497.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox497.Location = new System.Drawing.Point(505, 2);
-            this.textBox497.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox497.Name = "textBox497";
-            this.textBox497.ReadOnly = true;
-            this.textBox497.Size = new System.Drawing.Size(61, 31);
-            this.textBox497.TabIndex = 10;
-            this.textBox497.Text = "9";
-            this.textBox497.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox498
-            // 
-            this.textBox498.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox498.Location = new System.Drawing.Point(568, 2);
-            this.textBox498.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox498.Name = "textBox498";
-            this.textBox498.ReadOnly = true;
-            this.textBox498.Size = new System.Drawing.Size(61, 31);
-            this.textBox498.TabIndex = 7;
-            this.textBox498.Text = "10";
-            this.textBox498.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox499
-            // 
-            this.textBox499.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox499.Location = new System.Drawing.Point(631, 2);
-            this.textBox499.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox499.Name = "textBox499";
-            this.textBox499.ReadOnly = true;
-            this.textBox499.Size = new System.Drawing.Size(69, 31);
-            this.textBox499.TabIndex = 6;
-            this.textBox499.Text = "11";
-            this.textBox499.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox500
-            // 
-            this.textBox500.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox500.Location = new System.Drawing.Point(1, 42);
-            this.textBox500.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox500.Name = "textBox500";
-            this.textBox500.Size = new System.Drawing.Size(61, 31);
-            this.textBox500.TabIndex = 11;
-            this.textBox500.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox501
-            // 
-            this.textBox501.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox501.Location = new System.Drawing.Point(1, 82);
-            this.textBox501.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.textBox501.Name = "textBox501";
-            this.textBox501.Size = new System.Drawing.Size(61, 31);
-            this.textBox501.TabIndex = 22;
-            this.textBox501.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // tableLayoutPanel_chamber06
             // 
             this.tableLayoutPanel_chamber06.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -8533,7 +5943,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber06.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel_chamber06.Controls.Add(this.label12, 0, 3);
             this.tableLayoutPanel_chamber06.Controls.Add(this.tableLayoutPanel_PC17, 1, 1);
-            this.tableLayoutPanel_chamber06.Location = new System.Drawing.Point(804, 3);
+            this.tableLayoutPanel_chamber06.Location = new System.Drawing.Point(1207, 3);
             this.tableLayoutPanel_chamber06.Name = "tableLayoutPanel_chamber06";
             this.tableLayoutPanel_chamber06.RowCount = 4;
             this.tableLayoutPanel_chamber06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -8541,7 +5951,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamber06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamber06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_chamber06.Size = new System.Drawing.Size(772, 710);
+            this.tableLayoutPanel_chamber06.Size = new System.Drawing.Size(1164, 711);
             this.tableLayoutPanel_chamber06.TabIndex = 1;
             // 
             // tableLayoutPanel_PC19
@@ -8613,7 +6023,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC19.Controls.Add(this.textBox220, 10, 0);
             this.tableLayoutPanel_PC19.Controls.Add(this.textBox221, 0, 1);
             this.tableLayoutPanel_PC19.Controls.Add(this.textBox222, 0, 2);
-            this.tableLayoutPanel_PC19.Location = new System.Drawing.Point(81, 502);
+            this.tableLayoutPanel_PC19.Location = new System.Drawing.Point(120, 502);
             this.tableLayoutPanel_PC19.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC19.Name = "tableLayoutPanel_PC19";
             this.tableLayoutPanel_PC19.RowCount = 5;
@@ -9377,7 +6787,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC18.Controls.Add(this.textBox275, 10, 0);
             this.tableLayoutPanel_PC18.Controls.Add(this.textBox276, 0, 1);
             this.tableLayoutPanel_PC18.Controls.Add(this.textBox277, 0, 2);
-            this.tableLayoutPanel_PC18.Location = new System.Drawing.Point(81, 289);
+            this.tableLayoutPanel_PC18.Location = new System.Drawing.Point(120, 289);
             this.tableLayoutPanel_PC18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC18.Name = "tableLayoutPanel_PC18";
             this.tableLayoutPanel_PC18.RowCount = 5;
@@ -10081,9 +7491,9 @@ namespace Server_GUI
             this.label8.Location = new System.Drawing.Point(3, 3);
             this.label8.Margin = new System.Windows.Forms.Padding(3);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 65);
+            this.label8.Size = new System.Drawing.Size(110, 65);
             this.label8.TabIndex = 0;
-            this.label8.Text = "TS-06";
+            this.label8.Text = "Group 2";
             // 
             // label9
             // 
@@ -10094,7 +7504,7 @@ namespace Server_GUI
             this.label9.Location = new System.Drawing.Point(3, 74);
             this.label9.Margin = new System.Windows.Forms.Padding(3);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 25);
+            this.label9.Size = new System.Drawing.Size(110, 25);
             this.label9.TabIndex = 1;
             this.label9.Text = "PC-17";
             // 
@@ -10108,20 +7518,20 @@ namespace Server_GUI
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.Controls.Add(this.textBox278, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(80, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(119, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(689, 65);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1042, 65);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
             // textBox278
             // 
             this.textBox278.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox278.Location = new System.Drawing.Point(554, 3);
+            this.textBox278.Location = new System.Drawing.Point(836, 3);
             this.textBox278.Name = "textBox278";
-            this.textBox278.Size = new System.Drawing.Size(132, 31);
+            this.textBox278.Size = new System.Drawing.Size(203, 31);
             this.textBox278.TabIndex = 7;
             this.textBox278.Text = "--";
             this.textBox278.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -10134,7 +7544,7 @@ namespace Server_GUI
             this.label10.Location = new System.Drawing.Point(3, 3);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(545, 25);
+            this.label10.Size = new System.Drawing.Size(827, 25);
             this.label10.TabIndex = 8;
             this.label10.Text = "Temperature: ";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -10148,7 +7558,7 @@ namespace Server_GUI
             this.label11.Location = new System.Drawing.Point(3, 287);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(71, 25);
+            this.label11.Size = new System.Drawing.Size(110, 25);
             this.label11.TabIndex = 2;
             this.label11.Text = "PC-18";
             // 
@@ -10161,7 +7571,7 @@ namespace Server_GUI
             this.label12.Location = new System.Drawing.Point(3, 500);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 25);
+            this.label12.Size = new System.Drawing.Size(110, 25);
             this.label12.TabIndex = 3;
             this.label12.Text = "PC-19";
             // 
@@ -10234,7 +7644,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC17.Controls.Add(this.textBox331, 10, 0);
             this.tableLayoutPanel_PC17.Controls.Add(this.textBox332, 0, 1);
             this.tableLayoutPanel_PC17.Controls.Add(this.textBox335, 0, 2);
-            this.tableLayoutPanel_PC17.Location = new System.Drawing.Point(81, 76);
+            this.tableLayoutPanel_PC17.Location = new System.Drawing.Point(120, 76);
             this.tableLayoutPanel_PC17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC17.Name = "tableLayoutPanel_PC17";
             this.tableLayoutPanel_PC17.RowCount = 5;
@@ -10953,7 +8363,7 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamber05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel_chamber05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_chamber05.Size = new System.Drawing.Size(795, 710);
+            this.tableLayoutPanel_chamber05.Size = new System.Drawing.Size(1198, 711);
             this.tableLayoutPanel_chamber05.TabIndex = 0;
             // 
             // tableLayoutPanel_PC16
@@ -11025,7 +8435,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC16.Controls.Add(this.textBox165, 10, 0);
             this.tableLayoutPanel_PC16.Controls.Add(this.textBox166, 0, 1);
             this.tableLayoutPanel_PC16.Controls.Add(this.textBox167, 0, 2);
-            this.tableLayoutPanel_PC16.Location = new System.Drawing.Point(83, 502);
+            this.tableLayoutPanel_PC16.Location = new System.Drawing.Point(123, 502);
             this.tableLayoutPanel_PC16.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC16.Name = "tableLayoutPanel_PC16";
             this.tableLayoutPanel_PC16.RowCount = 5;
@@ -11789,7 +9199,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC15.Controls.Add(this.textBox56, 10, 0);
             this.tableLayoutPanel_PC15.Controls.Add(this.textBox57, 0, 1);
             this.tableLayoutPanel_PC15.Controls.Add(this.textBox58, 0, 2);
-            this.tableLayoutPanel_PC15.Location = new System.Drawing.Point(83, 289);
+            this.tableLayoutPanel_PC15.Location = new System.Drawing.Point(123, 289);
             this.tableLayoutPanel_PC15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC15.Name = "tableLayoutPanel_PC15";
             this.tableLayoutPanel_PC15.RowCount = 5;
@@ -12493,9 +9903,10 @@ namespace Server_GUI
             this.label4.Location = new System.Drawing.Point(3, 3);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 65);
+            this.label4.Size = new System.Drawing.Size(113, 65);
             this.label4.TabIndex = 0;
-            this.label4.Text = "TS-05";
+            this.label4.Text = "Group 1";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -12506,7 +9917,7 @@ namespace Server_GUI
             this.label5.Location = new System.Drawing.Point(3, 74);
             this.label5.Margin = new System.Windows.Forms.Padding(3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 25);
+            this.label5.Size = new System.Drawing.Size(113, 25);
             this.label5.TabIndex = 1;
             this.label5.Text = "PC-14";
             // 
@@ -12520,20 +9931,20 @@ namespace Server_GUI
             this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel22.Controls.Add(this.textBox_Temperature_TS05, 1, 0);
             this.tableLayoutPanel22.Controls.Add(this.label24, 0, 0);
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(82, 3);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(122, 3);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(710, 65);
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(1073, 65);
             this.tableLayoutPanel22.TabIndex = 5;
             // 
             // textBox_Temperature_TS05
             // 
             this.textBox_Temperature_TS05.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Temperature_TS05.Location = new System.Drawing.Point(571, 3);
+            this.textBox_Temperature_TS05.Location = new System.Drawing.Point(861, 3);
             this.textBox_Temperature_TS05.Name = "textBox_Temperature_TS05";
-            this.textBox_Temperature_TS05.Size = new System.Drawing.Size(136, 31);
+            this.textBox_Temperature_TS05.Size = new System.Drawing.Size(209, 31);
             this.textBox_Temperature_TS05.TabIndex = 7;
             this.textBox_Temperature_TS05.Text = "--";
             this.textBox_Temperature_TS05.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -12546,7 +9957,7 @@ namespace Server_GUI
             this.label24.Location = new System.Drawing.Point(3, 3);
             this.label24.Margin = new System.Windows.Forms.Padding(3);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(562, 25);
+            this.label24.Size = new System.Drawing.Size(852, 25);
             this.label24.TabIndex = 8;
             this.label24.Text = "Temperature: ";
             this.label24.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -12560,7 +9971,7 @@ namespace Server_GUI
             this.label6.Location = new System.Drawing.Point(3, 287);
             this.label6.Margin = new System.Windows.Forms.Padding(3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 25);
+            this.label6.Size = new System.Drawing.Size(113, 25);
             this.label6.TabIndex = 2;
             this.label6.Text = "PC-15";
             // 
@@ -12573,7 +9984,7 @@ namespace Server_GUI
             this.label7.Location = new System.Drawing.Point(3, 500);
             this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 25);
+            this.label7.Size = new System.Drawing.Size(113, 25);
             this.label7.TabIndex = 3;
             this.label7.Text = "PC-16";
             // 
@@ -12646,7 +10057,7 @@ namespace Server_GUI
             this.tableLayoutPanel_PC14.Controls.Add(this.textBox78, 10, 0);
             this.tableLayoutPanel_PC14.Controls.Add(this.textBox35, 0, 1);
             this.tableLayoutPanel_PC14.Controls.Add(this.textBox94, 0, 2);
-            this.tableLayoutPanel_PC14.Location = new System.Drawing.Point(83, 76);
+            this.tableLayoutPanel_PC14.Location = new System.Drawing.Point(123, 76);
             this.tableLayoutPanel_PC14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel_PC14.Name = "tableLayoutPanel_PC14";
             this.tableLayoutPanel_PC14.RowCount = 5;
@@ -13566,7 +10977,7 @@ namespace Server_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2513, 1062);
+            this.ClientSize = new System.Drawing.Size(2566, 1564);
             this.Controls.Add(this.label_email_warning);
             this.Controls.Add(this.button_ChangeUpdateTime);
             this.Controls.Add(this.textBoxDailyUpdate_time);
@@ -13593,6 +11004,7 @@ namespace Server_GUI
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tableLayoutPanel_main.ResumeLayout(false);
             this.tableLayoutPanel_chamber01.ResumeLayout(false);
             this.tableLayoutPanel_chamber01.PerformLayout();
@@ -13614,16 +11026,6 @@ namespace Server_GUI
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel_PCSC1.ResumeLayout(false);
             this.tableLayoutPanel_PCSC1.PerformLayout();
-            this.tableLayoutPanel_chamber07.ResumeLayout(false);
-            this.tableLayoutPanel_chamber07.PerformLayout();
-            this.tableLayoutPanel_PC22.ResumeLayout(false);
-            this.tableLayoutPanel_PC22.PerformLayout();
-            this.tableLayoutPanel_PC21.ResumeLayout(false);
-            this.tableLayoutPanel_PC21.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel_PC20.ResumeLayout(false);
-            this.tableLayoutPanel_PC20.PerformLayout();
             this.tableLayoutPanel_chamber06.ResumeLayout(false);
             this.tableLayoutPanel_chamber06.PerformLayout();
             this.tableLayoutPanel_PC19.ResumeLayout(false);
@@ -14040,182 +11442,6 @@ namespace Server_GUI
         private System.Windows.Forms.TextBox textBox56;
         public System.Windows.Forms.TextBox textBox57;
         public System.Windows.Forms.TextBox textBox58;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_chamber07;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC22;
-        public System.Windows.Forms.TextBox textBox336;
-        public System.Windows.Forms.TextBox textBox337;
-        public System.Windows.Forms.TextBox textBox338;
-        public System.Windows.Forms.TextBox textBox339;
-        public System.Windows.Forms.TextBox textBox340;
-        public System.Windows.Forms.TextBox textBox341;
-        public System.Windows.Forms.TextBox textBox342;
-        public System.Windows.Forms.TextBox textBox343;
-        public System.Windows.Forms.TextBox textBox344;
-        public System.Windows.Forms.TextBox textBox345;
-        public System.Windows.Forms.TextBox textBox346;
-        public System.Windows.Forms.TextBox textBox347;
-        public System.Windows.Forms.TextBox textBox348;
-        public System.Windows.Forms.TextBox textBox349;
-        public System.Windows.Forms.TextBox textBox350;
-        public System.Windows.Forms.TextBox textBox351;
-        public System.Windows.Forms.TextBox textBox352;
-        public System.Windows.Forms.TextBox textBox353;
-        public System.Windows.Forms.TextBox textBox354;
-        public System.Windows.Forms.TextBox textBox355;
-        public System.Windows.Forms.TextBox textBox356;
-        public System.Windows.Forms.TextBox textBox357;
-        public System.Windows.Forms.TextBox textBox358;
-        public System.Windows.Forms.TextBox textBox359;
-        public System.Windows.Forms.TextBox textBox360;
-        public System.Windows.Forms.TextBox textBox361;
-        public System.Windows.Forms.TextBox textBox362;
-        public System.Windows.Forms.TextBox textBox363;
-        public System.Windows.Forms.TextBox textBox364;
-        public System.Windows.Forms.TextBox textBox365;
-        public System.Windows.Forms.TextBox textBox366;
-        public System.Windows.Forms.TextBox textBox367;
-        public System.Windows.Forms.TextBox textBox368;
-        public System.Windows.Forms.TextBox textBox369;
-        public System.Windows.Forms.TextBox textBox370;
-        public System.Windows.Forms.TextBox textBox371;
-        public System.Windows.Forms.TextBox textBox372;
-        public System.Windows.Forms.TextBox textBox373;
-        public System.Windows.Forms.TextBox textBox374;
-        public System.Windows.Forms.TextBox textBox375;
-        public System.Windows.Forms.TextBox textBox376;
-        public System.Windows.Forms.TextBox textBox377;
-        private System.Windows.Forms.TextBox textBox378;
-        private System.Windows.Forms.TextBox textBox379;
-        private System.Windows.Forms.TextBox textBox380;
-        private System.Windows.Forms.TextBox textBox381;
-        private System.Windows.Forms.TextBox textBox382;
-        private System.Windows.Forms.TextBox textBox383;
-        private System.Windows.Forms.TextBox textBox384;
-        private System.Windows.Forms.TextBox textBox385;
-        private System.Windows.Forms.TextBox textBox386;
-        private System.Windows.Forms.TextBox textBox387;
-        private System.Windows.Forms.TextBox textBox388;
-        public System.Windows.Forms.TextBox textBox389;
-        public System.Windows.Forms.TextBox textBox390;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC21;
-        public System.Windows.Forms.TextBox textBox391;
-        public System.Windows.Forms.TextBox textBox392;
-        public System.Windows.Forms.TextBox textBox393;
-        public System.Windows.Forms.TextBox textBox394;
-        public System.Windows.Forms.TextBox textBox395;
-        public System.Windows.Forms.TextBox textBox396;
-        public System.Windows.Forms.TextBox textBox397;
-        public System.Windows.Forms.TextBox textBox398;
-        public System.Windows.Forms.TextBox textBox399;
-        public System.Windows.Forms.TextBox textBox400;
-        public System.Windows.Forms.TextBox textBox401;
-        public System.Windows.Forms.TextBox textBox402;
-        public System.Windows.Forms.TextBox textBox403;
-        public System.Windows.Forms.TextBox textBox404;
-        public System.Windows.Forms.TextBox textBox405;
-        public System.Windows.Forms.TextBox textBox406;
-        public System.Windows.Forms.TextBox textBox407;
-        public System.Windows.Forms.TextBox textBox408;
-        public System.Windows.Forms.TextBox textBox409;
-        public System.Windows.Forms.TextBox textBox410;
-        public System.Windows.Forms.TextBox textBox411;
-        public System.Windows.Forms.TextBox textBox412;
-        public System.Windows.Forms.TextBox textBox413;
-        public System.Windows.Forms.TextBox textBox414;
-        public System.Windows.Forms.TextBox textBox415;
-        public System.Windows.Forms.TextBox textBox416;
-        public System.Windows.Forms.TextBox textBox417;
-        public System.Windows.Forms.TextBox textBox418;
-        public System.Windows.Forms.TextBox textBox419;
-        public System.Windows.Forms.TextBox textBox420;
-        public System.Windows.Forms.TextBox textBox421;
-        public System.Windows.Forms.TextBox textBox422;
-        public System.Windows.Forms.TextBox textBox423;
-        public System.Windows.Forms.TextBox textBox424;
-        public System.Windows.Forms.TextBox textBox425;
-        public System.Windows.Forms.TextBox textBox426;
-        public System.Windows.Forms.TextBox textBox427;
-        public System.Windows.Forms.TextBox textBox428;
-        public System.Windows.Forms.TextBox textBox429;
-        public System.Windows.Forms.TextBox textBox430;
-        public System.Windows.Forms.TextBox textBox431;
-        public System.Windows.Forms.TextBox textBox432;
-        private System.Windows.Forms.TextBox textBox433;
-        private System.Windows.Forms.TextBox textBox434;
-        private System.Windows.Forms.TextBox textBox435;
-        private System.Windows.Forms.TextBox textBox436;
-        private System.Windows.Forms.TextBox textBox437;
-        private System.Windows.Forms.TextBox textBox438;
-        private System.Windows.Forms.TextBox textBox439;
-        private System.Windows.Forms.TextBox textBox440;
-        private System.Windows.Forms.TextBox textBox441;
-        private System.Windows.Forms.TextBox textBox442;
-        private System.Windows.Forms.TextBox textBox443;
-        public System.Windows.Forms.TextBox textBox444;
-        public System.Windows.Forms.TextBox textBox445;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        public System.Windows.Forms.TextBox textBox446;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC20;
-        public System.Windows.Forms.TextBox textBox447;
-        public System.Windows.Forms.TextBox textBox448;
-        public System.Windows.Forms.TextBox textBox449;
-        public System.Windows.Forms.TextBox textBox450;
-        public System.Windows.Forms.TextBox textBox451;
-        public System.Windows.Forms.TextBox textBox452;
-        public System.Windows.Forms.TextBox textBox453;
-        public System.Windows.Forms.TextBox textBox454;
-        public System.Windows.Forms.TextBox textBox455;
-        public System.Windows.Forms.TextBox textBox456;
-        public System.Windows.Forms.TextBox textBox457;
-        public System.Windows.Forms.TextBox textBox458;
-        public System.Windows.Forms.TextBox textBox459;
-        public System.Windows.Forms.TextBox textBox460;
-        public System.Windows.Forms.TextBox textBox461;
-        public System.Windows.Forms.TextBox textBox462;
-        public System.Windows.Forms.TextBox textBox463;
-        public System.Windows.Forms.TextBox textBox464;
-        public System.Windows.Forms.TextBox textBox465;
-        public System.Windows.Forms.TextBox textBox466;
-        public System.Windows.Forms.TextBox textBox467;
-        public System.Windows.Forms.TextBox textBox468;
-        public System.Windows.Forms.TextBox textBox469;
-        public System.Windows.Forms.TextBox textBox470;
-        public System.Windows.Forms.TextBox textBox471;
-        public System.Windows.Forms.TextBox textBox472;
-        public System.Windows.Forms.TextBox textBox473;
-        public System.Windows.Forms.TextBox textBox474;
-        public System.Windows.Forms.TextBox textBox475;
-        public System.Windows.Forms.TextBox textBox476;
-        public System.Windows.Forms.TextBox textBox477;
-        public System.Windows.Forms.TextBox textBox478;
-        public System.Windows.Forms.TextBox textBox479;
-        public System.Windows.Forms.TextBox textBox480;
-        public System.Windows.Forms.TextBox textBox481;
-        public System.Windows.Forms.TextBox textBox482;
-        public System.Windows.Forms.TextBox textBox483;
-        public System.Windows.Forms.TextBox textBox484;
-        public System.Windows.Forms.TextBox textBox485;
-        public System.Windows.Forms.TextBox textBox486;
-        public System.Windows.Forms.TextBox textBox487;
-        public System.Windows.Forms.TextBox textBox488;
-        private System.Windows.Forms.TextBox textBox489;
-        private System.Windows.Forms.TextBox textBox490;
-        private System.Windows.Forms.TextBox textBox491;
-        private System.Windows.Forms.TextBox textBox492;
-        private System.Windows.Forms.TextBox textBox493;
-        private System.Windows.Forms.TextBox textBox494;
-        private System.Windows.Forms.TextBox textBox495;
-        private System.Windows.Forms.TextBox textBox496;
-        private System.Windows.Forms.TextBox textBox497;
-        private System.Windows.Forms.TextBox textBox498;
-        private System.Windows.Forms.TextBox textBox499;
-        public System.Windows.Forms.TextBox textBox500;
-        public System.Windows.Forms.TextBox textBox501;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_chamber01;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC03;
         public System.Windows.Forms.TextBox textBox668;

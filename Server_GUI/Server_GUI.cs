@@ -207,64 +207,79 @@ namespace Server_GUI
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
                         }
                     }
-                    else if (e.client_testGroupNumber == "05")
+                    else if (e.client_testGroupNumber == "02")
                     {
-                        if (e.client_compNum == "PC-14")
+                        if (e.client_compNum == "PC-04")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
+                        }
+                        else if (e.client_compNum == "PC-05")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
+                        }
+                        else if (e.client_compNum == "PC-06")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
+                        }
+                    }
+                    else if(e.client_testGroupNumber == "03")
+                    {
+                        if (e.client_compNum == "PC-07")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
+                        }
+                        else if (e.client_compNum == "PC-08")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC08;
+                        }
+                        else if (e.client_compNum == "PC-09")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC09;
+                        }
+                    }
+                    else if(e.client_testGroupNumber == "04")
+                    {
+                        if (e.client_compNum == "PC-10")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
+                        }
+                        else if ( (e.client_compNum == "PC-11") )
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
+                        }
+                        else if (e.client_compNum == "PC-12")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
+                        }
+                    }
+                    else if (e.client_testGroupNumber == "04")
+                    {
+                        if (e.client_compNum == "PC-20")
+                        {
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC13;
+                        }
+                        else if ((e.client_compNum == "PC-21") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC14;
                         }
-                        else if (e.client_compNum == "PC-15")
+                        else if (e.client_compNum == "PC-22")
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC15;
                         }
-                        else if (e.client_compNum == "PC-16")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC16;
-                        }
                     }
-                    else if(e.client_testGroupNumber == "06")
-                    {
-                        if (e.client_compNum == "PC-17")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC17;
-                        }
-                        else if (e.client_compNum == "PC-18")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC18;
-                        }
-                        else if (e.client_compNum == "PC-19")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC19;
-                        }
-                    }
-                    else if(e.client_testGroupNumber == "07")
+                    else if (e.client_testGroupNumber == "04")
                     {
                         if (e.client_compNum == "PC-20")
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC20;
                         }
-                        else if ( (e.client_compNum == "PC-21") || (e.client_compNum == "PC-10") )   // PC-21 is actually named PC-10
+                        else if ((e.client_compNum == "PC-21") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC21;
                         }
                         else if (e.client_compNum == "PC-22")
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC22;
-                        }
-                    }
-                    else if(e.client_testGroupNumber == "SuperChamber")
-                    {
-                        if (e.client_compNum == "PC-SC-01")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PCSC1;
-                        }
-                        else if (e.client_compNum == "PC-SC-02")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PCSC2;
-                        }
-                        else if (e.client_compNum == "PC-SC-03")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PCSC3;
                         }
                     }
                     // Used for testing on a development pc. Manually change the chamber name and computer name to "test" in the testDevice GUI.
@@ -833,6 +848,7 @@ namespace Server_GUI
                 }
             }
         }
+
     }
 
 
