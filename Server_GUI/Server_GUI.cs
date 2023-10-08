@@ -196,30 +196,30 @@ namespace Server_GUI
                     {
                         if (e.client_compNum == "PC-01")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
                         }
                         else if (e.client_compNum == "PC-02")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
                         }
                         else if (e.client_compNum == "PC-03")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
                         }
                     }
                     else if (e.client_testGroupNumber == "02")
                     {
                         if (e.client_compNum == "PC-04")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
                         }
                         else if (e.client_compNum == "PC-05")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
                         }
                         else if (e.client_compNum == "PC-06")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
                         }
                     }
                     else if(e.client_testGroupNumber == "03")
@@ -252,40 +252,10 @@ namespace Server_GUI
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
                         }
                     }
-                    else if (e.client_testGroupNumber == "04")
-                    {
-                        if (e.client_compNum == "PC-20")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC13;
-                        }
-                        else if ((e.client_compNum == "PC-21") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC14;
-                        }
-                        else if (e.client_compNum == "PC-22")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC15;
-                        }
-                    }
-                    else if (e.client_testGroupNumber == "04")
-                    {
-                        if (e.client_compNum == "PC-20")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC20;
-                        }
-                        else if ((e.client_compNum == "PC-21") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC21;
-                        }
-                        else if (e.client_compNum == "PC-22")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC22;
-                        }
-                    }
                     // Used for testing on a development pc. Manually change the chamber name and computer name to "test" in the testDevice GUI.
                     else if (e.client_compNum == "test")
                     {
-                        targetComputerLayoutPanel = this.tableLayoutPanel_PC14;
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
                     }
                     else
                     {
@@ -385,82 +355,67 @@ namespace Server_GUI
                     {
                         if (e.client_compNum == "PC-01")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
                         }
                         else if (e.client_compNum == "PC-02")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
                         }
                         else if (e.client_compNum == "PC-03")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
                         }
                     }
-                    else if (e.client_testGroupNum == "05")
+                    else if (e.client_testGroupNum == "02")
                     {
-                        if (e.client_compNum == "PC-14")
+                        if (e.client_compNum == "PC-04")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC14;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
                         }
-                        else if (e.client_compNum == "PC-15")
+                        else if (e.client_compNum == "PC-05")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC15;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
                         }
-                        else if (e.client_compNum == "PC-16")
+                        else if (e.client_compNum == "PC-06")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC16;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
                         }
                     }
-                    else if (e.client_testGroupNum == "06")
+                    else if (e.client_testGroupNum == "03")
                     {
-                        if (e.client_compNum == "PC-17")
+                        if (e.client_compNum == "PC-07")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC17;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
                         }
-                        else if (e.client_compNum == "PC-18")
+                        else if (e.client_compNum == "PC-08")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC18;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC08;
                         }
-                        else if (e.client_compNum == "PC-19")
+                        else if (e.client_compNum == "PC-09")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC19;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC09;
                         }
                     }
-                    else if (e.client_testGroupNum == "07")
+                    else if (e.client_testGroupNum == "04")
                     {
-                        if (e.client_compNum == "PC-20")
+                        if (e.client_compNum == "PC-10")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC20;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
                         }
-                        else if ((e.client_compNum == "PC-21") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
+                        else if ((e.client_compNum == "PC-11") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC21;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
                         }
-                        else if (e.client_compNum == "PC-22")
+                        else if (e.client_compNum == "PC-12")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC22;
-                        }
-                    }
-                    else if (e.client_testGroupNum == "SuperChamber")
-                    {
-                        if (e.client_compNum == "PC-SC-01")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PCSC1;
-                        }
-                        else if (e.client_compNum == "PC-SC-02")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PCSC2;
-                        }
-                        else if (e.client_compNum == "PC-SC-03")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PCSC3;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
                         }
                     }
                     // Used for testing on a development pc. Manually change the computer name to "test" in the testDevice GUI.
                     // This is so you can use your development machine and use the IP loopback address.
                     else if (e.client_compNum == "test")
                     {                        
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC14;                        
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;                        
                     }
                     else
                     {
@@ -750,7 +705,7 @@ namespace Server_GUI
 
         private void button_testTableLayout_Click(object sender, EventArgs e)
         {
-            this.tableLayoutPanel_PC14.GetControlFromPosition(1, 1).Text = "testing";
+            this.tableLayoutPanel_PC01.GetControlFromPosition(1, 1).Text = "testing";
    
         }
 
@@ -849,6 +804,10 @@ namespace Server_GUI
             }
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
