@@ -111,7 +111,7 @@ namespace Client_GUI
             this.text_hoursPer1kCycles = new System.Windows.Forms.TextBox();
             this.lbl_hoursPer1kCycles = new System.Windows.Forms.Label();
             this.lbl_testAppVersionNum = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_stopOnFailure = new System.Windows.Forms.CheckBox();
             this.gBox_socketCommunication = new System.Windows.Forms.GroupBox();
             this.gBox_testStatus = new System.Windows.Forms.GroupBox();
             this.gBox_testDeviceInfo = new System.Windows.Forms.GroupBox();
@@ -119,6 +119,10 @@ namespace Client_GUI
             this.gBox_testDeviceLocation = new System.Windows.Forms.GroupBox();
             this.gBox_socketConnectionInfo = new System.Windows.Forms.GroupBox();
             this.gBox_timeMetrics = new System.Windows.Forms.GroupBox();
+            this.text_modelNumber = new System.Windows.Forms.TextBox();
+            this.lbl_modelNumber = new System.Windows.Forms.Label();
+            this.text_serialNumber = new System.Windows.Forms.TextBox();
+            this.lbl_serialNumber = new System.Windows.Forms.Label();
             this.gBox_socketCommunication.SuspendLayout();
             this.gBox_testStatus.SuspendLayout();
             this.gBox_testDeviceInfo.SuspendLayout();
@@ -716,15 +720,17 @@ namespace Client_GUI
             this.lbl_testAppVersionNum.TabIndex = 66;
             this.lbl_testAppVersionNum.Text = "-";
             // 
-            // checkBox1
+            // checkBox_stopOnFailure
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 226);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(222, 29);
-            this.checkBox1.TabIndex = 67;
-            this.checkBox1.Text = "Keep running on failure";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox_stopOnFailure.AutoSize = true;
+            this.checkBox_stopOnFailure.Checked = true;
+            this.checkBox_stopOnFailure.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_stopOnFailure.Location = new System.Drawing.Point(6, 226);
+            this.checkBox_stopOnFailure.Name = "checkBox_stopOnFailure";
+            this.checkBox_stopOnFailure.Size = new System.Drawing.Size(188, 29);
+            this.checkBox_stopOnFailure.TabIndex = 67;
+            this.checkBox_stopOnFailure.Text = "Stop test on failure";
+            this.checkBox_stopOnFailure.UseVisualStyleBackColor = true;
             // 
             // gBox_socketCommunication
             // 
@@ -770,13 +776,17 @@ namespace Client_GUI
             // gBox_testDeviceInfo
             // 
             this.gBox_testDeviceInfo.BackColor = System.Drawing.Color.Silver;
+            this.gBox_testDeviceInfo.Controls.Add(this.text_serialNumber);
+            this.gBox_testDeviceInfo.Controls.Add(this.lbl_serialNumber);
+            this.gBox_testDeviceInfo.Controls.Add(this.text_modelNumber);
+            this.gBox_testDeviceInfo.Controls.Add(this.lbl_modelNumber);
             this.gBox_testDeviceInfo.Controls.Add(this.lbl_programName);
             this.gBox_testDeviceInfo.Controls.Add(this.text_deviceType);
             this.gBox_testDeviceInfo.Controls.Add(this.lbl_deviceType);
             this.gBox_testDeviceInfo.Controls.Add(this.cBox_programName);
             this.gBox_testDeviceInfo.Location = new System.Drawing.Point(365, 481);
             this.gBox_testDeviceInfo.Name = "gBox_testDeviceInfo";
-            this.gBox_testDeviceInfo.Size = new System.Drawing.Size(355, 154);
+            this.gBox_testDeviceInfo.Size = new System.Drawing.Size(355, 194);
             this.gBox_testDeviceInfo.TabIndex = 70;
             this.gBox_testDeviceInfo.TabStop = false;
             this.gBox_testDeviceInfo.Text = "Test Device Info";
@@ -789,7 +799,7 @@ namespace Client_GUI
             this.gBox_testSetup.Controls.Add(this.cBox_testDuration);
             this.gBox_testSetup.Controls.Add(this.lbl_testDuration);
             this.gBox_testSetup.Controls.Add(this.rbtn_VC);
-            this.gBox_testSetup.Controls.Add(this.checkBox1);
+            this.gBox_testSetup.Controls.Add(this.checkBox_stopOnFailure);
             this.gBox_testSetup.Controls.Add(this.rbtn_BT);
             this.gBox_testSetup.Controls.Add(this.rbtn_PT);
             this.gBox_testSetup.Controls.Add(this.lbl_selectTest);
@@ -860,6 +870,40 @@ namespace Client_GUI
             this.gBox_timeMetrics.TabIndex = 73;
             this.gBox_timeMetrics.TabStop = false;
             this.gBox_timeMetrics.Text = "Time Metrics";
+            // 
+            // text_modelNumber
+            // 
+            this.text_modelNumber.BackColor = System.Drawing.Color.Gainsboro;
+            this.text_modelNumber.Location = new System.Drawing.Point(145, 109);
+            this.text_modelNumber.Name = "text_modelNumber";
+            this.text_modelNumber.Size = new System.Drawing.Size(182, 31);
+            this.text_modelNumber.TabIndex = 28;
+            // 
+            // lbl_modelNumber
+            // 
+            this.lbl_modelNumber.AutoSize = true;
+            this.lbl_modelNumber.Location = new System.Drawing.Point(33, 112);
+            this.lbl_modelNumber.Name = "lbl_modelNumber";
+            this.lbl_modelNumber.Size = new System.Drawing.Size(63, 25);
+            this.lbl_modelNumber.TabIndex = 29;
+            this.lbl_modelNumber.Text = "Model";
+            // 
+            // text_serialNumber
+            // 
+            this.text_serialNumber.BackColor = System.Drawing.Color.Gainsboro;
+            this.text_serialNumber.Location = new System.Drawing.Point(145, 146);
+            this.text_serialNumber.Name = "text_serialNumber";
+            this.text_serialNumber.Size = new System.Drawing.Size(182, 31);
+            this.text_serialNumber.TabIndex = 30;
+            // 
+            // lbl_serialNumber
+            // 
+            this.lbl_serialNumber.AutoSize = true;
+            this.lbl_serialNumber.Location = new System.Drawing.Point(33, 149);
+            this.lbl_serialNumber.Name = "lbl_serialNumber";
+            this.lbl_serialNumber.Size = new System.Drawing.Size(35, 25);
+            this.lbl_serialNumber.TabIndex = 31;
+            this.lbl_serialNumber.Text = "SN";
             // 
             // Client_GUI
             // 
@@ -966,7 +1010,7 @@ namespace Client_GUI
         public TextBox text_hoursPer1kCycles;
         public Label lbl_hoursPer1kCycles;
         public Label lbl_testAppVersionNum;
-        public CheckBox checkBox1;
+        public CheckBox checkBox_stopOnFailure;
         private GroupBox gBox_socketCommunication;
         private GroupBox gBox_testStatus;
         private GroupBox gBox_testDeviceInfo;
@@ -974,6 +1018,10 @@ namespace Client_GUI
         private GroupBox gBox_testDeviceLocation;
         private GroupBox gBox_socketConnectionInfo;
         private GroupBox gBox_timeMetrics;
+        public TextBox text_serialNumber;
+        public Label lbl_serialNumber;
+        public TextBox text_modelNumber;
+        public Label lbl_modelNumber;
     }
 }
 

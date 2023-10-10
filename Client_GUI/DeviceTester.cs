@@ -46,7 +46,7 @@ namespace Client_GUI
         protected const int HOURS_PER_1000_CYCLES_INTERVAL = 50;
         protected const int DEFAULT_PROGRESSBAR_MAX = 100;
 
-        protected int preReq = 0;
+        protected int targetCycleCount = 0;
         protected Boolean isFirstCycle = true;
 
         protected int startCycle = 0;
@@ -66,7 +66,6 @@ namespace Client_GUI
         public bool FileTransferCommandHasBeenSent = false;
         public bool isInitialTestInfoSentToServer = false;
 
-
         static Random randomGenerator = new Random();
 
         // Test device info
@@ -74,15 +73,14 @@ namespace Client_GUI
         protected string driveType; // TODO implement this
         protected string testType;
         protected string serialNumber = "Not Found Yet";
+        public string modelNumber = "undefined"; // TODO implement
+        public string programName = "undefined";
 
         protected int totalCycles = 0;
-        //protected int loopCount = 0;
-        //protected int totalTestCycles = 0;
+
 
         // Test Info for Socket Messages
-        public string programName = "empty";
         public string testTypeAbbreviation = "not set";
-        //public int slotNum = 0;
         public string slotNum = "0";
         public int comPort = 0;
         public string compNumber = "empty";
@@ -90,9 +88,8 @@ namespace Client_GUI
         public double global_PercentComplete = 0.0;
         public string descriptionOfCurrentState = "Nothing to Report";
         public string statusOfTest = "No Status defined";
-        public static string testGroupNumber = "";
+        public static string testGroupName = "undefined";
         public string globalErrorToSendToSocket = "undefined";
-        public string modelNumber = "undefined"; // TODO implement
 
 
 
@@ -161,6 +158,8 @@ namespace Client_GUI
                     reportErrors(status);
                 }
 
+
+                // Returning here will prevent all the below code including Check status and Update Server. Is this handled in mainloop
                 if (status != SUCCESS)
                 {
                     return;
@@ -194,23 +193,29 @@ namespace Client_GUI
             status = FakeTestSioCheck();
             if (status != SUCCESS)
             {
-                // Report errors and stop test
                 reportErrors(status);
-                return status;
+                if (this.clientForm.checkBox_stopOnFailure.Checked)
+                {
+                    return status;
+                }
             }
             status = FakeTestVoltagCheck();
             if (status != SUCCESS)
             {
-                // Report errors and stop test
                 reportErrors(status);
-                return status;
+                if (this.clientForm.checkBox_stopOnFailure.Checked)
+                {
+                    return status;
+                }
             }
             status = FakeTestDeviceCheck();
             if (status != SUCCESS)
             {
-                // Report errors and stop test
                 reportErrors(status);
-                return status;
+                if (this.clientForm.checkBox_stopOnFailure.Checked)
+                {
+                    return status;
+                }
             }
 
             // status should equal SUCCESS if this code is reached
@@ -285,7 +290,6 @@ namespace Client_GUI
         private void reportErrors(string failureType)
         {
             totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
-            //totalTestCycles = Convert.ToInt32(this.testCyclesBox.Text);
 
             VerboseLog("Socket Tester: ERROR - FAILED CYCLE: " + totalCycles);
 
@@ -296,18 +300,18 @@ namespace Client_GUI
         {
             int failures = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_totalFailures));
             failures++;
+            this.clientForm.SetText(this.clientForm.text_totalFailures, failures.ToString());
+            this.clientForm.text_totalFailures.BackColor = Color.LightCoral;
+
             Error = message;
             string errorLogPath = rootDirectory + "\\Error_Log.log";
             string errorData = DateTime.Now.ToString() + " " + message + "    ";
             string errorSeperator = "\r\n\r\n";
 
             string cycleData = "Serial Number: " + serialNumber +
-                                //" Cycles = " + loopCount.ToString() +
                                 " Cycles = " + totalCycles.ToString() +
                                 " Failures = " + failures.ToString() +
                                 " Status = " + this.clientForm.GetRichText(this.clientForm.rText_statusOfTest);
-
-            this.clientForm.SetText(this.clientForm.text_totalFailures, failures.ToString());
 
             dataLog.LogData(IndividualFilePath, errorData + cycleData + errorSeperator);
 
@@ -317,14 +321,44 @@ namespace Client_GUI
                  
             dataLog.LogData(errorLogPath, errorData + cycleData + errorSeperator);
 
-            this.clientForm.button_startTest.BackColor = Color.Red;
-            this.clientForm.SetStartButton("Start");
+            if(this.clientForm.checkBox_stopOnFailure.Checked)
+            {
+                this.clientForm.button_startTest.BackColor = Color.Red;
+                this.clientForm.SetStartButton("Start");
+            }
+
 
             // for UPDATING the Socket Server
             globalErrorToSendToSocket = message;
             statusOfTest = "Failed";
             this.clientForm.stopProcess = true;
 
+        }
+
+        public void GetDeviceInfoFromDevice()
+        {
+            int randSerialNumber = randomGenerator.Next(100000000, 299999990);
+            serialNumber = randSerialNumber.ToString();
+
+            int randProgramSelector = randomGenerator.Next(0, 4);           //TODO make the max value large enough to include all values in the programName file that is parsed on initialization. <that value + 1> to include the last element.
+            //this.clientForm.cBox_programName.SelectedIndex = randProgramSelector;   // Change the combo box selection based on the random number...or do I want to just have the device create a completely random name instead of selecting from the GUI combo box options.
+            //this.clientForm.SetComboBoxIndex(randProgramSelector);
+            //programName = this.clientForm.cBox_programName.Text;
+            if (randProgramSelector == 0) { programName = "Titan"; }
+            else if (randProgramSelector == 1) { programName = "Europa"; }
+            else if (randProgramSelector == 2) { programName = "Callisto"; }
+            else if (randProgramSelector == 3) { programName = "Ganymede"; }
+
+            int randModelNumber = randomGenerator.Next(100, 499);
+            modelNumber = "PL" + randModelNumber.ToString() + "A";
+
+        }
+
+        public void PopulateGuiFieldsWithDeviceInfo()
+        {
+            this.clientForm.SetText(this.clientForm.text_serialNumber, serialNumber);
+            this.clientForm.SetText(this.clientForm.text_modelNumber, modelNumber);
+            this.clientForm.SetCombo(this.clientForm.cBox_programName, programName);
         }
 
         /// <summary>
@@ -355,7 +389,7 @@ namespace Client_GUI
                 {
                     pcGroupNumber = "02";
                 }
-                //***comp 21 is technically named 10***
+
                 else if ((compNumber == "PC-07") || (compNumber == "PC-08") || (compNumber == "PC-09"))
                 {
                     pcGroupNumber = "03";
@@ -393,14 +427,13 @@ namespace Client_GUI
 
         public void PopulateTestInfoLogWithDriveInfo()
         {
-            string genericInfoLogPath = rootDirectory + "\\" + testGroupNumber + "\\" + serialNumber + "\\TestInfo.log";
+            string genericInfoLogPath = rootDirectory + "\\" + testGroupName + "\\" + serialNumber + "\\TestInfo.log";
 
-            string copyToPath = addressOfLocalSharedFolder + "\\" + testGroupNumber + "\\" + serialNumber + "\\TestInfo.log";
+            string copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\TestInfo.log";
 
             // Set the global address to the destination path of the file copied to the shared folder.
             globalTestInfoLogPath = copyToPath;
 
-            // Get the slot number from the Utopia COM port by dividing by 2.
             int slotNum = comPort;
 
 
@@ -428,7 +461,6 @@ namespace Client_GUI
             // Set true to keep from logging every cycle count. This should only log once every test start.
             genericInfoHasBeenLogged = true;
 
-
             TransferLogToLocalSharedFolder(genericInfoLogPath, copyToPath, true, "testInfo");
         }
 
@@ -441,126 +473,80 @@ namespace Client_GUI
             TimeSpan timeElapsed;
             DateTime ecdDate = DateTime.Now;
 
-            // Completion is determined from the universal cycle count text box at the top of the GUI.
-            int endingCycle = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
-            int remainingCycles;
-            double remainingDays;
+            // Get the number of test cycles desired from the GUI
+            string testDuration = this.clientForm.GetComboText(this.clientForm.cBox_testDuration);
 
-            // Calculate ECD or set ACD
-            if (endingCycle <= preReq)  // check for ECD interval
+            if (testDuration == "")
             {
-                if (startCycle == 0) // interval reset
+                targetCycleCount = 0;
+            }
+            else
+            {
+                targetCycleCount = Convert.ToInt32(testDuration);
+            }
+
+            // Get current cycleCount from GUI
+            int currentCycleCount = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+
+            int remainingCycles;
+            double remainingSeconds;
+
+            // Calculate ECD or set actual completion date if already complete
+            if (currentCycleCount <= targetCycleCount)
+            {
+
+                // Calculate a new Estimated Completion Date every x cycles, where x is provided by the ECD_INTERVAL value
+                if (startCycle == 0)
                 {
-                    startCycle = endingCycle;
+                    startCycle = currentCycleCount;
+                    // Record the start date/time of the interval
                     this.EcdIntervalTime = DateTime.Now;
                     endCycle = startCycle + ECD_INTERVAL;
                 }
-                else if (endingCycle == endCycle) // reached ECD interval
+                // Interval point is reached, calculate ECD
+                else if (currentCycleCount == endCycle)
                 {
+                    // Calculate how long 1 interval took
                     timeElapsed = DateTime.Now - EcdIntervalTime;
-                    remainingCycles = preReq - endCycle;
+                    remainingCycles = targetCycleCount - endCycle;
 
                     // calculate ECD
-                    remainingDays = ((remainingCycles * timeElapsed.TotalDays) / ECD_INTERVAL);
+                    double timePerCycle = timeElapsed.TotalSeconds / ECD_INTERVAL;
+                    remainingSeconds = (remainingCycles * timePerCycle);
+                    //remainingDays = ((remainingCycles * timeElapsed.TotalDays) / ECD_INTERVAL);
+                    double remainingDays = remainingSeconds / (60 * 60 * 24);
                     ecdDate = ecdDate.AddDays(remainingDays);
                     startCycle = 0;
                     this.clientForm.SetText(this.clientForm.text_ECD, ecdDate.ToString());
                 }
+
             }
 
             else // CPRT gate reached. Set ACD
             {
                 this.clientForm.SetText(this.clientForm.text_dateCompleted, DateTime.Now.ToString());
+                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
                 this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
-                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
             }
 
             // Set progress based on CPRT
-            if (endingCycle > preReq) // CPRT gate reached and extra cycles
+            if (currentCycleCount > targetCycleCount)
             {
+                global_PercentComplete = 100;
+                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
                 this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
-                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
-                global_PercentComplete = 100;
             }
 
             else
             {
-                double completedPercent = (endingCycle * DEFAULT_PROGRESSBAR_MAX) / preReq;
-                global_PercentComplete = completedPercent;
-                this.clientForm.SetProgress((int)completedPercent);
-                this.clientForm.SetText(this.clientForm.text_progress, completedPercent.ToString());
-            }
-        }
+                global_PercentComplete = ((double)currentCycleCount / (double)targetCycleCount) * DEFAULT_PROGRESSBAR_MAX;
 
-        /// <summary>
-        /// Calculates ECD based on CPRT gate
-        /// </summary>
-        protected void CalculateEcdDays()
-        {
-            int hoursRemain = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_remainingHours));
-            int daysRemain = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_remainingDays));
-            int hoursCompleted = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedHours));
-            int daysCompleted = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedDays));
-            int totalHoursRemaining, totalTestHours, totalHoursCompleted;
-            DateTime ecdDate = DateTime.Now;
-            TimeSpan timeElapsed = DateTime.Now - EcdIntervalTime;
-
-            // Time remaining for CPRT gate
-            if ((hoursRemain > 0) || (daysRemain > 0))
-            {
-                // check to see if 60 min have passed
-                if (timeElapsed.TotalHours >= 1)
-                {
-                    hoursCompleted++;
-                    EcdIntervalTime = DateTime.Now;
-
-                    if (hoursCompleted >= HOURS_PER_DAY)
-                    {
-                        daysCompleted++;
-                        hoursCompleted = 0;
-                    }
-                }
-
-                //Calculate completed test time
-                totalHoursCompleted = (daysCompleted * HOURS_PER_DAY) + hoursCompleted;
-
-                // total test time to meet CPRT gate in hours
-                totalTestHours = preReq * HOURS_PER_DAY;
-
-                // hours remaining
-                totalHoursRemaining = totalTestHours - totalHoursCompleted;
-                hoursRemain = totalHoursRemaining % HOURS_PER_DAY;
-
-                // Days remaining
-                daysRemain = (totalHoursRemaining / HOURS_PER_DAY);
-
-                // Calculate ECD date
-                ecdDate = ecdDate.AddHours(totalHoursRemaining);
-
-                //Set text boxes
-                this.clientForm.SetText(this.clientForm.text_completedHours, hoursCompleted.ToString());
-                this.clientForm.SetText(this.clientForm.text_completedDays, daysCompleted.ToString());
-                this.clientForm.SetText(this.clientForm.text_remainingHours, hoursRemain.ToString());
-                this.clientForm.SetText(this.clientForm.text_remainingDays, daysRemain.ToString());
-                this.clientForm.SetText(this.clientForm.text_ECD, ecdDate.ToString());
-
-                //Set Progress Bar
-                double percentComplete = (totalHoursCompleted * DEFAULT_PROGRESSBAR_MAX) /
-                                         totalTestHours;
-
-                global_PercentComplete = percentComplete;
-
-                this.clientForm.SetProgress((int)percentComplete);
-                this.clientForm.SetText(this.clientForm.text_progress, percentComplete.ToString());
-            }
-            else // ACD
-            {
-                this.clientForm.SetText(this.clientForm.text_dateCompleted, DateTime.Now.ToString());
-                this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
-                this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
-                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+                this.clientForm.SetProgress((int)global_PercentComplete);
+                this.clientForm.SetText(this.clientForm.text_progress, global_PercentComplete.ToString());
             }
         }
 
@@ -617,13 +603,13 @@ namespace Client_GUI
         {
             this.CurrentDay = DateTime.Today;
 
-            VerboseLogPath = rootDirectory + "\\" + testGroupNumber + "\\" + "SN_Unknown" + "\\Verbose_" + logFileName + ".log";
+            VerboseLogPath = rootDirectory + "\\" + testGroupName + "\\" + "SN_Unknown" + "\\Verbose_" + logFileName + ".log";
 
             if ((serialNumber != null) && (copyToPath == null))
             {
                 // We need to initialize the copyToPath to something right away.
                 // This global variable will be used for sending error messages to the server.
-                copyToPath = addressOfLocalSharedFolder + "\\" + testGroupNumber + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
+                copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
 
             }
 
@@ -650,7 +636,7 @@ namespace Client_GUI
         /// </summary>
         protected void ChangeLogNameOnDayChange()
         {
-            copyToPath = addressOfLocalSharedFolder + "\\" + testGroupNumber + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
+            copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
 
             // Transfer  logs to the shared folder.
             // Designate the now-completed log as the log that needs to be transferred to the LAN shared folder.
@@ -661,7 +647,7 @@ namespace Client_GUI
             logFileName = DateToFilename(this.CurrentDay.ToString());
 
             // Change the path to reflect the new filename.
-            VerboseLogPath = rootDirectory + "\\" + testGroupNumber + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
+            VerboseLogPath = rootDirectory + "\\" + testGroupName + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
 
             // update the dayOfLastCycle for future comparisons. If It's a new day, make this the new standard to test against.
             this.DayOfLastCycle = this.CurrentDay;
@@ -942,7 +928,7 @@ namespace Client_GUI
             {
                 MessageBox.Show("The copyToPath is null. Cannot send info to Server. No error log will be copied to shared folder. No email will be sent.\r\n\r\n" + e);
 
-                string tempCopyToPath = addressOfLocalSharedFolder + "\\" + testGroupNumber + "\\" +
+                string tempCopyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" +
                 serialNumber + "\\Verbose_" + logFileName + ".log";
 
                 newFinalPath = tempCopyToPath.Replace(".log", "--fail.log");
@@ -968,7 +954,7 @@ namespace Client_GUI
 
             if (randomGenerator.Next(1, 11) == 1)
             {
-                return FAIL;
+                return "Device not functional";
             }
             return SUCCESS;
         }
@@ -1012,10 +998,14 @@ namespace Client_GUI
             this.clientForm.UpdateStatus("Starting Test\n");
 
             //TODO set test ITR number to whatever is displayed in the text box
+            testGroupName = this.clientForm.GetText(this.clientForm.text_testGroupIdentifier);
+
+            GetDeviceInfoFromDevice();
+            PopulateGuiFieldsWithDeviceInfo();
 
             string testDriveStatus = CheckIfDeviceIsFunctional();
 
-            if (testDriveStatus == FAIL)
+            if (testDriveStatus != SUCCESS)
             {
                 this.clientForm.SetStartButton("Start");
                 this.clientForm.button_startTest.BackColor = Color.Red;
