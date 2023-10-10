@@ -13,7 +13,7 @@ namespace Client_GUI
         public Client_GUI clientForm;
         protected DataLog dataLog = new DataLog();
         protected TextBox ecdEndCycle;
-        protected TextBox testCyclesBox;
+        //protected TextBox testCyclesBox;
         static StreamReader addressReader;
 
         public CustomEventArgs4 initialTestUpdateInfo;
@@ -66,22 +66,24 @@ namespace Client_GUI
         public bool FileTransferCommandHasBeenSent = false;
         public bool isInitialTestInfoSentToServer = false;
 
-        int totalCycles;
 
         static Random randomGenerator = new Random();
 
         // Test device info
         protected string TsCodeRev;
         protected string driveType; // TODO implement this
-        protected int loopCount = 0;
-        protected int totalTestCycles = 0;
         protected string testType;
         protected string serialNumber = "Not Found Yet";
+
+        protected int totalCycles = 0;
+        //protected int loopCount = 0;
+        //protected int totalTestCycles = 0;
 
         // Test Info for Socket Messages
         public string programName = "empty";
         public string testTypeAbbreviation = "not set";
-        public int slotNum = 0;
+        //public int slotNum = 0;
+        public string slotNum = "0";
         public int comPort = 0;
         public string compNumber = "empty";
         public string pcGroupNumber = "PC group not selected"; //TODO implement this
@@ -104,7 +106,7 @@ namespace Client_GUI
             this.StartTime = DateTime.Now;
             this.EcdIntervalTime = DateTime.Now;
             this.testType = "undefined";
-            this.TsCodeRev = this.clientForm.GetText(this.clientForm.textBox_testAppVersion);
+            this.TsCodeRev = this.clientForm.lbl_testAppVersionNum.Text;
 
             // Set test type according to radio buttons in the GUI
             if (this.clientForm.rbtn_VC.Checked)
@@ -127,63 +129,49 @@ namespace Client_GUI
 
         protected void RunTest()
         {
+            // Clear the status box
+            this.clientForm.UpdateStatus("");
+
+            this.clientForm.UpdateStatus("Test Running...\n");
+            totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+
             status = "SUCCESS";
 
-            comPort = GetComPortNumber();
+            // TODO resolve how I want to simulate com ports and slots
+            // The slot number is retrieved from the GUI
+            //comPort = GetComPortNumber();
+            slotNum = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
 
             do
             {
-
                 CheckIfInitialTestInfoNeedsToBeSent();
 
                 SendTestInfoLogCopyCommandToServerIfNotAlreadySent(globalTestInfoLogPath, true);
 
-                VerboseLog("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalTestCycles.ToString());
+                //VerboseLog("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalTestCycles.ToString());
+                VerboseLog("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalCycles.ToString());
 
 
-                // Do some fake testing
-                for (int i = 0; i < 6; i++)
-                {
-                    VerboseLog("testing...");
-                    VerboseLog("simulated voltage = " + randomGenerator.Next(4000, 6000) + "mV");
-                    VerboseLog("simulated current = " + randomGenerator.Next(100, 900) + "mA");
-                    VerboseLog("All components good");
-                    Thread.Sleep(2000);
-                }
+                status = RunFakeTests();
 
-                // use a random number to trigger a failure and set status = failure
-                if (randomGenerator.Next(1, 51) == 1)
-                {
-                    status = FAIL;
-                }
-
-                // Induce a manual failure by checking the box on the Development tab of the GUI.
+                // Induce a manual failure by checking box in the GUI
                 if (this.clientForm.checkBox_forceFailureOnNextCycle.Checked)
                 {
                     status = "Manual Failure";
+                    reportErrors(status);
                 }
 
                 if (status != SUCCESS)
                 {
-                    // Report errors and stop test
-                    reportErrors("Device Failure");
                     return;
                 }
 
-                Thread.Sleep(3000);
 
                 VerboseLog("\r\nSocket Tester: Cycle Complete");
 
-                loopCount++;
-
                 totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
                 totalCycles++;
-
-                totalTestCycles = Convert.ToInt32(this.testCyclesBox.Text);
-                totalTestCycles++;
-
                 this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
-                this.clientForm.SetText(this.testCyclesBox, totalTestCycles.ToString());
 
                 VerboseLog("\r\nSocket Tester: Checking Status\r\nSocket Tester: Waiting for device to be ready");
 
@@ -191,10 +179,102 @@ namespace Client_GUI
 
                 CheckTestStatusAndUpdateServer();
 
+                // Clear the status box
+                this.clientForm.UpdateStatus("");
+
                 this.isFirstCycle = false;
+                Thread.Sleep(1000);
 
             } while ((this.clientForm.stopProcess == false) && (status == SUCCESS));
 
+        }
+
+        private string RunFakeTests()
+        {
+            status = FakeTestSioCheck();
+            if (status != SUCCESS)
+            {
+                // Report errors and stop test
+                reportErrors(status);
+                return status;
+            }
+            status = FakeTestVoltagCheck();
+            if (status != SUCCESS)
+            {
+                // Report errors and stop test
+                reportErrors(status);
+                return status;
+            }
+            status = FakeTestDeviceCheck();
+            if (status != SUCCESS)
+            {
+                // Report errors and stop test
+                reportErrors(status);
+                return status;
+            }
+
+            // status should equal SUCCESS if this code is reached
+            return status;
+        }
+
+        private string FakeTestSioCheck()
+        {
+            // Random Num should yield a 1 in 100 chance of test failing
+            int randNum = randomGenerator.Next(1, 101);
+
+            this.clientForm.UpdateStatus("Simulating SIO communication test\n");
+            VerboseLog("simulating SIO communication");
+            Thread.Sleep(1000);
+            if (randNum == 1)
+            {
+                return status = "Fail during SIO Check";
+            }
+
+            VerboseLog("SIO check: good\r\n");
+            this.clientForm.UpdateStatus("Result: GOOD\n");
+
+            return status = SUCCESS;
+        }
+
+        private string FakeTestVoltagCheck()
+        {
+            // Random Num should yield a 1 in 100 chance of test failing
+            int randNum = randomGenerator.Next(1, 101);
+
+            this.clientForm.UpdateStatus("Simulating voltage within bounds check\n");
+            VerboseLog("simulated voltage = " + randomGenerator.Next(4000, 6000) + "mV");
+            VerboseLog("simulated current = " + randomGenerator.Next(100, 900) + "mA");
+            Thread.Sleep(2000);
+            if (randNum == 1)
+            {
+                return status = "Fail during Voltage Check";
+            }
+
+            VerboseLog("All components good\r\n");
+            this.clientForm.UpdateStatus("Result: GOOD\n");
+
+            return status = SUCCESS;
+        }
+        
+        private string FakeTestDeviceCheck()
+        {
+            // Random Num should yield a 1 in 100 chance of test failing
+            int randNum = randomGenerator.Next(1, 101);
+
+            this.clientForm.UpdateStatus("Simulating device specific functionality\n");
+            VerboseLog("device specific function 1");
+            Thread.Sleep(1000);
+            VerboseLog("device specific fucntion 2");
+            Thread.Sleep(2000);
+            if (randNum == 1)
+            {
+                return status = "Fail during Device Check";
+            }
+
+            VerboseLog("device is functioning properly\r\n");
+            this.clientForm.UpdateStatus("Result: GOOD\n");
+
+            return status = SUCCESS;
         }
 
         protected int GetComPortNumber()
@@ -205,11 +285,11 @@ namespace Client_GUI
         private void reportErrors(string failureType)
         {
             totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
-            totalTestCycles = Convert.ToInt32(this.testCyclesBox.Text);
+            //totalTestCycles = Convert.ToInt32(this.testCyclesBox.Text);
 
             VerboseLog("Socket Tester: ERROR - FAILED CYCLE: " + totalCycles);
 
-            ErrorReport(failureType + "during test cycle " + totalCycles);
+            ErrorReport(failureType + " : during test cycle " + totalCycles);
         }
 
         protected void ErrorReport(string message)
@@ -222,7 +302,8 @@ namespace Client_GUI
             string errorSeperator = "\r\n\r\n";
 
             string cycleData = "Serial Number: " + serialNumber +
-                                " Cycles = " + loopCount.ToString() +
+                                //" Cycles = " + loopCount.ToString() +
+                                " Cycles = " + totalCycles.ToString() +
                                 " Failures = " + failures.ToString() +
                                 " Status = " + this.clientForm.GetRichText(this.clientForm.rText_statusOfTest);
 
@@ -253,7 +334,8 @@ namespace Client_GUI
         {
 
             // Create a random slot number from 1 - 6
-            slotNum = comPort;
+            //TODO
+            //slotNum = comPort;
 
 
             if (this.clientForm.GetComboText(this.clientForm.cBox_programName) != null)
@@ -491,7 +573,8 @@ namespace Client_GUI
             int hoursPer1000Cycles;
 
             // only calculate if interval is reached
-            if (loopCount % HOURS_PER_1000_CYCLES_INTERVAL == 0)
+            //if (loopCount % HOURS_PER_1000_CYCLES_INTERVAL == 0)
+            if (totalCycles % HOURS_PER_1000_CYCLES_INTERVAL == 0)
             {
                 timeElapsed = (DateTime.Now - HoursPer1000CyclesTime);
                 hoursPer1000Cycles = ((timeElapsed.Minutes * 20) / 60);
@@ -756,14 +839,16 @@ namespace Client_GUI
             // get Cycle information
             if (this.clientForm.GetText(this.clientForm.text_completedCycles) != null)
             {
-                loopCount = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+                //loopCount = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+                totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
             }
             else
             {
                 MessageBox.Show("Cycle count text box must not be empty. Add a value and click OK");
             }
 
-            totalTestCycles = Convert.ToInt32(this.clientForm.GetText(this.testCyclesBox));
+            //totalTestCycles = Convert.ToInt32(this.clientForm.GetText(this.testCyclesBox));
+            //totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles);
         }
 
         /// <summary>
@@ -782,7 +867,7 @@ namespace Client_GUI
                                                         serialNumber,
                                                         pcGroupNumber,
                                                         compNumber,
-                                                        slotNum.ToString(),
+                                                        slotNum,
                                                         "Version" + Client_GUI.TESTAPP_VERSION,
                                                         this.clientForm.text_currentTest.Text,
                                                         "Starting",
@@ -831,7 +916,7 @@ namespace Client_GUI
 
                 testUpdateInfo = new CustomEventArgs5_StatusOnly(pcGroupNumber,
                                                                    compNumber,
-                                                                   slotNum.ToString(),
+                                                                   slotNum,
                                                                    statusOfTest,
                                                                    global_PercentComplete.ToString(),
                                                                    this.clientForm.text_completedCycles.Text,
@@ -924,7 +1009,7 @@ namespace Client_GUI
 
             string testStatus = "";
 
-            this.clientForm.UpdateStatus("");
+            this.clientForm.UpdateStatus("Starting Test\n");
 
             //TODO set test ITR number to whatever is displayed in the text box
 
@@ -952,29 +1037,33 @@ namespace Client_GUI
 
             while (this.clientForm.stopProcess == false)
             {
-                this.clientForm.UpdateStatus("");
+                this.clientForm.UpdateStatus("Looping\r\n");
                 testStatus = "";
 
                 GetCycleInformation();
 
-                loopCount++;
-                totalTestCycles++;
+                //loopCount++;
+                //totalTestCycles++;
+                totalCycles++;
 
                 CalcHoursPer1000Cycles();   // Figure out why I wrote this TODO
 
                 // set cycle information
-                this.clientForm.SetText(this.clientForm.text_completedCycles, loopCount.ToString());
-                this.clientForm.SetText(this.testCyclesBox, totalTestCycles.ToString());
+                //this.clientForm.SetText(this.clientForm.text_completedCycles, loopCount.ToString());
+                this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
+                //this.clientForm.SetText(this.testCyclesBox, totalTestCycles.ToString());
 
                 CalculateEcdCycles();
 
-                VerboseLog("\r\n\r\nDrive powering on.");
-
-                VerboseLog("\r\n\r\nDrive was powered ON.");
+                VerboseLog("Device powering on\r\n");
+                this.clientForm.UpdateStatus("Powering on Device");
+                Thread.Sleep(1000);
+                VerboseLog("Device was powered on\r\n");
+                this.clientForm.UpdateStatus("Device on");
 
                 //CheckTestStatusAndUpdateServer();
 
-                string commandSequenceStatus = this.ReadDetailsFromDevice("MAIN");
+                string commandSequenceStatus = this.ReadDetailsFromDevice("MAINLOOP");
 
                 if (commandSequenceStatus == FAIL)
                 {

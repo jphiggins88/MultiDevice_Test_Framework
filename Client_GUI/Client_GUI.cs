@@ -19,14 +19,18 @@ namespace Client_GUI
         private static string DoubleQuote = "\"";
         public static string rootDirectory = Application.StartupPath;
         public static string testFiles = rootDirectory + "\\TestFiles";
-        private string IP_LIST = testFiles + "\\Addresses\\validIPAddresses.txt";
-        private static string DEVICE_INFORMATION = testFiles + "\\Drive Information";
-        private static string DEVICE_PROGRAM = "Device Program";
-        private static string DEVICE_FORM_FACTOR = DEVICE_INFORMATION + "\\DriveFormFactor.txt";
-        private static string PC_GROUP = DEVICE_INFORMATION + "\\PcGroup.txt";
-        private static string TEST_TIME = DEVICE_INFORMATION + "\\Test Time.txt";
-        private static string TEST_TIME_DAYS = DEVICE_INFORMATION + "\\Test_Days.txt";
-        private static string TEST_TIME_CYCLES = DEVICE_INFORMATION + "\\Test_Cycles.txt";
+
+        private static string IP_LIST = testFiles + "\\Addresses\\validIPAddresses.txt";
+        //private static string DEVICE_PROGRAM = "DeviceProgram";
+
+        private static string PC_GROUP_FILE = testFiles + "\\TestInfo\\PcGroup.txt";
+        private static string DEVICE_PROGRAM_FILE = testFiles + "\\TestInfo\\ProgramInfo.txt";
+        private static string TEST_CYCLES_FILE = testFiles + "\\TestInfo\\TestCycles.txt";
+
+        //private static string PC_GROUP = DEVICE_INFORMATION + "\\PcGroup.txt";
+        //private static string DEVICE_INFORMATION = testFiles + "\\DeviceInformation";
+        //private static string TEST_CYCLES = DEVICE_INFORMATION + "\\TestCycles.txt";
+
 
         public Client_GUI()
         {
@@ -91,11 +95,12 @@ namespace Client_GUI
         {
             originalGuiHeight = this.Height;
 
-            this.textBox_testAppVersion.Text = TESTAPP_VERSION;
+            this.lbl_testAppVersionNum.Text = TESTAPP_VERSION;
+            //this.textBox_testAppVersion.Text = TESTAPP_VERSION;
             // populate combo box with available information
-            FillComboBox(cBox_programName, DEVICE_PROGRAM);
-            FillPcGroupBox(cBox_pcGroup, PC_GROUP);
-            FillComboBox(cBox_testDuration, TEST_TIME);
+            FillComboBox(cBox_programName, DEVICE_PROGRAM_FILE);
+            FillPcGroupBox(cBox_pcGroup, PC_GROUP_FILE);
+            FillComboBox(cBox_testDuration, TEST_CYCLES_FILE);
             FillComboBox(cBox_serverIp, IP_LIST);
 
 
@@ -104,7 +109,7 @@ namespace Client_GUI
             cBox_pcGroup.Text = "Select One";
             text_computerName.Text = System.Environment.MachineName;
             cBox_slotNumber.Text = "1";
-            cBox_testDuration.Text = "90000";
+            cBox_testDuration.Text = "50000";
             rText_testNotes.Text = "Generic Testing";
             rText_statusOfTest.Text = string.Empty;
             cBox_serverIp.SelectedIndex = 0;
@@ -130,6 +135,10 @@ namespace Client_GUI
             }
         }
 
+        /// <summary>
+        /// Updates the rich text box to display the detailed status of the running test
+        /// </summary>
+        /// <param name="message"></param>
         public void UpdateStatus(string message)
         {
             if (this.rText_statusOfTest.InvokeRequired)
@@ -401,34 +410,6 @@ namespace Client_GUI
             }
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            if (this.button_startTest.Text == "Start")
-            {
-                if (button_startTest.BackColor == Color.Red)
-                {
-                    button_startTest.BackColor = Control.DefaultBackColor;
-                    return;
-                }
-                stopButtonPressed = false;
-               
-                deviceTest = new DeviceTester(this);
-
-                this.workerThread = new Thread(new ThreadStart(deviceTest.MainLoop));
-                this.workerThread.IsBackground = true;
-                this.workerThread.Start();
-            }
-            else if (this.button_startTest.Text == "Stop")
-            {
-                stopProcess = true;
-                stopButtonPressed = true;
-
-                this.button_startTest.Text = "Start";
-                this.rText_statusOfTest.Text = "Test Manually Stopped";
-            }
-
-        }
-
         private void txtRevision_TextChanged(object sender, EventArgs e)
         {
             if (this.Height == originalGuiHeight)
@@ -515,9 +496,9 @@ namespace Client_GUI
 
             try
             {
-                if (System.IO.File.Exists(PC_GROUP))
+                if (System.IO.File.Exists(PC_GROUP_FILE))
                 {
-                    fs = new FileStream(PC_GROUP, FileMode.Open);
+                    fs = new FileStream(PC_GROUP_FILE, FileMode.Open);
                     sr = new StreamReader(fs);
                     string line;
 
@@ -688,6 +669,32 @@ namespace Client_GUI
             }
         }
 
+        private void button_startTest_Click(object sender, EventArgs e)
+        {
+            if (this.button_startTest.Text == "Start Test")
+            {
+                if (button_startTest.BackColor == Color.Red)
+                {
+                    button_startTest.BackColor = Control.DefaultBackColor;
+                    return;
+                }
+                stopButtonPressed = false;
+
+                deviceTest = new DeviceTester(this);
+
+                this.workerThread = new Thread(new ThreadStart(deviceTest.MainLoop));
+                this.workerThread.IsBackground = true;
+                this.workerThread.Start();
+            }
+            else if (this.button_startTest.Text == "Stop")
+            {
+                stopProcess = true;
+                stopButtonPressed = true;
+
+                this.button_startTest.Text = "Start";
+                this.rText_statusOfTest.Text = "Test Manually Stopped";
+            }
+        }
 
     }
 
