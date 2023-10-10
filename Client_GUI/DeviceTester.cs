@@ -10,16 +10,17 @@ namespace Client_GUI
 {
     public class DeviceTester
     {
+        // Misc Objects
         public Client_GUI clientForm;
         protected DataLog dataLog = new DataLog();
-        protected TextBox ecdEndCycle;
-        //protected TextBox testCyclesBox;
         static StreamReader addressReader;
+        static Random randomGenerator = new Random();
 
+        // EventArgs
         public CustomEventArgs4 initialTestUpdateInfo;
         public CustomEventArgs5_StatusOnly testUpdateInfo;
 
-        // addresss of the files that contains the lists of things to be tested for.
+        // Addresses and File Paths
         public static string rootDirectory = Client_GUI.rootDirectory;
         protected static string IndividualFilePath = rootDirectory + "\\COM.log";
         protected static string MasterLogPath = rootDirectory + "\\Main Log.log";
@@ -31,53 +32,54 @@ namespace Client_GUI
         public string VerboseLogPath;
         public string copyToPath = "copyToPathNotDefined";
 
+        // Time and Dates
         protected DateTime EcdIntervalTime;
         protected DateTime HoursPer1000CyclesTime;
         protected DateTime StartTime;
         protected DateTime CurrentDay = DateTime.Today;
         protected DateTime DayOfLastCycle = DateTime.Today;
         protected const int HOURS_PER_DAY = 24;
+        protected const int ECD_INTERVAL = 10;
+        protected const int HOURS_PER_1000_CYCLES_INTERVAL = 10;
+        protected const int DEFAULT_PROGRESSBAR_MAX = 100;
+        protected int startEcdIntervalCycle = 0;
+        protected int endEcdIntervalCycle;
 
+        // String Cosntants
         protected const string LINE_SEP = "---------------------------------------------";
-
         protected const string CYCLE_COUNT_SEPARATOR = LINE_SEP + LINE_SEP + LINE_SEP + "\r\n";
 
-        protected const int ECD_INTERVAL = 100;
-        protected const int HOURS_PER_1000_CYCLES_INTERVAL = 50;
-        protected const int DEFAULT_PROGRESSBAR_MAX = 100;
-
+        // Cycle Metrics
         protected int targetCycleCount = 0;
         protected Boolean isFirstCycle = true;
+        protected int totalCycles = 0;
 
-        protected int startCycle = 0;
-        protected int endCycle;
-
+        // Status
         private string status;
-
         protected string Error = "";
         protected const string SUCCESS = "SUCCESS";
         protected const string FAIL = "FAIL";
 
+        // Test Types
         protected string VOLTAGE_CHECK = "Voltage Check Test";
         protected string BOOT_TEST = "Boot Test";
         protected string POWER_TEST = "Power Test";
 
+        // Test device info
+        protected string TsCodeRev;
+        protected string testType;
+        protected string serialNumber = "Not Found Yet";
+        public string modelNumber = "undefined";
+        public string programName = "undefined";
+
+        // Delay Presets for Simulating Tests
+        protected int sleepDelay_ms = 500;
+        protected int sleepDelayL_ms = 800;
+
+        // Socket Communication Flags
         protected bool genericInfoHasBeenLogged = false;
         public bool FileTransferCommandHasBeenSent = false;
         public bool isInitialTestInfoSentToServer = false;
-
-        static Random randomGenerator = new Random();
-
-        // Test device info
-        protected string TsCodeRev;
-        protected string driveType; // TODO implement this
-        protected string testType;
-        protected string serialNumber = "Not Found Yet";
-        public string modelNumber = "undefined"; // TODO implement
-        public string programName = "undefined";
-
-        protected int totalCycles = 0;
-
 
         // Test Info for Socket Messages
         public string testTypeAbbreviation = "not set";
@@ -93,17 +95,17 @@ namespace Client_GUI
 
 
 
-
         public DeviceTester(Client_GUI form)
         {
             this.clientForm = form;
             this.clientForm.stopProcess = false;
             FileTransferCommandHasBeenSent = false;
-            this.ecdEndCycle = this.clientForm.text_completedCycles;
+            //this.ecdEndCycle = this.clientForm.text_completedCycles;
+            //this.ecdEndCycle = this.clientForm.GetText(this.clientForm.text_completedCycles);
             this.StartTime = DateTime.Now;
             this.EcdIntervalTime = DateTime.Now;
             this.testType = "undefined";
-            this.TsCodeRev = this.clientForm.lbl_testAppVersionNum.Text;
+            this.TsCodeRev = this.clientForm.GetLabelText(this.clientForm.lbl_testAppVersionNum);
 
             // Set test type according to radio buttons in the GUI
             if (this.clientForm.rbtn_VC.Checked)
@@ -124,6 +126,7 @@ namespace Client_GUI
         }
 
 
+
         protected void RunTest()
         {
             // Clear the status box
@@ -133,7 +136,7 @@ namespace Client_GUI
             totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
 
             status = "SUCCESS";
-
+         
             // TODO resolve how I want to simulate com ports and slots
             // The slot number is retrieved from the GUI
             //comPort = GetComPortNumber();
@@ -158,7 +161,6 @@ namespace Client_GUI
                     reportErrors(status);
                 }
 
-
                 // Returning here will prevent all the below code including Check status and Update Server. Is this handled in mainloop
                 if (status != SUCCESS)
                 {
@@ -168,7 +170,7 @@ namespace Client_GUI
 
                 VerboseLog("\r\nSocket Tester: Cycle Complete");
 
-                totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
+                totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
                 totalCycles++;
                 this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
 
@@ -176,13 +178,15 @@ namespace Client_GUI
 
                 CalculateEcdCycles();
 
+                CalcHoursPer1000Cycles();
+
                 CheckTestStatusAndUpdateServer();
 
                 // Clear the status box
                 this.clientForm.UpdateStatus("");
 
                 this.isFirstCycle = false;
-                Thread.Sleep(1000);
+                Thread.Sleep(sleepDelay_ms);
 
             } while ((this.clientForm.stopProcess == false) && (status == SUCCESS));
 
@@ -229,7 +233,7 @@ namespace Client_GUI
 
             this.clientForm.UpdateStatus("Simulating SIO communication test\n");
             VerboseLog("simulating SIO communication");
-            Thread.Sleep(1000);
+            Thread.Sleep(sleepDelay_ms);
             if (randNum == 1)
             {
                 return status = "Fail during SIO Check";
@@ -249,7 +253,7 @@ namespace Client_GUI
             this.clientForm.UpdateStatus("Simulating voltage within bounds check\n");
             VerboseLog("simulated voltage = " + randomGenerator.Next(4000, 6000) + "mV");
             VerboseLog("simulated current = " + randomGenerator.Next(100, 900) + "mA");
-            Thread.Sleep(2000);
+            Thread.Sleep(sleepDelayL_ms);
             if (randNum == 1)
             {
                 return status = "Fail during Voltage Check";
@@ -268,9 +272,9 @@ namespace Client_GUI
 
             this.clientForm.UpdateStatus("Simulating device specific functionality\n");
             VerboseLog("device specific function 1");
-            Thread.Sleep(1000);
+            Thread.Sleep(sleepDelay_ms);
             VerboseLog("device specific fucntion 2");
-            Thread.Sleep(2000);
+            Thread.Sleep(sleepDelay_ms);
             if (randNum == 1)
             {
                 return status = "Fail during Device Check";
@@ -303,6 +307,7 @@ namespace Client_GUI
             this.clientForm.SetText(this.clientForm.text_totalFailures, failures.ToString());
             this.clientForm.text_totalFailures.BackColor = Color.LightCoral;
 
+
             Error = message;
             string errorLogPath = rootDirectory + "\\Error_Log.log";
             string errorData = DateTime.Now.ToString() + " " + message + "    ";
@@ -323,7 +328,7 @@ namespace Client_GUI
 
             if(this.clientForm.checkBox_stopOnFailure.Checked)
             {
-                this.clientForm.button_startTest.BackColor = Color.Red;
+                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.Red);
                 this.clientForm.SetStartButton("Start");
             }
 
@@ -331,6 +336,7 @@ namespace Client_GUI
             // for UPDATING the Socket Server
             globalErrorToSendToSocket = message;
             statusOfTest = "Failed";
+            this.clientForm.SetText(this.clientForm.text_statusOfTest, statusOfTest);
             this.clientForm.stopProcess = true;
 
         }
@@ -464,7 +470,6 @@ namespace Client_GUI
             TransferLogToLocalSharedFolder(genericInfoLogPath, copyToPath, true, "testInfo");
         }
 
-
         /// <summary>
         /// Calculates ECD based on cycle counts
         /// </summary>
@@ -476,14 +481,8 @@ namespace Client_GUI
             // Get the number of test cycles desired from the GUI
             string testDuration = this.clientForm.GetComboText(this.clientForm.cBox_testDuration);
 
-            if (testDuration == "")
-            {
-                targetCycleCount = 0;
-            }
-            else
-            {
-                targetCycleCount = Convert.ToInt32(testDuration);
-            }
+            if (testDuration == "") { targetCycleCount = 0; }
+            else { targetCycleCount = Convert.ToInt32(testDuration); }
 
             // Get current cycleCount from GUI
             int currentCycleCount = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
@@ -496,19 +495,20 @@ namespace Client_GUI
             {
 
                 // Calculate a new Estimated Completion Date every x cycles, where x is provided by the ECD_INTERVAL value
-                if (startCycle == 0)
+                if (startEcdIntervalCycle == 0)
                 {
-                    startCycle = currentCycleCount;
                     // Record the start date/time of the interval
                     this.EcdIntervalTime = DateTime.Now;
-                    endCycle = startCycle + ECD_INTERVAL;
+                    // Subtract 1 since CalculateEcdCycles() is called AFTER cycle count is incremented. We want an exact interval of ECD_INTERVAL
+                    startEcdIntervalCycle = currentCycleCount - 1;
+                    endEcdIntervalCycle = startEcdIntervalCycle + ECD_INTERVAL;
                 }
                 // Interval point is reached, calculate ECD
-                else if (currentCycleCount == endCycle)
+                else if (currentCycleCount == endEcdIntervalCycle)
                 {
                     // Calculate how long 1 interval took
                     timeElapsed = DateTime.Now - EcdIntervalTime;
-                    remainingCycles = targetCycleCount - endCycle;
+                    remainingCycles = targetCycleCount - endEcdIntervalCycle;
 
                     // calculate ECD
                     double timePerCycle = timeElapsed.TotalSeconds / ECD_INTERVAL;
@@ -516,7 +516,7 @@ namespace Client_GUI
                     //remainingDays = ((remainingCycles * timeElapsed.TotalDays) / ECD_INTERVAL);
                     double remainingDays = remainingSeconds / (60 * 60 * 24);
                     ecdDate = ecdDate.AddDays(remainingDays);
-                    startCycle = 0;
+                    startEcdIntervalCycle = 0;
                     this.clientForm.SetText(this.clientForm.text_ECD, ecdDate.ToString());
                 }
 
@@ -525,7 +525,8 @@ namespace Client_GUI
             else // CPRT gate reached. Set ACD
             {
                 this.clientForm.SetText(this.clientForm.text_dateCompleted, DateTime.Now.ToString());
-                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+                //this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.LimeGreen);
 
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
                 this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
@@ -535,7 +536,8 @@ namespace Client_GUI
             if (currentCycleCount > targetCycleCount)
             {
                 global_PercentComplete = 100;
-                this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+                //this.clientForm.button_startTest.BackColor = Color.LimeGreen;
+                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.LimeGreen);
 
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
                 this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
@@ -546,7 +548,7 @@ namespace Client_GUI
                 global_PercentComplete = ((double)currentCycleCount / (double)targetCycleCount) * DEFAULT_PROGRESSBAR_MAX;
 
                 this.clientForm.SetProgress((int)global_PercentComplete);
-                this.clientForm.SetText(this.clientForm.text_progress, global_PercentComplete.ToString());
+                this.clientForm.SetText(this.clientForm.text_progress, global_PercentComplete.ToString("0.0"));
             }
         }
 
@@ -556,15 +558,18 @@ namespace Client_GUI
         public void CalcHoursPer1000Cycles()
         {
             TimeSpan timeElapsed;
-            int hoursPer1000Cycles;
+            double hoursPer1000Cycles;
 
-            // only calculate if interval is reached
-            //if (loopCount % HOURS_PER_1000_CYCLES_INTERVAL == 0)
+            // only calculate every x cycles, where x is defined by HOURS_PER_1000_CYCLES_INTERVAL
             if (totalCycles % HOURS_PER_1000_CYCLES_INTERVAL == 0)
             {
                 timeElapsed = (DateTime.Now - HoursPer1000CyclesTime);
-                hoursPer1000Cycles = ((timeElapsed.Minutes * 20) / 60);
-                this.clientForm.SetText(this.clientForm.text_hoursPer1kCycles, hoursPer1000Cycles.ToString());
+
+                double hoursElapsed = timeElapsed.TotalMinutes / 60;
+                double multiplierToProject1000 = 1000 / HOURS_PER_1000_CYCLES_INTERVAL;
+                // hours * (what we need to multiply by to project for 1000 cycles)
+                hoursPer1000Cycles = hoursElapsed * multiplierToProject1000;
+                this.clientForm.SetText(this.clientForm.text_hoursPer1kCycles, hoursPer1000Cycles.ToString("0.0"));
 
                 HoursPer1000CyclesTime = DateTime.Now;
             }
@@ -817,7 +822,7 @@ namespace Client_GUI
                 }
 
             }
-
+            this.clientForm.SetText(this.clientForm.text_statusOfTest, statusOfTest);
         }
 
         private void GetCycleInformation()
@@ -993,6 +998,8 @@ namespace Client_GUI
             this.clientForm.stopProcess = false;
             FileTransferCommandHasBeenSent = false;
 
+            this.clientForm.SetText(this.clientForm.text_startDate, StartTime.ToString());
+
             string testStatus = "";
 
             this.clientForm.UpdateStatus("Starting Test\n");
@@ -1008,7 +1015,8 @@ namespace Client_GUI
             if (testDriveStatus != SUCCESS)
             {
                 this.clientForm.SetStartButton("Start");
-                this.clientForm.button_startTest.BackColor = Color.Red;
+                //this.clientForm.button_startTest.BackColor = Color.Red;
+                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.Red);
 
                 // TODO Need to send error message to server saying "failed in initial test setup"
 
@@ -1021,7 +1029,7 @@ namespace Client_GUI
 
             VerboseLog("-------------------Device is now OFF-----------------------");
 
-            this.clientForm.SetTestBox(this.testType);
+            //this.clientForm.SetTestBox(this.testType);
             HoursPer1000CyclesTime = DateTime.Now;
             this.clientForm.SetStartButton("Stop");
 
@@ -1032,22 +1040,18 @@ namespace Client_GUI
 
                 GetCycleInformation();
 
-                //loopCount++;
-                //totalTestCycles++;
                 totalCycles++;
 
-                CalcHoursPer1000Cycles();   // Figure out why I wrote this TODO
+                CalcHoursPer1000Cycles();
 
                 // set cycle information
-                //this.clientForm.SetText(this.clientForm.text_completedCycles, loopCount.ToString());
                 this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
-                //this.clientForm.SetText(this.testCyclesBox, totalTestCycles.ToString());
 
                 CalculateEcdCycles();
 
                 VerboseLog("Device powering on\r\n");
                 this.clientForm.UpdateStatus("Powering on Device");
-                Thread.Sleep(1000);
+                Thread.Sleep(sleepDelay_ms);
                 VerboseLog("Device was powered on\r\n");
                 this.clientForm.UpdateStatus("Device on");
 
@@ -1066,7 +1070,7 @@ namespace Client_GUI
 
                 // Start Button Background Color will be set to red if "ErrorReport()" has been called in any tests.
                 // If any test encountered a failure then close ports, set start button red, and return to waiting for the start button to be clicked.
-                if (this.clientForm.button_startTest.BackColor == Color.Red || this.clientForm.stopProcess == true)
+                if (this.clientForm.GetStartButtonColor(this.clientForm.button_startTest) == Color.Red || this.clientForm.stopProcess == true)
                 {
                     this.clientForm.UpdateStatus(testStatus += "Test stopped\n");
                     // this should already be done if this branch is entered into. 

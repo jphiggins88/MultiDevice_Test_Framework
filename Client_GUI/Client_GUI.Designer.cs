@@ -56,19 +56,15 @@ namespace Client_GUI
             this.lbl_recentReceivedMessages = new System.Windows.Forms.Label();
             this.text_computerName = new System.Windows.Forms.TextBox();
             this.text_testGroupIdentifier = new System.Windows.Forms.TextBox();
-            this.text_deviceType = new System.Windows.Forms.TextBox();
             this.text_statusOfTest = new System.Windows.Forms.TextBox();
             this.text_progress = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.text_testType = new System.Windows.Forms.TextBox();
             this.lbl_programName = new System.Windows.Forms.Label();
             this.lbl_computerName = new System.Windows.Forms.Label();
             this.lbl_slotNumber = new System.Windows.Forms.Label();
             this.lbl_testAppVersion = new System.Windows.Forms.Label();
             this.lbl_testGroupIdentifier = new System.Windows.Forms.Label();
-            this.lbl_deviceType = new System.Windows.Forms.Label();
             this.lbl_satusOfTest = new System.Windows.Forms.Label();
-            this.lbl_testType = new System.Windows.Forms.Label();
             this.lbl_progress = new System.Windows.Forms.Label();
             this.lbl_serverIp = new System.Windows.Forms.Label();
             this.cBox_programName = new System.Windows.Forms.ComboBox();
@@ -83,10 +79,6 @@ namespace Client_GUI
             this.lbl_startDate = new System.Windows.Forms.Label();
             this.text_totalFailures = new System.Windows.Forms.TextBox();
             this.lbl_totalFailures = new System.Windows.Forms.Label();
-            this.text_completedDays = new System.Windows.Forms.TextBox();
-            this.lbl_completedDays = new System.Windows.Forms.Label();
-            this.text_remainingDays = new System.Windows.Forms.TextBox();
-            this.lbl_remainingDays = new System.Windows.Forms.Label();
             this.rbtn_VC = new System.Windows.Forms.RadioButton();
             this.rbtn_BT = new System.Windows.Forms.RadioButton();
             this.rbtn_PT = new System.Windows.Forms.RadioButton();
@@ -104,25 +96,22 @@ namespace Client_GUI
             this.checkBox_forceFailureOnNextCycle = new System.Windows.Forms.CheckBox();
             this.text_dateCompleted = new System.Windows.Forms.TextBox();
             this.lbl_dateCompleted = new System.Windows.Forms.Label();
-            this.text_remainingHours = new System.Windows.Forms.TextBox();
-            this.text_completedHours = new System.Windows.Forms.TextBox();
-            this.lbl_remainingHours = new System.Windows.Forms.Label();
-            this.lbl_completedHours = new System.Windows.Forms.Label();
             this.text_hoursPer1kCycles = new System.Windows.Forms.TextBox();
             this.lbl_hoursPer1kCycles = new System.Windows.Forms.Label();
             this.lbl_testAppVersionNum = new System.Windows.Forms.Label();
             this.checkBox_stopOnFailure = new System.Windows.Forms.CheckBox();
             this.gBox_socketCommunication = new System.Windows.Forms.GroupBox();
+            this.lbl_messageToSend = new System.Windows.Forms.Label();
             this.gBox_testStatus = new System.Windows.Forms.GroupBox();
             this.gBox_testDeviceInfo = new System.Windows.Forms.GroupBox();
+            this.text_serialNumber = new System.Windows.Forms.TextBox();
+            this.lbl_serialNumber = new System.Windows.Forms.Label();
+            this.text_modelNumber = new System.Windows.Forms.TextBox();
+            this.lbl_modelNumber = new System.Windows.Forms.Label();
             this.gBox_testSetup = new System.Windows.Forms.GroupBox();
             this.gBox_testDeviceLocation = new System.Windows.Forms.GroupBox();
             this.gBox_socketConnectionInfo = new System.Windows.Forms.GroupBox();
             this.gBox_timeMetrics = new System.Windows.Forms.GroupBox();
-            this.text_modelNumber = new System.Windows.Forms.TextBox();
-            this.lbl_modelNumber = new System.Windows.Forms.Label();
-            this.text_serialNumber = new System.Windows.Forms.TextBox();
-            this.lbl_serialNumber = new System.Windows.Forms.Label();
             this.gBox_socketCommunication.SuspendLayout();
             this.gBox_testStatus.SuspendLayout();
             this.gBox_testDeviceInfo.SuspendLayout();
@@ -149,12 +138,12 @@ namespace Client_GUI
             this.lBox_recentReceivedMessages.ItemHeight = 25;
             this.lBox_recentReceivedMessages.Location = new System.Drawing.Point(6, 135);
             this.lBox_recentReceivedMessages.Name = "lBox_recentReceivedMessages";
-            this.lBox_recentReceivedMessages.Size = new System.Drawing.Size(846, 129);
+            this.lBox_recentReceivedMessages.Size = new System.Drawing.Size(696, 129);
             this.lBox_recentReceivedMessages.TabIndex = 2;
             // 
             // button_send
             // 
-            this.button_send.Location = new System.Drawing.Point(740, 270);
+            this.button_send.Location = new System.Drawing.Point(6, 366);
             this.button_send.Name = "button_send";
             this.button_send.Size = new System.Drawing.Size(112, 34);
             this.button_send.TabIndex = 0;
@@ -165,9 +154,9 @@ namespace Client_GUI
             // text_sendBox
             // 
             this.text_sendBox.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_sendBox.Location = new System.Drawing.Point(6, 270);
+            this.text_sendBox.Location = new System.Drawing.Point(6, 329);
             this.text_sendBox.Name = "text_sendBox";
-            this.text_sendBox.Size = new System.Drawing.Size(728, 31);
+            this.text_sendBox.Size = new System.Drawing.Size(696, 31);
             this.text_sendBox.TabIndex = 1;
             // 
             // text_lastMessageReceived
@@ -176,7 +165,7 @@ namespace Client_GUI
             this.text_lastMessageReceived.Location = new System.Drawing.Point(6, 65);
             this.text_lastMessageReceived.Multiline = true;
             this.text_lastMessageReceived.Name = "text_lastMessageReceived";
-            this.text_lastMessageReceived.Size = new System.Drawing.Size(846, 34);
+            this.text_lastMessageReceived.Size = new System.Drawing.Size(696, 34);
             this.text_lastMessageReceived.TabIndex = 3;
             // 
             // textBox_clientID
@@ -232,45 +221,29 @@ namespace Client_GUI
             this.text_testGroupIdentifier.Size = new System.Drawing.Size(183, 31);
             this.text_testGroupIdentifier.TabIndex = 11;
             // 
-            // text_deviceType
-            // 
-            this.text_deviceType.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_deviceType.Location = new System.Drawing.Point(145, 72);
-            this.text_deviceType.Name = "text_deviceType";
-            this.text_deviceType.Size = new System.Drawing.Size(182, 31);
-            this.text_deviceType.TabIndex = 12;
-            // 
             // text_statusOfTest
             // 
             this.text_statusOfTest.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_statusOfTest.Location = new System.Drawing.Point(117, 227);
+            this.text_statusOfTest.Location = new System.Drawing.Point(112, 167);
             this.text_statusOfTest.Name = "text_statusOfTest";
-            this.text_statusOfTest.Size = new System.Drawing.Size(269, 31);
+            this.text_statusOfTest.Size = new System.Drawing.Size(237, 31);
             this.text_statusOfTest.TabIndex = 13;
             // 
             // text_progress
             // 
             this.text_progress.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_progress.Location = new System.Drawing.Point(93, 30);
+            this.text_progress.Location = new System.Drawing.Point(27, 64);
             this.text_progress.Name = "text_progress";
-            this.text_progress.Size = new System.Drawing.Size(84, 31);
+            this.text_progress.Size = new System.Drawing.Size(56, 31);
             this.text_progress.TabIndex = 14;
             // 
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.LimeGreen;
-            this.progressBar1.Location = new System.Drawing.Point(6, 103);
+            this.progressBar1.Location = new System.Drawing.Point(89, 61);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(389, 34);
+            this.progressBar1.Size = new System.Drawing.Size(260, 34);
             this.progressBar1.TabIndex = 15;
-            // 
-            // text_testType
-            // 
-            this.text_testType.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_testType.Location = new System.Drawing.Point(117, 190);
-            this.text_testType.Name = "text_testType";
-            this.text_testType.Size = new System.Drawing.Size(269, 31);
-            this.text_testType.TabIndex = 16;
             // 
             // lbl_programName
             // 
@@ -317,41 +290,23 @@ namespace Client_GUI
             this.lbl_testGroupIdentifier.TabIndex = 21;
             this.lbl_testGroupIdentifier.Text = "Test Group ID";
             // 
-            // lbl_deviceType
-            // 
-            this.lbl_deviceType.AutoSize = true;
-            this.lbl_deviceType.Location = new System.Drawing.Point(33, 75);
-            this.lbl_deviceType.Name = "lbl_deviceType";
-            this.lbl_deviceType.Size = new System.Drawing.Size(106, 25);
-            this.lbl_deviceType.TabIndex = 22;
-            this.lbl_deviceType.Text = "Device Type";
-            // 
             // lbl_satusOfTest
             // 
             this.lbl_satusOfTest.AutoSize = true;
-            this.lbl_satusOfTest.Location = new System.Drawing.Point(51, 230);
+            this.lbl_satusOfTest.Location = new System.Drawing.Point(46, 170);
             this.lbl_satusOfTest.Name = "lbl_satusOfTest";
             this.lbl_satusOfTest.Size = new System.Drawing.Size(60, 25);
             this.lbl_satusOfTest.TabIndex = 23;
             this.lbl_satusOfTest.Text = "Status";
             // 
-            // lbl_testType
-            // 
-            this.lbl_testType.AutoSize = true;
-            this.lbl_testType.Location = new System.Drawing.Point(27, 193);
-            this.lbl_testType.Name = "lbl_testType";
-            this.lbl_testType.Size = new System.Drawing.Size(84, 25);
-            this.lbl_testType.TabIndex = 24;
-            this.lbl_testType.Text = "Test Type";
-            // 
             // lbl_progress
             // 
             this.lbl_progress.AutoSize = true;
-            this.lbl_progress.Location = new System.Drawing.Point(6, 33);
+            this.lbl_progress.Location = new System.Drawing.Point(1, 70);
             this.lbl_progress.Name = "lbl_progress";
-            this.lbl_progress.Size = new System.Drawing.Size(81, 25);
+            this.lbl_progress.Size = new System.Drawing.Size(27, 25);
             this.lbl_progress.TabIndex = 25;
-            this.lbl_progress.Text = "Progress";
+            this.lbl_progress.Text = "%";
             // 
             // lbl_serverIp
             // 
@@ -368,7 +323,7 @@ namespace Client_GUI
             this.cBox_programName.FormattingEnabled = true;
             this.cBox_programName.Location = new System.Drawing.Point(145, 33);
             this.cBox_programName.Name = "cBox_programName";
-            this.cBox_programName.Size = new System.Drawing.Size(182, 33);
+            this.cBox_programName.Size = new System.Drawing.Size(204, 33);
             this.cBox_programName.TabIndex = 27;
             // 
             // cBox_pcGroup
@@ -419,88 +374,55 @@ namespace Client_GUI
             // lbl_ECD
             // 
             this.lbl_ECD.AutoSize = true;
-            this.lbl_ECD.Location = new System.Drawing.Point(7, 78);
+            this.lbl_ECD.Location = new System.Drawing.Point(23, 77);
             this.lbl_ECD.Name = "lbl_ECD";
-            this.lbl_ECD.Size = new System.Drawing.Size(188, 25);
+            this.lbl_ECD.Size = new System.Drawing.Size(45, 25);
             this.lbl_ECD.TabIndex = 33;
-            this.lbl_ECD.Text = "Estimated Completion";
+            this.lbl_ECD.Text = "ECD";
             // 
             // text_ECD
             // 
             this.text_ECD.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_ECD.Location = new System.Drawing.Point(201, 75);
+            this.text_ECD.Location = new System.Drawing.Point(71, 74);
             this.text_ECD.Name = "text_ECD";
-            this.text_ECD.Size = new System.Drawing.Size(276, 31);
+            this.text_ECD.Size = new System.Drawing.Size(263, 31);
             this.text_ECD.TabIndex = 34;
+            this.text_ECD.Text = "wait 10 cycles";
             // 
             // text_startDate
             // 
             this.text_startDate.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_startDate.Location = new System.Drawing.Point(201, 38);
+            this.text_startDate.Location = new System.Drawing.Point(71, 37);
             this.text_startDate.Name = "text_startDate";
-            this.text_startDate.Size = new System.Drawing.Size(276, 31);
+            this.text_startDate.Size = new System.Drawing.Size(263, 31);
             this.text_startDate.TabIndex = 36;
             // 
             // lbl_startDate
             // 
             this.lbl_startDate.AutoSize = true;
-            this.lbl_startDate.Location = new System.Drawing.Point(105, 38);
+            this.lbl_startDate.Location = new System.Drawing.Point(20, 40);
             this.lbl_startDate.Name = "lbl_startDate";
-            this.lbl_startDate.Size = new System.Drawing.Size(90, 25);
+            this.lbl_startDate.Size = new System.Drawing.Size(48, 25);
             this.lbl_startDate.TabIndex = 35;
-            this.lbl_startDate.Text = "Start Date";
+            this.lbl_startDate.Text = "Start";
             // 
             // text_totalFailures
             // 
             this.text_totalFailures.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_totalFailures.Location = new System.Drawing.Point(299, 72);
+            this.text_totalFailures.Location = new System.Drawing.Point(246, 24);
             this.text_totalFailures.Name = "text_totalFailures";
-            this.text_totalFailures.Size = new System.Drawing.Size(96, 31);
+            this.text_totalFailures.Size = new System.Drawing.Size(103, 31);
             this.text_totalFailures.TabIndex = 38;
             this.text_totalFailures.Text = "0";
             // 
             // lbl_totalFailures
             // 
             this.lbl_totalFailures.AutoSize = true;
-            this.lbl_totalFailures.Location = new System.Drawing.Point(223, 75);
+            this.lbl_totalFailures.Location = new System.Drawing.Point(170, 27);
             this.lbl_totalFailures.Name = "lbl_totalFailures";
             this.lbl_totalFailures.Size = new System.Drawing.Size(70, 25);
             this.lbl_totalFailures.TabIndex = 37;
             this.lbl_totalFailures.Text = "Failures";
-            // 
-            // text_completedDays
-            // 
-            this.text_completedDays.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_completedDays.Location = new System.Drawing.Point(201, 112);
-            this.text_completedDays.Name = "text_completedDays";
-            this.text_completedDays.Size = new System.Drawing.Size(114, 31);
-            this.text_completedDays.TabIndex = 40;
-            // 
-            // lbl_completedDays
-            // 
-            this.lbl_completedDays.AutoSize = true;
-            this.lbl_completedDays.Location = new System.Drawing.Point(51, 115);
-            this.lbl_completedDays.Name = "lbl_completedDays";
-            this.lbl_completedDays.Size = new System.Drawing.Size(144, 25);
-            this.lbl_completedDays.TabIndex = 39;
-            this.lbl_completedDays.Text = "Completed Days";
-            // 
-            // text_remainingDays
-            // 
-            this.text_remainingDays.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_remainingDays.Location = new System.Drawing.Point(201, 149);
-            this.text_remainingDays.Name = "text_remainingDays";
-            this.text_remainingDays.Size = new System.Drawing.Size(114, 31);
-            this.text_remainingDays.TabIndex = 42;
-            // 
-            // lbl_remainingDays
-            // 
-            this.lbl_remainingDays.AutoSize = true;
-            this.lbl_remainingDays.Location = new System.Drawing.Point(56, 152);
-            this.lbl_remainingDays.Name = "lbl_remainingDays";
-            this.lbl_remainingDays.Size = new System.Drawing.Size(139, 25);
-            this.lbl_remainingDays.TabIndex = 41;
-            this.lbl_remainingDays.Text = "Remaining Days";
             // 
             // rbtn_VC
             // 
@@ -546,15 +468,15 @@ namespace Client_GUI
             // text_currentTest
             // 
             this.text_currentTest.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_currentTest.Location = new System.Drawing.Point(117, 153);
+            this.text_currentTest.Location = new System.Drawing.Point(112, 130);
             this.text_currentTest.Name = "text_currentTest";
-            this.text_currentTest.Size = new System.Drawing.Size(269, 31);
+            this.text_currentTest.Size = new System.Drawing.Size(237, 31);
             this.text_currentTest.TabIndex = 48;
             // 
             // lbl_currentTest
             // 
             this.lbl_currentTest.AutoSize = true;
-            this.lbl_currentTest.Location = new System.Drawing.Point(6, 156);
+            this.lbl_currentTest.Location = new System.Drawing.Point(1, 133);
             this.lbl_currentTest.Name = "lbl_currentTest";
             this.lbl_currentTest.Size = new System.Drawing.Size(105, 25);
             this.lbl_currentTest.TabIndex = 47;
@@ -563,16 +485,16 @@ namespace Client_GUI
             // rText_statusOfTest
             // 
             this.rText_statusOfTest.BackColor = System.Drawing.Color.Gainsboro;
-            this.rText_statusOfTest.Location = new System.Drawing.Point(418, 59);
+            this.rText_statusOfTest.Location = new System.Drawing.Point(6, 239);
             this.rText_statusOfTest.Name = "rText_statusOfTest";
-            this.rText_statusOfTest.Size = new System.Drawing.Size(243, 202);
+            this.rText_statusOfTest.Size = new System.Drawing.Size(343, 231);
             this.rText_statusOfTest.TabIndex = 49;
             this.rText_statusOfTest.Text = "";
             // 
             // lbl_richTextStatusOfTests
             // 
             this.lbl_richTextStatusOfTests.AutoSize = true;
-            this.lbl_richTextStatusOfTests.Location = new System.Drawing.Point(423, 27);
+            this.lbl_richTextStatusOfTests.Location = new System.Drawing.Point(6, 211);
             this.lbl_richTextStatusOfTests.Name = "lbl_richTextStatusOfTests";
             this.lbl_richTextStatusOfTests.Size = new System.Drawing.Size(182, 25);
             this.lbl_richTextStatusOfTests.TabIndex = 50;
@@ -584,13 +506,13 @@ namespace Client_GUI
             this.cBox_serverIp.FormattingEnabled = true;
             this.cBox_serverIp.Location = new System.Drawing.Point(139, 27);
             this.cBox_serverIp.Name = "cBox_serverIp";
-            this.cBox_serverIp.Size = new System.Drawing.Size(182, 33);
+            this.cBox_serverIp.Size = new System.Drawing.Size(210, 33);
             this.cBox_serverIp.TabIndex = 51;
             // 
             // lbl_completedCycles
             // 
             this.lbl_completedCycles.AutoSize = true;
-            this.lbl_completedCycles.Location = new System.Drawing.Point(6, 75);
+            this.lbl_completedCycles.Location = new System.Drawing.Point(6, 27);
             this.lbl_completedCycles.Name = "lbl_completedCycles";
             this.lbl_completedCycles.Size = new System.Drawing.Size(61, 25);
             this.lbl_completedCycles.TabIndex = 53;
@@ -599,9 +521,9 @@ namespace Client_GUI
             // text_completedCycles
             // 
             this.text_completedCycles.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_completedCycles.Location = new System.Drawing.Point(73, 72);
+            this.text_completedCycles.Location = new System.Drawing.Point(73, 24);
             this.text_completedCycles.Name = "text_completedCycles";
-            this.text_completedCycles.Size = new System.Drawing.Size(144, 31);
+            this.text_completedCycles.Size = new System.Drawing.Size(83, 31);
             this.text_completedCycles.TabIndex = 52;
             this.text_completedCycles.Text = "0";
             // 
@@ -618,7 +540,7 @@ namespace Client_GUI
             // lbl_testNotes
             // 
             this.lbl_testNotes.AutoSize = true;
-            this.lbl_testNotes.Location = new System.Drawing.Point(6, 496);
+            this.lbl_testNotes.Location = new System.Drawing.Point(11, 483);
             this.lbl_testNotes.Name = "lbl_testNotes";
             this.lbl_testNotes.Size = new System.Drawing.Size(189, 25);
             this.lbl_testNotes.TabIndex = 56;
@@ -627,9 +549,9 @@ namespace Client_GUI
             // rText_testNotes
             // 
             this.rText_testNotes.BackColor = System.Drawing.SystemColors.Window;
-            this.rText_testNotes.Location = new System.Drawing.Point(6, 526);
+            this.rText_testNotes.Location = new System.Drawing.Point(6, 511);
             this.rText_testNotes.Name = "rText_testNotes";
-            this.rText_testNotes.Size = new System.Drawing.Size(315, 100);
+            this.rText_testNotes.Size = new System.Drawing.Size(328, 115);
             this.rText_testNotes.TabIndex = 55;
             this.rText_testNotes.Text = "";
             // 
@@ -646,70 +568,37 @@ namespace Client_GUI
             // text_dateCompleted
             // 
             this.text_dateCompleted.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_dateCompleted.Location = new System.Drawing.Point(201, 186);
+            this.text_dateCompleted.Location = new System.Drawing.Point(71, 111);
             this.text_dateCompleted.Name = "text_dateCompleted";
-            this.text_dateCompleted.Size = new System.Drawing.Size(276, 31);
+            this.text_dateCompleted.Size = new System.Drawing.Size(263, 31);
             this.text_dateCompleted.TabIndex = 59;
             // 
             // lbl_dateCompleted
             // 
             this.lbl_dateCompleted.AutoSize = true;
-            this.lbl_dateCompleted.Location = new System.Drawing.Point(53, 189);
+            this.lbl_dateCompleted.Location = new System.Drawing.Point(11, 114);
             this.lbl_dateCompleted.Name = "lbl_dateCompleted";
-            this.lbl_dateCompleted.Size = new System.Drawing.Size(142, 25);
+            this.lbl_dateCompleted.Size = new System.Drawing.Size(57, 25);
             this.lbl_dateCompleted.TabIndex = 58;
-            this.lbl_dateCompleted.Text = "Date Completed";
-            // 
-            // text_remainingHours
-            // 
-            this.text_remainingHours.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_remainingHours.Location = new System.Drawing.Point(387, 149);
-            this.text_remainingHours.Name = "text_remainingHours";
-            this.text_remainingHours.Size = new System.Drawing.Size(90, 31);
-            this.text_remainingHours.TabIndex = 61;
-            // 
-            // text_completedHours
-            // 
-            this.text_completedHours.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_completedHours.Location = new System.Drawing.Point(387, 112);
-            this.text_completedHours.Name = "text_completedHours";
-            this.text_completedHours.Size = new System.Drawing.Size(90, 31);
-            this.text_completedHours.TabIndex = 60;
-            // 
-            // lbl_remainingHours
-            // 
-            this.lbl_remainingHours.AutoSize = true;
-            this.lbl_remainingHours.Location = new System.Drawing.Point(321, 152);
-            this.lbl_remainingHours.Name = "lbl_remainingHours";
-            this.lbl_remainingHours.Size = new System.Drawing.Size(60, 25);
-            this.lbl_remainingHours.TabIndex = 63;
-            this.lbl_remainingHours.Text = "Hours";
-            // 
-            // lbl_completedHours
-            // 
-            this.lbl_completedHours.AutoSize = true;
-            this.lbl_completedHours.Location = new System.Drawing.Point(321, 115);
-            this.lbl_completedHours.Name = "lbl_completedHours";
-            this.lbl_completedHours.Size = new System.Drawing.Size(60, 25);
-            this.lbl_completedHours.TabIndex = 62;
-            this.lbl_completedHours.Text = "Hours";
+            this.lbl_dateCompleted.Text = "Finish";
             // 
             // text_hoursPer1kCycles
             // 
             this.text_hoursPer1kCycles.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_hoursPer1kCycles.Location = new System.Drawing.Point(201, 223);
+            this.text_hoursPer1kCycles.Location = new System.Drawing.Point(150, 148);
             this.text_hoursPer1kCycles.Name = "text_hoursPer1kCycles";
-            this.text_hoursPer1kCycles.Size = new System.Drawing.Size(114, 31);
+            this.text_hoursPer1kCycles.Size = new System.Drawing.Size(132, 31);
             this.text_hoursPer1kCycles.TabIndex = 65;
+            this.text_hoursPer1kCycles.Text = "wait 10 cycles";
             // 
             // lbl_hoursPer1kCycles
             // 
             this.lbl_hoursPer1kCycles.AutoSize = true;
-            this.lbl_hoursPer1kCycles.Location = new System.Drawing.Point(29, 226);
+            this.lbl_hoursPer1kCycles.Location = new System.Drawing.Point(6, 151);
             this.lbl_hoursPer1kCycles.Name = "lbl_hoursPer1kCycles";
-            this.lbl_hoursPer1kCycles.Size = new System.Drawing.Size(166, 25);
+            this.lbl_hoursPer1kCycles.Size = new System.Drawing.Size(137, 25);
             this.lbl_hoursPer1kCycles.TabIndex = 64;
-            this.lbl_hoursPer1kCycles.Text = "Hours per 1k cycles";
+            this.lbl_hoursPer1kCycles.Text = "Hours/1k cycles";
             // 
             // lbl_testAppVersionNum
             // 
@@ -735,18 +624,28 @@ namespace Client_GUI
             // gBox_socketCommunication
             // 
             this.gBox_socketCommunication.BackColor = System.Drawing.Color.Silver;
+            this.gBox_socketCommunication.Controls.Add(this.lbl_messageToSend);
             this.gBox_socketCommunication.Controls.Add(this.lBox_recentReceivedMessages);
             this.gBox_socketCommunication.Controls.Add(this.button_send);
             this.gBox_socketCommunication.Controls.Add(this.text_sendBox);
             this.gBox_socketCommunication.Controls.Add(this.text_lastMessageReceived);
             this.gBox_socketCommunication.Controls.Add(this.lbl_lastMessageReceived);
             this.gBox_socketCommunication.Controls.Add(this.lbl_recentReceivedMessages);
-            this.gBox_socketCommunication.Location = new System.Drawing.Point(12, 966);
+            this.gBox_socketCommunication.Location = new System.Drawing.Point(12, 886);
             this.gBox_socketCommunication.Name = "gBox_socketCommunication";
-            this.gBox_socketCommunication.Size = new System.Drawing.Size(872, 315);
+            this.gBox_socketCommunication.Size = new System.Drawing.Size(708, 407);
             this.gBox_socketCommunication.TabIndex = 68;
             this.gBox_socketCommunication.TabStop = false;
             this.gBox_socketCommunication.Text = "Socket Communication";
+            // 
+            // lbl_messageToSend
+            // 
+            this.lbl_messageToSend.AutoSize = true;
+            this.lbl_messageToSend.Location = new System.Drawing.Point(6, 301);
+            this.lbl_messageToSend.Name = "lbl_messageToSend";
+            this.lbl_messageToSend.Size = new System.Drawing.Size(221, 25);
+            this.lbl_messageToSend.TabIndex = 7;
+            this.lbl_messageToSend.Text = "Message to send to server";
             // 
             // gBox_testStatus
             // 
@@ -756,9 +655,7 @@ namespace Client_GUI
             this.gBox_testStatus.Controls.Add(this.progressBar1);
             this.gBox_testStatus.Controls.Add(this.text_statusOfTest);
             this.gBox_testStatus.Controls.Add(this.text_progress);
-            this.gBox_testStatus.Controls.Add(this.text_testType);
             this.gBox_testStatus.Controls.Add(this.lbl_satusOfTest);
-            this.gBox_testStatus.Controls.Add(this.lbl_testType);
             this.gBox_testStatus.Controls.Add(this.lbl_progress);
             this.gBox_testStatus.Controls.Add(this.lbl_totalFailures);
             this.gBox_testStatus.Controls.Add(this.text_totalFailures);
@@ -768,7 +665,7 @@ namespace Client_GUI
             this.gBox_testStatus.Controls.Add(this.lbl_completedCycles);
             this.gBox_testStatus.Location = new System.Drawing.Point(365, 199);
             this.gBox_testStatus.Name = "gBox_testStatus";
-            this.gBox_testStatus.Size = new System.Drawing.Size(673, 276);
+            this.gBox_testStatus.Size = new System.Drawing.Size(355, 476);
             this.gBox_testStatus.TabIndex = 69;
             this.gBox_testStatus.TabStop = false;
             this.gBox_testStatus.Text = "Test Staus";
@@ -781,15 +678,47 @@ namespace Client_GUI
             this.gBox_testDeviceInfo.Controls.Add(this.text_modelNumber);
             this.gBox_testDeviceInfo.Controls.Add(this.lbl_modelNumber);
             this.gBox_testDeviceInfo.Controls.Add(this.lbl_programName);
-            this.gBox_testDeviceInfo.Controls.Add(this.text_deviceType);
-            this.gBox_testDeviceInfo.Controls.Add(this.lbl_deviceType);
             this.gBox_testDeviceInfo.Controls.Add(this.cBox_programName);
-            this.gBox_testDeviceInfo.Location = new System.Drawing.Point(365, 481);
+            this.gBox_testDeviceInfo.Location = new System.Drawing.Point(365, 681);
             this.gBox_testDeviceInfo.Name = "gBox_testDeviceInfo";
-            this.gBox_testDeviceInfo.Size = new System.Drawing.Size(355, 194);
+            this.gBox_testDeviceInfo.Size = new System.Drawing.Size(355, 199);
             this.gBox_testDeviceInfo.TabIndex = 70;
             this.gBox_testDeviceInfo.TabStop = false;
             this.gBox_testDeviceInfo.Text = "Test Device Info";
+            // 
+            // text_serialNumber
+            // 
+            this.text_serialNumber.BackColor = System.Drawing.Color.Gainsboro;
+            this.text_serialNumber.Location = new System.Drawing.Point(145, 109);
+            this.text_serialNumber.Name = "text_serialNumber";
+            this.text_serialNumber.Size = new System.Drawing.Size(204, 31);
+            this.text_serialNumber.TabIndex = 30;
+            // 
+            // lbl_serialNumber
+            // 
+            this.lbl_serialNumber.AutoSize = true;
+            this.lbl_serialNumber.Location = new System.Drawing.Point(33, 112);
+            this.lbl_serialNumber.Name = "lbl_serialNumber";
+            this.lbl_serialNumber.Size = new System.Drawing.Size(35, 25);
+            this.lbl_serialNumber.TabIndex = 31;
+            this.lbl_serialNumber.Text = "SN";
+            // 
+            // text_modelNumber
+            // 
+            this.text_modelNumber.BackColor = System.Drawing.Color.Gainsboro;
+            this.text_modelNumber.Location = new System.Drawing.Point(145, 72);
+            this.text_modelNumber.Name = "text_modelNumber";
+            this.text_modelNumber.Size = new System.Drawing.Size(204, 31);
+            this.text_modelNumber.TabIndex = 28;
+            // 
+            // lbl_modelNumber
+            // 
+            this.lbl_modelNumber.AutoSize = true;
+            this.lbl_modelNumber.Location = new System.Drawing.Point(33, 75);
+            this.lbl_modelNumber.Name = "lbl_modelNumber";
+            this.lbl_modelNumber.Size = new System.Drawing.Size(63, 25);
+            this.lbl_modelNumber.TabIndex = 29;
+            this.lbl_modelNumber.Text = "Model";
             // 
             // gBox_testSetup
             // 
@@ -840,7 +769,7 @@ namespace Client_GUI
             this.gBox_socketConnectionInfo.Controls.Add(this.cBox_serverIp);
             this.gBox_socketConnectionInfo.Location = new System.Drawing.Point(365, 43);
             this.gBox_socketConnectionInfo.Name = "gBox_socketConnectionInfo";
-            this.gBox_socketConnectionInfo.Size = new System.Drawing.Size(327, 150);
+            this.gBox_socketConnectionInfo.Size = new System.Drawing.Size(355, 150);
             this.gBox_socketConnectionInfo.TabIndex = 72;
             this.gBox_socketConnectionInfo.TabStop = false;
             this.gBox_socketConnectionInfo.Text = "Socket Connection Info";
@@ -852,65 +781,23 @@ namespace Client_GUI
             this.gBox_timeMetrics.Controls.Add(this.lbl_ECD);
             this.gBox_timeMetrics.Controls.Add(this.text_ECD);
             this.gBox_timeMetrics.Controls.Add(this.text_startDate);
-            this.gBox_timeMetrics.Controls.Add(this.lbl_completedDays);
-            this.gBox_timeMetrics.Controls.Add(this.text_completedDays);
-            this.gBox_timeMetrics.Controls.Add(this.lbl_remainingDays);
             this.gBox_timeMetrics.Controls.Add(this.text_hoursPer1kCycles);
-            this.gBox_timeMetrics.Controls.Add(this.text_remainingDays);
             this.gBox_timeMetrics.Controls.Add(this.lbl_hoursPer1kCycles);
             this.gBox_timeMetrics.Controls.Add(this.lbl_dateCompleted);
-            this.gBox_timeMetrics.Controls.Add(this.lbl_remainingHours);
             this.gBox_timeMetrics.Controls.Add(this.text_dateCompleted);
-            this.gBox_timeMetrics.Controls.Add(this.lbl_completedHours);
-            this.gBox_timeMetrics.Controls.Add(this.text_completedHours);
-            this.gBox_timeMetrics.Controls.Add(this.text_remainingHours);
             this.gBox_timeMetrics.Location = new System.Drawing.Point(12, 681);
             this.gBox_timeMetrics.Name = "gBox_timeMetrics";
-            this.gBox_timeMetrics.Size = new System.Drawing.Size(483, 279);
+            this.gBox_timeMetrics.Size = new System.Drawing.Size(347, 199);
             this.gBox_timeMetrics.TabIndex = 73;
             this.gBox_timeMetrics.TabStop = false;
             this.gBox_timeMetrics.Text = "Time Metrics";
-            // 
-            // text_modelNumber
-            // 
-            this.text_modelNumber.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_modelNumber.Location = new System.Drawing.Point(145, 109);
-            this.text_modelNumber.Name = "text_modelNumber";
-            this.text_modelNumber.Size = new System.Drawing.Size(182, 31);
-            this.text_modelNumber.TabIndex = 28;
-            // 
-            // lbl_modelNumber
-            // 
-            this.lbl_modelNumber.AutoSize = true;
-            this.lbl_modelNumber.Location = new System.Drawing.Point(33, 112);
-            this.lbl_modelNumber.Name = "lbl_modelNumber";
-            this.lbl_modelNumber.Size = new System.Drawing.Size(63, 25);
-            this.lbl_modelNumber.TabIndex = 29;
-            this.lbl_modelNumber.Text = "Model";
-            // 
-            // text_serialNumber
-            // 
-            this.text_serialNumber.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_serialNumber.Location = new System.Drawing.Point(145, 146);
-            this.text_serialNumber.Name = "text_serialNumber";
-            this.text_serialNumber.Size = new System.Drawing.Size(182, 31);
-            this.text_serialNumber.TabIndex = 30;
-            // 
-            // lbl_serialNumber
-            // 
-            this.lbl_serialNumber.AutoSize = true;
-            this.lbl_serialNumber.Location = new System.Drawing.Point(33, 149);
-            this.lbl_serialNumber.Name = "lbl_serialNumber";
-            this.lbl_serialNumber.Size = new System.Drawing.Size(35, 25);
-            this.lbl_serialNumber.TabIndex = 31;
-            this.lbl_serialNumber.Text = "SN";
             // 
             // Client_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(1092, 1316);
+            this.ClientSize = new System.Drawing.Size(733, 1316);
             this.Controls.Add(this.gBox_timeMetrics);
             this.Controls.Add(this.gBox_socketConnectionInfo);
             this.Controls.Add(this.gBox_testSetup);
@@ -955,19 +842,15 @@ namespace Client_GUI
         public System.Windows.Forms.Label lbl_recentReceivedMessages;
         public System.Windows.Forms.TextBox text_computerName;
         public System.Windows.Forms.TextBox text_testGroupIdentifier;
-        public System.Windows.Forms.TextBox text_deviceType;
         public System.Windows.Forms.TextBox text_statusOfTest;
         public System.Windows.Forms.TextBox text_progress;
         public System.Windows.Forms.ProgressBar progressBar1;
-        public System.Windows.Forms.TextBox text_testType;
         public System.Windows.Forms.Label lbl_programName;
         public System.Windows.Forms.Label lbl_computerName;
         public System.Windows.Forms.Label lbl_slotNumber;
         public System.Windows.Forms.Label lbl_testAppVersion;
         public System.Windows.Forms.Label lbl_testGroupIdentifier;
-        public System.Windows.Forms.Label lbl_deviceType;
         public System.Windows.Forms.Label lbl_satusOfTest;
-        public System.Windows.Forms.Label lbl_testType;
         public System.Windows.Forms.Label lbl_progress;
         public System.Windows.Forms.Label lbl_serverIp;
         public ComboBox cBox_programName;
@@ -982,10 +865,6 @@ namespace Client_GUI
         public Label lbl_startDate;
         public TextBox text_totalFailures;
         public Label lbl_totalFailures;
-        public TextBox text_completedDays;
-        public Label lbl_completedDays;
-        public TextBox text_remainingDays;
-        public Label lbl_remainingDays;
         public RadioButton rbtn_VC;
         public RadioButton rbtn_BT;
         public RadioButton rbtn_PT;
@@ -1003,10 +882,6 @@ namespace Client_GUI
         public CheckBox checkBox_forceFailureOnNextCycle;
         public TextBox text_dateCompleted;
         public Label lbl_dateCompleted;
-        public TextBox text_remainingHours;
-        public TextBox text_completedHours;
-        public Label lbl_remainingHours;
-        public Label lbl_completedHours;
         public TextBox text_hoursPer1kCycles;
         public Label lbl_hoursPer1kCycles;
         public Label lbl_testAppVersionNum;
@@ -1022,6 +897,7 @@ namespace Client_GUI
         public Label lbl_serialNumber;
         public TextBox text_modelNumber;
         public Label lbl_modelNumber;
+        public Label lbl_messageToSend;
     }
 }
 

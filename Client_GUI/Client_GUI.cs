@@ -10,6 +10,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Client_GUI
 {
@@ -23,6 +24,7 @@ namespace Client_GUI
         private static string IP_LIST = testFiles + "\\Addresses\\validIPAddresses.txt";
         //private static string DEVICE_PROGRAM = "DeviceProgram";
 
+        private static string SLOT_LIST = testFiles + "\\TestInfo\\SlotNumbers.txt";
         private static string PC_GROUP_FILE = testFiles + "\\TestInfo\\PcGroup.txt";
         private static string DEVICE_PROGRAM_FILE = testFiles + "\\TestInfo\\ProgramInfo.txt";
         private static string TEST_CYCLES_FILE = testFiles + "\\TestInfo\\TestCycles.txt";
@@ -51,7 +53,8 @@ namespace Client_GUI
         delegate void SetComboText(ComboBox combo, string message);
         delegate void SetRichTextBox(RichTextBox richText, string message);
         delegate void SetRichTextBoxMultiLine(RichTextBox richText, string[,] message);
-        delegate string GetTextCallBack2(TextBox ctrl);
+        delegate string GetTextCallBack(TextBox ctrl);
+        delegate string GetLabelCallBack(Label ctrl);
         delegate void SetProgressBar(int value);
         delegate void SetComboIndex(ComboBox combo, int value);
         delegate int GetComboIndex(ComboBox combo);
@@ -59,6 +62,9 @@ namespace Client_GUI
         delegate string GetComboCallBack(ComboBox cmb);
         delegate string GetRichCallBack(RichTextBox rtxtbox);
         delegate string GetGUICaption();
+        delegate void SetButtonColor(Button button, Color color);
+        delegate Color GetColor();
+        //delegate Color GetColor();
 
         // Delegates for socket communication
         public Socket client;
@@ -102,17 +108,19 @@ namespace Client_GUI
             FillPcGroupBox(cBox_pcGroup, PC_GROUP_FILE);
             FillComboBox(cBox_testDuration, TEST_CYCLES_FILE);
             FillComboBox(cBox_serverIp, IP_LIST);
+            FillComboBox(cBox_slotNumber, SLOT_LIST);
 
 
             // AUto populate the Drive infomration with generic info and system details
             cBox_programName.Text = "NA"; // TODO populate with first index in the file containg list of all possible programs
             cBox_pcGroup.Text = "Select One";
             text_computerName.Text = System.Environment.MachineName;
-            cBox_slotNumber.Text = "1";
+            //cBox_slotNumber.Text = "1";
             cBox_testDuration.Text = "50000";
             rText_testNotes.Text = "Generic Testing";
             rText_statusOfTest.Text = string.Empty;
             cBox_serverIp.SelectedIndex = 0;
+            cBox_slotNumber.SelectedIndex = 0;
         }
 
         public void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -190,13 +198,27 @@ namespace Client_GUI
         {
             if (textBox.InvokeRequired)
             {
-                GetTextCallBack2 d = new GetTextCallBack2(GetText);
+                GetTextCallBack d = new GetTextCallBack(GetText);
                 string controlText = (string)this.Invoke(d, new object[] { textBox });
                 return (controlText);
             }
             else
             {
                 return textBox.Text;
+            }
+        }
+
+        public string GetLabelText(Label label)
+        {
+            if (label.InvokeRequired)
+            {
+                GetLabelCallBack d = new GetLabelCallBack(GetLabelText);
+                string controlText = (string)this.Invoke(d, new object[] { label });
+                return (controlText);
+            }
+            else
+            {
+                return label.Text;
             }
         }
 
@@ -313,16 +335,19 @@ namespace Client_GUI
                 // Set back color based on test
                 switch (test)
                 {
-                    case "Voltage Check":
-                        this.text_currentTest.BackColor = Color.MediumBlue;
+                    case "Voltage Check Test":
+                        this.text_currentTest.BackColor = Color.LightSeaGreen;
+                        this.text_currentTest.Text = "Voltage Check Test";
                         break;
 
                     case "Boot Test":
-                        this.text_currentTest.BackColor = Color.Indigo;
+                        this.text_currentTest.BackColor = Color.LightGreen;
+                        this.text_currentTest.Text = "Boot Test";
                         break;
 
                     case "Power Test":
                         this.text_currentTest.BackColor = Color.Orange;
+                        this.text_currentTest.Text = "Power Test";
                         break;
 
                 }
@@ -614,6 +639,39 @@ namespace Client_GUI
             }
         }
 
+        public void SetStartButtonColor(Button button, Color color)
+        {
+            if (this.InvokeRequired)
+            {
+                //this.BeginInvoke(new ProcessDelegate(WriteToTextBox), new object[] { sender, e });
+                this.Invoke(new SetButtonColor(SetStartButtonColor), new object[] { button, color });
+            }
+            else
+            {
+                this.button_startTest.BackColor = color;
+            }
+        }
+
+        public Color GetStartButtonColor(Button button)
+        {
+            if (this.InvokeRequired)
+            {
+                return (Color)this.Invoke(new GetColor(() => GetStartButtonColor(button)));
+            }
+
+            return button.BackColor;
+        }
+
+        public Color GetTextBoxColor(TextBox tBox)
+        {
+            if (this.InvokeRequired)
+            {
+                return (Color)this.Invoke(new GetColor(() => GetTextBoxColor(tBox)));
+            }
+
+            return tBox.BackColor;
+        }
+
 
         // Connect Button
         private void button_socket_connect_click(object sender, EventArgs e)
@@ -695,7 +753,6 @@ namespace Client_GUI
                 this.rText_statusOfTest.Text = "Test Manually Stopped";
             }
         }
-
     }
 
 
