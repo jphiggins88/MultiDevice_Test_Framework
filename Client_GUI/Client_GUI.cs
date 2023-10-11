@@ -114,7 +114,7 @@ namespace Client_GUI
 
             // AUto populate the Drive infomration with generic info and system details
             cBox_programName.Text = "NA"; // TODO populate with first index in the file containg list of all possible programs
-            cBox_pcGroup.Text = "Select One";
+            cBox_pcGroup.Text = "Select a PC group";
             text_computerName.Text = System.Environment.MachineName;
             //cBox_slotNumber.Text = "1";
             cBox_testDuration.Text = "50000";

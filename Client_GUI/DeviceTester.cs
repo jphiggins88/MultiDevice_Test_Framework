@@ -136,10 +136,6 @@ namespace Client_GUI
 
             status = "SUCCESS";
          
-            // TODO resolve how I want to simulate com ports and slots
-            // The slot number is retrieved from the GUI
-            //comPort = GetComPortNumber();
-
             do
             {
                 CheckIfInitialTestInfoNeedsToBeSent();
@@ -165,16 +161,16 @@ namespace Client_GUI
                 }
 
 
-                Log("\r\nSocket Tester: Cycle Complete");
+                Log("Cycle Complete");
 
                 totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
                 totalCycles++;
                 this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
 
-                Log("\r\nSocket Tester: Checking Status\r\nSocket Tester: Waiting for device to be ready");
+                Log("Checking Status\r\nWaiting for device to be ready");
 
+                // Calculate Time Metrics
                 CalculateEcdCycles();
-
                 CalcHoursPer1000Cycles();
 
                 CheckTestStatusAndUpdateServer();
@@ -226,7 +222,8 @@ namespace Client_GUI
         private string FakeTestSioCheck()
         {
             // Random Num should yield a 1 in 100 chance of test failing
-            int randNum = randomGenerator.Next(1, 101);
+            //int randNum = randomGenerator.Next(1, 101);
+            int randNum = 0;
 
             this.clientForm.UpdateStatus("Simulating SIO communication test\n");
             Log("simulating SIO communication");
@@ -245,7 +242,9 @@ namespace Client_GUI
         private string FakeTestVoltagCheck()
         {
             // Random Num should yield a 1 in 100 chance of test failing
-            int randNum = randomGenerator.Next(1, 101);
+            //int randNum = randomGenerator.Next(1, 101);
+            int randNum = 0;
+
 
             this.clientForm.UpdateStatus("Simulating voltage within bounds check\n");
             Log("simulated voltage = " + randomGenerator.Next(4000, 6000) + "mV");
@@ -265,7 +264,8 @@ namespace Client_GUI
         private string FakeTestDeviceCheck()
         {
             // Random Num should yield a 1 in 100 chance of test failing
-            int randNum = randomGenerator.Next(1, 101);
+            //int randNum = randomGenerator.Next(1, 101);
+            int randNum = 0;
 
             this.clientForm.UpdateStatus("Simulating device specific functionality\n");
             Log("device specific function 1");
@@ -364,27 +364,28 @@ namespace Client_GUI
             this.clientForm.SetCombo(this.clientForm.cBox_programName, programName);
         }
 
-        /// <summary>
-        /// Get information about test location from GUI and set Validation.cs global variables to the correct values. 
-        /// </summary>
-        public void GetTestLocationAndProgramInformation()
+        public void GetTestProgramInformation()
         {
-
-            // Create a random slot number from 1 - 6
-            //TODO
-            //slotNum = comPort;
-
-
+            // Set program name according to what is specified in the GUI
             if (this.clientForm.GetComboText(this.clientForm.cBox_programName) != null)
             {
                 programName = this.clientForm.GetComboText(this.clientForm.cBox_programName);
             }
+        }
 
-            if (this.clientForm.GetComboText(this.clientForm.cBox_pcGroup) != null)
+        /// <summary>
+        /// Get information about test location from GUI and set Validation.cs global variables to the correct values. 
+        /// </summary>
+        public void GetTestLocationInformation()
+        {
+            // Make sure the PC group text box isn't empty or filled with the default prompt
+            string currentPcNameBoxContents = this.clientForm.GetText(this.clientForm.text_computerName);
+
+            if (currentPcNameBoxContents != null)
             {
-                compNumber = this.clientForm.GetComboText(this.clientForm.cBox_pcGroup);
+                compNumber = this.clientForm.GetText(this.clientForm.text_computerName);
 
-                if ((compNumber == "PC-01") || (compNumber == "PC-02") || (compNumber == "PC-02"))
+                if ((compNumber == "PC-01") || (compNumber == "PC-02") || (compNumber == "PC-03"))
                 {
                     pcGroupNumber = "01";
                 }
@@ -392,7 +393,6 @@ namespace Client_GUI
                 {
                     pcGroupNumber = "02";
                 }
-
                 else if ((compNumber == "PC-07") || (compNumber == "PC-08") || (compNumber == "PC-09"))
                 {
                     pcGroupNumber = "03";
@@ -401,9 +401,11 @@ namespace Client_GUI
                 {
                     pcGroupNumber = "04";
                 }
-                else
+                else // If compNumber is anything else, including the system obtained name. It will be renamed to test when sent to the server
                 {
-                    pcGroupNumber = "unknown pc group"; // TODO implement checking this system's name and handle it accordingly
+                    // Set pcGroupNumber and compNumber to default values of test and PC-01
+                    pcGroupNumber = "test";
+                    compNumber = "PC-01";
                 }
 
             }
@@ -978,7 +980,8 @@ namespace Client_GUI
             // generic info once in the SN folder. Will output again if test is restarted.
             if ((serialNumber != null) && (serialNumber != "") && (genericInfoHasBeenLogged == false))
             {
-                GetTestLocationAndProgramInformation();
+                GetTestProgramInformation();
+                GetTestLocationInformation();
                 GetTestTypeAbbreviation(this.testType);
                 PopulateTestInfoLogWithDriveInfo();
                 SendInitialTestInfo();
@@ -1039,12 +1042,11 @@ namespace Client_GUI
 
                 totalCycles++;
 
-                CalcHoursPer1000Cycles();
+                //CalculateEcdCycles();
+                //CalcHoursPer1000Cycles();
 
                 // set cycle information
                 this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
-
-                CalculateEcdCycles();
 
                 Log("Device powering on\r\n");
                 this.clientForm.UpdateStatus("Powering on Device");
@@ -1054,9 +1056,9 @@ namespace Client_GUI
 
                 //CheckTestStatusAndUpdateServer();
 
-                string commandSequenceStatus = this.ReadDetailsFromDevice("MAINLOOP");
+                string getDeviceInfo = this.ReadDetailsFromDevice("MAINLOOP");
 
-                if (commandSequenceStatus == FAIL)
+                if (getDeviceInfo == FAIL)
                 {
                     ErrorReport("CommandSequence Fail");
                     CheckTestStatusAndUpdateServer();

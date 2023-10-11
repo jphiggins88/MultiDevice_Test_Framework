@@ -198,12 +198,13 @@ namespace Client_GUI
             // Acknowledge timer
             // This timer is used to allow a specified amount of time to pass to allw the clent to send an acknowledgement message
             // Once this time expires, the Server will act on the lack of acknowledgement
-            public static double ackTimeLimit = 2000; // in milliseconds
+            //public static double ackTimeLimit = 2000; // in milliseconds
+            public static double ackTimeLimit = 200000000; // in milliseconds
             public System.Timers.Timer ackTimer = new System.Timers.Timer(ackTimeLimit);
 
-            public static double heartBeatTimeLimit = 60000; // in milliseconds, 1 min
+            //public static double heartBeatTimeLimit = 60000; // in milliseconds, 1 min
             //public static double heartBeatTimeLimit = 40000; // in milliseconds,
-            //public static double heartBeatTimeLimit = 180000; // in milliseconds,
+            public static double heartBeatTimeLimit = 1800000000; // in milliseconds,
             public System.Timers.Timer heartBeatTimer = new System.Timers.Timer(heartBeatTimeLimit);
 
 

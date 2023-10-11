@@ -87,15 +87,15 @@ namespace Server_GUI
         // Acknowledge timer
         // This timer is used to allow a specified amount of time to pass to allw the clent to send an acknowledgement message
         // Once this time expires, the Server will act on the lack of acknowledgement
-        public static double ackTimeLimit = 2000; // in milliseconds
-        //public static double ackTimeLimit = 60000; // in milliseconds
+        //public static double ackTimeLimit = 2000; // in milliseconds
+        public static double ackTimeLimit = 60000000; // in milliseconds
         public System.Timers.Timer ackTimer = new System.Timers.Timer(ackTimeLimit);
 
         // Heart Beat timer
         // This timer is started when the 1'st client is added. If all clients are deleted, then it will be started again when the next "ist" client is added.
         // When the Timer elapses the server will loop through the client list and look for any client's who have not sent a heart beat
-        public static double heartBeatTimeLimit = 120000; // in milliseconds, 2min
-        //public static double heartBeatTimeLimit = 300000; // in milliseconds, 5min
+        //public static double heartBeatTimeLimit = 120000; // in milliseconds, 2min
+        public static double heartBeatTimeLimit = 300000000; // in milliseconds, 5min
         public System.Timers.Timer heartBeatTimer_serverSide = new System.Timers.Timer(heartBeatTimeLimit);
 
         // Sets the initial time at which the daily status email will be sent. This can be changed in the GUI.
