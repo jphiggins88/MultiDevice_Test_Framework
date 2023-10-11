@@ -318,7 +318,7 @@ namespace Client_GUI
             dataLog.LogData(IndividualFilePath, errorData + cycleData + errorSeperator);
 
             dataLog.LogData(MasterLogPath, errorData + "Station " +
-                                           this.clientForm.GetComboText(this.clientForm.cBox_pcGroup) +
+                                           this.clientForm.GetText(this.clientForm.text_pcGroup) +
                                            cycleData);
                  
             dataLog.LogData(errorLogPath, errorData + cycleData + errorSeperator);
@@ -364,6 +364,7 @@ namespace Client_GUI
             this.clientForm.SetCombo(this.clientForm.cBox_programName, programName);
         }
 
+        /*
         public void GetTestProgramInformation()
         {
             // Set program name according to what is specified in the GUI
@@ -372,6 +373,7 @@ namespace Client_GUI
                 programName = this.clientForm.GetComboText(this.clientForm.cBox_programName);
             }
         }
+        */
 
         /// <summary>
         /// Get information about test location from GUI and set Validation.cs global variables to the correct values. 
@@ -379,11 +381,11 @@ namespace Client_GUI
         public void GetTestLocationInformation()
         {
             // Make sure the PC group text box isn't empty or filled with the default prompt
-            string currentPcNameBoxContents = this.clientForm.GetText(this.clientForm.text_computerName);
+            string currentPcNameBoxContents = this.clientForm.GetComboText(this.clientForm.cBox_computerName);
 
             if (currentPcNameBoxContents != null)
             {
-                compNumber = this.clientForm.GetText(this.clientForm.text_computerName);
+                compNumber = currentPcNameBoxContents;
 
                 if ((compNumber == "PC-01") || (compNumber == "PC-02") || (compNumber == "PC-03"))
                 {
@@ -401,14 +403,27 @@ namespace Client_GUI
                 {
                     pcGroupNumber = "04";
                 }
-                else // If compNumber is anything else, including the system obtained name. It will be renamed to test when sent to the server
+                // If compNumber is anything else, including the system obtained name. It will be renamed to "test" when sent to the server
+                else
                 {
                     // Set pcGroupNumber and compNumber to default values of test and PC-01
-                    pcGroupNumber = "test";
                     compNumber = "PC-01";
+                    pcGroupNumber = "01";
                 }
 
             }
+            else
+            {
+                // Set pcGroupNumber and compNumber to default values of test and PC-01
+                compNumber = "PC-01";
+                pcGroupNumber = "01";
+            }
+        }
+
+        public void PopulateGuiWithTestInfo()
+        {
+            this.clientForm.SetCombo(this.clientForm.cBox_computerName, compNumber);
+            this.clientForm.SetText(this.clientForm.text_pcGroup, pcGroupNumber);
         }
 
         public static string CheckIfFileExists_LocalSharedFolder()
@@ -447,8 +462,8 @@ namespace Client_GUI
                                     "Time: " + DateTime.Now.ToString() + " \r\n" +
                                     "TestApp version: " + Client_GUI.TESTAPP_VERSION + " \r\n" +
                                     //"COM ports: " + comPort + " \r\n" +
-                                    "PC running test: " + this.clientForm.GetText(this.clientForm.text_computerName) + " \r\n" +
-                                    "PC Group: " + this.clientForm.GetComboText(this.clientForm.cBox_pcGroup) + " \r\n" +
+                                    "PC running test: " + this.clientForm.GetComboText(this.clientForm.cBox_computerName) + " \r\n" +
+                                    "PC Group: " + this.clientForm.GetText(this.clientForm.text_pcGroup) + " \r\n" +
                                     "Test Group ID: " + this.clientForm.GetText(this.clientForm.text_testGroupIdentifier) + " \r\n" +
                                     "Slot Number: " + slotNum + "\r\n" +
                                     "---------------------------------------------------------\r\n" +
@@ -980,8 +995,9 @@ namespace Client_GUI
             // generic info once in the SN folder. Will output again if test is restarted.
             if ((serialNumber != null) && (serialNumber != "") && (genericInfoHasBeenLogged == false))
             {
-                GetTestProgramInformation();
+                //GetTestProgramInformation();
                 GetTestLocationInformation();
+                PopulateGuiWithTestInfo();
                 GetTestTypeAbbreviation(this.testType);
                 PopulateTestInfoLogWithDriveInfo();
                 SendInitialTestInfo();

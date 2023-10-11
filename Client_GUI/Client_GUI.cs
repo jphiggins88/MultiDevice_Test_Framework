@@ -26,7 +26,8 @@ namespace Client_GUI
 
         private static string SLOT_LIST = testFiles + "\\TestInfo\\SlotNumbers.txt";
         private static string PC_GROUP_FILE = testFiles + "\\TestInfo\\PcGroup.txt";
-        private static string DEVICE_PROGRAM_FILE = testFiles + "\\TestInfo\\ProgramInfo.txt";
+        private static string PC_NAME_FILE = testFiles + "\\TestInfo\\PcName.txt";
+        //private static string DEVICE_PROGRAM_FILE = testFiles + "\\TestInfo\\ProgramInfo.txt";
         private static string TEST_CYCLES_FILE = testFiles + "\\TestInfo\\TestCycles.txt";
 
         //private static string PC_GROUP = DEVICE_INFORMATION + "\\PcGroup.txt";
@@ -103,19 +104,14 @@ namespace Client_GUI
             originalGuiHeight = this.Height;
 
             this.lbl_testAppVersionNum.Text = TESTAPP_VERSION;
-            //this.textBox_testAppVersion.Text = TESTAPP_VERSION;
-            // populate combo box with available information
-            FillComboBox(cBox_programName, DEVICE_PROGRAM_FILE);
-            FillPcGroupBox(cBox_pcGroup, PC_GROUP_FILE);
+            FillPcGroupBox(cBox_computerName, PC_NAME_FILE);
             FillComboBox(cBox_testDuration, TEST_CYCLES_FILE);
             FillComboBox(cBox_serverIp, IP_LIST);
             FillComboBox(cBox_slotNumber, SLOT_LIST);
 
 
-            // AUto populate the Drive infomration with generic info and system details
-            cBox_programName.Text = "NA"; // TODO populate with first index in the file containg list of all possible programs
-            cBox_pcGroup.Text = "Select a PC group";
-            text_computerName.Text = System.Environment.MachineName;
+            // Auto populate the Drive infomration with generic info and system details
+            cBox_computerName.Text = System.Environment.MachineName;
             //cBox_slotNumber.Text = "1";
             cBox_testDuration.Text = "50000";
             rText_testNotes.Text = "Generic Testing";
@@ -511,6 +507,7 @@ namespace Client_GUI
             }
         }
 
+        /*
         // TODO use this function to get a list of possible pcGroups
         private void cBox_pcGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -560,6 +557,7 @@ namespace Client_GUI
                 cBox_slotNumber.Items.Add(i);
             }
         }
+        */
 
         // Socket Communication Event Handlers
 

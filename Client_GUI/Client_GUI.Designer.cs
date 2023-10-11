@@ -54,7 +54,6 @@ namespace Client_GUI
             this.lbl_clientId = new System.Windows.Forms.Label();
             this.lbl_lastMessageReceived = new System.Windows.Forms.Label();
             this.lbl_recentReceivedMessages = new System.Windows.Forms.Label();
-            this.text_computerName = new System.Windows.Forms.TextBox();
             this.text_testGroupIdentifier = new System.Windows.Forms.TextBox();
             this.text_statusOfTest = new System.Windows.Forms.TextBox();
             this.text_progress = new System.Windows.Forms.TextBox();
@@ -68,7 +67,6 @@ namespace Client_GUI
             this.lbl_progress = new System.Windows.Forms.Label();
             this.lbl_serverIp = new System.Windows.Forms.Label();
             this.cBox_programName = new System.Windows.Forms.ComboBox();
-            this.cBox_pcGroup = new System.Windows.Forms.ComboBox();
             this.cBox_slotNumber = new System.Windows.Forms.ComboBox();
             this.cBox_testDuration = new System.Windows.Forms.ComboBox();
             this.lbl_testDuration = new System.Windows.Forms.Label();
@@ -110,8 +108,10 @@ namespace Client_GUI
             this.lbl_modelNumber = new System.Windows.Forms.Label();
             this.gBox_testSetup = new System.Windows.Forms.GroupBox();
             this.gBox_testDeviceLocation = new System.Windows.Forms.GroupBox();
+            this.cBox_computerName = new System.Windows.Forms.ComboBox();
             this.gBox_socketConnectionInfo = new System.Windows.Forms.GroupBox();
             this.gBox_timeMetrics = new System.Windows.Forms.GroupBox();
+            this.text_pcGroup = new System.Windows.Forms.TextBox();
             this.gBox_socketCommunication.SuspendLayout();
             this.gBox_testStatus.SuspendLayout();
             this.gBox_testDeviceInfo.SuspendLayout();
@@ -205,13 +205,6 @@ namespace Client_GUI
             this.lbl_recentReceivedMessages.Size = new System.Drawing.Size(223, 25);
             this.lbl_recentReceivedMessages.TabIndex = 6;
             this.lbl_recentReceivedMessages.Text = "Recent communication log";
-            // 
-            // text_computerName
-            // 
-            this.text_computerName.Location = new System.Drawing.Point(132, 100);
-            this.text_computerName.Name = "text_computerName";
-            this.text_computerName.Size = new System.Drawing.Size(182, 31);
-            this.text_computerName.TabIndex = 8;
             // 
             // text_testGroupIdentifier
             // 
@@ -327,15 +320,6 @@ namespace Client_GUI
             this.cBox_programName.Size = new System.Drawing.Size(204, 33);
             this.cBox_programName.TabIndex = 27;
             // 
-            // cBox_pcGroup
-            // 
-            this.cBox_pcGroup.BackColor = System.Drawing.SystemColors.Window;
-            this.cBox_pcGroup.FormattingEnabled = true;
-            this.cBox_pcGroup.Location = new System.Drawing.Point(132, 136);
-            this.cBox_pcGroup.Name = "cBox_pcGroup";
-            this.cBox_pcGroup.Size = new System.Drawing.Size(182, 33);
-            this.cBox_pcGroup.TabIndex = 28;
-            // 
             // cBox_slotNumber
             // 
             this.cBox_slotNumber.BackColor = System.Drawing.SystemColors.Window;
@@ -366,7 +350,7 @@ namespace Client_GUI
             // lbl_pcGroup
             // 
             this.lbl_pcGroup.AutoSize = true;
-            this.lbl_pcGroup.Location = new System.Drawing.Point(39, 139);
+            this.lbl_pcGroup.Location = new System.Drawing.Point(41, 142);
             this.lbl_pcGroup.Name = "lbl_pcGroup";
             this.lbl_pcGroup.Size = new System.Drawing.Size(87, 25);
             this.lbl_pcGroup.TabIndex = 32;
@@ -745,12 +729,12 @@ namespace Client_GUI
             // 
             // gBox_testDeviceLocation
             // 
+            this.gBox_testDeviceLocation.Controls.Add(this.text_pcGroup);
+            this.gBox_testDeviceLocation.Controls.Add(this.cBox_computerName);
             this.gBox_testDeviceLocation.Controls.Add(this.lbl_testGroupIdentifier);
-            this.gBox_testDeviceLocation.Controls.Add(this.text_computerName);
             this.gBox_testDeviceLocation.Controls.Add(this.text_testGroupIdentifier);
             this.gBox_testDeviceLocation.Controls.Add(this.lbl_computerName);
             this.gBox_testDeviceLocation.Controls.Add(this.lbl_slotNumber);
-            this.gBox_testDeviceLocation.Controls.Add(this.cBox_pcGroup);
             this.gBox_testDeviceLocation.Controls.Add(this.cBox_slotNumber);
             this.gBox_testDeviceLocation.Controls.Add(this.lbl_pcGroup);
             this.gBox_testDeviceLocation.Location = new System.Drawing.Point(6, 286);
@@ -759,6 +743,15 @@ namespace Client_GUI
             this.gBox_testDeviceLocation.TabIndex = 72;
             this.gBox_testDeviceLocation.TabStop = false;
             this.gBox_testDeviceLocation.Text = "Test Device Location";
+            // 
+            // cBox_computerName
+            // 
+            this.cBox_computerName.BackColor = System.Drawing.SystemColors.Window;
+            this.cBox_computerName.FormattingEnabled = true;
+            this.cBox_computerName.Location = new System.Drawing.Point(132, 100);
+            this.cBox_computerName.Name = "cBox_computerName";
+            this.cBox_computerName.Size = new System.Drawing.Size(182, 33);
+            this.cBox_computerName.TabIndex = 33;
             // 
             // gBox_socketConnectionInfo
             // 
@@ -792,6 +785,15 @@ namespace Client_GUI
             this.gBox_timeMetrics.TabIndex = 73;
             this.gBox_timeMetrics.TabStop = false;
             this.gBox_timeMetrics.Text = "Time Metrics";
+            // 
+            // text_pcGroup
+            // 
+            this.text_pcGroup.BackColor = System.Drawing.Color.Gainsboro;
+            this.text_pcGroup.Location = new System.Drawing.Point(132, 139);
+            this.text_pcGroup.Name = "text_pcGroup";
+            this.text_pcGroup.Size = new System.Drawing.Size(183, 31);
+            this.text_pcGroup.TabIndex = 34;
+            this.text_pcGroup.Text = "Determined by PC";
             // 
             // Client_GUI
             // 
@@ -841,7 +843,6 @@ namespace Client_GUI
         public System.Windows.Forms.Label lbl_clientId;
         public System.Windows.Forms.Label lbl_lastMessageReceived;
         public System.Windows.Forms.Label lbl_recentReceivedMessages;
-        public System.Windows.Forms.TextBox text_computerName;
         public System.Windows.Forms.TextBox text_testGroupIdentifier;
         public System.Windows.Forms.TextBox text_statusOfTest;
         public System.Windows.Forms.TextBox text_progress;
@@ -855,7 +856,6 @@ namespace Client_GUI
         public System.Windows.Forms.Label lbl_progress;
         public System.Windows.Forms.Label lbl_serverIp;
         public ComboBox cBox_programName;
-        public ComboBox cBox_pcGroup;
         public ComboBox cBox_slotNumber;
         public ComboBox cBox_testDuration;
         public Label lbl_testDuration;
@@ -899,6 +899,8 @@ namespace Client_GUI
         public TextBox text_modelNumber;
         public Label lbl_modelNumber;
         public Label lbl_messageToSend;
+        public ComboBox cBox_computerName;
+        public TextBox text_pcGroup;
     }
 }
 
