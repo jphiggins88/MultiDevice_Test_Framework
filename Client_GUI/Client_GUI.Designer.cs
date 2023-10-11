@@ -220,6 +220,7 @@ namespace Client_GUI
             this.text_testGroupIdentifier.Name = "text_testGroupIdentifier";
             this.text_testGroupIdentifier.Size = new System.Drawing.Size(183, 31);
             this.text_testGroupIdentifier.TabIndex = 11;
+            this.text_testGroupIdentifier.Text = "GenericTests";
             // 
             // text_statusOfTest
             // 

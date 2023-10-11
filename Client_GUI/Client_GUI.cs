@@ -46,8 +46,6 @@ namespace Client_GUI
             mAsyncClient.UpdateIDBox += IDbox_update;
         }
 
-        //public AddressSelectForm addressSelectForm;
-        private delegate void UpdateStatusDelegate(string message);
         delegate void SetTextCallback(string message);
         delegate void SetTextCallback2(TextBox ctrl, string message);
         delegate void SetComboText(ComboBox combo, string message);
@@ -62,8 +60,11 @@ namespace Client_GUI
         delegate string GetComboCallBack(ComboBox cmb);
         delegate string GetRichCallBack(RichTextBox rtxtbox);
         delegate string GetGUICaption();
-        delegate void SetButtonColor(Button button, Color color);
+        //delegate void SetButtonColor(Button button, Color color);
+        delegate void SetButtonColor(Color color);
         delegate Color GetColor();
+        delegate void SetTextBoxColorDelegate(TextBox tBox, Color color);
+        delegate void SetCboxColorDelegate(ComboBox cBox, Color color);
         //delegate Color GetColor();
 
         // Delegates for socket communication
@@ -560,11 +561,6 @@ namespace Client_GUI
             }
         }
 
-        
-
-
-
-
         // Socket Communication Event Handlers
 
         public void WriteToTextBox(object sender, string e)
@@ -639,27 +635,57 @@ namespace Client_GUI
             }
         }
 
-        public void SetStartButtonColor(Button button, Color color)
+
+
+
+
+
+
+
+        public void SetStartButtonColor(Color color)
         {
             if (this.InvokeRequired)
             {
-                //this.BeginInvoke(new ProcessDelegate(WriteToTextBox), new object[] { sender, e });
-                this.Invoke(new SetButtonColor(SetStartButtonColor), new object[] { button, color });
+                this.Invoke(new SetButtonColor(SetStartButtonColor), new object[] { color });
             }
             else
             {
-                this.button_startTest.BackColor = color;
+                button_startTest.BackColor = color;
             }
         }
 
-        public Color GetStartButtonColor(Button button)
+        public void SetComboBoxColor(ComboBox cBox, Color color)
         {
             if (this.InvokeRequired)
             {
-                return (Color)this.Invoke(new GetColor(() => GetStartButtonColor(button)));
+                this.Invoke(new SetCboxColorDelegate(SetComboBoxColor), new object[] { cBox, color });
+            }
+            else
+            {
+                cBox.BackColor = color;
+            }
+        }
+
+        public void SetTextBoxColor(TextBox tBox, Color color)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new SetTextBoxColorDelegate(SetTextBoxColor), new object[] { tBox, color });
+            }
+            else
+            {
+                tBox.BackColor = color;
+            }
+        }
+
+        public Color GetStartButtonColor()
+        {
+            if (this.InvokeRequired) // or this.button_startTest.InvokeRequired
+            {
+                return (Color)this.Invoke(new GetColor(() => GetStartButtonColor()));
             }
 
-            return button.BackColor;
+            return this.button_startTest.BackColor;
         }
 
         public Color GetTextBoxColor(TextBox tBox)
@@ -671,6 +697,24 @@ namespace Client_GUI
 
             return tBox.BackColor;
         }
+
+        public Color GetComboBoxColor(ComboBox cBox)
+        {
+            if (this.InvokeRequired)
+            {
+                return (Color)this.Invoke(new GetColor(() => GetComboBoxColor(cBox)));
+            }
+
+            return cBox.BackColor;
+        }
+
+
+
+
+
+
+
+
 
 
         // Connect Button

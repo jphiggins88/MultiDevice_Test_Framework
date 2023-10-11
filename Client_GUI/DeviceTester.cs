@@ -28,9 +28,9 @@ namespace Client_GUI
         public static string testFiles = Client_GUI.testFiles;
         public static string txtFileWithLocalSharedFolderAddress = testFiles + @"\Addresses\addressOfLocalSharedFolder.txt";
         public static string addressOfLocalSharedFolder = CheckIfFileExists_LocalSharedFolder();
-        protected static string globalTestInfoLogPath = rootDirectory + "\\" + "unknownSN" + "\\TestInfo.log";
-        public string VerboseLogPath;
-        public string copyToPath = "copyToPathNotDefined";
+        protected static string g_testInfoLogPath = rootDirectory + "\\" + "unknownSN" + "\\TestInfo.log";
+        public string logPath;
+        public string copyToPath;
 
         // Time and Dates
         protected DateTime EcdIntervalTime;
@@ -48,6 +48,7 @@ namespace Client_GUI
         // String Cosntants
         protected const string LINE_SEP = "---------------------------------------------";
         protected const string CYCLE_COUNT_SEPARATOR = LINE_SEP + LINE_SEP + LINE_SEP + "\r\n";
+        protected const string logFilePrefix = "Log_";
 
         // Cycle Metrics
         protected int targetCycleCount = 0;
@@ -84,13 +85,13 @@ namespace Client_GUI
         // Test Info for Socket Messages
         public string testTypeAbbreviation = "not set";
         public string slotNum = "0";
-        public int comPort = 0;
+        //public int comPort = 0;
         public string compNumber = "empty";
-        public string pcGroupNumber = "PC group not selected"; //TODO implement this
+        public string pcGroupNumber = "PC group not selected";
         public double global_PercentComplete = 0.0;
         public string descriptionOfCurrentState = "Nothing to Report";
         public string statusOfTest = "No Status defined";
-        public static string testGroupName = "undefined";
+        public static string testGroupName = "testGroupUndefined";
         public string globalErrorToSendToSocket = "undefined";
 
 
@@ -100,8 +101,6 @@ namespace Client_GUI
             this.clientForm = form;
             this.clientForm.stopProcess = false;
             FileTransferCommandHasBeenSent = false;
-            //this.ecdEndCycle = this.clientForm.text_completedCycles;
-            //this.ecdEndCycle = this.clientForm.GetText(this.clientForm.text_completedCycles);
             this.StartTime = DateTime.Now;
             this.EcdIntervalTime = DateTime.Now;
             this.testType = "undefined";
@@ -140,16 +139,14 @@ namespace Client_GUI
             // TODO resolve how I want to simulate com ports and slots
             // The slot number is retrieved from the GUI
             //comPort = GetComPortNumber();
-            slotNum = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
 
             do
             {
                 CheckIfInitialTestInfoNeedsToBeSent();
 
-                SendTestInfoLogCopyCommandToServerIfNotAlreadySent(globalTestInfoLogPath, true);
+                SendTestInfoLogCopyCommandToServerIfNotAlreadySent(g_testInfoLogPath, true);
 
-                //VerboseLog("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalTestCycles.ToString());
-                VerboseLog("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalCycles.ToString());
+                Log("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalCycles.ToString());
 
 
                 status = RunFakeTests();
@@ -168,13 +165,13 @@ namespace Client_GUI
                 }
 
 
-                VerboseLog("\r\nSocket Tester: Cycle Complete");
+                Log("\r\nSocket Tester: Cycle Complete");
 
                 totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
                 totalCycles++;
                 this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
 
-                VerboseLog("\r\nSocket Tester: Checking Status\r\nSocket Tester: Waiting for device to be ready");
+                Log("\r\nSocket Tester: Checking Status\r\nSocket Tester: Waiting for device to be ready");
 
                 CalculateEcdCycles();
 
@@ -232,14 +229,14 @@ namespace Client_GUI
             int randNum = randomGenerator.Next(1, 101);
 
             this.clientForm.UpdateStatus("Simulating SIO communication test\n");
-            VerboseLog("simulating SIO communication");
+            Log("simulating SIO communication");
             Thread.Sleep(sleepDelay_ms);
             if (randNum == 1)
             {
                 return status = "Fail during SIO Check";
             }
 
-            VerboseLog("SIO check: good\r\n");
+            Log("SIO check: good\r\n");
             this.clientForm.UpdateStatus("Result: GOOD\n");
 
             return status = SUCCESS;
@@ -251,15 +248,15 @@ namespace Client_GUI
             int randNum = randomGenerator.Next(1, 101);
 
             this.clientForm.UpdateStatus("Simulating voltage within bounds check\n");
-            VerboseLog("simulated voltage = " + randomGenerator.Next(4000, 6000) + "mV");
-            VerboseLog("simulated current = " + randomGenerator.Next(100, 900) + "mA");
+            Log("simulated voltage = " + randomGenerator.Next(4000, 6000) + "mV");
+            Log("simulated current = " + randomGenerator.Next(100, 900) + "mA");
             Thread.Sleep(sleepDelayL_ms);
             if (randNum == 1)
             {
                 return status = "Fail during Voltage Check";
             }
 
-            VerboseLog("All components good\r\n");
+            Log("All components good\r\n");
             this.clientForm.UpdateStatus("Result: GOOD\n");
 
             return status = SUCCESS;
@@ -271,16 +268,16 @@ namespace Client_GUI
             int randNum = randomGenerator.Next(1, 101);
 
             this.clientForm.UpdateStatus("Simulating device specific functionality\n");
-            VerboseLog("device specific function 1");
+            Log("device specific function 1");
             Thread.Sleep(sleepDelay_ms);
-            VerboseLog("device specific fucntion 2");
+            Log("device specific fucntion 2");
             Thread.Sleep(sleepDelay_ms);
             if (randNum == 1)
             {
                 return status = "Fail during Device Check";
             }
 
-            VerboseLog("device is functioning properly\r\n");
+            Log("device is functioning properly\r\n");
             this.clientForm.UpdateStatus("Result: GOOD\n");
 
             return status = SUCCESS;
@@ -295,7 +292,7 @@ namespace Client_GUI
         {
             totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
 
-            VerboseLog("Socket Tester: ERROR - FAILED CYCLE: " + totalCycles);
+            Log("Socket Tester: ERROR - FAILED CYCLE: " + totalCycles);
 
             ErrorReport(failureType + " : during test cycle " + totalCycles);
         }
@@ -305,7 +302,7 @@ namespace Client_GUI
             int failures = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_totalFailures));
             failures++;
             this.clientForm.SetText(this.clientForm.text_totalFailures, failures.ToString());
-            this.clientForm.text_totalFailures.BackColor = Color.LightCoral;
+            this.clientForm.SetTextBoxColor(this.clientForm.text_totalFailures, Color.LightCoral);
 
 
             Error = message;
@@ -328,7 +325,7 @@ namespace Client_GUI
 
             if(this.clientForm.checkBox_stopOnFailure.Checked)
             {
-                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.Red);
+                this.clientForm.SetStartButtonColor(Color.Red);
                 this.clientForm.SetStartButton("Start");
             }
 
@@ -438,17 +435,19 @@ namespace Client_GUI
             string copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\TestInfo.log";
 
             // Set the global address to the destination path of the file copied to the shared folder.
-            globalTestInfoLogPath = copyToPath;
+            g_testInfoLogPath = copyToPath;
 
-            int slotNum = comPort;
+            //int slotNum = comPort;
 
 
             //log: whitelist parameters, blacklist parameters (expected/unexpected)
             string genericLogData = " \r\n#########################################################\r\n" +
                                     "Time: " + DateTime.Now.ToString() + " \r\n" +
                                     "TestApp version: " + Client_GUI.TESTAPP_VERSION + " \r\n" +
-                                    "COM ports: " + comPort + " \r\n" +
-                                    "PC Group and PC: " + this.clientForm.GetComboText(this.clientForm.cBox_pcGroup) + " \r\n" +
+                                    //"COM ports: " + comPort + " \r\n" +
+                                    "PC running test: " + this.clientForm.GetText(this.clientForm.text_computerName) + " \r\n" +
+                                    "PC Group: " + this.clientForm.GetComboText(this.clientForm.cBox_pcGroup) + " \r\n" +
+                                    "Test Group ID: " + this.clientForm.GetText(this.clientForm.text_testGroupIdentifier) + " \r\n" +
                                     "Slot Number: " + slotNum + "\r\n" +
                                     "---------------------------------------------------------\r\n" +
                                     "ITR: " + this.clientForm.GetText(this.clientForm.text_testGroupIdentifier) + " \r\n" +
@@ -525,8 +524,7 @@ namespace Client_GUI
             else // CPRT gate reached. Set ACD
             {
                 this.clientForm.SetText(this.clientForm.text_dateCompleted, DateTime.Now.ToString());
-                //this.clientForm.button_startTest.BackColor = Color.LimeGreen;
-                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.LimeGreen);
+                this.clientForm.SetStartButtonColor(Color.LimeGreen);
 
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
                 this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
@@ -536,8 +534,7 @@ namespace Client_GUI
             if (currentCycleCount > targetCycleCount)
             {
                 global_PercentComplete = 100;
-                //this.clientForm.button_startTest.BackColor = Color.LimeGreen;
-                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.LimeGreen);
+                this.clientForm.SetStartButtonColor(Color.LimeGreen);
 
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
                 this.clientForm.SetText(this.clientForm.text_progress, DEFAULT_PROGRESSBAR_MAX.ToString());
@@ -604,17 +601,17 @@ namespace Client_GUI
             return dateTodayString;
         }
 
-        protected void VerboseLog(string data)
+        protected void Log(string data)
         {
             this.CurrentDay = DateTime.Today;
 
-            VerboseLogPath = rootDirectory + "\\" + testGroupName + "\\" + "SN_Unknown" + "\\Verbose_" + logFileName + ".log";
+            logPath = rootDirectory + "\\" + testGroupName + "\\" + "SN_Unknown" + "\\" + logFilePrefix + logFileName + ".log";
 
             if ((serialNumber != null) && (copyToPath == null))
             {
                 // We need to initialize the copyToPath to something right away.
                 // This global variable will be used for sending error messages to the server.
-                copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
+                copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
             }
 
@@ -631,7 +628,7 @@ namespace Client_GUI
                 ChangeLogNameOnDayChange();
             }
 
-            dataLog.LogData(VerboseLogPath, data);
+            dataLog.LogData(logPath, data);
         }
 
         /// <summary>
@@ -641,18 +638,18 @@ namespace Client_GUI
         /// </summary>
         protected void ChangeLogNameOnDayChange()
         {
-            copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
+            copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
             // Transfer  logs to the shared folder.
             // Designate the now-completed log as the log that needs to be transferred to the LAN shared folder.
             // This is done BEFORE the filename change
-            TransferLogToLocalSharedFolder(VerboseLogPath, copyToPath, false, "dailyLog");
+            TransferLogToLocalSharedFolder(logPath, copyToPath, false, "dailyLog");
 
             // Update new filename to reflect the new date.
             logFileName = DateToFilename(this.CurrentDay.ToString());
 
             // Change the path to reflect the new filename.
-            VerboseLogPath = rootDirectory + "\\" + testGroupName + "\\" + serialNumber + "\\Verbose_" + logFileName + ".log";
+            logPath = rootDirectory + "\\" + testGroupName + "\\" + serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
             // update the dayOfLastCycle for future comparisons. If It's a new day, make this the new standard to test against.
             this.DayOfLastCycle = this.CurrentDay;
@@ -773,7 +770,7 @@ namespace Client_GUI
         {
             // If the client is connected to the server AND the initial test info has NOT been sent, we need to send it.
             // This may happen if the client is connected to the sever after the test has been running for a while and already passed the Testdrive()->CommandSequence() call.
-            if ((clientForm.cBox_serverIp.BackColor == Color.Green) && (isInitialTestInfoSentToServer == false))
+            if ((this.clientForm.GetComboBoxColor(this.clientForm.cBox_serverIp) == Color.Green) && (isInitialTestInfoSentToServer == false))
             {
                 SendInitialTestInfo();
             }
@@ -850,7 +847,7 @@ namespace Client_GUI
         public void SendInitialTestInfo()
         {
             // If the socket client is connected to the Server (GUI button Green), send the appropriate information to the Server
-            if (clientForm.cBox_serverIp.BackColor == Color.Green)
+            if (this.clientForm.GetComboBoxColor(this.clientForm.cBox_serverIp) == Color.Green)
             {
                 // UPDATE Socket Server - Send generic info
                 initialTestUpdateInfo = new CustomEventArgs4(
@@ -902,7 +899,7 @@ namespace Client_GUI
         public void SendTestUpdateToSocketServer(string pathToErrorLog)
         {
             //if (clientForm.textBox_serverIP.BackColor == Color.Green)
-            if (clientForm.cBox_serverIp.BackColor == Color.Green)
+            if (this.clientForm.GetComboBoxColor(this.clientForm.cBox_serverIp) == Color.Green)
             {
 
                 testUpdateInfo = new CustomEventArgs5_StatusOnly(pcGroupNumber,
@@ -934,14 +931,14 @@ namespace Client_GUI
                 MessageBox.Show("The copyToPath is null. Cannot send info to Server. No error log will be copied to shared folder. No email will be sent.\r\n\r\n" + e);
 
                 string tempCopyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" +
-                serialNumber + "\\Verbose_" + logFileName + ".log";
+                serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
                 newFinalPath = tempCopyToPath.Replace(".log", "--fail.log");
 
             }
 
 
-            TransferErrorLogToSharedFolder(VerboseLogPath, newFinalPath, true);
+            TransferErrorLogToSharedFolder(logPath, newFinalPath, true);
 
             // Test logs will be copied from the LAN shared folder to the Onedrive shared folder.
             SendErrorLogCopyCommandToServerIfNotAlreadySent(newFinalPath, true);
@@ -997,6 +994,7 @@ namespace Client_GUI
         {
             this.clientForm.stopProcess = false;
             FileTransferCommandHasBeenSent = false;
+            logFileName = DateToFilename(this.CurrentDay.ToString());
 
             this.clientForm.SetText(this.clientForm.text_startDate, StartTime.ToString());
 
@@ -1006,7 +1004,7 @@ namespace Client_GUI
 
             //TODO set test ITR number to whatever is displayed in the text box
             testGroupName = this.clientForm.GetText(this.clientForm.text_testGroupIdentifier);
-
+            slotNum = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
             GetDeviceInfoFromDevice();
             PopulateGuiFieldsWithDeviceInfo();
 
@@ -1015,19 +1013,18 @@ namespace Client_GUI
             if (testDriveStatus != SUCCESS)
             {
                 this.clientForm.SetStartButton("Start");
-                //this.clientForm.button_startTest.BackColor = Color.Red;
-                this.clientForm.SetStartButtonColor(this.clientForm.button_startTest, Color.Red);
+                this.clientForm.SetStartButtonColor(Color.Red);
 
                 // TODO Need to send error message to server saying "failed in initial test setup"
 
                 return;
             }
 
-            VerboseLog("\r\n\r\nDevice check is good. Device will be powered off.");
+            Log("\r\n\r\nDevice check is good. Device will be powered off.");
 
             // Handle turning off whatever device you are testing
 
-            VerboseLog("-------------------Device is now OFF-----------------------");
+            Log("-------------------Device is now OFF-----------------------");
 
             //this.clientForm.SetTestBox(this.testType);
             HoursPer1000CyclesTime = DateTime.Now;
@@ -1049,10 +1046,10 @@ namespace Client_GUI
 
                 CalculateEcdCycles();
 
-                VerboseLog("Device powering on\r\n");
+                Log("Device powering on\r\n");
                 this.clientForm.UpdateStatus("Powering on Device");
                 Thread.Sleep(sleepDelay_ms);
-                VerboseLog("Device was powered on\r\n");
+                Log("Device was powered on\r\n");
                 this.clientForm.UpdateStatus("Device on");
 
                 //CheckTestStatusAndUpdateServer();
@@ -1070,7 +1067,7 @@ namespace Client_GUI
 
                 // Start Button Background Color will be set to red if "ErrorReport()" has been called in any tests.
                 // If any test encountered a failure then close ports, set start button red, and return to waiting for the start button to be clicked.
-                if (this.clientForm.GetStartButtonColor(this.clientForm.button_startTest) == Color.Red || this.clientForm.stopProcess == true)
+                if (this.clientForm.GetStartButtonColor() == Color.Red || this.clientForm.stopProcess == true)
                 {
                     this.clientForm.UpdateStatus(testStatus += "Test stopped\n");
                     // this should already be done if this branch is entered into. 
