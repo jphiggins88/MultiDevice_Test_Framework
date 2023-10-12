@@ -143,7 +143,6 @@ namespace Server_GUI
         public event EventHandler<CustomEventArgs3> UpdateConnectedClientsGridView_status;
         public event EventHandler<string> UpdateConnectedClientsGridView_deleteClient;
         public event EventHandler<string> UpdateSerialNumber;
-        //-//public event EventHandler<string> UpdateGetEmailAddress;
 
         protected virtual void OnReadFromClient(CustomEventArgs e)
         {
@@ -158,27 +157,31 @@ namespace Server_GUI
             UpdateConnectedClientsList?.Invoke(this, e);
         }
 
-        //protected virtual void OnUpdateConnectedClientsGridView(string id, string serialNum, string dateTime, string testGroupNum, string computerNum, string programName, string testDevice version)
+        //(string id, string serialNum, string dateTime, string testGroupNum, string compNum, string slotNum, string programName, string testAppVersion, string status, string percent
         protected virtual void OnUpdateConnectedClientsGridView(CustomEventArgs2 e)
         {
             UpdateConnectedClientsGridView?.Invoke(this, e);
         }
 
+        // (string id, string serialNum, string dateTime, string testGroupNum, string compNum, string slotNum, string programName, string testAppVersion, string status, string percent, int targetClient)
         protected virtual void OnUpdateConnectedClientsGridView_updateClient(CustomEventArgs2_withTargetClient e)
         {
             UpdateConnectedClientsGridView_updateClient?.Invoke(this, e);
         }
 
+        // (string id, string serialNum, string dateTime,string testGroupNum, string compNum, string slotNum, string programName, string testAppVersion, string status, string percent, string serialNumberLastFour, string testType)
         protected virtual void OnUpdateConnectedClients_BigPicture_updateClient(CustomEventArgs3_withTargetClient e)
         {
             UpdateConnectedClients_BigPicture_updateClient?.Invoke(this, e);
         }
 
+        // (string id, string testGroupNum, string compNum, string slotNum, string status, string percent, string cycleCount, string descriptionOfState, bool wasManuallyClosed)
         protected virtual void OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(CustomEventArgs4_statusUpdates e)
         {
             UpdateConnectedClients_BigPicture_StatusOnly_updateClient?.Invoke(this, e);
         }
 
+        // (string clientID, string status, string percent)
         protected virtual void OnUpdateConnectedClientsGridView_status(CustomEventArgs3 e)
         {
             UpdateConnectedClientsGridView_status?.Invoke(this, e);
@@ -207,117 +210,46 @@ namespace Server_GUI
             ackTimer.Elapsed += OnAckTimerElapsed;
             // Subscribe to the heart beat timer so an interrupt will be called on timer elapse
             heartBeatTimer_serverSide.Elapsed += OnHeartBeatTimerElapsed_ServerSide;
-
-            #region define IP Endpoint
-            // Establish the local endpoint for the socket.  
+            
             // IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-            // IPAddress ipAddress = ipHostInfo.AddressList[0];
-
 
             // Listen for connections from any IP address
             IPAddress ipAddress = IPAddress.Any;
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
-            #endregion define IP Endpoint
 
-            #region create socket listener and bind
-            // Create a TCP/IP socket.  
             Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-            // Bind the socket to the local endpoint and listen for incoming connections.  
             try
             {
-                // Bind the listener socket to the specified endpoint and listen
                 listener.Bind(localEndPoint);
                 listener.Listen(100);
 
                 while (true)
                 {
-                    // Set the event to nonsignaled state.  
-                    allDone.Reset();
-
-                    // Start an asynchronous socket to listen for connections.  
-                    Debug.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tStartListening:: Waiting for a connection...");
-
-                    // Begin accepting new connections from clients
-                    // Once a new client connection attempt is detected, call AcceptCallback
+                    allDone.Reset(); 
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tStartListening: BeginAccept\r\n");
-                    listener.BeginAccept(new AsyncCallback(AcceptCallback), listener);
-
-
-                    // Wait until a connection is made before continuing.  
+                    listener.BeginAccept(new AsyncCallback(AcceptCallback), listener); 
                     allDone.WaitOne();
                 }
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Server:: " + e.ToString());
-               // MessageBox.Show("Server::\r\n\r\nException caught:: in StartListening():\r\n" + e.ToString());
-
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\ttStartListening: EXCEPTION\tFailed to start listening with the following error:\r\n" + e);
             }
-
-            #endregion create socket listener and bind
         }
 
 
-        // AcceptCallback is called once a connection is made
         public void AcceptCallback(IAsyncResult ar)
         {
-            //VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tAcceptCallback\r\n");
-            // Signal the main thread to continue.  
-            allDone.Set();
-
-            // Get the socket that handles the client request.  
+            allDone.Set(); 
             Socket listener = (Socket)ar.AsyncState;
+            Socket newSocket = listener.EndAccept(ar);
 
-            // Return a socket to handle communication with the client.
-            // When you see "handler", think the socket handling communication with the client.
-            Socket handler = listener.EndAccept(ar);
-            //VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tAcceptCallback: Listener.EndAccept\r\n");
-
-            // Create the state object.
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tAcceptCallback: Connection accepted.\tCreating a new socket to handle the new connection\r\n");
             StateObject state = new StateObject();
-            state.workSocket = handler;
-            
-
-            
-            //*****************
-            // add the socket object that is now connected to the new client to the list of clients.
-            // Set the StateObjects uniqueID to the same uniqueID given to the Client object.
-            // This ID will be used for identifying and disconnecting/removing sockets/clients.
-            //state.uniqueSocketID = mainClientController.AddClient(handler);
-            //*****************
-
-            // Is the client added here??? Doesn't look like it.
-            Debug.WriteLine("\r\n\r\nServer:: -------- Client possibly added:  " + state.uniqueSocketID + "\t\tClients now connected:  " + mainClientController.Clients.Count + "\r\n" +
-                "\t\tConnection information :: remote endpoint: " + handler.RemoteEndPoint + "\r\n\t\tlocal endpoint: " + handler.LocalEndPoint + "\r\n\t\tTime: " + DateTime.Now );
-            //VerboseLog("\tAcceptCallback\t Client added.\r\n" + "\tClient ID:\t" + state.uniqueSocketID.ToString());
-
-            //*****************
-            // If the client count is exactly 1 after just adding the client using the line above, then it means
-            // the client count is not empty so the heartbeat timer should be started. It also means this is not 
-            // the 2nd, 3rd,....or 100th client, in which case, the timer would already be started.
-            // Start the heart beat timer
-            //if (mainClientController.Clients.Count == 1)
-            //{
-            //    heartBeatTimer_serverSide.Enabled = true;
-            //    heartBeatTimer_serverSide.AutoReset = true;
-            //    heartBeatTimer_serverSide.Start();
-            //    VerboseLog("There is one and only one client connected. Heartbeat timer started.\r\n");
-            //}
-            //*****************
-
-            // Make the socket connected to the client begin to listen for incoming messaged from the client.
-            // When an incoming message is received, ReadCallback will be called.
-
+            state.workSocket = newSocket;
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tAcceptCallback: handler.BeginReceive\tMake the new socket listen for incoming messages\r\n");
-            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
-
-            //*****************
-            // send the newly added client the unique ID assigned by the server.
-            //Send(handler, "<ID>" + state.uniqueSocketID.ToString() + "<EOF>");
-            //*****************
+            newSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
         }
 
 
@@ -325,43 +257,29 @@ namespace Server_GUI
         {
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tReadCallBack\r\n");
             String content = String.Empty;
-            String result = "--test--";
-
-            // Retrieve the state object and the handler socket  
-            // from the asynchronous state object.  
+            String result = "--test--"; 
             StateObject state = (StateObject)ar.AsyncState;
             Socket handler = state.workSocket;
 
             try
              {
-                // this is the line that triggers the exception if a client crashes/is disconnected ungracefully
-                // Read data from the client socket.
-                // Ends the pending async read and returns the number of bytes read.
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tReadCallBack: handler.EndReceive\tgetting payload\r\n");
                 int bytesRead = handler.EndReceive(ar);
-                Debug.WriteLine("Server:: Successfully received message from client.");
-
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tReadCallBack: ParseBytesRead\tparsing payload\r\n");
                 ParseBytesRead(bytesRead, handler, state, content, result);
             }
             catch (Exception e)
             {
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tException encountered when trying to receive message from client - " + e.ToString() + "\tClosing the socket\r\n");
-
-
-                // Close the socket and release all system resources.
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\thandler.Close()\tClosing socket and releasing resources\r\n");
                 handler.Close();
 
-                //specify the unique ID of the client that is now disconnected/unreachable
                 int unresponsiveClientID = state.uniqueSocketID;
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tReadCallback: Unresponsive client ID :  " + unresponsiveClientID + "\r\n");
 
-                // Holds the ID of the dead client, which should be the same as the unresponsiveClientID. 
-                // This is functionally pointless. It's only here to be consistent for search purposes.
                 string deadClientID;
-
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSorting through client list for the unresponsive client.\t There are a total of " + mainClientController.Clients.Count + " clients in the list.");
+
                 for (int i = 0; i < mainClientController.Clients.Count; i++)
                 {
                     if (mainClientController.Clients[i]._unique_Id == unresponsiveClientID)
@@ -372,19 +290,12 @@ namespace Server_GUI
                         {
                             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tmanualClose status detected\tMarking client as dead in big picture\r\n");
                             MarkClientAsDeadInBigPicture(i);
-
                             mainClientController.Clients[i]._status = "Unknown";
                             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tUnknown status detected\tsending email All Info - " + mainClientController.Clients[i]._status + "\r\n");
                             SendAlertEmail_AllInfo(mainClientController.Clients[i], "");
-
                         }
-                        // Remove the dead client and set the value of deadClient to the dead client's unique ID
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tremoving client" + mainClientController.Clients[i]._unique_Id + "\r\n");
-                        
                         deadClientID = RemoveDeadClient(i); //TODO : is this handled elsewhere???
-
-                        // Send alert email saying the client has been disconencted
-                        //SendAlertEmail(deadClientID);
                     }
                 } 
             }
@@ -393,10 +304,8 @@ namespace Server_GUI
 
         private void SendAlertEmail_AllInfo(Client clientInfo, string pathToErrorLog)
         {
-            // Make sure the send email check box is checked
             if (this.mMainForm.sendEmailOnAlert_checkBox.Checked)
             {
-                // Send alert email
                 emailSender.SendAlert_AllInfo(clientInfo, pathToErrorLog);
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "Email Sent regarding client : " + clientInfo._unique_Id + "\r\n");
             }
@@ -406,8 +315,6 @@ namespace Server_GUI
         public void SendToAll(String data)
         {
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSendToAll\r\n");
-
-            //foreach (Client client in ClientController.Clients)
             foreach (Client client in mainClientController.Clients)
             {
                 Send(client._socket, data);
@@ -417,24 +324,18 @@ namespace Server_GUI
 
         private void Send(Socket handler, String data)
         {
-            // Convert the string data to byte data using ASCII encoding.  
             byte[] byteData = Encoding.ASCII.GetBytes(data);
 
-            // Begin sending the data to the remote device.  
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSend --> sending::: " + data + "\r\n");
             handler.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), handler);
 
-            // Start the acknowledgment timer when the data is being sent.
-            // Don't start the timer if we are only sending an <ACK> to a previously received message.
-            // We don't require and acknowledgement from the client to the server's acknowledgement that was just sent
+            // Start the acknowledgment timer when the data is being sent. Don't start the timer if we are only sending an <ACK> to a previously received message.
             if (!data.StartsWith(TAG_ACK_SPECIFIER))
             {
-                // Start a timer. Allow a specified amount of time to recieve an acknowledge message from the client.
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSend prvious message is not replying to an <ACK>\t therefore starting ACK timer.\r\n");
                 ackTimer.Enabled = true;
                 ackTimer.Start();
             }
-
         }
 
 
@@ -443,14 +344,9 @@ namespace Server_GUI
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSendCallback\r\n");
             try
             {
-                // Retrieve the socket from the state object.  
                 Socket handler = (Socket)ar.AsyncState;
-
-                // Complete sending the data to the remote device.
                 int bytesSent = handler.EndSend(ar);
-                VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSendCallback: handler.EndSend - Sent " + bytesSent + " bytes to client\r\n");
-
-                // Signal that all bytes have been sent.  
+                VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSendCallback: handler.EndSend - Sent " + bytesSent + " bytes to client\r\n");  
                 sendDone.Set();
             }
             catch (Exception e)
@@ -463,7 +359,6 @@ namespace Server_GUI
 
         private void OnAckTimerElapsed(Object source, System.Timers.ElapsedEventArgs e)
         {
-            // Stop the ackTimer
             ackTimer.Stop();
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnAckTimerElapsed\tClient did not acknowledge the last message sent. Timer has been stopped\r\n");
         }
@@ -471,8 +366,8 @@ namespace Server_GUI
 
         private void OnHeartBeatTimerElapsed_ServerSide(Object source, System.Timers.ElapsedEventArgs e)
         {
-            //If it remains false, the 2nd for loop will not be started
-            bool areAnyClientsDead = false;
+            // If it remains false, the 2nd for loop will not be started
+            bool deadClientsDetected = false;
 
             // loop through client list and make sure every connected client has checked in recently with a heart beat message
             for (int i = 0; i < mainClientController.Clients.Count; i++)
@@ -480,29 +375,24 @@ namespace Server_GUI
                 // If the client does NOT have a heart beat
                 if (!mainClientController.Clients[i]._hasHeartBeat)
                 {
-                    // then see if it is a new client that hasn't had time to send a heartbeat.
-                    // If so, don't add it to the dead list. Change it's "new" flag to false so
+                    // then see if it is a new client that hasn't had time to send a heartbeat. If so, don't add it to the dead list. Change it's "new" flag to false so
                     // it will be added to the dead list the next time the server side heart beat timeer elapses if it does not have a heart beat.
                     if (mainClientController.Clients[i]._isNewClient_ignoreHeartBeatOneTime)
                     {
-                        //Set the client's "new" flag to false, so it will not be ignored next time.
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, ignore ONE time for new client. Setting ignore once flag to false\r\n");
                         mainClientController.Clients[i]._isNewClient_ignoreHeartBeatOneTime = false;
                     }
                     else
                     {
-                        // If any client is found to be dead, then change this flag so the alert for loop is entered
-                        areAnyClientsDead = true;
-
-                        // add the client to the alert list by designating it as _isDead. One alert will be sent out including a list of all the unreachable clients
+                        deadClientsDetected = true;
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, marking client as dead\r\n");
+                        // add the client to the alert list by designating it as _isDead. One alert will be sent out including a list of all the unreachable clients
                         mainClientController.Clients[i]._isDead = true;
                     }
                 }
             }
 
-
-            if (areAnyClientsDead == true)
+            if (deadClientsDetected == true)
             {
                 Debug.WriteLine("Server:: areAnyClientsDead == true. Finding the ID of the dead client.\r\n\tThere are currently " + mainClientController.Clients.Count + " clients connected.");
 
@@ -511,7 +401,6 @@ namespace Server_GUI
                 {
                     if (mainClientController.Clients[j]._isDead)
                     {
-
                         if (mainClientController.Clients[j]._status != "manualClose")
                         {
                             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, MarkClientAsDeadInBigPicture\r\n");
@@ -524,25 +413,21 @@ namespace Server_GUI
                                 SendAlertEmail_AllInfo(mainClientController.Clients[j], "");
 
                             }
-
                         }
-
                         Debug.WriteLine("Server:: Calling RemoveDeadClient() on client " + mainClientController.Clients[j]._unique_Id);
 
                         // remove client from the list and change the status in the GUI to unknown/disconnected
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, RemoveDeadCLient()\r\n");
+                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, RemoveDeadCLient():" + mainClientController.Clients[j]._unique_Id + "\r\n");
                         string deadClientID = RemoveDeadClient(j);
 
                         // Debug log the removal/disconnection
-                        Debug.WriteLine("Server:: Client " + deadClientID + " missed a heartbeat");
-
+                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tServer:: Client " + deadClientID + " missed a heartbeat\r\n");
                     }
                 }
             }
         }
         
         #endregion socket functions
-
 
 
         /// <summary>
@@ -554,14 +439,12 @@ namespace Server_GUI
         public string RemoveDeadClient(int clientIndex)
         {
             string deadClientID = mainClientController.Clients[clientIndex]._unique_Id.ToString();
-            
-            //// Remove the client from the client list at the index that contains the matching uniqueID
-            //mainClientController.Clients.RemoveAt(clientIndex);
 
             // Remove the client from the griddView in the GUI
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "RemoveDeadClient -> calling OnUpdateConnectedClientsGridView_deleteClient delete form gridview" + deadClientID + "\r\n");
             OnUpdateConnectedClientsGridView_deleteClient(deadClientID.ToString());
             Debug.WriteLine("Server:: Attempting to remove:  " + deadClientID);
+
             // Remove the client from the client list at the index that contains the matching uniqueID
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "RemoveDeadClient: Removing " + deadClientID + "\tcurrent client count:  " + mainClientController.Clients.Count);
             mainClientController.Clients.RemoveAt(clientIndex);
@@ -583,7 +466,6 @@ namespace Server_GUI
             targetClient = mainClientController.Clients[i];
             targetClient._descriptionOfState = "Client is disconnected or unreachable";
             targetClient._status = "Unknown";
-
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tMarkClientAsDeadInBigPicture: Calling OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient with eventArgs: CustomEventArgs4_statusUpdates\r\n");
             OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs4_statusUpdates(
                                                        targetClient._unique_Id.ToString(),
@@ -599,14 +481,13 @@ namespace Server_GUI
         }
 
 
-
         #region logging and email sending
 
         protected string DateToFilename(string dateTodayString)
         {
-            dateTodayString = dateTodayString.Replace("/", "-");    //replace the slash with a dash so you can use it as a filename
+            dateTodayString = dateTodayString.Replace("/", "-");
             dateTodayString = dateTodayString.Replace("\\", "-");
-            dateTodayString = dateTodayString.Replace(" 12:00:00 AM", "");  //strip the end off the returned Current Day string
+            dateTodayString = dateTodayString.Replace(" 12:00:00 AM", "");
             return dateTodayString;
         }
 
@@ -641,12 +522,10 @@ namespace Server_GUI
             LogData(filePath, data);
         }
 
-
         public void LogData(string path, string data)
         {
             FileStream fileStream;
             StreamWriter streamWriter;
-
             int retryNumber = 5;
             int retryDelay = 500;
 
@@ -692,15 +571,11 @@ namespace Server_GUI
         /// </summary>
         public void CopyLogFilesToOneDriveSharedFolder(string contents, bool overwriteFileIfExists)
         {
-            // Split the recived message at the ";; ". Note the space is necessary after the semicolons.
             string[] contentSplit = contents.Split(";; ");
             string clientID = contentSplit[1];
 
-            //loop through the string array and look for specific tags to parse information
             for (int j = 0; j < contentSplit.Length; j++)
             {
-
-                // <sp> stands for sourcePath
                 if (contentSplit[j].StartsWith("<sp>"))
                 {
                     // Filter out the "<sp>", and the souce path text will begin immediately after.
@@ -712,20 +587,14 @@ namespace Server_GUI
                     {
                         sourcePath = sourcePath.Remove(indexOfDotLog + 4);
                     }
-
                     // Modify the base folder of the sourcePath and set it as the destinationPath. This will keep the general folder structure of the LAN shared drive.
                     string destinationPath = sourcePath.Replace(addressOfType2SharedFolder, addressOfOneDriveSharedFolder);
-
-                    // Copy the log that has just completed
                     try
                     {
-                        // If directory tree does not exist, we need to make it.
                         Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
 
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tCopyLogFilesToOneDriveSharedFolder: Attempting to Copy File: " + sourcePath + " to: " + destinationPath + "\r\n");
-                        // Pass in false to prevent overwriting existing files. True will overwrite the existing file. "OverwriteFileIfExists" is itseld a bool. 
                         File.Copy(sourcePath, destinationPath, overwriteFileIfExists);
-
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tCopyLogFilesToOneDriveSharedFolder: Copy successful\r\n");
 
                     }
@@ -937,8 +806,9 @@ namespace Server_GUI
 
         #region message parsing
 
-        public static void LookForTagInMessageAndSetClientData(Client client ,string stringSlice, string tag)
+        public static bool LookForTagInMessageAndSetClientData(Client client ,string stringSlice, string tag)
         {
+            bool needToSendEmail = false;
             if (stringSlice.StartsWith(tag))
             {
                 string newString = stringSlice.Remove(0, tag.Length);
@@ -966,6 +836,14 @@ namespace Server_GUI
                         break;
                     case (TAG_STATUS):
                         client._status = newString;
+                        if ((newString == "Failed") || (newString == "Unknown"))
+                        {
+                            needToSendEmail = true;
+                        }
+                        else if (newString == "manualClose")
+                        {
+                            client._manuallyClosed = true;
+                        }
                         break;
                     case (TAG_PERCENT):
                         client._percent = newString;
@@ -976,7 +854,6 @@ namespace Server_GUI
                     case (TAG_DESCRIPTION):
                         client._descriptionOfState = newString;
                         break;
-                    /*
                     case (TAG_PATH_TO_ERROR_LOG):
                         client._ = newString;
                         break;
@@ -995,9 +872,9 @@ namespace Server_GUI
                     case (TAG_FILETRANSFER_OW_SPECIFIER):
                         client. = newString;
                         break;
-                     */
                 }
             }
+            return needToSendEmail;
         }
 
 
@@ -1007,15 +884,13 @@ namespace Server_GUI
 
             if (bytesRead > 0)
             {
-                // There  might be more data, so store the data received so far.  
+                // There may be more data, so store the data received so far.  
                 state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
 
                 // Check for end-of-file tag. If it is not there, read more data.  
                 content = state.sb.ToString();
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Read " + content.Length + " bytes from socket.\r\n");
                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Data <-- " + content + "\r\n");
-
-                //VerboseLog("Received message from client:\t" + content); 
 
                 // If it's the FIRST message after connection, then the "<CLIENTINFO>" tag will be present.
                 // we need to read this info and extract information about the testApp version, computer#, testGroup#, testProgram
@@ -1137,6 +1012,7 @@ namespace Server_GUI
                                 }
                             }
 
+                            // TODO make a member funtion of Client to concatenate all information within the object itself and return it as shown below.
                             string connectedClientInformation = "ClientID:: " + lastClientConnected._unique_Id.ToString() + " :: " +
                                                             lastClientConnected._thisIPaddress.ToString() + " :: " +
                                                             lastClientConnected._dateAndTimeOfConnection.ToString() + " :: " +
@@ -1148,6 +1024,7 @@ namespace Server_GUI
                                                             lastClientConnected._serialNumber + " :: " +
                                                             lastClientConnected._status + " :: " +
                                                             lastClientConnected._percent;
+
                             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected\tParsed connected Client Info from last client payload: " + connectedClientInformation + "\r\n");
 
                             // update the connectedClient Listbox in the GUI
@@ -1176,13 +1053,10 @@ namespace Server_GUI
                 if (content.IndexOf(TAG_END_OF_FILE) > -1)
                 {
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected\tpayload not empty\r\n");
-
-                    // All the data has been read from the client. Display it on the console.  
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Read " + content.Length + " bytes from socket.\r\n");
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Data <-- " + content + "\r\n");
 
-                    // Acknowledge the message by sending back <ACK> to the server
-                    // If the message itself is an <ACK> response, then do not send <ACK> back
+                    // Acknowledge the message by sending back <ACK> to the server. If the message itself is an <ACK> response, then do not send <ACK> back
                     if (!content.StartsWith(TAG_ACK_SPECIFIER))
                     {
                         // Acknowledge the message by sending back <ACK> to the client
@@ -1190,20 +1064,15 @@ namespace Server_GUI
                         Send(handler, TAG_ACK_SPECIFIER + TAG_END_OF_FILE);
                     }
 
-                    // Read the message payload.
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected\tReading message payload\r\n");
-                    OnReadFromClient(new CustomEventArgs(handler.Handle.ToString(), result, "", content));
+                    OnReadFromClient(new CustomEventArgs(handler.Handle.ToString(), result, "", content));  // Why is this called again. isn't everything read
 
-                    // if the client is sending a SN update, then parse it
-                    // the client will not normally have the SN on initial connection
                     if(content.StartsWith(TAG_SERIAL_NUM))
                     {
                         string newString = content.Remove(0, 4);
-                        //lastClientConnected._serialNumber = newString;
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <sn> detected\tUpdating SN\r\n");
                         OnUpdateSerialNumber(newString);
                     }
-                    // If the received message is a <ACK> for an acknowledge
                     if (content.StartsWith(TAG_ACK_SPECIFIER))
                     {
                         // The last message sent from the server to the client was acknowledged by the the client
@@ -1214,31 +1083,23 @@ namespace Server_GUI
                         // log that the last message sent was acknowledged
                         Debug.WriteLine("Server::  <ACK> received from client");
                     }
-
-                    // If the Client sends the intiial update with the test information gathered after the first cycle of running
                     if (content.StartsWith(TAG_UPDATE_SPECIFIER))
                     {
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <UPDATE> detected\tParsing Initial Update\r\n");
 
                         ParseInitialUpdateOfTest(content);
                     }
-
-                    // If the client is sending a status update (status and percent), then parse the data and update the GUI.
                     if (content.StartsWith(TAG_STATUS_SPECIFIER))
                     {
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <STATUS> detected\tParsing Status Update\r\n");
                         ParseStatusOfTest(content);
                     }
-
-                    // Filetransfer
                     if (content.StartsWith(TAG_FILETRANSFER_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked)
                     {
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <FILETRANSFER> detected\tCopying logs to shared folder\r\n");
 
                         CopyLogFilesToOneDriveSharedFolder(content, false);
                     }
-
-                    // Filetransfer with overwrite flag
                     if (content.StartsWith(TAG_FILETRANSFER_OW_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked) 
                     {
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <FILETRANSFER_OW> detected\tCopying/overwriting logs to shared folder\r\n");
@@ -1258,12 +1119,7 @@ namespace Server_GUI
                     if (content.StartsWith(TAG_HEARTBEAT_SPECIFIER))
                     {
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <HB> detected\tSetting this client's _hasHearBeat to True\r\n");
-
-                        // Set this hasHeartBeat = true for this client.
-
-                        // remove the <HB> tag from the received message
                         string newString = content.Remove(0, 4);
-                        // remove the " :: <EOF> " tag from the end
                         char[] trimChars = { ' ', ':', ':', ' ', '<', 'E', 'O', 'F', '>' };
                         string idOfCLient = newString.TrimEnd(trimChars);
 
@@ -1272,12 +1128,9 @@ namespace Server_GUI
                         {
                             if (mainClientController.Clients[i]._unique_Id.ToString() == idOfCLient)
                             {
-                                // Set the heartbeat to true
-                                
                                 mainClientController.Clients[i]._hasHeartBeat = true;
                                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <HB> detected\tThis client's _hasHearBeat set to True\r\n");
 
-                                // No need to continue looping.
                                 break;
                             }
                         }
@@ -1305,26 +1158,19 @@ namespace Server_GUI
         /// </summary>
         public void ParseInitialUpdateOfTest(string status)
         {
-
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest - " + status + "\r\n");
-
-
-            // Split the recived message at the ";; " so seperate the clientID, status, and percent complete
             string[] contentSplit = status.Split(";; ");
             string clientID = contentSplit[1];
             
-            // loop through the connected clients and find the correct client ID according to the infomration passed in
             for (int i = 0; i < mainClientController.Clients.Count; i++)
             {
                 if (mainClientController.Clients[i]._unique_Id.ToString() == clientID)
                 {
-                    // If the client matches the ID, then designate that Client as the the Target client.
                     targetClient = mainClientController.Clients[i];
 
                     //loop through the string array and look for specific tags to parse information
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
-
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_PROGRAM_NAME);
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
@@ -1432,18 +1278,13 @@ namespace Server_GUI
 
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: connectedClientInformation string created: " + connectedClientInformation + "\r\n");
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: calling OnUpdateConnectedClientsList, passing in connected Client Information Above\tUpdating connected client List in GUI\r\n");
-                    // update the connectedClient Listbox in the GUI
+
                     OnUpdateConnectedClientsList(connectedClientInformation);
 
-                    // Look through the gridView box in the CLientID column for the appropriate ID
-                    // Once the correct ID is found, replace that entire row with the new information
-                    //All processing is done on this thread other than the GUI thread in order to maintain GUI responsiveness.
                     int rows = this.mMainForm.gridView_clientQueue.Rows.Count;
                     string clientIdToLookFor = targetClient._unique_Id.ToString();
                     int rowToReplace;
 
-                    // Loop through all the rows in the gridView to find the correct client
-                    //for (int j = 0; j < rows; j++)
                     for (int j = 0; j < (rows-1); j++)  // rows - 1 because the last row will always be empty.
                     {
                         try
@@ -1489,19 +1330,15 @@ namespace Server_GUI
                                                         targetClient._testType
                                                        ));
 
-                                // Once the correct client ID is found, break out of the loop
                                 break;
                             }
-
                         }
                         catch (Exception ex)
                         {
                             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: Exception: Could not get value in specified row/column of the gridView\r\n");
                             MessageBox.Show("Could not get value in specified row/column of the gridView\r\n" + ex);
                         }
-                     
                     }
-                    // If client was found and updated, then BREAK. We do not need to keep looking through the other clients.
                     break;
                 }
             }
@@ -1516,52 +1353,41 @@ namespace Server_GUI
         public void ParseStatusOfTest(string status)
         {
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseStatusOfTest: status: " + status + "\r\n");
-
-
-            // Split the recived message at the ";; " so seperate the clientID, status, and percent complete
             string[] contentSplit = status.Split(";; ");
             string clientID = contentSplit[1];
-
             bool needToSendEmail = false;
             string pathToErrorLog = "";
 
-            // loop through the connected clients and find the correct client ID according to the infomration passed in
             for (int i = 0; i < mainClientController.Clients.Count; i++)
             {
                 if (mainClientController.Clients[i]._unique_Id.ToString() == clientID)
                 {
-                    // If the client matches the ID, then designate that Client as the the Target client.
                     targetClient = mainClientController.Clients[i];
 
-                    
-
-                    //loop through the string array and look for specific tags to parse information
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
                         /*
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
 
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_STATUS); // need to handle conditional
+                        needToSendEmail = LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_STATUS); // need to handle conditional
 
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_PERCENT);
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_SLOT_NUM);
                         LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_DESCRIPTION);
+                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TRANSFER_PATH);
                          */
-                        // <cn> stands for computer number
                         if (contentSplit[j].StartsWith("<cn>"))
                         {
                             string newString = contentSplit[j].Remove(0, 4);
                             targetClient._compNumber = newString;
                         }
-                        // <gn> stands for test group number
                         else if (contentSplit[j].StartsWith("<gn>"))
                         {
                             string newString = contentSplit[j].Remove(0, 4);
                             targetClient._testGroupNumber = newString;
                         }
-                        // <sts> stands for status
                         else if (contentSplit[j].StartsWith("<sts>"))
                         {
                             string newString = contentSplit[j].Remove(0, 5);
@@ -1569,46 +1395,33 @@ namespace Server_GUI
 
                             if((newString == "Failed") || (newString == "Unknown"))
                             {
-                                // We want to send an alert email when the test fails or is disconnected/crashes.
-                                // We do not send an email if the test is manually closed.
-
                                 needToSendEmail = true;
                             }
                             else if (newString == "manualClose")
                             {
                                 targetClient._manuallyClosed = true;
                             }
-
                         }
-                        // <pct> stands for percent
                         else if (contentSplit[j].StartsWith("<pct>"))
                         {
                             string newString = contentSplit[j].Remove(0, 5);
                             targetClient._percent = newString;
                         }
-                        // <cyc> stands for cycle count
                         else if (contentSplit[j].StartsWith("<cyc>"))
                         {
                             string newString = contentSplit[j].Remove(0, 5);
                             targetClient._cycleCount = newString;
                         }
-                        // <slt> stands for Slot Number
                         else if (contentSplit[j].StartsWith("<slt>"))
                         {
                             string newString = contentSplit[j].Remove(0, 5);
                             targetClient._slotNumber = newString;
                         }
-                        // <des> stands for description of current state
                         else if (contentSplit[j].StartsWith("<des>"))
                         {
                             string newString = contentSplit[j].Remove(0, 5);
                             targetClient._descriptionOfState = newString;
                         }
-                        // <pth> stands for path of error log in shared folder.
-                        // If there is no explicit error, the path will be blank ( "" ).
-                        // The client is responsible for sending this path that it copied the error log to.
-                        // If the error is not an explicit "failed" but instead an "unknown"/disconnection,
-                        // then no log will be copied, and no path will be sent from the server.
                         else if (contentSplit[j].StartsWith("<pth>"))
                         {
                             pathToErrorLog = contentSplit[j].Remove(0, 5);
@@ -1632,11 +1445,9 @@ namespace Server_GUI
                     if(needToSendEmail == true && this.mMainForm.sendEmailOnAlert_checkBox.Checked)
                      {
                         SendAlertEmail_AllInfo(targetClient, pathToErrorLog);
-
-                        // Reset the flag
                         needToSendEmail = false;
                     }
-                    // No need to keep looping once the correct client is found.
+
                     break;
                 }
             }
@@ -1650,43 +1461,31 @@ namespace Server_GUI
         public void ParseLocationOfTests(string status)
         {
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseLocationOfTests: status: " + status  + "\r\n");
-
-            // Split the recived message at the ";; " so seperate the clientID, status, and percent complete
             string[] contentSplit = status.Split(";; ");
             string clientID = contentSplit[1];
 
-            // loop through the connected clients and find the correct client ID according to the infomration passed in
             for (int i = 0; i < mainClientController.Clients.Count; i++)
             {
                 if (mainClientController.Clients[i]._unique_Id.ToString() == clientID)
                 {
-                    // If the client matches the ID, then designate that Client as the the Target client.
                     targetClient = mainClientController.Clients[i];
 
-
-                    //loop through the string array and look for specific tags to parse information
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
                         if (contentSplit[j].StartsWith("<cn>"))
                         {
-                            //contentSplit[j].Replace("<cn>", "");
                             string newString = contentSplit[j].Remove(0, 4);
                             targetClient._compNumber = newString;
                         }
-                        // <slt> stands for Slot Number
                         else if (contentSplit[j].StartsWith("<slt>"))
                         {
-                            //contentSplit[j].Replace("<tv>", "");
                             string newString = contentSplit[j].Remove(0, 5);
                             targetClient._slotNumber = newString;
                         }
-
                     }
-
                     break;
                 }
             }
-
         }
 
         #endregion message parsing
