@@ -252,11 +252,13 @@ namespace Server_GUI
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
                         }
                     }
-                    // Used for testing on a development pc. Manually change the chamber name and computer name to "test" in the testDevice GUI.
+                    // Used for testing on a development pc. Manually change the pc group name and computer name to "test" in the testDevice GUI.
+                    /*
                     else if (e.client_compNum == "test")
                     {
                         targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
                     }
+                    */
                     else
                     {
                         throw new Exception("Server received an unrecognizable testGroupNumber number or PC name.\r\n" +

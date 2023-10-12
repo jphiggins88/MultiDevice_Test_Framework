@@ -174,9 +174,6 @@ namespace Server_GUI
             this.textBox777 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox778 = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.tableLayoutPanel_PC10 = new System.Windows.Forms.TableLayoutPanel();
@@ -350,9 +347,6 @@ namespace Server_GUI
             this.textBox611 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox612 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.tableLayoutPanel_PC07 = new System.Windows.Forms.TableLayoutPanel();
@@ -526,9 +520,6 @@ namespace Server_GUI
             this.textBox277 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox278 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel_PC04 = new System.Windows.Forms.TableLayoutPanel();
@@ -702,9 +693,6 @@ namespace Server_GUI
             this.textBox58 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox_Temperature_TS05 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel_PC01 = new System.Windows.Forms.TableLayoutPanel();
@@ -789,22 +777,18 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber04.SuspendLayout();
             this.tableLayoutPanel_PC12.SuspendLayout();
             this.tableLayoutPanel_PC11.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel_PC10.SuspendLayout();
             this.tableLayoutPanel_chamber03.SuspendLayout();
             this.tableLayoutPanel_PC09.SuspendLayout();
             this.tableLayoutPanel_PC08.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel_PC07.SuspendLayout();
             this.tableLayoutPanel_chamber02.SuspendLayout();
             this.tableLayoutPanel_PC06.SuspendLayout();
             this.tableLayoutPanel_PC05.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel_PC04.SuspendLayout();
             this.tableLayoutPanel_chamber01.SuspendLayout();
             this.tableLayoutPanel_PC03.SuspendLayout();
             this.tableLayoutPanel_PC02.SuspendLayout();
-            this.tableLayoutPanel22.SuspendLayout();
             this.tableLayoutPanel_PC01.SuspendLayout();
             this.tableLayoutPanel23.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
@@ -1065,7 +1049,7 @@ namespace Server_GUI
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1640, 1435);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Server";
+            this.tabPage1.Text = "Communication";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
@@ -1077,7 +1061,7 @@ namespace Server_GUI
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1640, 1435);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Chamber Monitor";
+            this.tabPage2.Text = "Test Overview";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel_main
@@ -1111,7 +1095,6 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber04.Controls.Add(this.tableLayoutPanel_PC11, 1, 2);
             this.tableLayoutPanel_chamber04.Controls.Add(this.label23, 0, 0);
             this.tableLayoutPanel_chamber04.Controls.Add(this.label27, 0, 1);
-            this.tableLayoutPanel_chamber04.Controls.Add(this.tableLayoutPanel8, 1, 0);
             this.tableLayoutPanel_chamber04.Controls.Add(this.label29, 0, 2);
             this.tableLayoutPanel_chamber04.Controls.Add(this.label30, 0, 3);
             this.tableLayoutPanel_chamber04.Controls.Add(this.tableLayoutPanel_PC10, 1, 1);
@@ -2682,47 +2665,6 @@ namespace Server_GUI
             this.label27.TabIndex = 1;
             this.label27.Text = "PC-10";
             // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel8.Controls.Add(this.textBox778, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label28, 0, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(81, 3);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(699, 65);
-            this.tableLayoutPanel8.TabIndex = 5;
-            // 
-            // textBox778
-            // 
-            this.textBox778.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox778.Location = new System.Drawing.Point(562, 3);
-            this.textBox778.Name = "textBox778";
-            this.textBox778.Size = new System.Drawing.Size(134, 31);
-            this.textBox778.TabIndex = 7;
-            this.textBox778.Text = "--";
-            this.textBox778.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label28
-            // 
-            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 3);
-            this.label28.Margin = new System.Windows.Forms.Padding(3);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(553, 25);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "Temperature: ";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label29
             // 
             this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -3525,7 +3467,6 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber03.Controls.Add(this.tableLayoutPanel_PC08, 1, 2);
             this.tableLayoutPanel_chamber03.Controls.Add(this.label18, 0, 0);
             this.tableLayoutPanel_chamber03.Controls.Add(this.label19, 0, 1);
-            this.tableLayoutPanel_chamber03.Controls.Add(this.tableLayoutPanel7, 1, 0);
             this.tableLayoutPanel_chamber03.Controls.Add(this.label21, 0, 2);
             this.tableLayoutPanel_chamber03.Controls.Add(this.label22, 0, 3);
             this.tableLayoutPanel_chamber03.Controls.Add(this.tableLayoutPanel_PC07, 1, 1);
@@ -5095,47 +5036,6 @@ namespace Server_GUI
             this.label19.TabIndex = 1;
             this.label19.Text = "PC-07";
             // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.Controls.Add(this.textBox612, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.label20, 0, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(83, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(719, 65);
-            this.tableLayoutPanel7.TabIndex = 5;
-            // 
-            // textBox612
-            // 
-            this.textBox612.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox612.Location = new System.Drawing.Point(578, 3);
-            this.textBox612.Name = "textBox612";
-            this.textBox612.Size = new System.Drawing.Size(138, 31);
-            this.textBox612.TabIndex = 7;
-            this.textBox612.Text = "--";
-            this.textBox612.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label20
-            // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(3, 3);
-            this.label20.Margin = new System.Windows.Forms.Padding(3);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(569, 25);
-            this.label20.TabIndex = 8;
-            this.label20.Text = "Temperature: ";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label21
             // 
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -5938,7 +5838,6 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber02.Controls.Add(this.tableLayoutPanel_PC05, 1, 2);
             this.tableLayoutPanel_chamber02.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel_chamber02.Controls.Add(this.label9, 0, 1);
-            this.tableLayoutPanel_chamber02.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel_chamber02.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel_chamber02.Controls.Add(this.label12, 0, 3);
             this.tableLayoutPanel_chamber02.Controls.Add(this.tableLayoutPanel_PC04, 1, 1);
@@ -7508,47 +7407,6 @@ namespace Server_GUI
             this.label9.TabIndex = 1;
             this.label9.Text = "PC-04";
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.Controls.Add(this.textBox278, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(81, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(699, 65);
-            this.tableLayoutPanel5.TabIndex = 5;
-            // 
-            // textBox278
-            // 
-            this.textBox278.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox278.Location = new System.Drawing.Point(562, 3);
-            this.textBox278.Name = "textBox278";
-            this.textBox278.Size = new System.Drawing.Size(134, 31);
-            this.textBox278.TabIndex = 7;
-            this.textBox278.Text = "--";
-            this.textBox278.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 3);
-            this.label10.Margin = new System.Windows.Forms.Padding(3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(553, 25);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Temperature: ";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label11
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -8351,7 +8209,6 @@ namespace Server_GUI
             this.tableLayoutPanel_chamber01.Controls.Add(this.tableLayoutPanel_PC02, 1, 2);
             this.tableLayoutPanel_chamber01.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel_chamber01.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel_chamber01.Controls.Add(this.tableLayoutPanel22, 1, 0);
             this.tableLayoutPanel_chamber01.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel_chamber01.Controls.Add(this.label7, 0, 3);
             this.tableLayoutPanel_chamber01.Controls.Add(this.tableLayoutPanel_PC01, 1, 1);
@@ -9921,47 +9778,6 @@ namespace Server_GUI
             this.label5.TabIndex = 1;
             this.label5.Text = "PC-01";
             // 
-            // tableLayoutPanel22
-            // 
-            this.tableLayoutPanel22.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel22.ColumnCount = 2;
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel22.Controls.Add(this.textBox_Temperature_TS05, 1, 0);
-            this.tableLayoutPanel22.Controls.Add(this.label24, 0, 0);
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(83, 3);
-            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
-            this.tableLayoutPanel22.RowCount = 1;
-            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(719, 65);
-            this.tableLayoutPanel22.TabIndex = 5;
-            // 
-            // textBox_Temperature_TS05
-            // 
-            this.textBox_Temperature_TS05.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Temperature_TS05.Location = new System.Drawing.Point(578, 3);
-            this.textBox_Temperature_TS05.Name = "textBox_Temperature_TS05";
-            this.textBox_Temperature_TS05.Size = new System.Drawing.Size(138, 31);
-            this.textBox_Temperature_TS05.TabIndex = 7;
-            this.textBox_Temperature_TS05.Text = "--";
-            this.textBox_Temperature_TS05.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(3, 3);
-            this.label24.Margin = new System.Windows.Forms.Padding(3);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(569, 25);
-            this.label24.TabIndex = 8;
-            this.label24.Text = "Temperature: ";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -10998,8 +10814,6 @@ namespace Server_GUI
             this.tableLayoutPanel_PC12.PerformLayout();
             this.tableLayoutPanel_PC11.ResumeLayout(false);
             this.tableLayoutPanel_PC11.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel_PC10.ResumeLayout(false);
             this.tableLayoutPanel_PC10.PerformLayout();
             this.tableLayoutPanel_chamber03.ResumeLayout(false);
@@ -11008,8 +10822,6 @@ namespace Server_GUI
             this.tableLayoutPanel_PC09.PerformLayout();
             this.tableLayoutPanel_PC08.ResumeLayout(false);
             this.tableLayoutPanel_PC08.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel_PC07.ResumeLayout(false);
             this.tableLayoutPanel_PC07.PerformLayout();
             this.tableLayoutPanel_chamber02.ResumeLayout(false);
@@ -11018,8 +10830,6 @@ namespace Server_GUI
             this.tableLayoutPanel_PC06.PerformLayout();
             this.tableLayoutPanel_PC05.ResumeLayout(false);
             this.tableLayoutPanel_PC05.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel_PC04.ResumeLayout(false);
             this.tableLayoutPanel_PC04.PerformLayout();
             this.tableLayoutPanel_chamber01.ResumeLayout(false);
@@ -11028,8 +10838,6 @@ namespace Server_GUI
             this.tableLayoutPanel_PC03.PerformLayout();
             this.tableLayoutPanel_PC02.ResumeLayout(false);
             this.tableLayoutPanel_PC02.PerformLayout();
-            this.tableLayoutPanel22.ResumeLayout(false);
-            this.tableLayoutPanel22.PerformLayout();
             this.tableLayoutPanel_PC01.ResumeLayout(false);
             this.tableLayoutPanel_PC01.PerformLayout();
             this.tableLayoutPanel23.ResumeLayout(false);
@@ -11065,9 +10873,6 @@ namespace Server_GUI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
-        public System.Windows.Forms.TextBox textBox_Temperature_TS05;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel23;
         public System.Windows.Forms.TextBox textBox333;
         private System.Windows.Forms.Label label25;
@@ -11255,9 +11060,6 @@ namespace Server_GUI
         public System.Windows.Forms.TextBox textBox277;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        public System.Windows.Forms.TextBox textBox278;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC04;
@@ -11543,9 +11345,6 @@ namespace Server_GUI
         public System.Windows.Forms.TextBox textBox777;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        public System.Windows.Forms.TextBox textBox778;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC10;
@@ -11719,9 +11518,6 @@ namespace Server_GUI
         public System.Windows.Forms.TextBox textBox611;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        public System.Windows.Forms.TextBox textBox612;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PC07;

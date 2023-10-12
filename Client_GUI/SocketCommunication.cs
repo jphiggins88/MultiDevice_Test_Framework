@@ -19,42 +19,6 @@ namespace Client_GUI
 {
     public class SocketCommunication
     {
-        public static void LogData(string path, string data)
-        {
-            FileStream fileStream;
-            StreamWriter streamWriter;
-
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(path));
-
-                if (System.IO.File.Exists(path))
-                {
-                    fileStream = new FileStream(path, FileMode.Append, FileAccess.Write);
-                }
-                else
-                {
-                    fileStream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
-                }
-
-                streamWriter = new StreamWriter(fileStream);
-                streamWriter.WriteLine(data);
-                streamWriter.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Cannot Open File " + path + ex);
-                return;
-            }
-        }
-
-        public static void VerboseLog_sockets(string data)
-        {
-            string filePath = Application.StartupPath + "\\" + "SocketLogs" + "\\SocketLog_test.log";
-            LogData(filePath, data);
-        }
-
-
         public class ThisClientInfo
         {
             // GUI ID will be assigned serverside and changed here
@@ -86,7 +50,7 @@ namespace Client_GUI
                                                 + thisIPaddress + ";; "
                                                 + dateAndTimeOfConnection + ";; "
                                                 + "<pn>" + programName + ";; "
-                                                + "<on>" + pcGroupNumber + ";; "
+                                                + "<gn>" + pcGroupNumber + ";; "
                                                 + "<cn>" + compNumber + ";; "
                                                 + "<slt>" + slotNumber + ";; "
                                                 + "<tv>" + testAppVersion + ";; "
@@ -104,7 +68,7 @@ namespace Client_GUI
                                                 + GUI_ID + ";; "
                                                 + thisIPaddress + ";; "
                                                 + dateAndTimeOfConnection + ";; "
-                                                + "<on>" + pcGroupNumber + ";; "
+                                                + "<gn>" + pcGroupNumber + ";; "
                                                 + "<cn>" + compNumber + ";; "
                                                 + "<slt>" + slotNumber + ";; "
                                                 + socketEOFtag;
@@ -569,7 +533,7 @@ namespace Client_GUI
                 string message = "<UPDATE>;; " + thisClient.GUI_ID + ";; " +
                     "<pn>" + testInformation.client_programName + ";; " +
                     "<sn>" + testInformation.client_serialNum + ";; " +
-                    "<on>" + testInformation.client_pcGroupNumber + ";; " +
+                    "<pg>" + testInformation.client_pcGroupNumber + ";; " +
                     "<cn>" + testInformation.client_compNum + ";; " +
                     "<slt>" + testInformation.client_slotNum + ";; " +
                     "<tv>" + testInformation.client_testAppVersion + ";; " +
@@ -592,7 +556,7 @@ namespace Client_GUI
                 // The server will handle filtering values based on <##> tags. The message does not have to be sent in this order.
                 // Only the location of the client ID matters. In this case, it is element [1] in the string array once it is split.
                 string message = "<STATUS>;; " + thisClient.GUI_ID + ";; " +
-                    "<on>" + testInformation.client_pcGroupNumber + ";; " +
+                    "<pg>" + testInformation.client_pcGroupNumber + ";; " +
                     "<cn>" + testInformation.client_compNum + ";; " +
                     "<slt>" + testInformation.client_slotNum + ";; " +
                     "<sts>" + testInformation.client_status + ";; " +
