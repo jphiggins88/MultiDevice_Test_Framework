@@ -34,15 +34,15 @@ namespace Server_GUI
     {
         public const string TIME_MS = "HH:mm:ss.ffffff";
 
-        public const string TAG_PROGRAM_NAME = "<pn>";
         public const string TAG_TESTGROUP_NUM = "<gn>";
         public const string TAG_COMPUTER_NUM = "<cn>";
         public const string TAG_SLOT_NUM = "<slt>";
+
         public const string TAG_TESTAPP_VERSION = "<tv>";
 
+        public const string TAG_PROGRAM_NAME = "<pg>";		//add this
         public const string TAG_TEST_TYPE = "<tt>";
         public const string TAG_TEST_NAME = "<tn>";
-
         public const string TAG_SERIAL_NUM = "<sn>";
         public const string TAG_STATUS = "<sts>";
         public const string TAG_PERCENT = "<pct>";
@@ -806,7 +806,8 @@ namespace Server_GUI
 
         #region message parsing
 
-        public static bool LookForTagInMessageAndSetClientData(Client client ,string stringSlice, string tag)
+
+        public static void SetClientInfoAccordingToTagsFoundInMessage(Client client ,string stringSlice, string tag)
         {
             bool needToSendEmail = false;
             if (stringSlice.StartsWith(tag))
@@ -830,6 +831,9 @@ namespace Server_GUI
                     case (TAG_TEST_TYPE):
                         client._testType = newString;
                         break;
+                    case (TAG_PROGRAM_NAME):
+                        client._programName = newString;
+                        break;
                     case (TAG_SERIAL_NUM):
                         client._serialNumber = newString;
                         client._serialNumberLastFour = client._serialNumber.Substring(client._serialNumber.Length - 4);
@@ -838,7 +842,7 @@ namespace Server_GUI
                         client._status = newString;
                         if ((newString == "Failed") || (newString == "Unknown"))
                         {
-                            needToSendEmail = true;
+                            client._needToSendEmail = true;
                         }
                         else if (newString == "manualClose")
                         {
@@ -855,26 +859,10 @@ namespace Server_GUI
                         client._descriptionOfState = newString;
                         break;
                     case (TAG_PATH_TO_ERROR_LOG):
-                        client._ = newString;
-                        break;
-                    case (TAG_ACK_SPECIFIER):
-                        client. = newString;
-                        break;
-                    case (TAG_UPDATE_SPECIFIER):
-                        client. = newString;
-                        break;
-                    case (TAG_STATUS_SPECIFIER):
-                        client. = newString;
-                        break;
-                    case (TAG_FILETRANSFER_SPECIFIER):
-                        client. = newString;
-                        break;
-                    case (TAG_FILETRANSFER_OW_SPECIFIER):
-                        client. = newString;
+                        client._pathToErrorLog = newString;
                         break;
                 }
             }
-            return needToSendEmail;
         }
 
 
@@ -889,269 +877,214 @@ namespace Server_GUI
 
                 // Check for end-of-file tag. If it is not there, read more data.  
                 content = state.sb.ToString();
-                VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Read " + content.Length + " bytes from socket.\r\n");
-                VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Data <-- " + content + "\r\n");
-
-                // If it's the FIRST message after connection, then the "<CLIENTINFO>" tag will be present.
-                // we need to read this info and extract information about the testApp version, computer#, testGroup#, testProgram
-                if (content.StartsWith(TAG_CLIENTINFO_SPECIFIER))
-                {
-                    // add the socket object that is now connected to the new client to the list of clients.
-                    // Set the StateObjects uniqueID to the same uniqueID given to the Client object.
-                    // This ID will be used for identifying and disconnecting/removing sockets/clients.
-                    state.uniqueSocketID = mainClientController.AddClient(handler);
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected\tAdded this socket (" + state.uniqueSocketID + ") to connected client list\r\n");
-
-                    // If the client count is exactly 1 after just adding the client using the line above, then it means
-                    // the client count is not empty so the heartbeat timer should be started. It also means this is not 
-                    // the 2nd, 3rd,....or 100th client, in which case, the timer would already be started.
-                    // Start the heart beat timer
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected\tChecking if this is the 1st and only socket/client connected\r\n");
-                    if (mainClientController.Clients.Count == 1)
-                    {
-                        heartBeatTimer_serverSide.Enabled = true;
-                        heartBeatTimer_serverSide.AutoReset = true;
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected\t This is the only client detected. Starting Server-Heartbeat timer\r\n");
-                        heartBeatTimer_serverSide.Start();
-                    }
-
-                    // send the newly added client the unique ID assigned by the server.
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected\tsending this client its Server generated ID (" + state.uniqueSocketID + ")\r\n");
-                    Send(handler, "<ID>" + state.uniqueSocketID.ToString() + TAG_END_OF_FILE);
-
-
-                    // The client info message will arrive in this format:
-                    //<CLIENTINFO>;; thisIPaddress;; dateAndTimeOfConnection;; programName;; compNumber;; testGroupNumber;; testAppVersion;; <EOF>;
-                    //Parse out the program name, computer number, testGroup number, and testApp version
-                    // The device Serial Number and test type (VC-voltagecheck, BT-boottest, PT-powertest...) will be sent later once the individual testApp GUI retrievs it from the device
-
-                    string[] contentSplit = content.Split(";; ");
-
-                    // loop through all the clients in the list and look for the last client connected
-                    for (int i = 0; i < mainClientController.Clients.Count; i++)
-                    {
-                        // if the unique id of the client matches the last client connected...
-                        if (mainClientController.Clients[i]._unique_Id == mainClientController.lastClientConnectedID)
-                        {
-                            // designate that Client as the last client connected
-                            lastClientConnected = mainClientController.Clients[i];
-
-                            //loop through the string array and look for specific tags to parse information
-                            for (int j = 0; j < contentSplit.Length; j++)
-                            {
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_PROGRAM_NAME);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_TESTGROUP_NUM);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_COMPUTER_NUM);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_SLOT_NUM);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_TESTAPP_VERSION);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_SERIAL_NUM);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_STATUS);
-                                LookForTagInMessageAndSetClientData(lastClientConnected, contentSplit[j], TAG_PERCENT);
-
-                                {
-                                    /*Old Method
-                                    // if the <pn> tag is detected, then delete that tag and set the Clients programName
-                                    // <pn> stands for program name
-                                    if (contentSplit[j].StartsWith("<pn>"))
-                                    {
-                                        //contentSplit[j].Replace("<pn>", "");
-                                        string newString = contentSplit[j].Remove(0, 4);
-                                        lastClientConnected._programName = newString;
-                                    }
-                                    // <gn> stands for testGroupNumber number
-                                    else if (contentSplit[j].StartsWith("<gn>"))
-                                    {
-                                        //contentSplit[j].Replace("<gn>", "");
-                                        string newString = contentSplit[j].Remove(0, 4);
-                                        lastClientConnected._testGroupNum = newString;
-                                    }
-
-                                    // <cn> stands for computer number
-                                    else if (contentSplit[j].StartsWith("<cn>"))
-                                    {
-                                        //contentSplit[j].Replace("<cn>", "");
-                                        string newString = contentSplit[j].Remove(0, 4);
-                                        lastClientConnected._compNumber = newString;
-                                    }
-                                    // <slt> stands for Slot Number
-                                    else if (contentSplit[j].StartsWith("<slt>"))
-                                    {
-                                        //contentSplit[j].Replace("<tv>", "");
-                                        string newString = contentSplit[j].Remove(0, 5);
-                                        lastClientConnected._slotNumber = newString;
-                                    }
-                                    // <tv> stands for Torture stand version
-                                    else if (contentSplit[j].StartsWith("<tv>"))
-                                    {
-                                        //contentSplit[j].Replace("<tv>", "");
-                                        string newString = contentSplit[j].Remove(0, 4);
-                                        lastClientConnected._testAppVersion = newString;
-                                    }
-                                    // <sn> stands for serial number
-                                    else if (contentSplit[j].StartsWith("<sn>"))
-                                    {
-                                        //contentSplit[j].Replace("<tv>", "");
-                                        string newString = contentSplit[j].Remove(0, 4);
-                                        lastClientConnected._serialNumber = newString;
-                                    }
-                                    // <sts> stands for status
-                                    else if (contentSplit[j].StartsWith("<sts>"))
-                                    {
-                                        //contentSplit[j].Replace("<tv>", "");
-                                        string newString = contentSplit[j].Remove(0, 5);
-                                        lastClientConnected._status = newString;
-                                    }
-                                    // <pct> stands for percent
-                                    else if (contentSplit[j].StartsWith("<pct>"))
-                                    {
-                                        //contentSplit[j].Replace("<tv>", "");
-                                        string newString = contentSplit[j].Remove(0, 5);
-                                        lastClientConnected._percent = newString;
-                                    }
-                                     */
-                                }
-                            }
-
-                            // TODO make a member funtion of Client to concatenate all information within the object itself and return it as shown below.
-                            string connectedClientInformation = "ClientID:: " + lastClientConnected._unique_Id.ToString() + " :: " +
-                                                            lastClientConnected._thisIPaddress.ToString() + " :: " +
-                                                            lastClientConnected._dateAndTimeOfConnection.ToString() + " :: " +
-                                                            lastClientConnected._programName + " :: " +
-                                                            lastClientConnected._testGroupNumber + " :: " +
-                                                            lastClientConnected._compNumber + " :: " +
-                                                            lastClientConnected._slotNumber + " :: " +
-                                                            lastClientConnected._testAppVersion + " :: " +
-                                                            lastClientConnected._serialNumber + " :: " +
-                                                            lastClientConnected._status + " :: " +
-                                                            lastClientConnected._percent;
-
-                            VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected\tParsed connected Client Info from last client payload: " + connectedClientInformation + "\r\n");
-
-                            // update the connectedClient Listbox in the GUI
-                            VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected, calling OnUpdateConnectedClientsList, passing in connected Client Information Above\tUpdating connected client List in GUI\r\n");
-                            OnUpdateConnectedClientsList(connectedClientInformation);
-
-                            VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected, calling OnUpdateConnectedClientsGridView, passing in CustomEventArgs2\tUpdating connected client GridView in GUI\r\n");
-                            OnUpdateConnectedClientsGridView(new CustomEventArgs2(
-                                                            lastClientConnected._unique_Id.ToString(), 
-                                                            lastClientConnected._serialNumber,
-                                                            lastClientConnected._dateAndTimeOfConnection.ToString(),
-                                                            lastClientConnected._testGroupNumber,
-                                                            lastClientConnected._compNumber,
-                                                            lastClientConnected._slotNumber,
-                                                            lastClientConnected._programName,
-                                                            lastClientConnected._testAppVersion,
-                                                            lastClientConnected._status,
-                                                            lastClientConnected._percent
-                                                            ));
-                            break;
-                        }
-                    }
-                }
 
                 // If the End of File tag is detected, then read the message payload
                 if (content.IndexOf(TAG_END_OF_FILE) > -1)
                 {
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected\tpayload not empty\r\n");
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Read " + content.Length + " bytes from socket.\r\n");
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Data <-- " + content + "\r\n");
 
-                    // Acknowledge the message by sending back <ACK> to the server. If the message itself is an <ACK> response, then do not send <ACK> back
-                    if (!content.StartsWith(TAG_ACK_SPECIFIER))
-                    {
-                        // Acknowledge the message by sending back <ACK> to the client
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: No <ACK> detected\tNot an ACK from client, so Sending <ACK> to client\r\n");
-                        Send(handler, TAG_ACK_SPECIFIER + TAG_END_OF_FILE);
-                    }
-
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected\tReading message payload\r\n");
-                    OnReadFromClient(new CustomEventArgs(handler.Handle.ToString(), result, "", content));  // Why is this called again. isn't everything read
-
-                    if(content.StartsWith(TAG_SERIAL_NUM))
-                    {
-                        string newString = content.Remove(0, 4);
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <sn> detected\tUpdating SN\r\n");
-                        OnUpdateSerialNumber(newString);
-                    }
                     if (content.StartsWith(TAG_ACK_SPECIFIER))
                     {
-                        // The last message sent from the server to the client was acknowledged by the the client
-                        // Stop the Acknowledgement timer so the timer elapsed interrupt will not be called
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <ACK> detected\tstopping ACK timer\r\n");
                         ackTimer.Stop();
-
-                        // log that the last message sent was acknowledged
-                        Debug.WriteLine("Server::  <ACK> received from client");
                     }
-                    if (content.StartsWith(TAG_UPDATE_SPECIFIER))
+                    else if (!content.StartsWith(TAG_ACK_SPECIFIER))
                     {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <UPDATE> detected\tParsing Initial Update\r\n");
+                        Send(handler, TAG_ACK_SPECIFIER + TAG_END_OF_FILE);
 
-                        ParseInitialUpdateOfTest(content);
-                    }
-                    if (content.StartsWith(TAG_STATUS_SPECIFIER))
-                    {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <STATUS> detected\tParsing Status Update\r\n");
-                        ParseStatusOfTest(content);
-                    }
-                    if (content.StartsWith(TAG_FILETRANSFER_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked)
-                    {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <FILETRANSFER> detected\tCopying logs to shared folder\r\n");
-
-                        CopyLogFilesToOneDriveSharedFolder(content, false);
-                    }
-                    if (content.StartsWith(TAG_FILETRANSFER_OW_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked) 
-                    {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <FILETRANSFER_OW> detected\tCopying/overwriting logs to shared folder\r\n");
-
-                        CopyLogFilesToOneDriveSharedFolder(content, true);
-                    }
-
-                    // If the client is sending a PC/Slot update, then parse the data and update the GUI.
-                    if (content.StartsWith(TAG_LOCATION_SPECIFIER))
-                    {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <LOCATION> detected\tParsing Location\r\n");
-
-                        ParseLocationOfTests(content);
-                    }
-
-                    // If the received message is a <HB> for heart beat
-                    if (content.StartsWith(TAG_HEARTBEAT_SPECIFIER))
-                    {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <HB> detected\tSetting this client's _hasHearBeat to True\r\n");
-                        string newString = content.Remove(0, 4);
-                        char[] trimChars = { ' ', ':', ':', ' ', '<', 'E', 'O', 'F', '>' };
-                        string idOfCLient = newString.TrimEnd(trimChars);
-
-                        // Loop through the client list to find the correct client and set it's heart beat to true
-                        for (int i = 0; i < mainClientController.Clients.Count; i++)
+                        if (content.StartsWith(TAG_HEARTBEAT_SPECIFIER))
                         {
-                            if (mainClientController.Clients[i]._unique_Id.ToString() == idOfCLient)
-                            {
-                                mainClientController.Clients[i]._hasHeartBeat = true;
-                                VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <HB> detected\tThis client's _hasHearBeat set to True\r\n");
+                            string newString = content.Remove(0, 4);
+                            char[] trimChars = { ' ', ':', ':', ' ', '<', 'E', 'O', 'F', '>' };
+                            string idOfCLient = newString.TrimEnd(trimChars);
 
-                                break;
+                            // Loop through the client list to find the correct client and set it's heart beat to true
+                            for (int i = 0; i < mainClientController.Clients.Count; i++)
+                            {
+                                if (mainClientController.Clients[i]._unique_Id.ToString() == idOfCLient)
+                                {
+                                    mainClientController.Clients[i]._hasHeartBeat = true;
+                                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: <HB> detected\tThis client's _hasHearBeat set to True\r\n");
+
+                                    break;
+                                }
                             }
                         }
+                        else if (content.StartsWith(TAG_SERIAL_NUM))
+                        {
+                            string newString = content.Remove(0, 4);
+                            OnUpdateSerialNumber(newString);
+                        }
+                        else if (content.StartsWith(TAG_CLIENTINFO_SPECIFIER))
+                        {
+                            ParseClientInfo(handler, state, content);
+                        }
+                        else if (content.StartsWith(TAG_UPDATE_SPECIFIER))
+                        {
+                            ParseInitialUpdateOfTest(content);
+                        }
+                        else if (content.StartsWith(TAG_STATUS_SPECIFIER))
+                        {
+                            ParseStatusOfTest(content);
+                        }
+                        else if (content.StartsWith(TAG_FILETRANSFER_OW_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked)
+                        {
+                            CopyLogFilesToOneDriveSharedFolder(content, true);
+                        }
+                        else if (content.StartsWith(TAG_FILETRANSFER_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked)
+                        {
+                            CopyLogFilesToOneDriveSharedFolder(content, false);
+                        }
+                        else if (content.StartsWith(TAG_LOCATION_SPECIFIER))
+                        {
+                            ParseLocationOfTests(content);
+                        }
+
+                        OnReadFromClient(new CustomEventArgs(handler.Handle.ToString(), result, "", content));
                     }
+
                     //clear the last message so only the new message is recorded
                     state.sb.Clear();
-
                     //keep listening for incoming messages
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: (<EOF> > -1) detected: BeginReceive\tKeep listening for incoming messages\r\n");
                     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
                 }
                 else
                 {
-                    // Not all data received. Get more.  
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <EOF> NOT detected: BeginReceive\tPartial payload received. Keep listening for the rest of the incoming messages\r\n");
+                    // Not all data received. Get tthe rest.  
                     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
                 }
             }
         } 
         
-        
+        public void ParseClientInfo(Socket handler, StateObject state, string content)
+        {
+            state.uniqueSocketID = mainClientController.AddClient(handler);
+
+            if (mainClientController.Clients.Count == 1)
+            {
+                heartBeatTimer_serverSide.Enabled = true;
+                heartBeatTimer_serverSide.AutoReset = true;
+                heartBeatTimer_serverSide.Start();
+            }
+
+            Send(handler, "<ID>" + state.uniqueSocketID.ToString() + TAG_END_OF_FILE);
+            string[] contentSplit = content.Split(";; ");
+
+            for (int i = 0; i < mainClientController.Clients.Count; i++)
+            {
+                if (mainClientController.Clients[i]._unique_Id == mainClientController.lastClientConnectedID)
+                {
+                    lastClientConnected = mainClientController.Clients[i];
+                    for (int j = 0; j < contentSplit.Length; j++)
+                    {
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_PROGRAM_NAME);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_TESTGROUP_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_COMPUTER_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_SLOT_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_TESTAPP_VERSION);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_SERIAL_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_STATUS);
+                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_PERCENT);
+
+                        /*Old Method
+                        // if the <pn> tag is detected, then delete that tag and set the Clients programName
+                        // <pn> stands for program name
+                        if (contentSplit[j].StartsWith("<pn>"))
+                        {
+                            //contentSplit[j].Replace("<pn>", "");
+                            string newString = contentSplit[j].Remove(0, 4);
+                            lastClientConnected._programName = newString;
+                        }
+                        // <gn> stands for testGroupNumber number
+                        else if (contentSplit[j].StartsWith("<gn>"))
+                        {
+                            //contentSplit[j].Replace("<gn>", "");
+                            string newString = contentSplit[j].Remove(0, 4);
+                            lastClientConnected._testGroupNum = newString;
+                        }
+
+                        // <cn> stands for computer number
+                        else if (contentSplit[j].StartsWith("<cn>"))
+                        {
+                            //contentSplit[j].Replace("<cn>", "");
+                            string newString = contentSplit[j].Remove(0, 4);
+                            lastClientConnected._compNumber = newString;
+                        }
+                        // <slt> stands for Slot Number
+                        else if (contentSplit[j].StartsWith("<slt>"))
+                        {
+                            //contentSplit[j].Replace("<tv>", "");
+                            string newString = contentSplit[j].Remove(0, 5);
+                            lastClientConnected._slotNumber = newString;
+                        }
+                        // <tv> stands for Torture stand version
+                        else if (contentSplit[j].StartsWith("<tv>"))
+                        {
+                            //contentSplit[j].Replace("<tv>", "");
+                            string newString = contentSplit[j].Remove(0, 4);
+                            lastClientConnected._testAppVersion = newString;
+                        }
+                        // <sn> stands for serial number
+                        else if (contentSplit[j].StartsWith("<sn>"))
+                        {
+                            //contentSplit[j].Replace("<tv>", "");
+                            string newString = contentSplit[j].Remove(0, 4);
+                            lastClientConnected._serialNumber = newString;
+                        }
+                        // <sts> stands for status
+                        else if (contentSplit[j].StartsWith("<sts>"))
+                        {
+                            //contentSplit[j].Replace("<tv>", "");
+                            string newString = contentSplit[j].Remove(0, 5);
+                            lastClientConnected._status = newString;
+                        }
+                        // <pct> stands for percent
+                        else if (contentSplit[j].StartsWith("<pct>"))
+                        {
+                            //contentSplit[j].Replace("<tv>", "");
+                            string newString = contentSplit[j].Remove(0, 5);
+                            lastClientConnected._percent = newString;
+                        }
+                            */
+                    }
+
+                    /* OLD Method
+                    // TODO make a member funtion of Client to concatenate all information within the object itself and return it as shown below.
+                    string connectedClientInformation = "ClientID:: " + lastClientConnected._unique_Id.ToString() + " :: " +
+                                                    lastClientConnected._thisIPaddress.ToString() + " :: " +
+                                                    lastClientConnected._dateAndTimeOfConnection.ToString() + " :: " +
+                                                    lastClientConnected._programName + " :: " +
+                                                    lastClientConnected._testGroupNumber + " :: " +
+                                                    lastClientConnected._compNumber + " :: " +
+                                                    lastClientConnected._slotNumber + " :: " +
+                                                    lastClientConnected._testAppVersion + " :: " +
+                                                    lastClientConnected._serialNumber + " :: " +
+                                                    lastClientConnected._status + " :: " +
+                                                    lastClientConnected._percent;
+                    OnUpdateConnectedClientsList(connectedClientInformation);
+                    */
+
+                    OnUpdateConnectedClientsList(lastClientConnected.ConcatenateClientInfo());
+
+                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected, calling OnUpdateConnectedClientsGridView, passing in CustomEventArgs2\tUpdating connected client GridView in GUI\r\n");
+
+                    OnUpdateConnectedClientsGridView(new CustomEventArgs2(
+                                                    lastClientConnected._unique_Id.ToString(),
+                                                    lastClientConnected._serialNumber,
+                                                    lastClientConnected._dateAndTimeOfConnection.ToString(),
+                                                    lastClientConnected._testGroupNumber,
+                                                    lastClientConnected._compNumber,
+                                                    lastClientConnected._slotNumber,
+                                                    lastClientConnected._programName,
+                                                    lastClientConnected._testAppVersion,
+                                                    lastClientConnected._status,
+                                                    lastClientConnected._percent
+                                                    ));
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// Receives an update of a test device from a client once the client has completed a cycle and 
         /// can send the relevant information that it did not have upon connection. 
@@ -1171,17 +1104,17 @@ namespace Server_GUI
                     //loop through the string array and look for specific tags to parse information
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_PROGRAM_NAME);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TESTAPP_VERSION);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TEST_NAME);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_SERIAL_NUM);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_STATUS);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_PERCENT);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_SLOT_NUM);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TEST_TYPE);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PROGRAM_NAME);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTAPP_VERSION);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_NAME);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SERIAL_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_STATUS);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PERCENT);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SLOT_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_TYPE);
 
                         {
                             /* Old Method
@@ -1263,6 +1196,7 @@ namespace Server_GUI
                         }
                     }
 
+                    /* Old Method
                     string connectedClientInformation = "ClientID:: " + targetClient._unique_Id.ToString() + " :: " +
                                                         targetClient._thisIPaddress.ToString() + " :: " +
                                                         targetClient._dateAndTimeOfConnection.ToString() + " :: " +
@@ -1274,12 +1208,10 @@ namespace Server_GUI
                                                         targetClient._serialNumber + " :: " +
                                                         targetClient._status + " :: " +
                                                         targetClient._percent;
-
-
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: connectedClientInformation string created: " + connectedClientInformation + "\r\n");
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: calling OnUpdateConnectedClientsList, passing in connected Client Information Above\tUpdating connected client List in GUI\r\n");
-
                     OnUpdateConnectedClientsList(connectedClientInformation);
+                    */
+
+                    OnUpdateConnectedClientsList(targetClient.ConcatenateClientInfo());
 
                     int rows = this.mMainForm.gridView_clientQueue.Rows.Count;
                     string clientIdToLookFor = targetClient._unique_Id.ToString();
@@ -1355,8 +1287,8 @@ namespace Server_GUI
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseStatusOfTest: status: " + status + "\r\n");
             string[] contentSplit = status.Split(";; ");
             string clientID = contentSplit[1];
-            bool needToSendEmail = false;
-            string pathToErrorLog = "";
+            //bool needToSendEmail = false;
+            //string pathToErrorLog = "";
 
             for (int i = 0; i < mainClientController.Clients.Count; i++)
             {
@@ -1366,18 +1298,19 @@ namespace Server_GUI
 
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
-                        /*
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
 
-                        needToSendEmail = LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_STATUS); // need to handle conditional
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
 
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_PERCENT);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_SLOT_NUM);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_DESCRIPTION);
-                        LookForTagInMessageAndSetClientData(targetClient, contentSplit[j], TAG_TRANSFER_PATH);
-                         */
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_STATUS);
+
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PERCENT);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SLOT_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_DESCRIPTION);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PATH_TO_ERROR_LOG);
+
+                         /*
                         if (contentSplit[j].StartsWith("<cn>"))
                         {
                             string newString = contentSplit[j].Remove(0, 4);
@@ -1426,6 +1359,7 @@ namespace Server_GUI
                         {
                             pathToErrorLog = contentSplit[j].Remove(0, 5);
                         }
+                        */
                     }
 
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseStatusOfTest: calling OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient, passing in CustomEventArgs4_statusUpdates\r\n");
@@ -1442,10 +1376,10 @@ namespace Server_GUI
                                                        targetClient._manuallyClosed
                                                        ));
 
-                    if(needToSendEmail == true && this.mMainForm.sendEmailOnAlert_checkBox.Checked)
+                    if(targetClient._needToSendEmail == true && this.mMainForm.sendEmailOnAlert_checkBox.Checked)
                      {
-                        SendAlertEmail_AllInfo(targetClient, pathToErrorLog);
-                        needToSendEmail = false;
+                        SendAlertEmail_AllInfo(targetClient, targetClient._pathToErrorLog);
+                        targetClient._needToSendEmail = false;
                     }
 
                     break;
@@ -1472,6 +1406,9 @@ namespace Server_GUI
 
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SLOT_NUM);
+                        /* Old Method
                         if (contentSplit[j].StartsWith("<cn>"))
                         {
                             string newString = contentSplit[j].Remove(0, 4);
@@ -1482,6 +1419,7 @@ namespace Server_GUI
                             string newString = contentSplit[j].Remove(0, 5);
                             targetClient._slotNumber = newString;
                         }
+                        */
                     }
                     break;
                 }
@@ -1489,13 +1427,6 @@ namespace Server_GUI
         }
 
         #endregion message parsing
-
-
-
-
-
-
     }
-
 }
  

@@ -21,24 +21,30 @@ namespace Server_GUI
         public int _unique_Id { get; set; }
         public string _thisIPaddress { get; set; }
         public string _dateAndTimeOfConnection { get; set; }
-        public string _programName { get; set; }
-        public string _compNumber { get; set; }
+
         public string _testGroupNumber { get; set; }
+        public string _compNumber { get; set; }
         public string _slotNumber { get; set; }
+
         public string _testAppVersion { get; set; }
+
+        public string _testType { get; set; }
+        public string _testName { get; set; }
+
+        public string _programName { get; set; }
         public string _serialNumber { get; set; }
         public string _serialNumberLastFour { get; set; }
+        public string _status { get; set; }
+        public string _percent { get; set; }
+        public string _cycleCount { get; set; }
+        public string _descriptionOfState { get; set; }
+        public string _pathToErrorLog { get; set; }			// add this
+
         public bool _hasHeartBeat { get; set; }
         public bool _isNewClient_ignoreHeartBeatOneTime { get; set; }
         public bool _isDead { get; set; }
-        public string _status { get; set; }
-        public string _testName { get; set; }
-        public string _percent { get; set; }
-        public string _cycleCount { get; set; }
-        public string _testType { get; set; }
-        public string _descriptionOfState { get; set; }
-
         public bool _manuallyClosed { get; set; }
+        public bool _needToSendEmail { get; set; }
 
         public Client(Socket socket, int id, int unique_Id)
         {
@@ -60,6 +66,23 @@ namespace Server_GUI
             // Used a quick flag to tell if the client should be removed
             _isDead = false;
             _manuallyClosed = false;
+            _needToSendEmail = false;
+        }
+
+        public string ConcatenateClientInfo()
+        {
+            string connectedClientInformation = "ClientID:: " + _unique_Id.ToString() + " :: " +
+                                                    _thisIPaddress.ToString() + " :: " +
+                                                    _dateAndTimeOfConnection.ToString() + " :: " +
+                                                    _programName + " :: " +
+                                                    _testGroupNumber + " :: " +
+                                                    _compNumber + " :: " +
+                                                    _slotNumber + " :: " +
+                                                    _testAppVersion + " :: " +
+                                                    _serialNumber + " :: " +
+                                                    _status + " :: " +
+                                                    _percent;
+            return connectedClientInformation;
         }
 
     }

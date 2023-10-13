@@ -38,7 +38,8 @@ namespace Client_GUI
         public Client_GUI()
         {
             InitializeComponent();
-            mAsyncClient = new SocketCommunication.AsynchronousClient();
+            mClientInfo = new ThisClientInfo();
+            mAsyncClient = new SocketCommunication.AsynchronousClient(mClientInfo);
 
             //client.ReadFromServer += WriteToTextBox;
             mAsyncClient.ReadFromServer += WriteToTextBox;
@@ -70,13 +71,15 @@ namespace Client_GUI
 
         // Delegates for socket communication
         public Socket client;
-        public SocketCommunication.AsynchronousClient mAsyncClient;
         public delegate void ReadFromServerDelegate(object sender, string cli);
         public delegate void IDboxUpdateDelegate(object sender, string cli);
         public delegate void button_socket_connect_DisableDelegate(object sender, EventArgs e);
         public delegate void change_textBox_DisconnectedDelegate(object sender, EventArgs e);
 
+        public ThisClientInfo mClientInfo;
+        public SocketCommunication.AsynchronousClient mAsyncClient;
         DeviceTester deviceTest;
+
         protected DataLog dataLog = new DataLog();
 
         public const string TESTAPP_VERSION = "1.0.0";
@@ -590,7 +593,7 @@ namespace Client_GUI
                 this.textBox_clientID.Text = e;
             }
         }
-
+        /*
         private void button_Send_Click_2(object sender, EventArgs e)
         {
             string dataFromTextbox = text_sendBox.Text;
@@ -614,6 +617,7 @@ namespace Client_GUI
                 MessageBox.Show("Send Failed");
             }
         }
+        */
 
         public void change_textBox_Disconnected(object sender, EventArgs e)
         {
@@ -780,7 +784,7 @@ namespace Client_GUI
                 }
                 stopButtonPressed = false;
 
-                deviceTest = new DeviceTester(this);
+                deviceTest = new DeviceTester(this, mAsyncClient, mClientInfo);
 
                 this.workerThread = new Thread(new ThreadStart(deviceTest.MainLoop));
                 this.workerThread.IsBackground = true;
@@ -795,81 +799,6 @@ namespace Client_GUI
                 this.rText_statusOfTest.Text = "Test Manually Stopped";
             }
         }
-    }
-
-
-    //class containing information about this client
-    //coputer number, test group number, TestApplication version, ipaddress,...
-    ////Date and Time connected, TestApp-GUI unique ID (may need to be assigned by Server).
-    public class ThisClientInfo
-    {
-        // GUI ID will be assigned serverside and changed here
-        public string GUI_ID = "unknown ID";
-        public string thisIPaddress = "Ip_handledServerSide";
-        public string dateAndTimeOfConnection = "time_handledServerSide";
-        public string programName = "program_name";
-        public string compNumber = "comp_xx";
-        public string testGroupNumber = "testGroupNumber_xx";
-        public string testAppVersion = "testAppVersion_x.x.xx";
-        public string serialNumber = "ABC123456";
-        public string status = "NA";
-        public string percent = "NA";
-
-        //standard socket End Of File tag. This must be present for the server to accept the message
-        public string socketEOFtag = "<EOF>";
-        public string ackTag = "<ACK>";
-        //Tag to specify client info
-        public string clientINFOtag = "<CLIENTINFO>";
-
-
-        public string AllCLientInfo()
-        {
-            string concatenatedClientInfo = clientINFOtag
-                                            + GUI_ID + ";; "
-                                            + thisIPaddress + ";; "
-                                            + dateAndTimeOfConnection + ";; "
-                                            + "<pn>" + programName + ";; "
-                                            + "<cn>" + compNumber + ";; " 
-                                            + "<gn>" + testGroupNumber + ";; " 
-                                            + "<tv>" + testAppVersion + ";; "
-                                            + "<sn>" + serialNumber + ";; "
-                                            + "<sts>" + status + ";; "
-                                            + "<pct>" + percent + ";; "
-                                            + socketEOFtag;
-
-            return concatenatedClientInfo;
-        }
-
-        public void UpdateDateAndTime()
-        {
-            DateTime timeRightNow = DateTime.Now;
-
-            dateAndTimeOfConnection = timeRightNow.ToString();
-        }
-    }
-
-
-    //TODO move to SoocketCommunication class
-    // State object for receiving data from remote device.  
-    public class StateObject
-    {
-        // Client socket.  
-        public Socket workSocket = null;
-        // Size of receive buffer.  
-        public const int BufferSize = 256;
-        // Receive buffer.  
-        public byte[] buffer = new byte[BufferSize];
-        // Received data string.  
-        public StringBuilder sb = new StringBuilder();
-    }
-
-    //TODO move to SoocketCommunication class
-    /// <summary>
-    /// A class to temporatily hold the socket to give it visibility to other functions
-    /// </summary>
-    public static class TempSocketHolder
-    {
-        public static Socket TempSocket;
     }
 
 }

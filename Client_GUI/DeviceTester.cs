@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace Client_GUI
 {
+
+    
+
+
     public class DeviceTester
     {
         // Misc Objects
@@ -15,6 +19,10 @@ namespace Client_GUI
         protected DataLog dataLog = new DataLog();
         static StreamReader addressReader;
         static Random randomGenerator = new Random();
+
+        public SocketCommunication.AsynchronousClient mAsyncClient;
+        public ThisClientInfo mClientInfo;
+        
 
         // EventArgs
         public CustomEventArgs4 initialTestUpdateInfo;
@@ -53,11 +61,8 @@ namespace Client_GUI
         // Cycle Metrics
         protected int targetCycleCount = 0;
         protected Boolean isFirstCycle = true;
-        protected int totalCycles = 0;
 
-        // Status
-        private string status;
-        protected string Error = "";
+        // Status strrings
         protected const string SUCCESS = "SUCCESS";
         protected const string FAIL = "FAIL";
 
@@ -66,12 +71,35 @@ namespace Client_GUI
         protected string BOOT_TEST = "Boot Test";
         protected string POWER_TEST = "Power Test";
 
+
         // Test device info
-        protected string TsCodeRev;
-        protected string testType;
-        protected string serialNumber = "Not Found Yet";
-        public string modelNumber = "undefined";
+        
+        /*
+        public string pcGroupNumber = "PC group not selected";
+        public string compNumber = "empty";
+        public string slotNumber = "0";
+
         public string programName = "undefined";
+        protected string testAppVersion;
+        protected string serialNumber = "Not Found Yet";
+
+        public double global_PercentComplete = 0.0;
+
+        public string descriptionOfCurrentState = "Nothing to Report";
+        public string statusOfTest = "Not Started";
+
+
+        protected string testType;
+        public string modelNumber = "undefined";
+
+        public static string testGroupName = "testGroupUndefined";
+        public string globalErrorToSendToSocket = "undefined";
+        public string testTypeAbbreviation = "not set";
+        protected int totalCycles = 0;
+        */
+
+        private string status;
+
 
         // Delay Presets for Simulating Tests
         protected int sleepDelay_ms = 500;
@@ -82,46 +110,39 @@ namespace Client_GUI
         public bool FileTransferCommandHasBeenSent = false;
         public bool isInitialTestInfoSentToServer = false;
 
-        // Test Info for Socket Messages
-        public string testTypeAbbreviation = "not set";
-        public string slotNum = "0";
-        //public int comPort = 0;
-        public string compNumber = "empty";
-        public string pcGroupNumber = "PC group not selected";
-        public double global_PercentComplete = 0.0;
-        public string descriptionOfCurrentState = "Nothing to Report";
-        public string statusOfTest = "No Status defined";
-        public static string testGroupName = "testGroupUndefined";
-        public string globalErrorToSendToSocket = "undefined";
+        
 
 
 
-        public DeviceTester(Client_GUI form)
+        public DeviceTester(Client_GUI form, SocketCommunication.AsynchronousClient mAsyncClient, ThisClientInfo mClientInfo)
         {
             this.clientForm = form;
+            this.mAsyncClient = mAsyncClient;
+            this.mClientInfo = mClientInfo;
+
             this.clientForm.stopProcess = false;
             FileTransferCommandHasBeenSent = false;
             this.StartTime = DateTime.Now;
             this.EcdIntervalTime = DateTime.Now;
-            this.testType = "undefined";
-            this.TsCodeRev = this.clientForm.GetLabelText(this.clientForm.lbl_testAppVersionNum);
+            mClientInfo.testType = "undefined";
+            mClientInfo.testAppVersion = this.clientForm.GetLabelText(this.clientForm.lbl_testAppVersionNum);
 
             // Set test type according to radio buttons in the GUI
             if (this.clientForm.rbtn_VC.Checked)
             {
-                this.testType = VOLTAGE_CHECK;
+                mClientInfo.testType = VOLTAGE_CHECK;
             }
             else if (this.clientForm.rbtn_BT.Checked)
             {
-                this.testType = BOOT_TEST;
+                mClientInfo.testType = BOOT_TEST;
             }
             else if (this.clientForm.rbtn_PT.Checked)
             {
-                this.testType = POWER_TEST;
+                mClientInfo.testType = POWER_TEST;
             }
 
             // Change color of the GUI according to test type
-            this.clientForm.SetTestBox(this.testType);
+            this.clientForm.SetTestBox(mClientInfo.testType);
         }
 
 
@@ -132,7 +153,7 @@ namespace Client_GUI
             this.clientForm.UpdateStatus("");
 
             this.clientForm.UpdateStatus("Test Running...\n");
-            totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+            mClientInfo.totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
 
             status = "SUCCESS";
          
@@ -142,7 +163,7 @@ namespace Client_GUI
 
                 SendTestInfoLogCopyCommandToServerIfNotAlreadySent(g_testInfoLogPath, true);
 
-                Log("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + totalCycles.ToString());
+                Log("\r\n" + "Socket Tester: " + CYCLE_COUNT_SEPARATOR + "Socket Tester: " + DateTime.Now.ToString() + " Begin Test Cycle: " + mClientInfo.totalCycles.ToString());
 
 
                 status = RunFakeTests();
@@ -151,7 +172,8 @@ namespace Client_GUI
                 if (this.clientForm.checkBox_forceFailureOnNextCycle.Checked)
                 {
                     status = "Manual Failure";
-                    reportErrors(status);
+                    mClientInfo.statusOfTest = status;
+                    reportErrors(mClientInfo.statusOfTest);
                 }
 
                 // Returning here will prevent all the below code including Check status and Update Server. Is this handled in mainloop
@@ -163,9 +185,9 @@ namespace Client_GUI
 
                 Log("Cycle Complete");
 
-                totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
-                totalCycles++;
-                this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
+                mClientInfo.totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+                mClientInfo.totalCycles++;
+                this.clientForm.SetText(this.clientForm.text_completedCycles, mClientInfo.totalCycles.ToString());
 
                 Log("Checking Status\r\nWaiting for device to be ready");
 
@@ -173,7 +195,7 @@ namespace Client_GUI
                 CalculateEcdCycles();
                 CalcHoursPer1000Cycles();
 
-                CheckTestStatusAndUpdateServer();
+                CheckTestStatusAndUpdateServer();//<STATUS>
 
                 // Clear the status box
                 this.clientForm.UpdateStatus("");
@@ -190,7 +212,8 @@ namespace Client_GUI
             status = FakeTestSioCheck();
             if (status != SUCCESS)
             {
-                reportErrors(status);
+                mClientInfo.statusOfTest = status;
+                reportErrors(mClientInfo.statusOfTest);
                 if (this.clientForm.checkBox_stopOnFailure.Checked)
                 {
                     return status;
@@ -199,7 +222,8 @@ namespace Client_GUI
             status = FakeTestVoltagCheck();
             if (status != SUCCESS)
             {
-                reportErrors(status);
+                mClientInfo.statusOfTest = status;
+                reportErrors(mClientInfo.statusOfTest);
                 if (this.clientForm.checkBox_stopOnFailure.Checked)
                 {
                     return status;
@@ -208,7 +232,8 @@ namespace Client_GUI
             status = FakeTestDeviceCheck();
             if (status != SUCCESS)
             {
-                reportErrors(status);
+                mClientInfo.statusOfTest = status;
+                reportErrors(mClientInfo.statusOfTest);
                 if (this.clientForm.checkBox_stopOnFailure.Checked)
                 {
                     return status;
@@ -230,7 +255,7 @@ namespace Client_GUI
             Thread.Sleep(sleepDelay_ms);
             if (randNum == 1)
             {
-                return status = "Fail during SIO Check";
+                return status = "Fail SIO Check";
             }
 
             Log("SIO check: good\r\n");
@@ -252,7 +277,7 @@ namespace Client_GUI
             Thread.Sleep(sleepDelayL_ms);
             if (randNum == 1)
             {
-                return status = "Fail during Voltage Check";
+                return status = "Fail Voltage Check";
             }
 
             Log("All components good\r\n");
@@ -274,7 +299,7 @@ namespace Client_GUI
             Thread.Sleep(sleepDelay_ms);
             if (randNum == 1)
             {
-                return status = "Fail during Device Check";
+                return status = "Fail Device Check";
             }
 
             Log("device is functioning properly\r\n");
@@ -290,11 +315,11 @@ namespace Client_GUI
 
         private void reportErrors(string failureType)
         {
-            totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
+            mClientInfo.totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles.Text);
 
-            Log("Socket Tester: ERROR - FAILED CYCLE: " + totalCycles);
+            Log("Socket Tester: ERROR - FAILED CYCLE: " + mClientInfo.totalCycles);
 
-            ErrorReport(failureType + " : during test cycle " + totalCycles);
+            ErrorReport(failureType + " : during test cycle " + mClientInfo.totalCycles);
         }
 
         protected void ErrorReport(string message)
@@ -304,14 +329,12 @@ namespace Client_GUI
             this.clientForm.SetText(this.clientForm.text_totalFailures, failures.ToString());
             this.clientForm.SetTextBoxColor(this.clientForm.text_totalFailures, Color.LightCoral);
 
-
-            Error = message;
             string errorLogPath = rootDirectory + "\\Error_Log.log";
             string errorData = DateTime.Now.ToString() + " " + message + "    ";
             string errorSeperator = "\r\n\r\n";
 
-            string cycleData = "Serial Number: " + serialNumber +
-                                " Cycles = " + totalCycles.ToString() +
+            string cycleData = "Serial Number: " + mClientInfo.serialNumber +
+                                " Cycles = " + mClientInfo.totalCycles.ToString() +
                                 " Failures = " + failures.ToString() +
                                 " Status = " + this.clientForm.GetRichText(this.clientForm.rText_statusOfTest);
 
@@ -331,9 +354,9 @@ namespace Client_GUI
 
 
             // for UPDATING the Socket Server
-            globalErrorToSendToSocket = message;
-            statusOfTest = "Failed";
-            this.clientForm.SetText(this.clientForm.text_statusOfTest, statusOfTest);
+            mClientInfo.globalErrorToSendToSocket = message;
+            mClientInfo.statusOfTest = "Failed";
+            this.clientForm.SetText(this.clientForm.text_statusOfTest, mClientInfo.statusOfTest);
             this.clientForm.stopProcess = true;
 
         }
@@ -341,27 +364,27 @@ namespace Client_GUI
         public void GetDeviceInfoFromDevice()
         {
             int randSerialNumber = randomGenerator.Next(100000000, 299999990);
-            serialNumber = randSerialNumber.ToString();
+            mClientInfo.serialNumber = randSerialNumber.ToString();
 
             int randProgramSelector = randomGenerator.Next(0, 4);           //TODO make the max value large enough to include all values in the programName file that is parsed on initialization. <that value + 1> to include the last element.
             //this.clientForm.cBox_programName.SelectedIndex = randProgramSelector;   // Change the combo box selection based on the random number...or do I want to just have the device create a completely random name instead of selecting from the GUI combo box options.
             //this.clientForm.SetComboBoxIndex(randProgramSelector);
             //programName = this.clientForm.cBox_programName.Text;
-            if (randProgramSelector == 0) { programName = "Titan"; }
-            else if (randProgramSelector == 1) { programName = "Europa"; }
-            else if (randProgramSelector == 2) { programName = "Callisto"; }
-            else if (randProgramSelector == 3) { programName = "Ganymede"; }
+            if (randProgramSelector == 0) { mClientInfo.programName = "Titan"; }
+            else if (randProgramSelector == 1) { mClientInfo.programName = "Europa"; }
+            else if (randProgramSelector == 2) { mClientInfo.programName = "Callisto"; }
+            else if (randProgramSelector == 3) { mClientInfo.programName = "Ganymede"; }
 
             int randModelNumber = randomGenerator.Next(100, 499);
-            modelNumber = "PL" + randModelNumber.ToString() + "A";
+            mClientInfo.modelNumber = "PL" + randModelNumber.ToString() + "A";
 
         }
 
         public void PopulateGuiFieldsWithDeviceInfo()
         {
-            this.clientForm.SetText(this.clientForm.text_serialNumber, serialNumber);
-            this.clientForm.SetText(this.clientForm.text_modelNumber, modelNumber);
-            this.clientForm.SetCombo(this.clientForm.cBox_programName, programName);
+            this.clientForm.SetText(this.clientForm.text_serialNumber, mClientInfo.serialNumber);
+            this.clientForm.SetText(this.clientForm.text_modelNumber, mClientInfo.modelNumber);
+            this.clientForm.SetCombo(this.clientForm.cBox_programName, mClientInfo.programName);
         }
 
         /*
@@ -385,45 +408,45 @@ namespace Client_GUI
 
             if (currentPcNameBoxContents != null)
             {
-                compNumber = currentPcNameBoxContents;
+                mClientInfo.compNumber = currentPcNameBoxContents;
 
-                if ((compNumber == "PC-01") || (compNumber == "PC-02") || (compNumber == "PC-03"))
+                if ((mClientInfo.compNumber == "PC-01") || (mClientInfo.compNumber == "PC-02") || (mClientInfo.compNumber == "PC-03"))
                 {
-                    pcGroupNumber = "01";
+                    mClientInfo.pcGroupNumber = "01";
                 }
-                else if ((compNumber == "PC-04") || (compNumber == "PC-05") || (compNumber == "PC-06"))
+                else if ((mClientInfo.compNumber == "PC-04") || (mClientInfo.compNumber == "PC-05") || (mClientInfo.compNumber == "PC-06"))
                 {
-                    pcGroupNumber = "02";
+                    mClientInfo.pcGroupNumber = "02";
                 }
-                else if ((compNumber == "PC-07") || (compNumber == "PC-08") || (compNumber == "PC-09"))
+                else if ((mClientInfo.compNumber == "PC-07") || (mClientInfo.compNumber == "PC-08") || (mClientInfo.compNumber == "PC-09"))
                 {
-                    pcGroupNumber = "03";
+                    mClientInfo.pcGroupNumber = "03";
                 }
-                else if ((compNumber == "PC-10") || (compNumber == "PC-11") || (compNumber == "PC-12"))
+                else if ((mClientInfo.compNumber == "PC-10") || (mClientInfo.compNumber == "PC-11") || (mClientInfo.compNumber == "PC-12"))
                 {
-                    pcGroupNumber = "04";
+                    mClientInfo.pcGroupNumber = "04";
                 }
                 // If compNumber is anything else, including the system obtained name. It will be renamed to "test" when sent to the server
                 else
                 {
                     // Set pcGroupNumber and compNumber to default values of test and PC-01
-                    compNumber = "PC-01";
-                    pcGroupNumber = "01";
+                    mClientInfo.compNumber = "PC-01";
+                    mClientInfo.pcGroupNumber = "01";
                 }
 
             }
             else
             {
                 // Set pcGroupNumber and compNumber to default values of test and PC-01
-                compNumber = "PC-01";
-                pcGroupNumber = "01";
+                mClientInfo.compNumber = "PC-01";
+                mClientInfo.pcGroupNumber = "01";
             }
         }
 
         public void PopulateGuiWithTestInfo()
         {
-            this.clientForm.SetCombo(this.clientForm.cBox_computerName, compNumber);
-            this.clientForm.SetText(this.clientForm.text_pcGroup, pcGroupNumber);
+            this.clientForm.SetCombo(this.clientForm.cBox_computerName, mClientInfo.compNumber);
+            this.clientForm.SetText(this.clientForm.text_pcGroup, mClientInfo.pcGroupNumber);
         }
 
         public static string CheckIfFileExists_LocalSharedFolder()
@@ -447,9 +470,9 @@ namespace Client_GUI
 
         public void PopulateTestInfoLogWithDriveInfo()
         {
-            string genericInfoLogPath = rootDirectory + "\\" + testGroupName + "\\" + serialNumber + "\\TestInfo.log";
+            string genericInfoLogPath = rootDirectory + "\\" + mClientInfo.testGroupName + "\\" + mClientInfo.serialNumber + "\\TestInfo.log";
 
-            string copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\TestInfo.log";
+            string copyToPath = addressOfLocalSharedFolder + "\\" + mClientInfo.testGroupName + "\\" + mClientInfo.serialNumber + "\\TestInfo.log";
 
             // Set the global address to the destination path of the file copied to the shared folder.
             g_testInfoLogPath = copyToPath;
@@ -465,13 +488,13 @@ namespace Client_GUI
                                     "PC running test: " + this.clientForm.GetComboText(this.clientForm.cBox_computerName) + " \r\n" +
                                     "PC Group: " + this.clientForm.GetText(this.clientForm.text_pcGroup) + " \r\n" +
                                     "Test Group ID: " + this.clientForm.GetText(this.clientForm.text_testGroupIdentifier) + " \r\n" +
-                                    "Slot Number: " + slotNum + "\r\n" +
+                                    "Slot Number: " + mClientInfo.slotNumber + "\r\n" +
                                     "---------------------------------------------------------\r\n" +
                                     "ITR: " + this.clientForm.GetText(this.clientForm.text_testGroupIdentifier) + " \r\n" +
                                     "Current Test: " + this.clientForm.text_currentTest.Text + " \r\n" +
                                     "Program Name: " + this.clientForm.GetComboText(this.clientForm.cBox_programName) + " \r\n" +
-                                    "Model Number: " + modelNumber + " \r\n" +
-                                    "Serial Number: " + serialNumber + " \r\n" +
+                                    "Model Number: " + mClientInfo.modelNumber + " \r\n" +
+                                    "Serial Number: " + mClientInfo.serialNumber + " \r\n" +
                                     "Notes: " + this.clientForm.GetRichText(this.clientForm.rText_testNotes) + " \r\n" +
                                     "---------------------------------------------------------\r\n";
 
@@ -550,7 +573,7 @@ namespace Client_GUI
             // Set progress based on CPRT
             if (currentCycleCount > targetCycleCount)
             {
-                global_PercentComplete = 100;
+                mClientInfo.global_PercentComplete = 100;
                 this.clientForm.SetStartButtonColor(Color.LimeGreen);
 
                 this.clientForm.SetProgress(DEFAULT_PROGRESSBAR_MAX);
@@ -559,10 +582,10 @@ namespace Client_GUI
 
             else
             {
-                global_PercentComplete = ((double)currentCycleCount / (double)targetCycleCount) * DEFAULT_PROGRESSBAR_MAX;
+                mClientInfo.global_PercentComplete = ((double)currentCycleCount / (double)targetCycleCount) * DEFAULT_PROGRESSBAR_MAX;
 
-                this.clientForm.SetProgress((int)global_PercentComplete);
-                this.clientForm.SetText(this.clientForm.text_progress, global_PercentComplete.ToString("0.0"));
+                this.clientForm.SetProgress((int)mClientInfo.global_PercentComplete);
+                this.clientForm.SetText(this.clientForm.text_progress, mClientInfo.global_PercentComplete.ToString("0.0"));
             }
         }
 
@@ -575,7 +598,7 @@ namespace Client_GUI
             double hoursPer1000Cycles;
 
             // only calculate every x cycles, where x is defined by HOURS_PER_1000_CYCLES_INTERVAL
-            if (totalCycles % HOURS_PER_1000_CYCLES_INTERVAL == 0)
+            if (mClientInfo.totalCycles % HOURS_PER_1000_CYCLES_INTERVAL == 0)
             {
                 timeElapsed = (DateTime.Now - HoursPer1000CyclesTime);
 
@@ -622,19 +645,19 @@ namespace Client_GUI
         {
             this.CurrentDay = DateTime.Today;
 
-            logPath = rootDirectory + "\\" + testGroupName + "\\" + "SN_Unknown" + "\\" + logFilePrefix + logFileName + ".log";
+            logPath = rootDirectory + "\\" + mClientInfo.testGroupName + "\\" + "SN_Unknown" + "\\" + logFilePrefix + logFileName + ".log";
 
-            if ((serialNumber != null) && (copyToPath == null))
+            if ((mClientInfo.serialNumber != null) && (copyToPath == null))
             {
                 // We need to initialize the copyToPath to something right away.
                 // This global variable will be used for sending error messages to the server.
-                copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\" + logFilePrefix + logFileName + ".log";
+                copyToPath = addressOfLocalSharedFolder + "\\" + mClientInfo.testGroupName + "\\" + mClientInfo.serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
             }
 
             // If the drive SN has been read and logging is not being done in the Application Startup Path.
             // Check if the date has changed to determine if the log file name should be changed.
-            if ((serialNumber != null) && (this.CurrentDay != this.DayOfLastCycle))
+            if ((mClientInfo.serialNumber != null) && (this.CurrentDay != this.DayOfLastCycle))
             {
                 ChangeLogNameOnDayChange();
             }
@@ -655,7 +678,7 @@ namespace Client_GUI
         /// </summary>
         protected void ChangeLogNameOnDayChange()
         {
-            copyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" + serialNumber + "\\" + logFilePrefix + logFileName + ".log";
+            copyToPath = addressOfLocalSharedFolder + "\\" + mClientInfo.testGroupName + "\\" + mClientInfo.serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
             // Transfer  logs to the shared folder.
             // Designate the now-completed log as the log that needs to be transferred to the LAN shared folder.
@@ -666,7 +689,7 @@ namespace Client_GUI
             logFileName = DateToFilename(this.CurrentDay.ToString());
 
             // Change the path to reflect the new filename.
-            logPath = rootDirectory + "\\" + testGroupName + "\\" + serialNumber + "\\" + logFilePrefix + logFileName + ".log";
+            logPath = rootDirectory + "\\" + mClientInfo.testGroupName + "\\" + mClientInfo.serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
             // update the dayOfLastCycle for future comparisons. If It's a new day, make this the new standard to test against.
             this.DayOfLastCycle = this.CurrentDay;
@@ -717,12 +740,12 @@ namespace Client_GUI
         /// <param name="sndOverwriteCmd"></param>
         public void SendTestInfoLogCopyCommandToServerIfNotAlreadySent(string destPath, bool sndOverwriteCmd)
         {
-            if (clientForm.mAsyncClient.isConnectedToServer == true && FileTransferCommandHasBeenSent == false)
+            if (mAsyncClient.isConnectedToServer == true && FileTransferCommandHasBeenSent == false)
             {
                 // Send a message to the server telling it to copy the file that was just copied to the shared folder on the LAN and copy it to the shared OneDrive folder.
                 // Note the destinationPath becomes the sourcePath for the 2nd file transfer that takes place between the Server and the shared OneDrive folder.
                 // The "destinationPath" argument being passed in becomes the "sourcePath" listed in the function's definition.
-                clientForm.mAsyncClient.SendFileTransferCommandToServer(destPath, sndOverwriteCmd);
+                mAsyncClient.SendFileTransferCommandToServer(destPath, sndOverwriteCmd);
                 FileTransferCommandHasBeenSent = true;
             }
         }
@@ -736,12 +759,12 @@ namespace Client_GUI
         /// <param name="sndOverwriteCmd"></param>
         public void SendDailyLogCopyCommandToServer(string destPath, bool sndOverwriteCmd)
         {
-            if (clientForm.mAsyncClient.isConnectedToServer == true)
+            if (mAsyncClient.isConnectedToServer == true)
             {
                 // Send a message to the server telling it to copy the file that was just copied to the shared folder on the LAN and copy it to the shared OneDrive folder.
                 // Note the destinationPath becomes the sourcePath for the 2nd file transfer that takes place between the Server and the shared OneDrive folder.
                 // The "destinationPath" argument being passed in becomes the "sourcePath" listed in the function's definition.
-                clientForm.mAsyncClient.SendFileTransferCommandToServer(destPath, sndOverwriteCmd);
+                mAsyncClient.SendFileTransferCommandToServer(destPath, sndOverwriteCmd);
             }
         }
 
@@ -770,11 +793,11 @@ namespace Client_GUI
         /// <param name="sndOverwriteCmd"></param>
         public void SendErrorLogCopyCommandToServerIfNotAlreadySent(string destPath, bool sndOverwriteCmd)
         {
-            if (clientForm.mAsyncClient.isConnectedToServer == true)
+            if (mAsyncClient.isConnectedToServer == true)
             {
                 // Note the destinationPath becomes the sourcePath for the 2nd file transfer that takes place between the Server and the shared OneDrive folder.
                 // The "destinationPath" argument being passed in becomes the "sourcePath" listed in the function's definition.
-                clientForm.mAsyncClient.SendFileTransferCommandToServer(destPath, sndOverwriteCmd);
+                mAsyncClient.SendFileTransferCommandToServer(destPath, sndOverwriteCmd);
             }
         }
 
@@ -796,9 +819,9 @@ namespace Client_GUI
         public void CheckTestStatusAndUpdateServer()
         {
             //if (statusOfTest == "Failed" && copyToPath != null)
-            if (statusOfTest == "Failed")
+            if (mClientInfo.statusOfTest == "Failed")
             {
-                SendErrorToServer(globalErrorToSendToSocket);
+                SendErrorToServer(mClientInfo.globalErrorToSendToSocket);
             }
             else
             {
@@ -815,28 +838,28 @@ namespace Client_GUI
         /// </summary>
         public void SetStatusOfTest()
         {
-            if (statusOfTest != "Failed")
+            if (mClientInfo.statusOfTest != "Failed")
             {
                 // Check to see if the user has manually stopped the test by pressing the stop button.
                 // If the stop button has not been pressed, test to see if the test is complete or still running.
                 if (this.clientForm.stopButtonPressed == true)
                 {
-                    statusOfTest = "Stopped";
+                    mClientInfo.statusOfTest = "Stopped";
                 }
                 else
                 {
-                    if (global_PercentComplete >= 100)
+                    if (mClientInfo.global_PercentComplete >= 100)
                     {
-                        statusOfTest = "Complete";
+                        mClientInfo.statusOfTest = "Complete";
                     }
                     else
                     {
-                        statusOfTest = "Running";
+                        mClientInfo.statusOfTest = "Running";
                     }
                 }
 
             }
-            this.clientForm.SetText(this.clientForm.text_statusOfTest, statusOfTest);
+            this.clientForm.SetText(this.clientForm.text_statusOfTest, mClientInfo.statusOfTest);
         }
 
         private void GetCycleInformation()
@@ -845,7 +868,7 @@ namespace Client_GUI
             if (this.clientForm.GetText(this.clientForm.text_completedCycles) != null)
             {
                 //loopCount = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
-                totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
+                mClientInfo.totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
             }
             else
             {
@@ -868,20 +891,20 @@ namespace Client_GUI
             {
                 // UPDATE Socket Server - Send generic info
                 initialTestUpdateInfo = new CustomEventArgs4(
-                                                        programName,
-                                                        serialNumber,
-                                                        pcGroupNumber,
-                                                        compNumber,
-                                                        slotNum,
+                                                        mClientInfo.programName,
+                                                        mClientInfo.serialNumber,
+                                                        mClientInfo.pcGroupNumber,
+                                                        mClientInfo.compNumber,
+                                                        mClientInfo.slotNumber,
                                                         "Version" + Client_GUI.TESTAPP_VERSION,
                                                         this.clientForm.text_currentTest.Text,
                                                         "Starting",
                                                         "??",
                                                         "??",
-                                                        testTypeAbbreviation);
+                                                        mClientInfo.testTypeAbbreviation);
 
                 // Send the drive/test information to the Server;
-                clientForm.mAsyncClient.UpdateInitialSocketInfo(initialTestUpdateInfo);
+                mAsyncClient.UpdateInitialSocketInfo(initialTestUpdateInfo);
 
                 // change the flag to sent.
                 isInitialTestInfoSentToServer = true;
@@ -893,22 +916,22 @@ namespace Client_GUI
         {
             if (typeOfTest == VOLTAGE_CHECK)
             {
-                testTypeAbbreviation = "VC";
+                mClientInfo.testTypeAbbreviation = "VC";
 
             }
             else if (typeOfTest == BOOT_TEST)
             {
-                testTypeAbbreviation = "BT";
+                mClientInfo.testTypeAbbreviation = "BT";
 
             }
             else if (typeOfTest == POWER_TEST)
             {
-                testTypeAbbreviation = "PT";
+                mClientInfo.testTypeAbbreviation = "PT";
 
             }
             else
             {
-                testTypeAbbreviation = "unknown";
+                mClientInfo.testTypeAbbreviation = "unknown";
 
             }
         }
@@ -919,22 +942,22 @@ namespace Client_GUI
             if (this.clientForm.GetComboBoxColor(this.clientForm.cBox_serverIp) == Color.Green)
             {
 
-                testUpdateInfo = new CustomEventArgs5_StatusOnly(pcGroupNumber,
-                                                                   compNumber,
-                                                                   slotNum,
-                                                                   statusOfTest,
-                                                                   global_PercentComplete.ToString(),
-                                                                   this.clientForm.text_completedCycles.Text,
-                                                                   descriptionOfCurrentState,
+                testUpdateInfo = new CustomEventArgs5_StatusOnly(mClientInfo.pcGroupNumber,
+                                                                   mClientInfo.compNumber,
+                                                                   mClientInfo.slotNumber,
+                                                                   mClientInfo.statusOfTest,
+                                                                   mClientInfo.global_PercentComplete.ToString(),
+                                                                   mClientInfo.totalCycles.ToString(),
+                                                                   mClientInfo.descriptionOfCurrentState,
                                                                    pathToErrorLog);
 
-                clientForm.mAsyncClient.SendTestUpdateToServer(testUpdateInfo);
+                mAsyncClient.SendTestUpdateToServer(testUpdateInfo);
             }
         }
 
         public void SendErrorToServer(string message)
         {
-            descriptionOfCurrentState = message;
+            mClientInfo.descriptionOfCurrentState = message;
 
             string newFinalPath;
 
@@ -947,8 +970,8 @@ namespace Client_GUI
             {
                 MessageBox.Show("The copyToPath is null. Cannot send info to Server. No error log will be copied to shared folder. No email will be sent.\r\n\r\n" + e);
 
-                string tempCopyToPath = addressOfLocalSharedFolder + "\\" + testGroupName + "\\" +
-                serialNumber + "\\" + logFilePrefix + logFileName + ".log";
+                string tempCopyToPath = addressOfLocalSharedFolder + "\\" + mClientInfo.testGroupName + "\\" +
+                mClientInfo.serialNumber + "\\" + logFilePrefix + logFileName + ".log";
 
                 newFinalPath = tempCopyToPath.Replace(".log", "--fail.log");
 
@@ -988,19 +1011,19 @@ namespace Client_GUI
         /// </summary>
         /// <param name="sequencePosition"></param>
         /// <returns>SUCCESS, or FAIL </returns>
-        protected string ReadDetailsFromDevice(string sequencePosition)
+        protected string ReadDetailsFromDevice()
         {
 
             // If the SN has been detected (should only take 1 cycle) then output
             // generic info once in the SN folder. Will output again if test is restarted.
-            if ((serialNumber != null) && (serialNumber != "") && (genericInfoHasBeenLogged == false))
+            if ((mClientInfo.serialNumber != null) && (mClientInfo.serialNumber != "") && (genericInfoHasBeenLogged == false))
             {
                 //GetTestProgramInformation();
                 GetTestLocationInformation();
-                PopulateGuiWithTestInfo();
-                GetTestTypeAbbreviation(this.testType);
-                PopulateTestInfoLogWithDriveInfo();
-                SendInitialTestInfo();
+                //PopulateGuiWithTestInfo();
+                //GetTestTypeAbbreviation(this.testType);
+                //PopulateTestInfoLogWithDriveInfo();
+                //SendInitialTestInfo();
             }
 
 
@@ -1022,8 +1045,8 @@ namespace Client_GUI
             this.clientForm.UpdateStatus("Starting Test\n");
 
             //TODO set test ITR number to whatever is displayed in the text box
-            testGroupName = this.clientForm.GetText(this.clientForm.text_testGroupIdentifier);
-            slotNum = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
+            mClientInfo.testGroupName = this.clientForm.GetText(this.clientForm.text_testGroupIdentifier);
+            mClientInfo.slotNumber = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
             GetDeviceInfoFromDevice();
             PopulateGuiFieldsWithDeviceInfo();
 
@@ -1056,13 +1079,13 @@ namespace Client_GUI
 
                 GetCycleInformation();
 
-                totalCycles++;
+                mClientInfo.totalCycles++;
 
                 //CalculateEcdCycles();
                 //CalcHoursPer1000Cycles();
 
                 // set cycle information
-                this.clientForm.SetText(this.clientForm.text_completedCycles, totalCycles.ToString());
+                this.clientForm.SetText(this.clientForm.text_completedCycles, mClientInfo.totalCycles.ToString());
 
                 Log("Device powering on\r\n");
                 this.clientForm.UpdateStatus("Powering on Device");
@@ -1072,12 +1095,17 @@ namespace Client_GUI
 
                 //CheckTestStatusAndUpdateServer();
 
-                string getDeviceInfo = this.ReadDetailsFromDevice("MAINLOOP");
+                // TODO This function does more than 1 thing. Break it up and put the other functions under it so it's more clear what is happeneing
+                string getDeviceInfo = this.ReadDetailsFromDevice(); //TODO this will currently never return fail. What do I want to do here
+                PopulateGuiWithTestInfo();
+                GetTestTypeAbbreviation(mClientInfo.testType);
+                PopulateTestInfoLogWithDriveInfo();
+                SendInitialTestInfo();  //<UPDATE>
 
                 if (getDeviceInfo == FAIL)
                 {
                     ErrorReport("CommandSequence Fail");
-                    CheckTestStatusAndUpdateServer();
+                    CheckTestStatusAndUpdateServer(); //<STATUS>
                     return;
                 }
 
@@ -1093,12 +1121,12 @@ namespace Client_GUI
                     // Reset this flag for the next time the start button is pressed.
                     this.clientForm.stopProcess = false;
 
-                    CheckTestStatusAndUpdateServer();
+                    CheckTestStatusAndUpdateServer();//<STATUS>
                     return;
                 }
                 this.isFirstCycle = false;
 
-                CheckTestStatusAndUpdateServer();
+                CheckTestStatusAndUpdateServer(); //<STATUS>
             }
 
             this.clientForm.UpdateStatus(testStatus = "Test stopped\n");
@@ -1107,7 +1135,7 @@ namespace Client_GUI
 
             if (this.clientForm.stopButtonPressed == true)
             {
-                CheckTestStatusAndUpdateServer();
+                CheckTestStatusAndUpdateServer();//<STATUS>
                 this.clientForm.stopButtonPressed = false;
             }
 

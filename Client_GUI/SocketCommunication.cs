@@ -1,104 +1,149 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
-using System.Diagnostics;
-using System.Timers;
-using System.IO;
+using System.Windows.Forms;
 
 
 namespace Client_GUI
 {
+    public class ThisClientInfo
+    {
+        //standard socket End Of File tag. This must be present for the server to accept the message
+        public string TAG_EOF = "<EOF>";
+        public string TAG_ACK = "<ACK>";
+        public string TAG_CLIENT_INFO = "<CLIENTINFO>";
+        public string TAG_CLIENT_LOCATION = "<LOCATION>";
+        public string TAG_STATUS = "<STATUS>";
+        public string TAG_UPDATE_INITIAL_INFO = "<UPDATE>";
+
+        // GUI ID will be assigned serverside and changed here
+        public string GUI_ID { get; set; }
+        public string thisIPaddress { get; set; }
+        public string dateAndTimeOfConnection { get; set; }
+
+        public string programName { get; set; }
+        public string pcGroupNumber { get; set; }
+        public string compNumber { get; set; }
+        public string slotNumber { get; set; }
+        public string testAppVersion { get; set; }
+        public string serialNumber { get; set; }
+        public string statusOfTest { get; set; }
+        public double global_PercentComplete { get; set; }
+
+
+        public string descriptionOfCurrentState { get; set; }
+
+        public string testType { get; set; }
+        public string modelNumber { get; set; }
+
+        public string testGroupName { get; set; }
+        public string globalErrorToSendToSocket { get; set; }
+        public string testTypeAbbreviation { get; set; }
+        public int totalCycles { get; set; }
+        
+
+
+        public ThisClientInfo()
+        {
+            GUI_ID = "unknown ID";
+            thisIPaddress = "Ip_handledServerSide";
+            dateAndTimeOfConnection = "time_handledServerSide";
+
+
+            pcGroupNumber = "???";
+            compNumber = "???";
+            slotNumber = "???";
+
+            programName = "???";
+            testAppVersion = "???";
+            serialNumber = "???";
+
+            statusOfTest = "Not Started";
+            global_PercentComplete = 0.0;
+
+
+
+
+            descriptionOfCurrentState = "???";
+
+            testType = "???";
+            modelNumber = "???";
+
+            testGroupName = "???";
+            globalErrorToSendToSocket = "???";
+            testTypeAbbreviation = "???";
+            totalCycles = 0;
+    }
+
+
+        public string ConcatenateInitialClientInfo()
+        {
+            string concatenatedClientInfo = TAG_CLIENT_INFO
+                                            + GUI_ID + ";; "
+                                            + thisIPaddress + ";; "
+                                            + dateAndTimeOfConnection + ";; "
+                                            + "<pn>" + programName + ";; "
+                                            + "<gn>" + pcGroupNumber + ";; "
+                                            + "<cn>" + compNumber + ";; "
+                                            + "<slt>" + slotNumber + ";; "
+                                            + "<tv>" + testAppVersion + ";; "
+                                            + TAG_EOF;
+
+            return concatenatedClientInfo;
+        }
+
+        public string ConcatenateUpdatedInitialClientInfo()
+        {
+            string concatenatedClientLocationInfo = TAG_UPDATE_INITIAL_INFO
+                                            + GUI_ID + ";; "
+                                            + "<pn>" + programName + ";; "
+                                            + "<sn>" + serialNumber + ";; "
+                                            + "<sts>" + statusOfTest + ";; "
+                                            + "<pct>" + global_PercentComplete + ";; "
+                                            + TAG_EOF;
+
+            return concatenatedClientLocationInfo;
+        }
+
+        public string ConcatenateClientLocation()
+        {
+            string concatenatedClientLocationInfo = TAG_CLIENT_LOCATION
+                                            + GUI_ID + ";; "
+                                            + thisIPaddress + ";; "
+                                            + dateAndTimeOfConnection + ";; "
+                                            + "<gn>" + pcGroupNumber + ";; "
+                                            + "<cn>" + compNumber + ";; "
+                                            + "<slt>" + slotNumber + ";; "
+                                            + TAG_EOF;
+
+            return concatenatedClientLocationInfo;
+        }
+
+        public string ConcatenateClientStatus()
+        {
+            string concatenatedClientStatusInfo = TAG_STATUS
+                                            + GUI_ID + ";; "
+                                            + "<sts>" + statusOfTest + ";; "
+                                            + "<pct>" + global_PercentComplete + ";; "
+                                            + TAG_EOF;
+
+            return concatenatedClientStatusInfo;
+        }
+
+        public void UpdateDateAndTime()
+        {
+            DateTime timeRightNow = DateTime.Now;
+
+            dateAndTimeOfConnection = timeRightNow.ToString();
+        }
+    }
+
     public class SocketCommunication
     {
-        public class ThisClientInfo
-        {
-            // GUI ID will be assigned serverside and changed here
-            public string GUI_ID = "unknown ID";
-            public string thisIPaddress = "Ip_handledServerSide";
-            public string dateAndTimeOfConnection = "time_handledServerSide";
-            public string programName = "program_name";
-            public string pcGroupNumber = "pcGroupNumber_xx";
-            public string compNumber = "comp_xx";
-            public string slotNumber = "slot_xx";
-            public string testAppVersion = "Version_x.x.xx";
-            public string serialNumber = "ABC123456";
-            public string status = "unknown";
-            public string percent = "NA";
-
-            //standard socket End Of File tag. This must be present for the server to accept the message
-            public string socketEOFtag = "<EOF>";
-            public string ackTag = "<ACK>";
-            public string clientINFOtag = "<CLIENTINFO>";
-            public string clientLOCATIONtag = "<LOCATION>";
-            public string clientSTATUStag = "<STATUS>";
-            public string clientInitialUPDATEtag = "<UPDATE>";
-
-
-            public string AllCLientInfo()
-            {
-                string concatenatedClientInfo = clientINFOtag
-                                                + GUI_ID + ";; "
-                                                + thisIPaddress + ";; "
-                                                + dateAndTimeOfConnection + ";; "
-                                                + "<pn>" + programName + ";; "
-                                                + "<gn>" + pcGroupNumber + ";; "
-                                                + "<cn>" + compNumber + ";; "
-                                                + "<slt>" + slotNumber + ";; "
-                                                + "<tv>" + testAppVersion + ";; "
-                                                + "<sn>" + serialNumber + ";; "
-                                                + "<sts>" + status + ";; "
-                                                + "<pct>" + percent + ";; "
-                                                + socketEOFtag;
-
-                return concatenatedClientInfo;
-            }
-
-            public string CLientLocation()
-            {
-                string concatenatedClientLocationInfo = clientINFOtag
-                                                + GUI_ID + ";; "
-                                                + thisIPaddress + ";; "
-                                                + dateAndTimeOfConnection + ";; "
-                                                + "<gn>" + pcGroupNumber + ";; "
-                                                + "<cn>" + compNumber + ";; "
-                                                + "<slt>" + slotNumber + ";; "
-                                                + socketEOFtag;
-
-                return concatenatedClientLocationInfo;
-            }
-
-            public string CLientStatus()
-            {
-                string concatenatedClientStatusInfo = clientINFOtag
-                                                + GUI_ID + ";; "
-                                                + "<sts>" + status + ";; "
-                                                + "<pct>" + percent + ";; "
-                                                + socketEOFtag;
-
-                return concatenatedClientStatusInfo;
-            }
-
-
-
-
-
-
-            public void UpdateDateAndTime()
-            {
-                DateTime timeRightNow = DateTime.Now;
-
-                dateAndTimeOfConnection = timeRightNow.ToString();
-            }
-        }
+        
 
 
         // State object for receiving data from remote device.  
@@ -126,6 +171,10 @@ namespace Client_GUI
         {
 
             public const string TIME_MS = "HH:mm:ss.ffffff";
+
+            
+
+            ThisClientInfo thisClient;
 
             // The IP address for the remote device.
             //private const string specifiedIPAddress = "127.0.0.1";
@@ -155,7 +204,7 @@ namespace Client_GUI
             // The response from the remote device.  
             private static String response = String.Empty;
 
-            public ThisClientInfo thisClient = new ThisClientInfo();
+            //public ThisClientInfo thisClient = new ThisClientInfo();
 
             public bool isConnectedToServer = false;
 
@@ -170,6 +219,13 @@ namespace Client_GUI
             //public static double heartBeatTimeLimit = 40000; // in milliseconds,
             public static double heartBeatTimeLimit = 1800000000; // in milliseconds,
             public System.Timers.Timer heartBeatTimer = new System.Timers.Timer(heartBeatTimeLimit);
+
+
+
+            public AsynchronousClient(ThisClientInfo thisClient)
+            {
+                this.thisClient = thisClient;
+            }
 
 
             public virtual void OnReadFromServer(string client)
@@ -269,7 +325,7 @@ namespace Client_GUI
 
                     //as soon as the client connects to the server, send information about the client
                     Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tConnectCallback: Send\tSend available client info\r\n");
-                    Send(client, thisClient.AllCLientInfo());
+                    Send(client, thisClient.ConcatenateInitialClientInfo());
                     sendDone.WaitOne();
 
                     // Begin receiving the data from the remote device.
