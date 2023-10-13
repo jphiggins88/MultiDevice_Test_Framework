@@ -809,7 +809,7 @@ namespace Server_GUI
 
         public static void SetClientInfoAccordingToTagsFoundInMessage(Client client ,string stringSlice, string tag)
         {
-            bool needToSendEmail = false;
+            //bool needToSendEmail = false;
             if (stringSlice.StartsWith(tag))
             {
                 string newString = stringSlice.Remove(0, tag.Length);
@@ -909,11 +909,6 @@ namespace Server_GUI
                                 }
                             }
                         }
-                        else if (content.StartsWith(TAG_SERIAL_NUM))
-                        {
-                            string newString = content.Remove(0, 4);
-                            OnUpdateSerialNumber(newString);
-                        }
                         else if (content.StartsWith(TAG_CLIENTINFO_SPECIFIER))
                         {
                             ParseClientInfo(handler, state, content);
@@ -977,75 +972,14 @@ namespace Server_GUI
                     lastClientConnected = mainClientController.Clients[i];
                     for (int j = 0; j < contentSplit.Length; j++)
                     {
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_PROGRAM_NAME);
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_TESTGROUP_NUM);
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_COMPUTER_NUM);
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_SLOT_NUM);
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_PROGRAM_NAME);
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_TESTGROUP_NUM);
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_COMPUTER_NUM);
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_SLOT_NUM);
                         SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_TESTAPP_VERSION);
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_SERIAL_NUM);
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_STATUS);
-                        SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_PERCENT);
-
-                        /*Old Method
-                        // if the <pn> tag is detected, then delete that tag and set the Clients programName
-                        // <pn> stands for program name
-                        if (contentSplit[j].StartsWith("<pn>"))
-                        {
-                            //contentSplit[j].Replace("<pn>", "");
-                            string newString = contentSplit[j].Remove(0, 4);
-                            lastClientConnected._programName = newString;
-                        }
-                        // <gn> stands for testGroupNumber number
-                        else if (contentSplit[j].StartsWith("<gn>"))
-                        {
-                            //contentSplit[j].Replace("<gn>", "");
-                            string newString = contentSplit[j].Remove(0, 4);
-                            lastClientConnected._testGroupNum = newString;
-                        }
-
-                        // <cn> stands for computer number
-                        else if (contentSplit[j].StartsWith("<cn>"))
-                        {
-                            //contentSplit[j].Replace("<cn>", "");
-                            string newString = contentSplit[j].Remove(0, 4);
-                            lastClientConnected._compNumber = newString;
-                        }
-                        // <slt> stands for Slot Number
-                        else if (contentSplit[j].StartsWith("<slt>"))
-                        {
-                            //contentSplit[j].Replace("<tv>", "");
-                            string newString = contentSplit[j].Remove(0, 5);
-                            lastClientConnected._slotNumber = newString;
-                        }
-                        // <tv> stands for Torture stand version
-                        else if (contentSplit[j].StartsWith("<tv>"))
-                        {
-                            //contentSplit[j].Replace("<tv>", "");
-                            string newString = contentSplit[j].Remove(0, 4);
-                            lastClientConnected._testAppVersion = newString;
-                        }
-                        // <sn> stands for serial number
-                        else if (contentSplit[j].StartsWith("<sn>"))
-                        {
-                            //contentSplit[j].Replace("<tv>", "");
-                            string newString = contentSplit[j].Remove(0, 4);
-                            lastClientConnected._serialNumber = newString;
-                        }
-                        // <sts> stands for status
-                        else if (contentSplit[j].StartsWith("<sts>"))
-                        {
-                            //contentSplit[j].Replace("<tv>", "");
-                            string newString = contentSplit[j].Remove(0, 5);
-                            lastClientConnected._status = newString;
-                        }
-                        // <pct> stands for percent
-                        else if (contentSplit[j].StartsWith("<pct>"))
-                        {
-                            //contentSplit[j].Replace("<tv>", "");
-                            string newString = contentSplit[j].Remove(0, 5);
-                            lastClientConnected._percent = newString;
-                        }
-                            */
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_SERIAL_NUM);
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_STATUS);
+                        //SetClientInfoAccordingToTagsFoundInMessage(lastClientConnected, contentSplit[j], TAG_PERCENT);
                     }
 
                     /* OLD Method
@@ -1107,12 +1041,12 @@ namespace Server_GUI
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PROGRAM_NAME);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
-                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTAPP_VERSION);
-                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_NAME);
+                        //SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTAPP_VERSION);
+                        //SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_NAME);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SERIAL_NUM);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_STATUS);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PERCENT);
-                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
+                        //SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_CYCLE_COUNT);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SLOT_NUM);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_TYPE);
 

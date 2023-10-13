@@ -48,7 +48,7 @@ namespace Client_GUI
 
         public ThisClientInfo()
         {
-            GUI_ID = "unknown ID";
+            GUI_ID = "ID_handledServerSide";
             thisIPaddress = "Ip_handledServerSide";
             dateAndTimeOfConnection = "time_handledServerSide";
 
@@ -76,6 +76,7 @@ namespace Client_GUI
             globalErrorToSendToSocket = "???";
             testTypeAbbreviation = "???";
             totalCycles = 0;
+            testGroupName = "???";
     }
 
 
@@ -85,10 +86,6 @@ namespace Client_GUI
                                             + GUI_ID + ";; "
                                             + thisIPaddress + ";; "
                                             + dateAndTimeOfConnection + ";; "
-                                            + "<pn>" + programName + ";; "
-                                            + "<gn>" + pcGroupNumber + ";; "
-                                            + "<cn>" + compNumber + ";; "
-                                            + "<slt>" + slotNumber + ";; "
                                             + "<tv>" + testAppVersion + ";; "
                                             + TAG_EOF;
 
@@ -100,6 +97,10 @@ namespace Client_GUI
             string concatenatedClientLocationInfo = TAG_UPDATE_INITIAL_INFO
                                             + GUI_ID + ";; "
                                             + "<pn>" + programName + ";; "
+                                            + "<tt>" + testType + ";; "
+                                            + "<gn>" + pcGroupNumber + ";; "
+                                            + "<cn>" + compNumber + ";; "
+                                            + "<slt>" + slotNumber + ";; "
                                             + "<sn>" + serialNumber + ";; "
                                             + "<sts>" + statusOfTest + ";; "
                                             + "<pct>" + global_PercentComplete + ";; "
