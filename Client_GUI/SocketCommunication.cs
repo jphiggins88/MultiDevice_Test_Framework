@@ -11,13 +11,36 @@ namespace Client_GUI
 {
     public class ThisClientInfo
     {
-        //standard socket End Of File tag. This must be present for the server to accept the message
-        public string TAG_EOF = "<EOF>";
-        public string TAG_ACK = "<ACK>";
-        public string TAG_CLIENT_INFO = "<CLIENTINFO>";
-        public string TAG_CLIENT_LOCATION = "<LOCATION>";
-        public string TAG_STATUS = "<STATUS>";
-        public string TAG_UPDATE_INITIAL_INFO = "<UPDATE>";
+        public static string TAG_TEST_APP_VERSION = "<tav>";
+
+        // Test location info
+        public static string TAG_TEST_GROUP_NUM = "<tgn>";
+        public static string TAG_COMPUTER_NUM = "<cn>";
+        public static string TAG_SLOT_NUM = "<slt>";
+
+        // Test info
+        public static string TAG_TEST_TYPE = "<tt>";
+        public static string TAG_PROGRAM_NAME = "<pn>";
+        public static string TAG_SERIAL_NUM = "<sn>";
+        public static string TAG_STATUS = "<sts>";
+        public static string TAG_PERCENT = "<pct>";
+
+        public static string TAG_TEST_NAME = "<tn>";
+
+        public const string TAG_CYCLE_COUNT = "<cyc>";
+        public const string TAG_DESCRIPTION = "<des>";
+        public const string TAG_PATH_TO_ERROR_LOG = "<pth>";
+
+        // Header/Specifier tags
+        public static string TAG_EOF = "<EOF>";
+        public static string TAG_ACK = "<ACK>";
+        public static string TAG_HEARTBEAT_SPECIFIER = "<HB>";
+        public static string TAG_CLIENT_INFO_HEADER = "<CLIENTINFO>";
+        public static string TAG_CLIENT_LOCATION_HEADER = "<LOCATION>";
+        public static string TAG_UPDATE_HEADER = "<UPDATE>";
+        public static string TAG_STATUS_HEADER = "<STATUS>";
+        public static string TAG_FILETRANSFER_SPECIFIER = "<FILETRANSFER>";
+        public static string TAG_FILETRANSFER_OW_SPECIFIER = "<FILETRANSFER_OW>";
 
         // GUI ID will be assigned serverside and changed here
         public string GUI_ID { get; set; }
@@ -64,9 +87,6 @@ namespace Client_GUI
             statusOfTest = "Not Started";
             global_PercentComplete = 0.0;
 
-
-
-
             descriptionOfCurrentState = "???";
 
             testType = "???";
@@ -77,16 +97,16 @@ namespace Client_GUI
             testTypeAbbreviation = "???";
             totalCycles = 0;
             testGroupName = "???";
-    }
+        }
 
 
         public string ConcatenateInitialClientInfo()
         {
-            string concatenatedClientInfo = TAG_CLIENT_INFO
+            string concatenatedClientInfo = TAG_CLIENT_INFO_HEADER
                                             + GUI_ID + ";; "
                                             + thisIPaddress + ";; "
                                             + dateAndTimeOfConnection + ";; "
-                                            + "<tv>" + testAppVersion + ";; "
+                                            + TAG_TEST_APP_VERSION + testAppVersion + ";; "
                                             + TAG_EOF;
 
             return concatenatedClientInfo;
@@ -94,16 +114,16 @@ namespace Client_GUI
 
         public string ConcatenateUpdatedInitialClientInfo()
         {
-            string concatenatedClientLocationInfo = TAG_UPDATE_INITIAL_INFO
+            string concatenatedClientLocationInfo = TAG_UPDATE_HEADER
                                             + GUI_ID + ";; "
-                                            + "<pn>" + programName + ";; "
-                                            + "<tt>" + testType + ";; "
-                                            + "<gn>" + pcGroupNumber + ";; "
-                                            + "<cn>" + compNumber + ";; "
-                                            + "<slt>" + slotNumber + ";; "
-                                            + "<sn>" + serialNumber + ";; "
-                                            + "<sts>" + statusOfTest + ";; "
-                                            + "<pct>" + global_PercentComplete + ";; "
+                                            + TAG_PROGRAM_NAME + programName + ";; "
+                                            + TAG_TEST_TYPE + testType + ";; "
+                                            + TAG_TEST_GROUP_NUM + pcGroupNumber + ";; "
+                                            + TAG_COMPUTER_NUM + compNumber + ";; "
+                                            + TAG_SLOT_NUM + slotNumber + ";; "
+                                            + TAG_SERIAL_NUM + serialNumber + ";; "
+                                            + TAG_STATUS + statusOfTest + ";; "
+                                            + TAG_PERCENT + global_PercentComplete + ";; "
                                             + TAG_EOF;
 
             return concatenatedClientLocationInfo;
@@ -111,13 +131,13 @@ namespace Client_GUI
 
         public string ConcatenateClientLocation()
         {
-            string concatenatedClientLocationInfo = TAG_CLIENT_LOCATION
+            string concatenatedClientLocationInfo = TAG_CLIENT_LOCATION_HEADER
                                             + GUI_ID + ";; "
                                             + thisIPaddress + ";; "
                                             + dateAndTimeOfConnection + ";; "
-                                            + "<gn>" + pcGroupNumber + ";; "
-                                            + "<cn>" + compNumber + ";; "
-                                            + "<slt>" + slotNumber + ";; "
+                                            + TAG_TEST_GROUP_NUM + pcGroupNumber + ";; "
+                                            + TAG_COMPUTER_NUM + compNumber + ";; "
+                                            + TAG_SLOT_NUM + slotNumber + ";; "
                                             + TAG_EOF;
 
             return concatenatedClientLocationInfo;
@@ -125,10 +145,10 @@ namespace Client_GUI
 
         public string ConcatenateClientStatus()
         {
-            string concatenatedClientStatusInfo = TAG_STATUS
+            string concatenatedClientStatusInfo = TAG_STATUS_HEADER
                                             + GUI_ID + ";; "
-                                            + "<sts>" + statusOfTest + ";; "
-                                            + "<pct>" + global_PercentComplete + ";; "
+                                            + TAG_STATUS + statusOfTest + ";; "
+                                            + TAG_PERCENT + global_PercentComplete + ";; "
                                             + TAG_EOF;
 
             return concatenatedClientStatusInfo;
@@ -561,7 +581,7 @@ namespace Client_GUI
 
                     // Whenever the heart beat timer elapses, send an "OK" message to the Server
                     // DO NOT CHANGE THE TAGS or colon signatures or the server side parsing will not work correctly
-                    Send(TempSocketHolder.TempSocket, "<HB>" + thisClient.GUI_ID + " :: " + "<EOF>");
+                    Send(TempSocketHolder.TempSocket, ThisClientInfo.TAG_HEARTBEAT_SPECIFIER + thisClient.GUI_ID + " :: " + ThisClientInfo.TAG_EOF);
                 }
                 else
                 {
@@ -576,7 +596,7 @@ namespace Client_GUI
             private void TestStatusUpdate(string status)
             {
                 // The message received by the Server GUI will be split on every ";; "
-                string message = "<STATUS>;; " + status + ";; " + thisClient.GUI_ID + ";; <EOF>";
+                string message = ThisClientInfo.TAG_STATUS_HEADER + ";; " + status + ";; " + thisClient.GUI_ID + ";; " + ThisClientInfo.TAG_EOF;
 
                 Send(TempSocketHolder.TempSocket, message);
 
@@ -588,18 +608,18 @@ namespace Client_GUI
                 // Message must begin with "<UPDATE>" and be seperated with ";;" delimiters
                 // The server will handle filtering values based on <##> tags. The message does not have to be sent in this order.
                 // Only the location of the client ID matters. In this case, it is element [1] in the string array once it is split.
-                string message = "<UPDATE>;; " + thisClient.GUI_ID + ";; " +
-                    "<pn>" + testInformation.client_programName + ";; " +
-                    "<sn>" + testInformation.client_serialNum + ";; " +
-                    "<pg>" + testInformation.client_pcGroupNumber + ";; " +
-                    "<cn>" + testInformation.client_compNum + ";; " +
-                    "<slt>" + testInformation.client_slotNum + ";; " +
-                    "<tv>" + testInformation.client_testAppVersion + ";; " +
-                    "<tn>" + testInformation.client_testName + ";; " +
-                    "<sts>" + testInformation.client_status + ";; " +
-                    "<pct>" + testInformation.client_percent + ";; " +
-                    "<cyc>" + testInformation.client_cycleCount + ";; " +
-                    "<tt>" + testInformation.client_testType + ";; <EOF>";
+                string message = ThisClientInfo.TAG_UPDATE_HEADER + ";; " + thisClient.GUI_ID + ";; " +
+                    ThisClientInfo.TAG_PROGRAM_NAME + testInformation.client_programName + ";; " +
+                    ThisClientInfo.TAG_SERIAL_NUM + testInformation.client_serialNum + ";; " +
+                    ThisClientInfo.TAG_TEST_GROUP_NUM + testInformation.client_pcGroupNumber + ";; " +
+                    ThisClientInfo.TAG_COMPUTER_NUM + testInformation.client_compNum + ";; " +
+                    ThisClientInfo.TAG_SLOT_NUM + testInformation.client_slotNum + ";; " +
+                    ThisClientInfo.TAG_TEST_APP_VERSION + testInformation.client_testAppVersion + ";; " +
+                    ThisClientInfo.TAG_TEST_NAME + testInformation.client_testName + ";; " +
+                    ThisClientInfo.TAG_STATUS + testInformation.client_status + ";; " +
+                    ThisClientInfo.TAG_PERCENT + testInformation.client_percent + ";; " +
+                    ThisClientInfo.TAG_CYCLE_COUNT+ testInformation.client_cycleCount + ";; " +
+                    ThisClientInfo.TAG_TEST_TYPE + testInformation.client_testType + ";; " + ThisClientInfo.TAG_EOF;
 
                 Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tUpdateInitialSocketInfo\tsending inital info\r\n");
 
@@ -613,15 +633,15 @@ namespace Client_GUI
                 // Message must begin with "<STATUS>" and be seperated with ";;" delimiters
                 // The server will handle filtering values based on <##> tags. The message does not have to be sent in this order.
                 // Only the location of the client ID matters. In this case, it is element [1] in the string array once it is split.
-                string message = "<STATUS>;; " + thisClient.GUI_ID + ";; " +
-                    "<pg>" + testInformation.client_pcGroupNumber + ";; " +
-                    "<cn>" + testInformation.client_compNum + ";; " +
-                    "<slt>" + testInformation.client_slotNum + ";; " +
-                    "<sts>" + testInformation.client_status + ";; " +
-                    "<pct>" + testInformation.client_percent + ";; " +
-                    "<cyc>" + testInformation.client_cycleCount + ";; " +
-                    "<des>" + testInformation.client_descriptionOfState + ";; " +
-                    "<pth>" + testInformation.client_pathToErrorLog + ";; <EOF>";
+                string message = ThisClientInfo.TAG_STATUS_HEADER + ";; " + thisClient.GUI_ID + ";; " +
+                    ThisClientInfo.TAG_TEST_GROUP_NUM + testInformation.client_pcGroupNumber + ";; " +
+                    ThisClientInfo.TAG_COMPUTER_NUM + testInformation.client_compNum + ";; " +
+                    ThisClientInfo.TAG_SLOT_NUM + testInformation.client_slotNum + ";; " +
+                    ThisClientInfo.TAG_STATUS + testInformation.client_status + ";; " +
+                    ThisClientInfo.TAG_PERCENT + testInformation.client_percent + ";; " +
+                    ThisClientInfo.TAG_CYCLE_COUNT + testInformation.client_cycleCount + ";; " +
+                    ThisClientInfo.TAG_DESCRIPTION + testInformation.client_descriptionOfState + ";; " +
+                    ThisClientInfo.TAG_PATH_TO_ERROR_LOG + testInformation.client_pathToErrorLog + ";; " + ThisClientInfo.TAG_EOF;
 
                 Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSendTestUpdateToServer\tsending info to server\r\n");
 
@@ -635,7 +655,7 @@ namespace Client_GUI
                 // Message must begin with "<STATUS>" and be seperated with ";;" delimiters
                 // The server will handle filtering values based on <##> tags. The message does not have to be sent in this order.
                 // Only the location of the client ID matters. In this case, it is element [1] in the string array once it is split.
-                string message = "<STATUS>;; " + thisClient.GUI_ID + ";; " + "<sts>" + "manualClose" + ";; " + ";; <EOF>";
+                string message = ThisClientInfo.TAG_STATUS_HEADER + ";; " + thisClient.GUI_ID + ";; " + ThisClientInfo.TAG_STATUS + "manualClose" + ";; " + ";; " + ThisClientInfo.TAG_EOF;
 
                 Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSendManualCloseMessageToServer\tsending info to server\r\n");
 
@@ -662,13 +682,13 @@ namespace Client_GUI
                 {
                     Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSendFileTransferCommandToServer: <FILETRANSFER_OW>\tsending info to server\r\n");
 
-                    fileTransferFlag = "<FILETRANSFER_OW>";
+                    fileTransferFlag = ThisClientInfo.TAG_FILETRANSFER_SPECIFIER;
                 }
                 else
                 {
                     Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSendFileTransferCommandToServer: <FILETRANSFER>\tsending info to server\r\n");
 
-                    fileTransferFlag = "<FILETRANSFER>";
+                    fileTransferFlag = ThisClientInfo.TAG_FILETRANSFER_OW_SPECIFIER;
                 }
 
                 string message = fileTransferFlag + ";; " + thisClient.GUI_ID + ";; " + "<sp>" + sourcePath + ";; <EOF>";

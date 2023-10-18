@@ -34,18 +34,20 @@ namespace Server_GUI
     {
         public const string TIME_MS = "HH:mm:ss.ffffff";
 
-        public const string TAG_TESTGROUP_NUM = "<pg>";
+        public const string TAG_TESTAPP_VERSION = "<tv>";
+
+        public const string TAG_TEST_GROUP_NUM = "<tgn>";
         public const string TAG_COMPUTER_NUM = "<cn>";
         public const string TAG_SLOT_NUM = "<slt>";
 
-        public const string TAG_TESTAPP_VERSION = "<tv>";
-
-        public const string TAG_PROGRAM_NAME = "<pn>";		//add this
         public const string TAG_TEST_TYPE = "<tt>";
-        public const string TAG_TEST_NAME = "<tn>";
+        public const string TAG_PROGRAM_NAME = "<pn>";
         public const string TAG_SERIAL_NUM = "<sn>";
         public const string TAG_STATUS = "<sts>";
         public const string TAG_PERCENT = "<pct>";
+
+        public const string TAG_TEST_NAME = "<tn>";
+
         public const string TAG_CYCLE_COUNT = "<cyc>";
         public const string TAG_DESCRIPTION = "<des>";
         public const string TAG_PATH_TO_ERROR_LOG = "<pth>";
@@ -54,9 +56,9 @@ namespace Server_GUI
         public const string TAG_ACK_SPECIFIER = "<ACK>";
         public const string TAG_HEARTBEAT_SPECIFIER = "<HB>";
         public const string TAG_CLIENTINFO_SPECIFIER = "<CLIENTINFO>";
+        public const string TAG_LOCATION_SPECIFIER = "<LOCATION>";
         public const string TAG_UPDATE_SPECIFIER = "<UPDATE>";
         public const string TAG_STATUS_SPECIFIER = "<STATUS>";
-        public const string TAG_LOCATION_SPECIFIER = "<LOCATION>";
         public const string TAG_FILETRANSFER_SPECIFIER = "<FILETRANSFER>";
         public const string TAG_FILETRANSFER_OW_SPECIFIER = "<FILETRANSFER_OW>";
 
@@ -817,29 +819,29 @@ namespace Server_GUI
 
                 switch (tag)
                 {
-                    case (TAG_TESTGROUP_NUM):
+                    case TAG_TEST_GROUP_NUM:
                         client._testGroupNumber = newString;
                         break;
-                    case (TAG_COMPUTER_NUM):
+                    case TAG_COMPUTER_NUM:
                         client._compNumber = newString;
                         break;
-                    case (TAG_SLOT_NUM):
+                    case TAG_SLOT_NUM:
                         client._slotNumber = newString;
                         break;
-                    case (TAG_TESTAPP_VERSION):
+                    case TAG_TESTAPP_VERSION:
                         client._testAppVersion = newString;
                         break;
-                    case (TAG_TEST_TYPE):
+                    case TAG_TEST_TYPE:
                         client._testType = newString;
                         break;
-                    case (TAG_PROGRAM_NAME):
+                    case TAG_PROGRAM_NAME:
                         client._programName = newString;
                         break;
-                    case (TAG_SERIAL_NUM):
+                    case TAG_SERIAL_NUM:
                         client._serialNumber = newString;
                         client._serialNumberLastFour = client._serialNumber.Substring(client._serialNumber.Length - 4);
                         break;
-                    case (TAG_STATUS):
+                    case TAG_STATUS:
                         client._status = newString;
                         if ((newString == "Failed") || (newString == "Unknown"))
                         {
@@ -850,16 +852,16 @@ namespace Server_GUI
                             client._manuallyClosed = true;
                         }
                         break;
-                    case (TAG_PERCENT):
+                    case TAG_PERCENT:
                         client._percent = newString;
                         break;
-                    case (TAG_CYCLE_COUNT):
+                    case TAG_CYCLE_COUNT:
                         client._cycleCount = newString;
                         break;
-                    case (TAG_DESCRIPTION):
+                    case TAG_DESCRIPTION:
                         client._descriptionOfState = newString;
                         break;
-                    case (TAG_PATH_TO_ERROR_LOG):
+                    case TAG_PATH_TO_ERROR_LOG:
                         client._pathToErrorLog = newString;
                         break;
                 }
@@ -1042,7 +1044,7 @@ namespace Server_GUI
                     {
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_PROGRAM_NAME);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
-                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_GROUP_NUM);
                         //SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTAPP_VERSION);
                         //SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_NAME);
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_SERIAL_NUM);
@@ -1236,7 +1238,7 @@ namespace Server_GUI
                     {
 
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_COMPUTER_NUM);
-                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TESTGROUP_NUM);
+                        SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_TEST_GROUP_NUM);
 
                         SetClientInfoAccordingToTagsFoundInMessage(targetClient, contentSplit[j], TAG_STATUS);
 
