@@ -34,13 +34,13 @@ namespace Server_GUI
     {
         public const string TIME_MS = "HH:mm:ss.ffffff";
 
-        public const string TAG_TESTGROUP_NUM = "<gn>";
+        public const string TAG_TESTGROUP_NUM = "<pg>";
         public const string TAG_COMPUTER_NUM = "<cn>";
         public const string TAG_SLOT_NUM = "<slt>";
 
         public const string TAG_TESTAPP_VERSION = "<tv>";
 
-        public const string TAG_PROGRAM_NAME = "<pg>";		//add this
+        public const string TAG_PROGRAM_NAME = "<pn>";		//add this
         public const string TAG_TEST_TYPE = "<tt>";
         public const string TAG_TEST_NAME = "<tn>";
         public const string TAG_SERIAL_NUM = "<sn>";
@@ -327,6 +327,7 @@ namespace Server_GUI
             byte[] byteData = Encoding.ASCII.GetBytes(data);
 
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSend --> sending::: " + data + "\r\n");
+            Debug.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSend --> sending::: " + data + "\r\n");
             handler.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), handler);
 
             // Start the acknowledgment timer when the data is being sent. Don't start the timer if we are only sending an <ACK> to a previously received message.
@@ -882,6 +883,7 @@ namespace Server_GUI
                 if (content.IndexOf(TAG_END_OF_FILE) > -1)
                 {
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Data <-- " + content + "\r\n");
+                    Debug.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead:  Data <-- " + content + "\r\n");
 
                     if (content.StartsWith(TAG_ACK_SPECIFIER))
                     {

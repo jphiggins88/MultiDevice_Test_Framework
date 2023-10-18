@@ -396,6 +396,7 @@ namespace Client_GUI
                     {
                         // Begin sending the data to the remote device.
                         Console.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSend: BeginSend\tstart sending\r\n");
+                        Debug.WriteLine(DateTime.Now.ToString(TIME_MS) + "\tSend --> sending::: " + data + "\r\n");
                         client.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), client);
 
                         // Start the acknowledgment timer when the data is being sent.
