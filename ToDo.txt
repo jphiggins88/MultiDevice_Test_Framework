@@ -62,5 +62,7 @@ Possibly revert back to if/else statements in parsing instead of calling the Par
 Documentation
 Operation overview (how to use and what all the boxes and buttons do)
 Graphical display of both server and client
+	Show a failure happeneing during test (with email alerts, and LAN/WAN uploading enabled)
+	Show a failure happeneing during initial device check in mainloop (with email alerts, and LAN/WAN uploading enabled)
 Instructions on how to operate
 

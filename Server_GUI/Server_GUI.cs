@@ -99,22 +99,16 @@ namespace Server_GUI
 
         }
 
-
         // update the gui list box with the information received/parsed from the client
         private void WriteToConnectedListBox(object sender, string e)
         {
-            mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteToConnectedListBox - accepting a string: " + e);
-
-
             if (this.InvokeRequired)
             {
-                //this.BeginInvoke(new ProcessDelegate(WriteToTextBox), new object[] { sender, e });
                 this.Invoke(new WriteToConnectedListBoxDelegate(WriteToConnectedListBox), new object[] { sender, e });
             }
             else
             {
                 this.listBox2.Items.Add(e);
-
             }
         }
 
@@ -125,8 +119,6 @@ namespace Server_GUI
 
             if (this.InvokeRequired)
             {
-                //this.BeginInvoke(new ProcessDelegate(WriteToTextBox), new object[] { sender, e });
-                //this.Invoke(new WriteToGridViewBoxDelegate(WriteToGridViewBox), new object[] { sender, a, b, c, d, e, f, g });
                 this.Invoke(new WriteToGridViewBoxDelegate(WriteToGridViewBox), new object[] { sender, e });
             }
             else 
@@ -141,10 +133,8 @@ namespace Server_GUI
                                                 e.client_testAppVersion, 
                                                 e.client_status, 
                                                 e.client_percent);
-
             }
         }
-
 
         // update the gui dataGrid with the new information received/parsed from the client.
         // This function will overwrite the existing entries if the client ID's match.
@@ -174,7 +164,6 @@ namespace Server_GUI
             }
         }
 
-
         // Update the GUI with info once more information has been received from the client
         private void WriteTo_BigPicture_UpdateClient(object sender, CustomEventArgs3_withTargetClient e)
         {
@@ -187,7 +176,6 @@ namespace Server_GUI
             else
             {
                 // Set the correct computer grid to modify.
-                // Look For the chamber first to prevent uncecessary checking of computer names. Only check the names of the computer that can possibly be in that chamber.
                 // Set the targetCOmputerLayoutPanel to the appropriate layoutPanel in the GUI that needs modifying with client info.
                 TableLayoutPanel targetComputerLayoutPanel = null;
                 try
@@ -196,30 +184,30 @@ namespace Server_GUI
                     {
                         if (e.client_compNum == "PC-01")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
                         }
                         else if (e.client_compNum == "PC-02")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
                         }
                         else if (e.client_compNum == "PC-03")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
                         }
                     }
                     else if (e.client_testGroupNumber == "02")
                     {
                         if (e.client_compNum == "PC-04")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
                         }
                         else if (e.client_compNum == "PC-05")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
                         }
                         else if (e.client_compNum == "PC-06")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
                         }
                     }
                     else if(e.client_testGroupNumber == "03")
@@ -252,19 +240,11 @@ namespace Server_GUI
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
                         }
                     }
-                    // Used for testing on a development pc. Manually change the pc group name and computer name to "test" in the testDevice GUI.
-                    /*
-                    else if (e.client_compNum == "test")
-                    {
-                        targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
-                    }
-                    */
                     else
                     {
                         throw new Exception("Server received an unrecognizable testGroupNumber number or PC name.\r\n" +
                             "Values received:: Chamber: " + e.client_testGroupNumber.ToString() + "   PC: " + e.client_compNum.ToString());
                     }
-
                 }
                 catch (Exception except)
                 {
@@ -279,7 +259,7 @@ namespace Server_GUI
                 // Subtract 1 from the slotNum since the grid array is zero indexed. (slot 1 is column 0, slot 8 is column 7)
                 slotNum_toInt = slotNum_toInt - 1;
 
-                // Usinf the target layoutPanel and the target slot number, modify the appropriate text boxes according to the client information passed in.
+                // Using the target layoutPanel and the target slot number, modify the appropriate text boxes according to the client information passed in.
                 if (targetComputerLayoutPanel != null)
                 {
                     targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 1).Text = e.client_programName;
@@ -334,7 +314,6 @@ namespace Server_GUI
             }
         }
 
-
         private void WriteTo_BigPicture_StatusOnly_UpdateClient(object sender, CustomEventArgs4_statusUpdates e)
         {
             mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteTo_BigPicture_StatusOnly_UpdateClient - accepting CustomEventArgs4_statusUpdates");
@@ -357,30 +336,30 @@ namespace Server_GUI
                     {
                         if (e.client_compNum == "PC-01")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
                         }
                         else if (e.client_compNum == "PC-02")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
                         }
                         else if (e.client_compNum == "PC-03")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
                         }
                     }
                     else if (e.client_testGroupNum == "02")
                     {
                         if (e.client_compNum == "PC-04")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
                         }
                         else if (e.client_compNum == "PC-05")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
                         }
                         else if (e.client_compNum == "PC-06")
                         {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
+                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
                         }
                     }
                     else if (e.client_testGroupNum == "03")
@@ -404,7 +383,7 @@ namespace Server_GUI
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
                         }
-                        else if ((e.client_compNum == "PC-11") || (e.client_compNum == "PC-10"))   // PC-21 is actually named PC-10
+                        else if (e.client_compNum == "PC-11")
                         {
                             targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
                         }
@@ -437,10 +416,10 @@ namespace Server_GUI
                 int slotNum_toInt = 0;
                 Int32.TryParse(e.client_slotNum, out slotNum_toInt);
 
-                // Handle the client specifying a slot number greater than 11. The Gui can only handle up to 11 slots.
-                if (slotNum_toInt > 11)
+                // Handle the client specifying a slot number greater than 10. The Gui can only handle up to 10 slots.
+                if (slotNum_toInt > 10)
                 {
-                    string message = "The server received a slot number greater than 11.\r\n" +
+                    string message = "The server received a slot number greater than 10.\r\n" +
                         "Received from from client: " + e.client_id.ToString() + " on PC: " + e.client_compNum.ToString() +
                         "\r\nSlot number received was: " + e.client_slotNum.ToString();
                     Debug.WriteLine("Exception:\r\n" + message);
@@ -452,7 +431,7 @@ namespace Server_GUI
                 slotNum_toInt = slotNum_toInt - 1;
 
                 // Using the target layoutPanel and the target slot number, modify the appropriate text boxes according to the client information passed in.
-                if (targetComputerLayoutPanel != null && slotNum_toInt < 11)    // slotNum must be in the range of 0 - 10 for GUI indexing.
+                if (targetComputerLayoutPanel != null && slotNum_toInt < 10)    // slotNum must be in the range of 0 - 10 for GUI indexing.
                 {
                     targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 4).Text = e.client_percent;
 
@@ -624,7 +603,6 @@ namespace Server_GUI
             new Thread(() =>
             {
                 mAsyncListener.StartListening();
-
             })
             { IsBackground = true }.Start();
             
@@ -672,9 +650,7 @@ namespace Server_GUI
                 new Thread(() =>
                 {
                     Email_Sender.emailToAddress = this.EmailAddress_textBox.Text;
-
                     emailSender.SendTest("sample string");
-
                 }).Start();
             }
             catch
@@ -708,7 +684,6 @@ namespace Server_GUI
         private void button_testTableLayout_Click(object sender, EventArgs e)
         {
             this.tableLayoutPanel_PC01.GetControlFromPosition(1, 1).Text = "testing";
-   
         }
 
 
@@ -731,9 +706,7 @@ namespace Server_GUI
                         AsynchronousSocketListener.trigger.CancellationToken.Cancel();
                         Thread.Sleep(30);
                         AsynchronousSocketListener.trigger.Dispose();
-
                         AsynchronousSocketListener.trigger = new DailyTrigger(hour, minute);
-
                         AsynchronousSocketListener.trigger.OnTimeTriggered += () =>
                         {
                             // Make sure the send email check box is checked and there is at least 1 client connected.
@@ -741,29 +714,21 @@ namespace Server_GUI
                             {
                                 string[] type2_emailBodyAndSubject = mAsyncListener.CreateSummaryOfAllTests_type2Devices();
                                 string[] allDevices_emailBodyAndSubject = mAsyncListener.CreateSummaryOfAllTests_allTypes();
-
                                 emailSender.SendDailyUpdateEmailForAllDevicesOfType2(type2_emailBodyAndSubject[0], type2_emailBodyAndSubject[1]);
-
                                 emailSender.SendDailyUpdateEmailForAllDevices_AllTypes(allDevices_emailBodyAndSubject[0], allDevices_emailBodyAndSubject[1]);
-
                                 mAsyncListener.VerboseLog("Email Sent : Daily Update sent\r\n");
                             }
-
                         };
-
-
                     }
                     else
                     {
                         MessageBox.Show("Minutes out of range. You entered " + minute + ".\r\nMinutes must be 0-59.");
                     }
-
                 }
                 else
                 {
                     MessageBox.Show("Hours out of range. You entered " + hour + ".\r\nHours must be 0-23.");
                 }
-
             }
             catch (FormatException err)
             {
@@ -775,7 +740,6 @@ namespace Server_GUI
                     "\r\n" + err);
             }
         }
-
 
         /// <summary>
         /// Add the slot number text box of the client that has been marked as potentially disconnected or manually closed. 
@@ -793,7 +757,6 @@ namespace Server_GUI
                     {
                         TextBox b = (TextBox)sender;
                         b.BackColor = SystemColors.Control;
-
                         TableLayoutPanel targetLayoutPanel = (TableLayoutPanel)b.Parent;
                         int column = targetLayoutPanel.GetColumn(b);
                         targetLayoutPanel.GetControlFromPosition(column, 1).Text = "";
@@ -804,11 +767,6 @@ namespace Server_GUI
                     };
                 }
             }
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 

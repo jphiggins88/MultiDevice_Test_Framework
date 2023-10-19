@@ -10,9 +10,6 @@ using System.IO.Compression;
 
 namespace Server_GUI
 {
-
-
-
     public class Email_Sender
     {
 
@@ -341,10 +338,5 @@ namespace Server_GUI
                 return addressList;
             }
         }
-
-
-
-
-
     }
 }
