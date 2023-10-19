@@ -78,6 +78,7 @@ namespace Server_GUI
             }
         }
 
+        // TODO remove if unused
         public void SendAlert(string clientID)
         {
             using (MailMessage mail = new MailMessage())

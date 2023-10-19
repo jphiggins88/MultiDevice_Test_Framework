@@ -145,7 +145,116 @@ namespace Client_GUI
             this.clientForm.SetTestBox(mClientInfo.testType);
         }
 
+        public void MainLoop()
+        {
+            this.clientForm.stopProcess = false;
+            FileTransferCommandHasBeenSent = false;
+            logFileName = DateToFilename(this.CurrentDay.ToString());
 
+            this.clientForm.SetText(this.clientForm.text_startDate, StartTime.ToString());
+
+            string testStatus = "";
+
+            this.clientForm.UpdateStatus("Starting Test\n");
+
+            //TODO set test ITR number to whatever is displayed in the text box
+            mClientInfo.testGroupName = this.clientForm.GetText(this.clientForm.text_testGroupIdentifier);
+            mClientInfo.slotNumber = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
+            GetDeviceInfoFromDevice();
+            PopulateGuiFieldsWithDeviceInfo();
+
+            string testDriveStatus = CheckIfDeviceIsFunctional();
+
+            if (testDriveStatus != SUCCESS)
+            {
+                this.clientForm.SetStartButton("Start");
+                this.clientForm.SetStartButtonColor(Color.Red);
+
+                // TODO Need to send error message to server saying "failed in initial test setup"
+
+                return;
+            }
+
+            Log("\r\n\r\nDevice check is good. Device will be powered off.");
+
+            // Handle turning off whatever device you are testing
+
+            Log("-------------------Device is now OFF-----------------------");
+
+            //this.clientForm.SetTestBox(this.testType);
+            HoursPer1000CyclesTime = DateTime.Now;
+            this.clientForm.SetStartButton("Stop");
+
+            while (this.clientForm.stopProcess == false)
+            {
+                this.clientForm.UpdateStatus("Looping\r\n");
+                testStatus = "";
+
+                GetCycleInformation();
+
+                mClientInfo.totalCycles++;
+
+                //CalculateEcdCycles();
+                //CalcHoursPer1000Cycles();
+
+                // set cycle information
+                this.clientForm.SetText(this.clientForm.text_completedCycles, mClientInfo.totalCycles.ToString());
+
+                Log("Device powering on\r\n");
+                this.clientForm.UpdateStatus("Powering on Device");
+                Thread.Sleep(sleepDelay_ms);
+                Log("Device was powered on\r\n");
+                this.clientForm.UpdateStatus("Device on");
+
+                //CheckTestStatusAndUpdateServer();
+
+                // TODO This function does more than 1 thing. Break it up and put the other functions under it so it's more clear what is happeneing
+                string getDeviceInfo = this.ReadDetailsFromDevice(); //TODO this will currently never return fail. What do I want to do here
+                PopulateGuiWithTestInfo();
+                GetTestTypeAbbreviation(mClientInfo.testType);
+                PopulateTestInfoLogWithDriveInfo();
+                SendInitialTestInfo();  //<UPDATE>
+
+                if (getDeviceInfo == FAIL)
+                {
+                    ErrorReport("CommandSequence Fail");
+                    CheckTestStatusAndUpdateServer(); //<STATUS>
+                    return;
+                }
+
+                RunTest();
+
+                // Start Button Background Color will be set to red if "ErrorReport()" has been called in any tests.
+                // If any test encountered a failure then close ports, set start button red, and return to waiting for the start button to be clicked.
+                if (this.clientForm.GetStartButtonColor() == Color.Red || this.clientForm.stopProcess == true)
+                {
+                    this.clientForm.UpdateStatus(testStatus += "Test stopped\n");
+                    // this should already be done if this branch is entered into. 
+                    this.clientForm.SetStartButton("Start");
+                    // Reset this flag for the next time the start button is pressed.
+                    this.clientForm.stopProcess = false;
+
+                    CheckTestStatusAndUpdateServer();//<STATUS>
+                    return;
+                }
+                this.isFirstCycle = false;
+
+                CheckTestStatusAndUpdateServer(); //<STATUS>
+            }
+
+            this.clientForm.UpdateStatus(testStatus = "Test stopped\n");
+
+            this.clientForm.SetStartButton("Start");
+
+            if (this.clientForm.stopButtonPressed == true)
+            {
+                CheckTestStatusAndUpdateServer();//<STATUS>
+                this.clientForm.stopButtonPressed = false;
+            }
+
+            // Reset this to false once the Mainloop has successfully exited. 
+            this.clientForm.stopProcess = false;
+        }
 
         protected void RunTest()
         {
@@ -308,6 +417,7 @@ namespace Client_GUI
             return status = SUCCESS;
         }
 
+        //TODO remove if not used
         protected int GetComPortNumber()
         {
             return randomGenerator.Next(1, (5 + 1));
@@ -612,6 +722,7 @@ namespace Client_GUI
             }
         }
 
+        // TODO remove if not used
         /// <summary>
         /// Checks string value if each character is numeric
         /// </summary>
@@ -867,16 +978,12 @@ namespace Client_GUI
             // get Cycle information
             if (this.clientForm.GetText(this.clientForm.text_completedCycles) != null)
             {
-                //loopCount = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
                 mClientInfo.totalCycles = Convert.ToInt32(this.clientForm.GetText(this.clientForm.text_completedCycles));
             }
             else
             {
                 MessageBox.Show("Cycle count text box must not be empty. Add a value and click OK");
             }
-
-            //totalTestCycles = Convert.ToInt32(this.clientForm.GetText(this.testCyclesBox));
-            //totalCycles = Convert.ToInt32(this.clientForm.text_completedCycles);
         }
 
         /// <summary>
@@ -1030,117 +1137,6 @@ namespace Client_GUI
             // TODO make a random number generator generate a failure and give it a random failure name.
 
             return SUCCESS;
-        }
-
-        public void MainLoop()
-        {
-            this.clientForm.stopProcess = false;
-            FileTransferCommandHasBeenSent = false;
-            logFileName = DateToFilename(this.CurrentDay.ToString());
-
-            this.clientForm.SetText(this.clientForm.text_startDate, StartTime.ToString());
-
-            string testStatus = "";
-
-            this.clientForm.UpdateStatus("Starting Test\n");
-
-            //TODO set test ITR number to whatever is displayed in the text box
-            mClientInfo.testGroupName = this.clientForm.GetText(this.clientForm.text_testGroupIdentifier);
-            mClientInfo.slotNumber = this.clientForm.GetComboText(this.clientForm.cBox_slotNumber);
-            GetDeviceInfoFromDevice();
-            PopulateGuiFieldsWithDeviceInfo();
-
-            string testDriveStatus = CheckIfDeviceIsFunctional();
-
-            if (testDriveStatus != SUCCESS)
-            {
-                this.clientForm.SetStartButton("Start");
-                this.clientForm.SetStartButtonColor(Color.Red);
-
-                // TODO Need to send error message to server saying "failed in initial test setup"
-
-                return;
-            }
-
-            Log("\r\n\r\nDevice check is good. Device will be powered off.");
-
-            // Handle turning off whatever device you are testing
-
-            Log("-------------------Device is now OFF-----------------------");
-
-            //this.clientForm.SetTestBox(this.testType);
-            HoursPer1000CyclesTime = DateTime.Now;
-            this.clientForm.SetStartButton("Stop");
-
-            while (this.clientForm.stopProcess == false)
-            {
-                this.clientForm.UpdateStatus("Looping\r\n");
-                testStatus = "";
-
-                GetCycleInformation();
-
-                mClientInfo.totalCycles++;
-
-                //CalculateEcdCycles();
-                //CalcHoursPer1000Cycles();
-
-                // set cycle information
-                this.clientForm.SetText(this.clientForm.text_completedCycles, mClientInfo.totalCycles.ToString());
-
-                Log("Device powering on\r\n");
-                this.clientForm.UpdateStatus("Powering on Device");
-                Thread.Sleep(sleepDelay_ms);
-                Log("Device was powered on\r\n");
-                this.clientForm.UpdateStatus("Device on");
-
-                //CheckTestStatusAndUpdateServer();
-
-                // TODO This function does more than 1 thing. Break it up and put the other functions under it so it's more clear what is happeneing
-                string getDeviceInfo = this.ReadDetailsFromDevice(); //TODO this will currently never return fail. What do I want to do here
-                PopulateGuiWithTestInfo();
-                GetTestTypeAbbreviation(mClientInfo.testType);
-                PopulateTestInfoLogWithDriveInfo();
-                SendInitialTestInfo();  //<UPDATE>
-
-                if (getDeviceInfo == FAIL)
-                {
-                    ErrorReport("CommandSequence Fail");
-                    CheckTestStatusAndUpdateServer(); //<STATUS>
-                    return;
-                }
-
-                RunTest();
-
-                // Start Button Background Color will be set to red if "ErrorReport()" has been called in any tests.
-                // If any test encountered a failure then close ports, set start button red, and return to waiting for the start button to be clicked.
-                if (this.clientForm.GetStartButtonColor() == Color.Red || this.clientForm.stopProcess == true)
-                {
-                    this.clientForm.UpdateStatus(testStatus += "Test stopped\n");
-                    // this should already be done if this branch is entered into. 
-                    this.clientForm.SetStartButton("Start");
-                    // Reset this flag for the next time the start button is pressed.
-                    this.clientForm.stopProcess = false;
-
-                    CheckTestStatusAndUpdateServer();//<STATUS>
-                    return;
-                }
-                this.isFirstCycle = false;
-
-                CheckTestStatusAndUpdateServer(); //<STATUS>
-            }
-
-            this.clientForm.UpdateStatus(testStatus = "Test stopped\n");
-
-            this.clientForm.SetStartButton("Start");
-
-            if (this.clientForm.stopButtonPressed == true)
-            {
-                CheckTestStatusAndUpdateServer();//<STATUS>
-                this.clientForm.stopButtonPressed = false;
-            }
-
-            // Reset this to false once the Mainloop has successfully exited. 
-            this.clientForm.stopProcess = false;
         }
     }
 }

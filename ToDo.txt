@@ -1,0 +1,66 @@
+Test Cases
+Client connects then tests are run
+test are started then client connects
+sending initial test info (connect then run test)
+sending initial test info (run test then connect)
+sending daily logs on day-change (transferring logs and server email command)
+sending error/failuer alert emails (transferring logs and server email command)
+connect a client that has been running and already failed
+disconnect/close the server while a client is running
+diconnect/close the client while the server is running
+start and run multiple clients for a few days
+Add a pop-up that lets you specify a shared LAN folder if the default 1 cannot be found
+	Do this for server and client
+	Also include instructions in the client pop up on how to designate the LAN shared folder address in the address file so it will be set to that value by default whenever a client is opened.
+Test ACK timer expired
+Test HB timer expired
+Add a check box to turn off randomly generated failures (client)
+Add a check box to turn off the ACK and HB timers for testing (client and server)
+Test that the appropriate logs are sent at the correct time and contain correct information
+
+	
+
+
+
+catch failures that occur before cycle 1
+solidify logic in mainloop to handle everything it needs to and nothing more
+	resetting start button color/text and any flags
+	sending any errors/status to server
+Unify all payloads that are sent/expected/needed at specific times
+Unify all parsing server side and delete obsolete parsing methods
+Unify all parsing client side and delete obsolete parsing methods
+Unify all client info names server side and client side and make them match
+Unify all socket TAGS server side and client side and make them match
+Make all socket tags server and client side into static or const strings
+Add pop-up box to enter email credentials to serve as the server's sending email address
+Handle any unexpected messages or payloads to  prevent crash
+Refactor code to make the Email_All_Info and email DeviceType2_owners more intuitive and realistic
+Add thread safe delegates/event handlers for Server GUI functions as I did for Client
+Implement Client GUI resizing
+Make selecting a different test actually run a different testing
+	currently I have 3 tests run back to back no matter which test is selected
+Remove the unnecessary elements in the server GUI and rename them to custom/intuitive names
+Make each PC in the server gui have 10 slots instead of 11
+Analyze and consider renaming all Client and Server functions to something more intuitive
+prepend g_ to the beginning of all global variables in the client and server
+Modify member variables in all classes to adhere to naming conventions (capital first letter)
+Unify test type and test name colors so they match on the server and the Client
+Remove all unused functions, delegates, event args, variables (client and server)
+
+
+Possibly revert the client back to handling client info test data on the stack as opposed to storing it all in a Client Object
+	Switch to using event args to send info with sockets instead of the client object's data directly
+Possibly revert back to if/else statements in parsing instead of calling the ParseAccordingToTag function multiple times.
+	Calling the function is cleaner, but not as easy to read.
+
+
+
+
+
+
+
+Documentation
+Operation overview (how to use and what all the boxes and buttons do)
+Graphical display of both server and client
+Instructions on how to operate
+
