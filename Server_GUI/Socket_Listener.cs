@@ -138,11 +138,11 @@ namespace Server_GUI
 
         public event EventHandler<CustomEventArgs> ReadFromClient;
         public event EventHandler<string> UpdateConnectedClientsList;
-        public event EventHandler<CustomEventArgs2> UpdateConnectedClientsGridView;
-        public event EventHandler<CustomEventArgs2_withTargetClient> UpdateConnectedClientsGridView_updateClient;
+        public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClientsGridView;
+        public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClientsGridView_updateClient;
         public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClients_BigPicture_updateClient;
-        public event EventHandler<CustomEventArgs4_statusUpdates> UpdateConnectedClients_BigPicture_StatusOnly_updateClient;
-        public event EventHandler<CustomEventArgs3> UpdateConnectedClientsGridView_status;
+        public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClients_BigPicture_StatusOnly_updateClient;
+        public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClientsGridView_status;
         public event EventHandler<string> UpdateConnectedClientsGridView_deleteClient;
         public event EventHandler<string> UpdateSerialNumber;
 
@@ -160,13 +160,13 @@ namespace Server_GUI
         }
 
         //(string id, string serialNum, string dateTime, string testGroupNum, string compNum, string slotNum, string programName, string testAppVersion, string status, string percent
-        protected virtual void OnUpdateConnectedClientsGridView(CustomEventArgs2 e)
+        protected virtual void OnUpdateConnectedClientsGridView(CustomEventArgs3_withTargetClient e)
         {
             UpdateConnectedClientsGridView?.Invoke(this, e);
         }
 
         // (string id, string serialNum, string dateTime, string testGroupNum, string compNum, string slotNum, string programName, string testAppVersion, string status, string percent, int targetClient)
-        protected virtual void OnUpdateConnectedClientsGridView_updateClient(CustomEventArgs2_withTargetClient e)
+        protected virtual void OnUpdateConnectedClientsGridView_updateClient(CustomEventArgs3_withTargetClient e)
         {
             UpdateConnectedClientsGridView_updateClient?.Invoke(this, e);
         }
@@ -178,13 +178,13 @@ namespace Server_GUI
         }
 
         // (string id, string testGroupNum, string compNum, string slotNum, string status, string percent, string cycleCount, string descriptionOfState, bool wasManuallyClosed)
-        protected virtual void OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(CustomEventArgs4_statusUpdates e)
+        protected virtual void OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(CustomEventArgs3_withTargetClient e)
         {
             UpdateConnectedClients_BigPicture_StatusOnly_updateClient?.Invoke(this, e);
         }
 
         // (string clientID, string status, string percent)
-        protected virtual void OnUpdateConnectedClientsGridView_status(CustomEventArgs3 e)
+        protected virtual void OnUpdateConnectedClientsGridView_status(CustomEventArgs3_withTargetClient e)
         {
             UpdateConnectedClientsGridView_status?.Invoke(this, e);
         }
@@ -470,17 +470,24 @@ namespace Server_GUI
             targetClient._descriptionOfState = "Client is disconnected or unreachable";
             targetClient._status = "Unknown";
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tMarkClientAsDeadInBigPicture: Calling OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient with eventArgs: CustomEventArgs4_statusUpdates\r\n");
-            OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs4_statusUpdates(
-                                                       targetClient._unique_Id.ToString(),
-                                                       targetClient._testGroupNumber,
-                                                       targetClient._compNumber,
-                                                       targetClient._slotNumber,
-                                                       targetClient._status,
-                                                       targetClient._percent,
-                                                       targetClient._cycleCount,
-                                                       targetClient._descriptionOfState,
-                                                       targetClient._manuallyClosed
-                                                       ));
+            OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs3_withTargetClient(
+                targetClient._unique_Id.ToString(),
+                targetClient._serialNumber,
+                targetClient._dateAndTimeOfConnection.ToString(),
+                targetClient._testGroupNumber,
+                targetClient._compNumber,
+                targetClient._slotNumber,
+                targetClient._programName,
+                targetClient._testAppVersion,
+                targetClient._status,
+                targetClient._percent,
+                targetClient._serialNumberLastFour,
+                targetClient._testType,
+                0,
+                targetClient._cycleCount,
+                targetClient._descriptionOfState,
+                targetClient._manuallyClosed
+                ));
         }
 
 
@@ -1006,18 +1013,24 @@ namespace Server_GUI
 
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseBytesRead: <CLIENTINFO> detected, calling OnUpdateConnectedClientsGridView, passing in CustomEventArgs2\tUpdating connected client GridView in GUI\r\n");
 
-                    OnUpdateConnectedClientsGridView(new CustomEventArgs2(
-                                                    lastClientConnected._unique_Id.ToString(),
-                                                    lastClientConnected._serialNumber,
-                                                    lastClientConnected._dateAndTimeOfConnection.ToString(),
-                                                    lastClientConnected._testGroupNumber,
-                                                    lastClientConnected._compNumber,
-                                                    lastClientConnected._slotNumber,
-                                                    lastClientConnected._programName,
-                                                    lastClientConnected._testAppVersion,
-                                                    lastClientConnected._status,
-                                                    lastClientConnected._percent
-                                                    ));
+                    OnUpdateConnectedClientsGridView(new CustomEventArgs3_withTargetClient(
+                        lastClientConnected._unique_Id.ToString(),
+                        lastClientConnected._serialNumber,
+                        lastClientConnected._dateAndTimeOfConnection.ToString(),
+                        lastClientConnected._testGroupNumber,
+                        lastClientConnected._compNumber,
+                        lastClientConnected._slotNumber,
+                        lastClientConnected._programName,
+                        lastClientConnected._testAppVersion,
+                        lastClientConnected._status,
+                        lastClientConnected._percent,
+                        lastClientConnected._serialNumberLastFour,
+                        lastClientConnected._testType,
+                        0,
+                        lastClientConnected._cycleCount,
+                        lastClientConnected._descriptionOfState,
+                        lastClientConnected._manuallyClosed
+                        ));
                     break;
                 }
             }
@@ -1167,38 +1180,44 @@ namespace Server_GUI
 
                                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: calling OnUpdateConnectedClientsGridView_updateClient, passing in CustomEventArgs2_withTargetClient\r\n");
 
-                                OnUpdateConnectedClientsGridView_updateClient(new CustomEventArgs2_withTargetClient(
-                                                        targetClient._unique_Id.ToString(),
-                                                        targetClient._serialNumber,
-                                                        targetClient._dateAndTimeOfConnection.ToString(),
-                                                        targetClient._testGroupNumber,
-                                                        targetClient._compNumber,
-                                                        targetClient._slotNumber,
-                                                        targetClient._programName,
-                                                        targetClient._testAppVersion,
-                                                        targetClient._status,
-                                                        targetClient._percent,
-                                                        //include the row to replace in the GUI
-                                                        rowToReplace
-                                                        ));
+                                OnUpdateConnectedClientsGridView_updateClient(new CustomEventArgs3_withTargetClient(
+                                    targetClient._unique_Id.ToString(),targetClient._serialNumber,
+                                    targetClient._dateAndTimeOfConnection.ToString(),
+                                    targetClient._testGroupNumber,
+                                    targetClient._compNumber,
+                                    targetClient._slotNumber,
+                                    targetClient._programName,
+                                    targetClient._testAppVersion,
+                                    targetClient._status,
+                                    targetClient._percent,
+                                    targetClient._serialNumberLastFour,
+                                    targetClient._testType,
+                                    rowToReplace,
+                                    targetClient._cycleCount,
+                                    targetClient._descriptionOfState,
+                                    targetClient._manuallyClosed                    
+                                    ));
 
                                 VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseInitialUpdateOfTest: calling OnUpdateConnectedClients_BigPicture_updateClient, passing in CustomEventArgs3_withTargetClient\r\n");
 
                                 OnUpdateConnectedClients_BigPicture_updateClient(new CustomEventArgs3_withTargetClient(
-                                                       targetClient._unique_Id.ToString(),
-                                                       targetClient._serialNumber,
-                                                       targetClient._dateAndTimeOfConnection.ToString(),
-                                                       targetClient._testGroupNumber,
-                                                       targetClient._compNumber,
-                                                       targetClient._slotNumber,
-                                                       targetClient._programName,
-                                                       targetClient._testAppVersion,
-                                                       targetClient._status,
-                                                       targetClient._percent,
-
-                                                        targetClient._serialNumberLastFour,
-                                                        targetClient._testType
-                                                       ));
+                                    targetClient._unique_Id.ToString(),
+                                    targetClient._serialNumber,
+                                    targetClient._dateAndTimeOfConnection.ToString(),
+                                    targetClient._testGroupNumber,
+                                    targetClient._compNumber,
+                                    targetClient._slotNumber,
+                                    targetClient._programName,
+                                    targetClient._testAppVersion,
+                                    targetClient._status,
+                                    targetClient._percent,
+                                    targetClient._serialNumberLastFour,
+                                    targetClient._testType,
+                                    0,
+                                    targetClient._cycleCount,
+                                    targetClient._descriptionOfState,
+                                    targetClient._manuallyClosed
+                                    ));
 
                                 break;
                             }
@@ -1302,17 +1321,24 @@ namespace Server_GUI
 
                     VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseStatusOfTest: calling OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient, passing in CustomEventArgs4_statusUpdates\r\n");
 
-                    OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs4_statusUpdates(
-                                                       targetClient._unique_Id.ToString(),
-                                                       targetClient._testGroupNumber,
-                                                       targetClient._compNumber,
-                                                       targetClient._slotNumber,
-                                                       targetClient._status,
-                                                       targetClient._percent,
-                                                       targetClient._cycleCount,
-                                                       targetClient._descriptionOfState,
-                                                       targetClient._manuallyClosed
-                                                       ));
+                    OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs3_withTargetClient(
+                        targetClient._unique_Id.ToString(),
+                        targetClient._serialNumber,
+                        targetClient._dateAndTimeOfConnection.ToString(),
+                        targetClient._testGroupNumber,
+                        targetClient._compNumber,
+                        targetClient._slotNumber,
+                        targetClient._programName,
+                        targetClient._testAppVersion,
+                        targetClient._status,
+                        targetClient._percent,
+                        targetClient._serialNumberLastFour,
+                        targetClient._testType,
+                        0,
+                        targetClient._cycleCount,
+                        targetClient._descriptionOfState,
+                        targetClient._manuallyClosed
+                        ));
 
                     if(targetClient._needToSendEmail == true && this.mMainForm.sendEmailOnAlert_checkBox.Checked)
                      {

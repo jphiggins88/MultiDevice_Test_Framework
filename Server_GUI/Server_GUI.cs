@@ -20,18 +20,16 @@ namespace Server_GUI
         //Delegates used for writing to text boxes and list boxes
         public delegate void ProcessDelegate(object sender, CustomEventArgs e);
         public delegate void WriteToConnectedListBoxDelegate(object sender, string e);
-        public delegate void WriteToGridViewBoxDelegate(object sender, CustomEventArgs2 e);
-        public delegate void WriteToGridViewBoxDelegate_updateClient(object sender, CustomEventArgs2_withTargetClient e);
+        public delegate void WriteToGridViewBoxDelegate(object sender, CustomEventArgs3_withTargetClient e);
+        public delegate void WriteToGridViewBoxDelegate_updateClient(object sender, CustomEventArgs3_withTargetClient e);
         public delegate void WriteTo_BigPictureDelegate_UpdateClient(object sender, CustomEventArgs3_withTargetClient e);
-        public delegate void WriteTo_BigPictureDelegate_StatusOnly_UpdateClient(object sender, CustomEventArgs4_statusUpdates e);
-        public delegate void WriteToGridViewBoxDelegate_status(object sender, CustomEventArgs3 e);
+        public delegate void WriteTo_BigPictureDelegate_StatusOnly_UpdateClient(object sender, CustomEventArgs3_withTargetClient e);
+        public delegate void WriteToGridViewBoxDelegate_status(object sender, CustomEventArgs3_withTargetClient e);
         public delegate void WriteToGridViewBoxDelegate_deleteClient(object sender, string e);
         public delegate void UpdateSerialNumberDelegate(object sender, string e);
-        public delegate void CleatTextBoxOnClickIfDisconnectedDelegate(object sender, CustomEventArg_txtBoxControl e);
 
         public AsynchronousSocketListener mAsyncListener;
         public Email_Sender emailSender;
-
         List<Control> ControlList = new List<Control>();
 
         public const string SERVER_VERSION = "1.07e";
@@ -40,7 +38,6 @@ namespace Server_GUI
         {
             InitializeComponent();
 
-            //create a new AsyncSocketListener and give it access to this form so it can change the contents of the listBox
             mAsyncListener = new AsynchronousSocketListener(this);
             emailSender = new Email_Sender();
 
@@ -61,11 +58,11 @@ namespace Server_GUI
             }
 
             // Subscribe to all Events 
-            mAsyncListener.ReadFromClient += WriteToTextBox;
-            mAsyncListener.UpdateConnectedClientsList += WriteToConnectedListBox;
-            mAsyncListener.UpdateConnectedClientsGridView += WriteToGridViewBox;
-            mAsyncListener.UpdateConnectedClientsGridView_updateClient += WriteToGridViewBox_UpdateClient;
-            mAsyncListener.UpdateConnectedClients_BigPicture_updateClient += WriteTo_BigPicture_UpdateClient;
+            mAsyncListener.ReadFromClient += WriteToIncomingMessagesBox;
+            mAsyncListener.UpdateConnectedClientsList += WriteToConnectedClientHistoryBox;
+            mAsyncListener.UpdateConnectedClientsGridView += WriteToGridViewClientQueueBox;
+            mAsyncListener.UpdateConnectedClientsGridView_updateClient += UpdateSpecificClientInGridViewClientQueueBox;
+            mAsyncListener.UpdateConnectedClients_BigPicture_updateClient += UpdateInfoInGraphicalOverview;
             mAsyncListener.UpdateConnectedClients_BigPicture_StatusOnly_updateClient += WriteTo_BigPicture_StatusOnly_UpdateClient;
             mAsyncListener.UpdateConnectedClientsGridView_deleteClient += WriteToGridViewBox_deleteClient;
             mAsyncListener.UpdateSerialNumber += UpdateSerialNumber;
@@ -76,50 +73,50 @@ namespace Server_GUI
 
         #region Event Handlers
 
-        private void WriteToTextBox(object sender, CustomEventArgs e)
+        private void WriteToIncomingMessagesBox(object sender, CustomEventArgs e)
         {
-            mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteToTextBox - accepting CustomEventArgs");
-
             if (this.InvokeRequired)
             {
-                this.Invoke(new ProcessDelegate(WriteToTextBox), new object[] { sender, e });
+                this.Invoke(new ProcessDelegate(WriteToIncomingMessagesBox), new object[] { sender, e });
             }
             else
             {   
-                this.listBox1.Items.Add(e.lastReceived);
+                this.lbox_incomingMessages.Items.Add(e.lastReceived);
 
                 // If more than 10 messages have been logged, start removing the oldest when a new message is added.
-                if (listBox1.Items.Count > 20)
+                if (lbox_incomingMessages.Items.Count > 20)
                 {
-                    this.listBox1.Items.RemoveAt(0);
+                    this.lbox_incomingMessages.Items.RemoveAt(0);
                 }
 
-                this.textBox2.Text = e.lastReceived;
+                this.text_lastMessageReceived.Text = e.lastReceived;
             }
 
         }
 
         // update the gui list box with the information received/parsed from the client
-        private void WriteToConnectedListBox(object sender, string e)
+        private void WriteToConnectedClientHistoryBox(object sender, string e)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new WriteToConnectedListBoxDelegate(WriteToConnectedListBox), new object[] { sender, e });
+                this.Invoke(new WriteToConnectedListBoxDelegate(WriteToConnectedClientHistoryBox), new object[] { sender, e });
             }
             else
             {
-                this.listBox2.Items.Add(e);
+                this.lbox_connectedClientHistory.Items.Add(e);
             }
         }
 
-        // update the gui dataGrid with the information received/parsed from the client
-        private void WriteToGridViewBox(object sender, CustomEventArgs2 e)
-        {
-            mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteToGridViewBox - accepting CustomEventArgs2");
 
+
+        // TODO the 2 below could possibly be combined
+
+        // update the gui dataGrid with the information received/parsed from the client
+        private void WriteToGridViewClientQueueBox(object sender, CustomEventArgs3_withTargetClient e)
+        {
             if (this.InvokeRequired)
             {
-                this.Invoke(new WriteToGridViewBoxDelegate(WriteToGridViewBox), new object[] { sender, e });
+                this.Invoke(new WriteToGridViewBoxDelegate(WriteToGridViewClientQueueBox), new object[] { sender, e });
             }
             else 
             {
@@ -138,19 +135,15 @@ namespace Server_GUI
 
         // update the gui dataGrid with the new information received/parsed from the client.
         // This function will overwrite the existing entries if the client ID's match.
-        private void WriteToGridViewBox_UpdateClient(object sender, CustomEventArgs2_withTargetClient e)
+        private void UpdateSpecificClientInGridViewClientQueueBox(object sender, CustomEventArgs3_withTargetClient e)
         {
-            mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteToGridViewBox_UpdateClient - accepting CustomEventArgs2_withTargetClient");
-
             if (this.InvokeRequired)
             {
-                this.Invoke(new WriteToGridViewBoxDelegate_updateClient(WriteToGridViewBox_UpdateClient), new object[] { sender, e });
+                this.Invoke(new WriteToGridViewBoxDelegate_updateClient(UpdateSpecificClientInGridViewClientQueueBox), new object[] { sender, e });
             }
             else
             {
                 int rowToEdit = e.gridView_targetClient;
-                //this.gridView_clientQueue.Rows.RemoveAt(rowToReplace);
-
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[1].Value = e.client_serialNum;
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[3].Value = e.client_testGroupNum;
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[4].Value = e.client_compNum;
@@ -159,257 +152,191 @@ namespace Server_GUI
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[7].Value = e.client_testAppVersion;
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[8].Value = e.client_status;
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[9].Value = e.client_percent;
+            }
+        }
 
 
+
+        private TableLayoutPanel SetTargetPcLayoutPanel (CustomEventArgs3_withTargetClient e)
+        {
+            // Set the correct computer grid to modify.
+            // Set the targetCOmputerLayoutPanel to the appropriate layoutPanel in the GUI that needs modifying with client info.
+            TableLayoutPanel targetComputerLayoutPanel = null;
+            try
+            {
+                if (e.client_testGroupNum == "01")
+                {
+                    if (e.client_compNum == "PC-01")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
+                    }
+                    else if (e.client_compNum == "PC-02")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
+                    }
+                    else if (e.client_compNum == "PC-03")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
+                    }
+                }
+                else if (e.client_testGroupNum == "02")
+                {
+                    if (e.client_compNum == "PC-04")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
+                    }
+                    else if (e.client_compNum == "PC-05")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
+                    }
+                    else if (e.client_compNum == "PC-06")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
+                    }
+                }
+                else if (e.client_testGroupNum == "03")
+                {
+                    if (e.client_compNum == "PC-07")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
+                    }
+                    else if (e.client_compNum == "PC-08")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC08;
+                    }
+                    else if (e.client_compNum == "PC-09")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC09;
+                    }
+                }
+                else if (e.client_testGroupNum == "04")
+                {
+                    if (e.client_compNum == "PC-10")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
+                    }
+                    else if ((e.client_compNum == "PC-11"))
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
+                    }
+                    else if (e.client_compNum == "PC-12")
+                    {
+                        targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
+                    }
+                }
+                else
+                {
+                    targetComputerLayoutPanel = null;
+                    throw new Exception("Server received an unrecognizable testGroupNumber number or PC name.\r\n" +
+                        "Values received:: Chamber: " + e.client_testGroupNum.ToString() + "   PC: " + e.client_compNum.ToString());
+                }
+            }
+            catch (Exception except)
+            {
+                mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteTo_BigPicture_UpdateClient - Exception: " + except.Message + "\r\n");
+                MessageBox.Show("Exception: " + except.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return targetComputerLayoutPanel;
+        }
+
+        private void UpdateColumnInfoInAppropriateSlot(CustomEventArgs3_withTargetClient e, TableLayoutPanel targetComputerLayoutPanel)
+        {
+            // Parse the slot number passed in from the client GUI.
+            int slotNum_toInt = 0;
+            Int32.TryParse(e.client_slotNum, out slotNum_toInt);
+
+            // Handle the client specifying a slot number greater than 10. The Gui can only handle up to 10 slots.
+            if (slotNum_toInt > 10)
+            {
+                string message = "The server received a slot number greater than 10.\r\n" +
+                    "Received from from client: " + e.client_id.ToString() + " on PC: " + e.client_compNum.ToString() +
+                    "\r\nSlot number received was: " + e.client_slotNum.ToString();
+                Debug.WriteLine("Exception:\r\n" + message);
+                mAsyncListener.VerboseLog(message);
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Subtract 1 from the slotNum since the grid array is zero indexed. (slot 1 is column 0, slot 8 is column 7)
+            slotNum_toInt = slotNum_toInt - 1;
+
+            // Using the target layoutPanel and the target slot number, modify the appropriate text boxes according to the client information passed in.
+            if (targetComputerLayoutPanel != null && slotNum_toInt < 10)
+            {
+                targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 1).Text = e.client_programName;
+                targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 2).Text = e.client_serialNumLastFour;
+                targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).Text = e.client_testType;
+                targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 4).Text = e.client_percent;
+
+                // Change color based on test type
+                if (e.client_testType == "VC")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.MediumBlue;
+                }
+                else if (e.client_testType == "BT")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.Indigo;
+                }
+                else if (e.client_testType == "PT")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.Orange;
+                }
+                else
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.LightGray;
+                }
+
+                // Change color based on status. 
+                if (e.client_status == "Starting")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Yellow;
+                }
+                else if (e.client_status == "Running")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Green;
+                }
+                else if (e.client_status == "Failed")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Red;
+                }
+                else if (e.client_status == "Stopped")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Tomato;
+                }
+                else if (e.client_status == "Complete")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Lime;
+                }
+                else if (e.client_status == "Unknown")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Purple;
+                }
             }
         }
 
         // Update the GUI with info once more information has been received from the client
-        private void WriteTo_BigPicture_UpdateClient(object sender, CustomEventArgs3_withTargetClient e)
+        private void UpdateInfoInGraphicalOverview(object sender, CustomEventArgs3_withTargetClient e)
         {
-            mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteTo_BigPicture_UpdateClient - accepting CustomEventArgs3_withTargetClient");
-
             if (this.InvokeRequired)
             {
-                this.Invoke(new WriteTo_BigPictureDelegate_UpdateClient(WriteTo_BigPicture_UpdateClient), new object[] { sender, e });
+                this.Invoke(new WriteTo_BigPictureDelegate_UpdateClient(UpdateInfoInGraphicalOverview), new object[] { sender, e });
             }
             else
             {
-                // Set the correct computer grid to modify.
-                // Set the targetCOmputerLayoutPanel to the appropriate layoutPanel in the GUI that needs modifying with client info.
-                TableLayoutPanel targetComputerLayoutPanel = null;
-                try
-                {
-                    if (e.client_testGroupNumber == "01")
-                    {
-                        if (e.client_compNum == "PC-01")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
-                        }
-                        else if (e.client_compNum == "PC-02")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
-                        }
-                        else if (e.client_compNum == "PC-03")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
-                        }
-                    }
-                    else if (e.client_testGroupNumber == "02")
-                    {
-                        if (e.client_compNum == "PC-04")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
-                        }
-                        else if (e.client_compNum == "PC-05")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
-                        }
-                        else if (e.client_compNum == "PC-06")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
-                        }
-                    }
-                    else if(e.client_testGroupNumber == "03")
-                    {
-                        if (e.client_compNum == "PC-07")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
-                        }
-                        else if (e.client_compNum == "PC-08")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC08;
-                        }
-                        else if (e.client_compNum == "PC-09")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC09;
-                        }
-                    }
-                    else if(e.client_testGroupNumber == "04")
-                    {
-                        if (e.client_compNum == "PC-10")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
-                        }
-                        else if ( (e.client_compNum == "PC-11") )
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
-                        }
-                        else if (e.client_compNum == "PC-12")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Server received an unrecognizable testGroupNumber number or PC name.\r\n" +
-                            "Values received:: Chamber: " + e.client_testGroupNumber.ToString() + "   PC: " + e.client_compNum.ToString());
-                    }
-                }
-                catch (Exception except)
-                {
-                    mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteTo_BigPicture_UpdateClient - Exception: " + except.Message + "\r\n");
-                    MessageBox.Show("Exception: " + except.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                // Parse the slot number passed in from the client GUI.
-                int slotNum_toInt = 0;
-                Int32.TryParse(e.client_slotNum, out slotNum_toInt);
-
-                // Subtract 1 from the slotNum since the grid array is zero indexed. (slot 1 is column 0, slot 8 is column 7)
-                slotNum_toInt = slotNum_toInt - 1;
-
-                // Using the target layoutPanel and the target slot number, modify the appropriate text boxes according to the client information passed in.
-                if (targetComputerLayoutPanel != null)
-                {
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 1).Text = e.client_programName;
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 2).Text = e.client_serialNumLastFour;
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).Text = e.client_testType;
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 4).Text = e.client_percent;
-
-                    // Change color based on test type
-                    if (e.client_testType == "VC")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.MediumBlue;
-                    }
-                    else if (e.client_testType == "BT")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.Indigo;
-                    }
-                    else if (e.client_testType == "PT")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.Orange;
-                    }
-                    else
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.LightGray;
-                    }
-
-                    // Change color based on status. 
-                    if (e.client_status == "Starting")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Yellow;
-                    }
-                    else if (e.client_status == "Running")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Green;
-                    }
-                    else if (e.client_status == "Failed")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Red;
-                    }
-                    else if (e.client_status == "Stopped")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Tomato;
-                    }
-                    else if (e.client_status == "Complete")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Lime;
-                    }
-                    else if (e.client_status == "Unknown")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Purple;
-                    }
-                }
+                TableLayoutPanel targetComputerLayoutPanel = SetTargetPcLayoutPanel(e);
+                UpdateColumnInfoInAppropriateSlot(e, targetComputerLayoutPanel);
             }
         }
 
-        private void WriteTo_BigPicture_StatusOnly_UpdateClient(object sender, CustomEventArgs4_statusUpdates e)
+        private void WriteTo_BigPicture_StatusOnly_UpdateClient(object sender, CustomEventArgs3_withTargetClient e)
         {
-            mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteTo_BigPicture_StatusOnly_UpdateClient - accepting CustomEventArgs4_statusUpdates");
-
             if (this.InvokeRequired)
             {
                 this.Invoke(new WriteTo_BigPictureDelegate_StatusOnly_UpdateClient(WriteTo_BigPicture_StatusOnly_UpdateClient), new object[] { sender, e });
             }
             else
             {
-                // Set the correct computer grid to modify.
-                // Look For the chamber first to prevent uncecessary checking of computer names. Only check the names of the computer that can possibly be in that chamber.
-                // Set the targetCOmputerLayoutPanel to the appropriate layoutPanel in the GUI that needs modifying with client info.
+                TableLayoutPanel targetComputerLayoutPanel = SetTargetPcLayoutPanel(e);
 
-                TableLayoutPanel targetComputerLayoutPanel = null;
-
-                try
-                { 
-                    if (e.client_testGroupNum == "01")
-                    {
-                        if (e.client_compNum == "PC-01")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC01;
-                        }
-                        else if (e.client_compNum == "PC-02")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC02;
-                        }
-                        else if (e.client_compNum == "PC-03")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC03;
-                        }
-                    }
-                    else if (e.client_testGroupNum == "02")
-                    {
-                        if (e.client_compNum == "PC-04")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC04;
-                        }
-                        else if (e.client_compNum == "PC-05")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC05;
-                        }
-                        else if (e.client_compNum == "PC-06")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC06;
-                        }
-                    }
-                    else if (e.client_testGroupNum == "03")
-                    {
-                        if (e.client_compNum == "PC-07")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC07;
-                        }
-                        else if (e.client_compNum == "PC-08")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC08;
-                        }
-                        else if (e.client_compNum == "PC-09")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC09;
-                        }
-                    }
-                    else if (e.client_testGroupNum == "04")
-                    {
-                        if (e.client_compNum == "PC-10")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;
-                        }
-                        else if (e.client_compNum == "PC-11")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC11;
-                        }
-                        else if (e.client_compNum == "PC-12")
-                        {
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC12;
-                        }
-                    }
-                    // Used for testing on a development pc. Manually change the computer name to "test" in the testDevice GUI.
-                    // This is so you can use your development machine and use the IP loopback address.
-                    else if (e.client_compNum == "test")
-                    {                        
-                            targetComputerLayoutPanel = this.tableLayoutPanel_PC10;                        
-                    }
-                    else
-                    {
-                        throw new Exception("Server received an unrecognizable Chamber number or PC name.\r\n" +
-                            "Values received:: Chamber: " + e.client_testGroupNum.ToString() + "   PC: " + e.client_compNum.ToString());
-                    }
-
-                }
-                catch (Exception except)
-                {
-                    mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteTo_BigPicture_StatusOnly_UpdateClient - Exception: " + except.Message + "\r\n");
-                    MessageBox.Show("Exception: " + except.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
 
 
                 // Parse the slot number passed in from the client GUI.
@@ -534,7 +461,7 @@ namespace Server_GUI
             }
         }
 
-
+        // TODO where is this used? remove it?
         private void UpdateSerialNumber(object sender, string e)
         {
             mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - UpdateSerialNumber - accepting a string: " + e);
@@ -550,7 +477,7 @@ namespace Server_GUI
         }
 
 
-        private void WriteToGridViewBox_status(object sender, CustomEventArgs3 e)
+        private void WriteToGridViewBox_status(object sender, CustomEventArgs3_withTargetClient e)
         {
             mAsyncListener.VerboseLog(DateTime.Now.ToString(AsynchronousSocketListener.TIME_MS) + "\tEventHandler - WriteToGridViewBox_status - accepting CustomEventArgs3");
             if (this.InvokeRequired)
@@ -597,7 +524,6 @@ namespace Server_GUI
         #endregion Event Handlers
 
 
-
         private void button_ListenForConnections_Click(object sender, EventArgs e)
         {
             new Thread(() =>
@@ -627,7 +553,7 @@ namespace Server_GUI
         // Button 2 = send to all Button
         private void button2_Click(object sender, EventArgs e)
         {
-            string dataFromTextbox = textBox1.Text + "<EOF>";
+            string dataFromTextbox = text_sendToAll.Text + "<EOF>";
             try
             {
                 new Thread(() =>

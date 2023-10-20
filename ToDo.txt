@@ -46,6 +46,9 @@ prepend g_ to the beginning of all global variables in the client and server
 Modify member variables in all classes to adhere to naming conventions (capital first letter)
 Unify test type and test name colors so they match on the server and the Client
 Remove all unused functions, delegates, event args, variables (client and server)
+Figure out the 7 day count log switching
+A failed test from an initial mainloop failure does not allow the start button to be clicked again. The button turns red and displays "start" but nothing happens
+Make percentage in graphical layout show up as 2 point precision (alternatively, just send 2 point precision)
 
 
 Possibly revert the client back to handling client info test data on the stack as opposed to storing it all in a Client Object
