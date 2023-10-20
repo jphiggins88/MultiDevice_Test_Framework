@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
-using System.Diagnostics;
-using System.Timers;
-using System.IO;
+using System.Windows.Forms;
 
 namespace Server_GUI
 {
@@ -141,7 +134,6 @@ namespace Server_GUI
         public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClientsGridView;
         public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClientsGridView_updateClient;
         public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClients_BigPicture_updateClient;
-        public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClients_BigPicture_StatusOnly_updateClient;
         public event EventHandler<CustomEventArgs3_withTargetClient> UpdateConnectedClientsGridView_status;
         public event EventHandler<string> UpdateConnectedClientsGridView_deleteClient;
         public event EventHandler<string> UpdateSerialNumber;
@@ -177,12 +169,6 @@ namespace Server_GUI
             UpdateConnectedClients_BigPicture_updateClient?.Invoke(this, e);
         }
 
-        // (string id, string testGroupNum, string compNum, string slotNum, string status, string percent, string cycleCount, string descriptionOfState, bool wasManuallyClosed)
-        protected virtual void OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(CustomEventArgs3_withTargetClient e)
-        {
-            UpdateConnectedClients_BigPicture_StatusOnly_updateClient?.Invoke(this, e);
-        }
-
         // (string clientID, string status, string percent)
         protected virtual void OnUpdateConnectedClientsGridView_status(CustomEventArgs3_withTargetClient e)
         {
@@ -192,11 +178,6 @@ namespace Server_GUI
         protected virtual void OnUpdateConnectedClientsGridView_deleteClient(string e)
         {
             UpdateConnectedClientsGridView_deleteClient?.Invoke(this, e);
-        }
-
-        protected virtual void OnUpdateSerialNumber(string e)
-        {
-            UpdateSerialNumber?.Invoke(this, e);
         }
 
         #endregion delegates and event handlers
@@ -240,7 +221,6 @@ namespace Server_GUI
             }
         }
 
-
         public void AcceptCallback(IAsyncResult ar)
         {
             allDone.Set(); 
@@ -253,7 +233,6 @@ namespace Server_GUI
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tAcceptCallback: handler.BeginReceive\tMake the new socket listen for incoming messages\r\n");
             newSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
         }
-
 
         public void ReadCallback(IAsyncResult ar)
         {
@@ -303,7 +282,6 @@ namespace Server_GUI
             }
         }
 
-
         private void SendAlertEmail_AllInfo(Client clientInfo, string pathToErrorLog)
         {
             if (this.mMainForm.sendEmailOnAlert_checkBox.Checked)
@@ -313,7 +291,6 @@ namespace Server_GUI
             }
         }
 
-
         public void SendToAll(String data)
         {
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSendToAll\r\n");
@@ -322,7 +299,6 @@ namespace Server_GUI
                 Send(client._socket, data);
             }
         }
-
 
         private void Send(Socket handler, String data)
         {
@@ -341,7 +317,6 @@ namespace Server_GUI
             }
         }
 
-
         private void SendCallback(IAsyncResult ar)
         {
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tSendCallback\r\n");
@@ -359,13 +334,11 @@ namespace Server_GUI
             }
         }
 
-
         private void OnAckTimerElapsed(Object source, System.Timers.ElapsedEventArgs e)
         {
             ackTimer.Stop();
             VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnAckTimerElapsed\tClient did not acknowledge the last message sent. Timer has been stopped\r\n");
         }
-
 
         private void OnHeartBeatTimerElapsed_ServerSide(Object source, System.Timers.ElapsedEventArgs e)
         {
@@ -382,7 +355,6 @@ namespace Server_GUI
                     // it will be added to the dead list the next time the server side heart beat timeer elapses if it does not have a heart beat.
                     if (mainClientController.Clients[i]._isNewClient_ignoreHeartBeatOneTime)
                     {
-                        VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, ignore ONE time for new client. Setting ignore once flag to false\r\n");
                         mainClientController.Clients[i]._isNewClient_ignoreHeartBeatOneTime = false;
                     }
                     else
@@ -398,7 +370,6 @@ namespace Server_GUI
             if (deadClientsDetected == true)
             {
                 Debug.WriteLine("Server:: areAnyClientsDead == true. Finding the ID of the dead client.\r\n\tThere are currently " + mainClientController.Clients.Count + " clients connected.");
-
                 // log the missed heartbeat
                 for (int j = 0; j < mainClientController.Clients.Count; j++)
                 {
@@ -418,7 +389,6 @@ namespace Server_GUI
                             }
                         }
                         Debug.WriteLine("Server:: Calling RemoveDeadClient() on client " + mainClientController.Clients[j]._unique_Id);
-
                         // remove client from the list and change the status in the GUI to unknown/disconnected
                         VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tOnHeartBeatTimerElapsed_ServerSide, RemoveDeadCLient():" + mainClientController.Clients[j]._unique_Id + "\r\n");
                         string deadClientID = RemoveDeadClient(j);
@@ -431,7 +401,6 @@ namespace Server_GUI
         }
         
         #endregion socket functions
-
 
         /// <summary>
         /// Removes the dead client from the client list and the dataGridView in the GUI.
@@ -463,14 +432,12 @@ namespace Server_GUI
             return deadClientID;
         }
 
-
         public void MarkClientAsDeadInBigPicture(int i)
         {
             targetClient = mainClientController.Clients[i];
             targetClient._descriptionOfState = "Client is disconnected or unreachable";
             targetClient._status = "Unknown";
-            VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tMarkClientAsDeadInBigPicture: Calling OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient with eventArgs: CustomEventArgs4_statusUpdates\r\n");
-            OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs3_withTargetClient(
+            OnUpdateConnectedClients_BigPicture_updateClient(new CustomEventArgs3_withTargetClient(
                 targetClient._unique_Id.ToString(),
                 targetClient._serialNumber,
                 targetClient._dateAndTimeOfConnection.ToString(),
@@ -489,7 +456,6 @@ namespace Server_GUI
                 targetClient._manuallyClosed
                 ));
         }
-
 
         #region logging and email sending
 
@@ -574,7 +540,6 @@ namespace Server_GUI
             }
         }
 
-
         /// <summary>
         /// Copy the appropriate log file/s from the LAN shared folder to the OneDrive shared folder.
         /// The files to be copied will be specified in the content of the sockets message and passed into this function.
@@ -616,7 +581,6 @@ namespace Server_GUI
                 }
             }
         }
-
 
         public string[] CreateSummaryOfAllTests_type2Devices()
         {
@@ -702,7 +666,6 @@ namespace Server_GUI
 
             return completeSummary;
         }
-
 
         public string[] CreateSummaryOfAllTests_allTypes()
         {
@@ -795,7 +758,6 @@ namespace Server_GUI
             return completeSummary;
         }
 
-
         public static string GetAddressFromTextFile(string path)
         {
             try
@@ -813,9 +775,7 @@ namespace Server_GUI
         #endregion logging and email sending
 
 
-
         #region message parsing
-
 
         public static void SetClientInfoAccordingToTagsFoundInMessage(Client client ,string stringSlice, string tag)
         {
@@ -874,7 +834,6 @@ namespace Server_GUI
                 }
             }
         }
-
 
         public void ParseBytesRead(int bytesRead, Socket handler, StateObject state, string content, string result)
         {
@@ -1233,8 +1192,6 @@ namespace Server_GUI
             }
         }
 
-
-
         /// <summary>
         /// Receives a status of a device test from a client. 
         /// Looks for "percentUpdate:###", "complete", "running", or "failed", and acts accordingly.
@@ -1319,9 +1276,7 @@ namespace Server_GUI
                         */
                     }
 
-                    VerboseLog(DateTime.Now.ToString(TIME_MS) + "\tParseStatusOfTest: calling OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient, passing in CustomEventArgs4_statusUpdates\r\n");
-
-                    OnUpdateConnectedClients_BigPicture_StatusOnly_updateClient(new CustomEventArgs3_withTargetClient(
+                    OnUpdateConnectedClients_BigPicture_updateClient(new CustomEventArgs3_withTargetClient(
                         targetClient._unique_Id.ToString(),
                         targetClient._serialNumber,
                         targetClient._dateAndTimeOfConnection.ToString(),
@@ -1350,7 +1305,6 @@ namespace Server_GUI
                 }
             }
         }
-
 
         /// <summary>
         /// Receives an Update containing the PC name and slot number of a given client,

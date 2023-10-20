@@ -62,8 +62,10 @@ namespace Server_GUI
             mAsyncListener.UpdateConnectedClientsList += WriteToConnectedClientHistoryBox;
             mAsyncListener.UpdateConnectedClientsGridView += WriteToGridViewClientQueueBox;
             mAsyncListener.UpdateConnectedClientsGridView_updateClient += UpdateSpecificClientInGridViewClientQueueBox;
+
             mAsyncListener.UpdateConnectedClients_BigPicture_updateClient += UpdateInfoInGraphicalOverview;
-            mAsyncListener.UpdateConnectedClients_BigPicture_StatusOnly_updateClient += WriteTo_BigPicture_StatusOnly_UpdateClient;
+            //mAsyncListener.UpdateConnectedClients_BigPicture_StatusOnly_updateClient += WriteTo_BigPicture_StatusOnly_UpdateClient;
+
             mAsyncListener.UpdateConnectedClientsGridView_deleteClient += WriteToGridViewBox_deleteClient;
             mAsyncListener.UpdateSerialNumber += UpdateSerialNumber;
             mAsyncListener.UpdateConnectedClientsGridView_status += WriteToGridViewBox_status;
@@ -71,7 +73,7 @@ namespace Server_GUI
         }
 
 
-        #region Event Handlers
+        #region Event handlers and helper functions
 
         private void WriteToIncomingMessagesBox(object sender, CustomEventArgs e)
         {
@@ -106,10 +108,6 @@ namespace Server_GUI
                 this.lbox_connectedClientHistory.Items.Add(e);
             }
         }
-
-
-
-        // TODO the 2 below could possibly be combined
 
         // update the gui dataGrid with the information received/parsed from the client
         private void WriteToGridViewClientQueueBox(object sender, CustomEventArgs3_withTargetClient e)
@@ -154,8 +152,6 @@ namespace Server_GUI
                 this.gridView_clientQueue.Rows[rowToEdit].Cells[9].Value = e.client_percent;
             }
         }
-
-
 
         private TableLayoutPanel SetTargetPcLayoutPanel (CustomEventArgs3_withTargetClient e)
         {
@@ -306,9 +302,26 @@ namespace Server_GUI
                 {
                     targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Lime;
                 }
-                else if (e.client_status == "Unknown")
+                else if (e.client_status == "Unknown" && e.client_wasManuallyClosed == false)
                 {
                     targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Purple;
+                    // Keep track of all slots that have been designated as unknown/possibly disconnected and add them to a list of text boxes to monitor for clicks.
+                    // If a box is purple and the user clicks it, it's contents will be cleared. The contents do not auto clear if a disconnection is suspected. 
+                    // We want to see which clients may have an issue by designating them with the color purple instead of just erasing them.
+
+                    // If a client has been disconnected or its state is unknown, then add it to a list of text boxes to monitor for clicks. A click will be needed to clear the disconnected status.
+                    ControlList.Add(targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0));
+                    // Call a function to dynamically create a click event for the added textBox.
+                    trackDisconnectedClientTextBoxes();
+                }
+                else if (e.client_status == "manualClose")
+                {
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.DarkGray;
+
+                    // If a client has been manually closed, then add it to a list of text boxes to monitor for clicks. A click will be needed to clear the manually closed status.
+                    ControlList.Add(targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0));
+                    // Call a function to dynamically create a click event for the added textBox.
+                    trackDisconnectedClientTextBoxes();
                 }
             }
         }
@@ -336,85 +349,8 @@ namespace Server_GUI
             else
             {
                 TableLayoutPanel targetComputerLayoutPanel = SetTargetPcLayoutPanel(e);
+                UpdateColumnInfoInAppropriateSlot(e, targetComputerLayoutPanel);
 
-
-
-                // Parse the slot number passed in from the client GUI.
-                int slotNum_toInt = 0;
-                Int32.TryParse(e.client_slotNum, out slotNum_toInt);
-
-                // Handle the client specifying a slot number greater than 10. The Gui can only handle up to 10 slots.
-                if (slotNum_toInt > 10)
-                {
-                    string message = "The server received a slot number greater than 10.\r\n" +
-                        "Received from from client: " + e.client_id.ToString() + " on PC: " + e.client_compNum.ToString() +
-                        "\r\nSlot number received was: " + e.client_slotNum.ToString();
-                    Debug.WriteLine("Exception:\r\n" + message);
-                    mAsyncListener.VerboseLog(message);
-                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                // Subtract 1 from the slotNum since the grid array is zero indexed. (slot 1 is column 0, slot 8 is column 7)
-                slotNum_toInt = slotNum_toInt - 1;
-
-                // Using the target layoutPanel and the target slot number, modify the appropriate text boxes according to the client information passed in.
-                if (targetComputerLayoutPanel != null && slotNum_toInt < 10)    // slotNum must be in the range of 0 - 10 for GUI indexing.
-                {
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 4).Text = e.client_percent;
-
-                    // Add a hover-over feature to allow to preview extra information sent from the client.
-                    //      Add a way to see the description of the failure using the descriptionOfState info that was sent from the client.
-                    //      Aded a way to see the cycle count
-
-                    if (e.client_status == "Starting")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Yellow;
-                    }
-                    else if (e.client_status == "Running")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Green;
-                    }
-                    else if (e.client_status == "Failed")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Red;
-                    }
-                    else if (e.client_status == "Stopped")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Tomato;
-                    }
-                    else if (e.client_status == "Complete")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Lime;
-                    }
-
-                    // Checking the flag to see if the client was manually closed is necessary her since the client will send another socket message
-                    // when the socket is terminated. This will overwrite the case of the client form being manually closed.
-                    // In short, whatever color the textBox is set in the "else if (e.client_status == "manualClose")" case will be overwritten to purple because the socket closing will
-                    // most likely send after the actual client GUI closes.
-                    else if (e.client_status == "Unknown" && e.client_wasManuallyClosed == false)
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.Purple;
-
-                        // Keep track of all slots that have been designated as unknown/possibly disconnected and add them to a list of text boxes to monitor for clicks.
-                        // If a box is purple and the user clicks it, it's contents will be cleared. The contents do not auto clear if a disconnection is suspected. 
-                        // We want to see which clients may have an issue by designating them with the color purple instead of just erasing them.
-
-                        // If a client has been disconnected or its state is unknown, then add it to a list of text boxes to monitor for clicks. A click will be needed to clear the disconnected status.
-                        ControlList.Add(targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0));
-                        // Call a function to dynamically create a click event for the added textBox.
-                        trackDisconnectedClientTextBoxes();
-
-                    }
-                    else if (e.client_status == "manualClose")
-                    {
-                        targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0).BackColor = Color.DarkGray;
-
-                        // If a client has been manually closed, then add it to a list of text boxes to monitor for clicks. A click will be needed to clear the manually closed status.
-                        ControlList.Add(targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 0));
-                        // Call a function to dynamically create a click event for the added textBox.
-                        trackDisconnectedClientTextBoxes();
-                    }
-                }
             }
         }
 
@@ -521,7 +457,7 @@ namespace Server_GUI
             }
         }
 
-        #endregion Event Handlers
+        #endregion Event handlers and helper functions
 
 
         private void button_ListenForConnections_Click(object sender, EventArgs e)
@@ -551,9 +487,9 @@ namespace Server_GUI
 
 
         // Button 2 = send to all Button
-        private void button2_Click(object sender, EventArgs e)
+        private void button_SendToALL_Click(object sender, EventArgs e)
         {
-            string dataFromTextbox = text_sendToAll.Text + "<EOF>";
+            string dataFromTextbox = text_sendToAll.Text + AsynchronousSocketListener.TAG_END_OF_FILE;
             try
             {
                 new Thread(() =>

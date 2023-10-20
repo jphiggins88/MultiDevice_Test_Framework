@@ -769,7 +769,7 @@ namespace Server_GUI
             this.btn_sendToAll.TabIndex = 3;
             this.btn_sendToAll.Text = "Send to All";
             this.btn_sendToAll.UseVisualStyleBackColor = true;
-            this.btn_sendToAll.Click += new System.EventHandler(this.button2_Click);
+            this.btn_sendToAll.Click += new System.EventHandler(this.button_SendToALL_Click);
             // 
             // text_lastMessageReceived
             // 
