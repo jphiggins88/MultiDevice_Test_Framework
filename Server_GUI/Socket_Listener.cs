@@ -57,10 +57,11 @@ namespace Server_GUI
 
         public static string logFileName = "";
 
-        public static string txtFileWithType2SharedFolderAddress = Application.StartupPath + @"\addressOfEssdSharedFolder.txt";
+        public static string testFiles = @"\TestFiles";
+        public static string txtFileWithType2SharedFolderAddress = Application.StartupPath + testFiles + @"\addressOfEssdSharedFolder.txt";
         public static string addressOfType2SharedFolder = GetAddressFromTextFile(txtFileWithType2SharedFolderAddress);
 
-        public static string txtFileWithOneDriveSharedFolderAddress = Application.StartupPath + @"\addressOfOneDriveSharedFolder.txt";
+        public static string txtFileWithOneDriveSharedFolderAddress = Application.StartupPath + testFiles + @"\addressOfOneDriveSharedFolder.txt";
         public static string addressOfOneDriveSharedFolder = GetAddressFromTextFile(txtFileWithOneDriveSharedFolderAddress);
 
         // Used to make  a new log file every week. Counts to 7, then will be reset to 1

@@ -532,7 +532,7 @@ namespace Server_GUI
                     Email_Sender.emailToList_deviceOwners = Email_Sender.ParseEmailRecipientSingleString(Email_Sender.pathToEmailRecipientList_deviceOwners); //Receiver Email Address
                     Email_Sender.emailToList_managers = Email_Sender.ParseEmailRecipientSingleString(Email_Sender.pathToEmailRecipientList_managers); //Receiver Email Address
                     MessageBox.Show("Email lists have been updated with the new contents of the text files.\r\n" +
-                        "testDevice owners: " + Email_Sender.emailToList_deviceOwners +
+                        "device owners: " + Email_Sender.emailToList_deviceOwners +
                         "\r\nmanagers: " + Email_Sender.emailToList_managers);
                 }).Start();
             }

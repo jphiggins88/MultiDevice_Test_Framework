@@ -108,10 +108,10 @@ namespace Client_GUI
             this.lbl_modelNumber = new System.Windows.Forms.Label();
             this.gBox_testSetup = new System.Windows.Forms.GroupBox();
             this.gBox_testDeviceLocation = new System.Windows.Forms.GroupBox();
+            this.text_pcGroup = new System.Windows.Forms.TextBox();
             this.cBox_computerName = new System.Windows.Forms.ComboBox();
             this.gBox_socketConnectionInfo = new System.Windows.Forms.GroupBox();
             this.gBox_timeMetrics = new System.Windows.Forms.GroupBox();
-            this.text_pcGroup = new System.Windows.Forms.TextBox();
             this.gBox_socketCommunication.SuspendLayout();
             this.gBox_testStatus.SuspendLayout();
             this.gBox_testDeviceInfo.SuspendLayout();
@@ -744,6 +744,15 @@ namespace Client_GUI
             this.gBox_testDeviceLocation.TabStop = false;
             this.gBox_testDeviceLocation.Text = "Test Device Location";
             // 
+            // text_pcGroup
+            // 
+            this.text_pcGroup.BackColor = System.Drawing.Color.Gainsboro;
+            this.text_pcGroup.Location = new System.Drawing.Point(132, 139);
+            this.text_pcGroup.Name = "text_pcGroup";
+            this.text_pcGroup.Size = new System.Drawing.Size(183, 31);
+            this.text_pcGroup.TabIndex = 34;
+            this.text_pcGroup.Text = "Determined by PC";
+            // 
             // cBox_computerName
             // 
             this.cBox_computerName.BackColor = System.Drawing.SystemColors.Window;
@@ -786,21 +795,12 @@ namespace Client_GUI
             this.gBox_timeMetrics.TabStop = false;
             this.gBox_timeMetrics.Text = "Time Metrics";
             // 
-            // text_pcGroup
-            // 
-            this.text_pcGroup.BackColor = System.Drawing.Color.Gainsboro;
-            this.text_pcGroup.Location = new System.Drawing.Point(132, 139);
-            this.text_pcGroup.Name = "text_pcGroup";
-            this.text_pcGroup.Size = new System.Drawing.Size(183, 31);
-            this.text_pcGroup.TabIndex = 34;
-            this.text_pcGroup.Text = "Determined by PC";
-            // 
             // Client_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(733, 1316);
+            this.ClientSize = new System.Drawing.Size(729, 1316);
             this.Controls.Add(this.gBox_timeMetrics);
             this.Controls.Add(this.gBox_socketConnectionInfo);
             this.Controls.Add(this.gBox_testSetup);

@@ -37,30 +37,40 @@ namespace Server_GUI
         /// It's shown to be working from outside the network as of 4/22/22
         /// </summary>
 
-        public static string pathToEmailRecipientList_deviceOwners = Application.StartupPath + "\\emailRecipientList_deviceOwners.txt";
-        public static string pathToEmailRecipientList_managers = Application.StartupPath + "\\emailRecipientList_managers.txt";
+        public static string addresses = @"Addresses";
+        public static string pathToEmailRecipientList_deviceOwners = Application.StartupPath + addresses + @"\emailRecipientList_deviceOwners.txt";
+        public static string pathToEmailRecipientList_managers = Application.StartupPath + addresses + @"\emailRecipientList_managers.txt";
+        public static string pathToEmailCredentials = Application.StartupPath + addresses + @"\emailCredentials.txt";
 
         public static string smtpAddress = "smtp-mail.outlook.com";
         public static int portNumber = 587;
         public static bool enableSSL = true;
 
         // ********** Fill out sender and password info **********
-        public static string emailFromAddress = "<your/sender's email>"; //Sender Email Address  
-        public static string password = "<password>"; //Sender Password  
+        //public static string myEmailAddress = "<your/sender's email>"; //Sender Email Address  
+        //public static string myEmailPassword = "<password>"; //Sender Password
+        public static string myEmailAddress;  
+        public static string myEmailPassword;
         public static string emailToAddress = "<recipients' email>"; //Receiver Email Address
 
-        // Open the email list text file and set the send-to list. (addresses are delimited by commas.
-        public static string emailToList_deviceOwners = ParseEmailRecipientSingleString(pathToEmailRecipientList_deviceOwners); //Receiver Email Address
-        public static string emailToList_managers = ParseEmailRecipientSingleString(pathToEmailRecipientList_managers); //Receiver Email Address
+        public static string emailToList_deviceOwners;
+        public static string emailToList_managers;
 
         public static string subject = "Test Devices - update";
         public static string body = "testing sending email using C# .NET.";
+
+        public Email_Sender()
+        {
+            emailToList_deviceOwners = ParseEmailRecipientSingleString(pathToEmailRecipientList_deviceOwners); //Receiver Email Address
+            emailToList_managers = ParseEmailRecipientSingleString(pathToEmailRecipientList_managers); //Receiver Email Address
+            ParseAndSetGlobalEmailCredentials(pathToEmailCredentials);
+        }
 
         public void SendTest(string sampleString)
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFromAddress);
+                mail.From = new MailAddress(myEmailAddress);
                 mail.To.Add(pathToEmailRecipientList_deviceOwners);
                 mail.Subject = subject;
                 mail.Body = body;
@@ -68,7 +78,7 @@ namespace Server_GUI
                 //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));  // Uncomment this to send attachment  
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
-                    smtp.Credentials = new NetworkCredential(emailFromAddress, password);
+                    smtp.Credentials = new NetworkCredential(myEmailAddress, myEmailPassword);
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
                 }
@@ -80,7 +90,7 @@ namespace Server_GUI
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFromAddress);
+                mail.From = new MailAddress(myEmailAddress);
 
                 // Sending to emailToList will send a single email to all recipients in the address list file. All recipients should be comma delimited.
                 mail.To.Add(emailToList_deviceOwners);
@@ -91,7 +101,7 @@ namespace Server_GUI
                 //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
-                    smtp.Credentials = new NetworkCredential(emailFromAddress, password);
+                    smtp.Credentials = new NetworkCredential(myEmailAddress, myEmailPassword);
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
                 }
@@ -104,7 +114,7 @@ namespace Server_GUI
 
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFromAddress);
+                mail.From = new MailAddress(myEmailAddress);
 
                 // Sending to emailToList will send a single email to all recipients in the address list file. All recipients should be comma delimited on a single line.
                 mail.To.Add(emailToList_deviceOwners);
@@ -231,7 +241,7 @@ namespace Server_GUI
                 
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
-                    smtp.Credentials = new NetworkCredential(emailFromAddress, password);
+                    smtp.Credentials = new NetworkCredential(myEmailAddress, myEmailPassword);
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
                 }
@@ -249,7 +259,7 @@ namespace Server_GUI
             using (MailMessage mail = new MailMessage())
             {
 
-                mail.From = new MailAddress(emailFromAddress);
+                mail.From = new MailAddress(myEmailAddress);
 
                 // Sending to emailToList will send a single email to all recipients in the address list file. All recipients should be comma delimited.
                 mail.To.Add(emailToList_managers);
@@ -270,7 +280,7 @@ namespace Server_GUI
                 //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
-                    smtp.Credentials = new NetworkCredential(emailFromAddress, password);
+                    smtp.Credentials = new NetworkCredential(myEmailAddress, myEmailPassword);
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
                 }
@@ -287,7 +297,7 @@ namespace Server_GUI
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFromAddress);
+                mail.From = new MailAddress(myEmailAddress);
 
                 // Sending to emailToList will send a single email to all recipients in the address list file. All recipients should be comma delimited.
                 mail.To.Add(emailToList_deviceOwners);
@@ -307,7 +317,7 @@ namespace Server_GUI
                 //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
-                    smtp.Credentials = new NetworkCredential(emailFromAddress, password);
+                    smtp.Credentials = new NetworkCredential(myEmailAddress, myEmailPassword);
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
                 }
@@ -337,6 +347,24 @@ namespace Server_GUI
                 MessageBox.Show("Problem parsing email recipient list. Make sure <application startup path>\\mailRecipientList.txt exists\r\n\r\n" + e);
                 return addressList;
             }
+        }
+
+        public static void ParseAndSetGlobalEmailCredentials(string pathToList)
+        {
+            FileStream fileStream;
+            StreamReader streamReader;
+
+
+            if (System.IO.File.Exists(pathToList))
+            {
+                fileStream = new FileStream(pathToList, FileMode.Open);
+                streamReader = new StreamReader(fileStream);
+                myEmailAddress = streamReader.ReadLine();
+                myEmailPassword = streamReader.ReadLine();
+
+                streamReader.Close();
+            }
+
         }
     }
 }
