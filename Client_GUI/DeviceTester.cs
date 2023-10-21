@@ -35,7 +35,7 @@ namespace Client_GUI
         public static string logFileName = "";
         public static string testFiles = Client_GUI.testFiles;
         public static string txtFileWithLocalSharedFolderAddress = testFiles + @"\Addresses\addressOfLocalSharedFolder.txt";
-        public static string addressOfLocalSharedFolder = CheckIfFileExists_LocalSharedFolder();
+        public static string addressOfLocalSharedFolder = ReadLineFromFile(txtFileWithLocalSharedFolderAddress);
         protected static string g_testInfoLogPath = rootDirectory + "\\" + "unknownSN" + "\\TestInfo.log";
         public string logPath;
         public string copyToPath;
@@ -559,13 +559,13 @@ namespace Client_GUI
             this.clientForm.SetText(this.clientForm.text_pcGroup, mClientInfo.pcGroupNumber);
         }
 
-        public static string CheckIfFileExists_LocalSharedFolder()
+        public static string ReadLineFromFile(string file)
         {
             try
             {
-                if (File.Exists(txtFileWithLocalSharedFolderAddress))
+                if (File.Exists(file))
                 {
-                    addressReader = File.OpenText(txtFileWithLocalSharedFolderAddress);
+                    addressReader = File.OpenText(file);
                     return addressReader.ReadLine();
                 }
 
@@ -573,7 +573,7 @@ namespace Client_GUI
             }
             catch
             {
-                MessageBox.Show("filepath:" + txtFileWithLocalSharedFolderAddress + " Not Present");
+                MessageBox.Show("filepath:" + file + " Not Present");
                 return "fail";
             }
         }
@@ -843,7 +843,7 @@ namespace Client_GUI
 
 
         /// <summary>
-        /// Sends a command to the server to copy the testInfo.log log to the Onedrive folder.
+        /// Sends a command to the server to copy the testInfo.log log to the WAN Onedrive folder.
         /// If the client GUI is connected to the server AND the FileTransferCommand has NOT been sent to the Server yet,
         /// <br/>then the File Transfer command will be sent to the server and the sent flag will be marked as true.
         /// </summary>

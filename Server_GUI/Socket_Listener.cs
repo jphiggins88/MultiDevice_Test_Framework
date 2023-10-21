@@ -57,12 +57,12 @@ namespace Server_GUI
 
         public static string logFileName = "";
 
-        public static string testFiles = @"\TestFiles";
-        public static string txtFileWithType2SharedFolderAddress = Application.StartupPath + testFiles + @"\addressOfEssdSharedFolder.txt";
-        public static string addressOfType2SharedFolder = GetAddressFromTextFile(txtFileWithType2SharedFolderAddress);
+        public static string addresses = @"Addresses";
+        public static string txtFileWithLANSharedFolderAddress = Application.StartupPath + addresses + @"\addressOfLANSharedFolder.txt";
+        public static string addressOfLANSharedFolder = GetAddressFromTextFile(txtFileWithLANSharedFolderAddress);
 
-        public static string txtFileWithOneDriveSharedFolderAddress = Application.StartupPath + testFiles + @"\addressOfOneDriveSharedFolder.txt";
-        public static string addressOfOneDriveSharedFolder = GetAddressFromTextFile(txtFileWithOneDriveSharedFolderAddress);
+        public static string txtFileWithWANSharedFolderAddress = Application.StartupPath + addresses + @"\addressOfWANSharedFolder.txt";
+        public static string addressOfWANSharedFolder = GetAddressFromTextFile(txtFileWithWANSharedFolderAddress);
 
         // Used to make  a new log file every week. Counts to 7, then will be reset to 1
         public int sevenDayCounter = 1;
@@ -545,7 +545,7 @@ namespace Server_GUI
         /// Copy the appropriate log file/s from the LAN shared folder to the OneDrive shared folder.
         /// The files to be copied will be specified in the content of the sockets message and passed into this function.
         /// </summary>
-        public void CopyLogFilesToOneDriveSharedFolder(string contents, bool overwriteFileIfExists)
+        public void CopyLogFilesToWANSharedFolder(string contents, bool overwriteFileIfExists)
         {
             string[] contentSplit = contents.Split(";; ");
             string clientID = contentSplit[1];
@@ -564,7 +564,7 @@ namespace Server_GUI
                         sourcePath = sourcePath.Remove(indexOfDotLog + 4);
                     }
                     // Modify the base folder of the sourcePath and set it as the destinationPath. This will keep the general folder structure of the LAN shared drive.
-                    string destinationPath = sourcePath.Replace(addressOfType2SharedFolder, addressOfOneDriveSharedFolder);
+                    string destinationPath = sourcePath.Replace(addressOfLANSharedFolder, addressOfWANSharedFolder);
                     try
                     {
                         Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
@@ -894,11 +894,11 @@ namespace Server_GUI
                         }
                         else if (content.StartsWith(TAG_FILETRANSFER_OW_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked)
                         {
-                            CopyLogFilesToOneDriveSharedFolder(content, true);
+                            CopyLogFilesToWANSharedFolder(content, true);
                         }
                         else if (content.StartsWith(TAG_FILETRANSFER_SPECIFIER) && this.mMainForm.transferLogsDaily_checkBox.Checked)
                         {
-                            CopyLogFilesToOneDriveSharedFolder(content, false);
+                            CopyLogFilesToWANSharedFolder(content, false);
                         }
                         else if (content.StartsWith(TAG_LOCATION_SPECIFIER))
                         {
