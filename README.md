@@ -26,7 +26,8 @@ The LAN shared folder is to be accessible by both the Server PC and all clients 
 
 # Example of connecting to Server and completeing a successful test cycle
 
-![SuccessfulTestExample](https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/a5e6be4e-7af9-44f0-8301-f5c369f0e4a1)
+![SuccessfulTestExample (2)](https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/ea10769d-088c-447d-bbcc-b4d1b682c007)
+
 
 
 
