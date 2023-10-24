@@ -1053,7 +1053,7 @@ namespace Client_GUI
                                                                    mClientInfo.compNumber,
                                                                    mClientInfo.slotNumber,
                                                                    mClientInfo.statusOfTest,
-                                                                   mClientInfo.global_PercentComplete.ToString(),
+                                                                   mClientInfo.global_PercentComplete.ToString("0.0"),
                                                                    mClientInfo.totalCycles.ToString(),
                                                                    mClientInfo.descriptionOfCurrentState,
                                                                    pathToErrorLog);

@@ -800,7 +800,7 @@ namespace Client_GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(729, 1316);
+            this.ClientSize = new System.Drawing.Size(731, 1304);
             this.Controls.Add(this.gBox_timeMetrics);
             this.Controls.Add(this.gBox_socketConnectionInfo);
             this.Controls.Add(this.gBox_testSetup);

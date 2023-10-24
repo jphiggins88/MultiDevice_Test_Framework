@@ -266,11 +266,11 @@ namespace Server_GUI
                 // Change color based on test type
                 if (e.client_testType == "VC")
                 {
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.MediumBlue;
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.LightSeaGreen;
                 }
                 else if (e.client_testType == "BT")
                 {
-                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.Indigo;
+                    targetComputerLayoutPanel.GetControlFromPosition(slotNum_toInt, 3).BackColor = Color.LightGreen;
                 }
                 else if (e.client_testType == "PT")
                 {
