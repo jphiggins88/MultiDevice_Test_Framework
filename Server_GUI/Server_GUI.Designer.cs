@@ -749,21 +749,21 @@ namespace Server_GUI
             this.lbox_incomingMessages.FormattingEnabled = true;
             this.lbox_incomingMessages.HorizontalScrollbar = true;
             this.lbox_incomingMessages.ItemHeight = 25;
-            this.lbox_incomingMessages.Location = new System.Drawing.Point(6, 163);
+            this.lbox_incomingMessages.Location = new System.Drawing.Point(6, 144);
             this.lbox_incomingMessages.Name = "lbox_incomingMessages";
-            this.lbox_incomingMessages.Size = new System.Drawing.Size(1575, 254);
+            this.lbox_incomingMessages.Size = new System.Drawing.Size(1597, 254);
             this.lbox_incomingMessages.TabIndex = 1;
             // 
             // text_sendToAll
             // 
-            this.text_sendToAll.Location = new System.Drawing.Point(132, 777);
+            this.text_sendToAll.Location = new System.Drawing.Point(132, 758);
             this.text_sendToAll.Name = "text_sendToAll";
-            this.text_sendToAll.Size = new System.Drawing.Size(1449, 31);
+            this.text_sendToAll.Size = new System.Drawing.Size(1471, 31);
             this.text_sendToAll.TabIndex = 2;
             // 
             // btn_sendToAll
             // 
-            this.btn_sendToAll.Location = new System.Drawing.Point(15, 777);
+            this.btn_sendToAll.Location = new System.Drawing.Point(15, 758);
             this.btn_sendToAll.Name = "btn_sendToAll";
             this.btn_sendToAll.Size = new System.Drawing.Size(111, 33);
             this.btn_sendToAll.TabIndex = 3;
@@ -776,13 +776,13 @@ namespace Server_GUI
             this.text_lastMessageReceived.Location = new System.Drawing.Point(6, 38);
             this.text_lastMessageReceived.Multiline = true;
             this.text_lastMessageReceived.Name = "text_lastMessageReceived";
-            this.text_lastMessageReceived.Size = new System.Drawing.Size(1575, 71);
+            this.text_lastMessageReceived.Size = new System.Drawing.Size(1597, 46);
             this.text_lastMessageReceived.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 137);
+            this.label1.Location = new System.Drawing.Point(6, 118);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 25);
             this.label1.TabIndex = 5;
@@ -794,15 +794,15 @@ namespace Server_GUI
             this.lbox_connectedClientHistory.FormattingEnabled = true;
             this.lbox_connectedClientHistory.HorizontalScrollbar = true;
             this.lbox_connectedClientHistory.ItemHeight = 25;
-            this.lbox_connectedClientHistory.Location = new System.Drawing.Point(6, 478);
+            this.lbox_connectedClientHistory.Location = new System.Drawing.Point(6, 459);
             this.lbox_connectedClientHistory.Name = "lbox_connectedClientHistory";
-            this.lbox_connectedClientHistory.Size = new System.Drawing.Size(1575, 279);
+            this.lbox_connectedClientHistory.Size = new System.Drawing.Size(1597, 279);
             this.lbox_connectedClientHistory.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 450);
+            this.label3.Location = new System.Drawing.Point(6, 431);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(216, 25);
             this.label3.TabIndex = 8;
@@ -810,7 +810,7 @@ namespace Server_GUI
             // 
             // button_TestEmailSend
             // 
-            this.button_TestEmailSend.Location = new System.Drawing.Point(531, 8);
+            this.button_TestEmailSend.Location = new System.Drawing.Point(199, 115);
             this.button_TestEmailSend.Name = "button_TestEmailSend";
             this.button_TestEmailSend.Size = new System.Drawing.Size(164, 40);
             this.button_TestEmailSend.TabIndex = 9;
@@ -849,12 +849,12 @@ namespace Server_GUI
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridView_clientQueue.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridView_clientQueue.Location = new System.Drawing.Point(6, 831);
+            this.gridView_clientQueue.Location = new System.Drawing.Point(6, 812);
             this.gridView_clientQueue.Name = "gridView_clientQueue";
             this.gridView_clientQueue.ReadOnly = true;
             this.gridView_clientQueue.RowHeadersWidth = 62;
             this.gridView_clientQueue.RowTemplate.Height = 33;
-            this.gridView_clientQueue.Size = new System.Drawing.Size(1575, 379);
+            this.gridView_clientQueue.Size = new System.Drawing.Size(1597, 614);
             this.gridView_clientQueue.TabIndex = 10;
             // 
             // socketID
@@ -940,7 +940,7 @@ namespace Server_GUI
             // 
             // EmailAddress_textBox
             // 
-            this.EmailAddress_textBox.Location = new System.Drawing.Point(701, 10);
+            this.EmailAddress_textBox.Location = new System.Drawing.Point(369, 121);
             this.EmailAddress_textBox.Name = "EmailAddress_textBox";
             this.EmailAddress_textBox.Size = new System.Drawing.Size(283, 31);
             this.EmailAddress_textBox.TabIndex = 11;
@@ -949,7 +949,7 @@ namespace Server_GUI
             // sendEmailOnAlert_checkBox
             // 
             this.sendEmailOnAlert_checkBox.AutoSize = true;
-            this.sendEmailOnAlert_checkBox.Location = new System.Drawing.Point(991, 12);
+            this.sendEmailOnAlert_checkBox.Location = new System.Drawing.Point(658, 123);
             this.sendEmailOnAlert_checkBox.Name = "sendEmailOnAlert_checkBox";
             this.sendEmailOnAlert_checkBox.Size = new System.Drawing.Size(193, 29);
             this.sendEmailOnAlert_checkBox.TabIndex = 12;
@@ -969,10 +969,10 @@ namespace Server_GUI
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(11, 92);
+            this.tabControl1.Location = new System.Drawing.Point(12, 161);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1648, 1473);
+            this.tabControl1.Size = new System.Drawing.Size(1617, 1473);
             this.tabControl1.TabIndex = 13;
             // 
             // tabPage1
@@ -989,7 +989,7 @@ namespace Server_GUI
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1640, 1435);
+            this.tabPage1.Size = new System.Drawing.Size(1609, 1435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Communication";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1000,7 +1000,7 @@ namespace Server_GUI
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1640, 1435);
+            this.tabPage2.Size = new System.Drawing.Size(1609, 1435);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Test Overview";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -9783,7 +9783,7 @@ namespace Server_GUI
             // textBox834
             // 
             this.textBox834.BackColor = System.Drawing.Color.Yellow;
-            this.textBox834.Location = new System.Drawing.Point(1221, 8);
+            this.textBox834.Location = new System.Drawing.Point(557, 8);
             this.textBox834.Name = "textBox834";
             this.textBox834.ReadOnly = true;
             this.textBox834.Size = new System.Drawing.Size(95, 31);
@@ -9795,7 +9795,7 @@ namespace Server_GUI
             // 
             this.textBox835.BackColor = System.Drawing.Color.Green;
             this.textBox835.ForeColor = System.Drawing.Color.White;
-            this.textBox835.Location = new System.Drawing.Point(1324, 8);
+            this.textBox835.Location = new System.Drawing.Point(557, 45);
             this.textBox835.Name = "textBox835";
             this.textBox835.ReadOnly = true;
             this.textBox835.Size = new System.Drawing.Size(95, 31);
@@ -9807,7 +9807,7 @@ namespace Server_GUI
             // 
             this.textBox836.BackColor = System.Drawing.Color.Red;
             this.textBox836.ForeColor = System.Drawing.Color.White;
-            this.textBox836.Location = new System.Drawing.Point(1560, 50);
+            this.textBox836.Location = new System.Drawing.Point(759, 8);
             this.textBox836.Name = "textBox836";
             this.textBox836.ReadOnly = true;
             this.textBox836.Size = new System.Drawing.Size(95, 31);
@@ -9818,7 +9818,7 @@ namespace Server_GUI
             // textBox837
             // 
             this.textBox837.BackColor = System.Drawing.Color.Tomato;
-            this.textBox837.Location = new System.Drawing.Point(1221, 50);
+            this.textBox837.Location = new System.Drawing.Point(658, 8);
             this.textBox837.Name = "textBox837";
             this.textBox837.ReadOnly = true;
             this.textBox837.Size = new System.Drawing.Size(95, 31);
@@ -9829,7 +9829,7 @@ namespace Server_GUI
             // textBox838
             // 
             this.textBox838.BackColor = System.Drawing.Color.Lime;
-            this.textBox838.Location = new System.Drawing.Point(1427, 8);
+            this.textBox838.Location = new System.Drawing.Point(557, 82);
             this.textBox838.Name = "textBox838";
             this.textBox838.ReadOnly = true;
             this.textBox838.Size = new System.Drawing.Size(95, 31);
@@ -9841,7 +9841,7 @@ namespace Server_GUI
             // 
             this.textBox839.BackColor = System.Drawing.Color.Purple;
             this.textBox839.ForeColor = System.Drawing.Color.White;
-            this.textBox839.Location = new System.Drawing.Point(1560, 8);
+            this.textBox839.Location = new System.Drawing.Point(658, 82);
             this.textBox839.Name = "textBox839";
             this.textBox839.ReadOnly = true;
             this.textBox839.Size = new System.Drawing.Size(95, 31);
@@ -9852,7 +9852,7 @@ namespace Server_GUI
             // textBox840
             // 
             this.textBox840.BackColor = System.Drawing.Color.DarkGray;
-            this.textBox840.Location = new System.Drawing.Point(1324, 50);
+            this.textBox840.Location = new System.Drawing.Point(658, 45);
             this.textBox840.Name = "textBox840";
             this.textBox840.ReadOnly = true;
             this.textBox840.Size = new System.Drawing.Size(95, 31);
@@ -9862,7 +9862,7 @@ namespace Server_GUI
             // 
             // button_UpdateEmailLists
             // 
-            this.button_UpdateEmailLists.Location = new System.Drawing.Point(344, 8);
+            this.button_UpdateEmailLists.Location = new System.Drawing.Point(12, 117);
             this.button_UpdateEmailLists.Name = "button_UpdateEmailLists";
             this.button_UpdateEmailLists.Size = new System.Drawing.Size(181, 38);
             this.button_UpdateEmailLists.TabIndex = 17;
@@ -9873,7 +9873,7 @@ namespace Server_GUI
             // labelDailyUpdateTime
             // 
             this.labelDailyUpdateTime.AutoSize = true;
-            this.labelDailyUpdateTime.Location = new System.Drawing.Point(11, 55);
+            this.labelDailyUpdateTime.Location = new System.Drawing.Point(13, 70);
             this.labelDailyUpdateTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDailyUpdateTime.Name = "labelDailyUpdateTime";
             this.labelDailyUpdateTime.Size = new System.Drawing.Size(172, 25);
@@ -9882,7 +9882,7 @@ namespace Server_GUI
             // 
             // textBoxDailyUpdate_time
             // 
-            this.textBoxDailyUpdate_time.Location = new System.Drawing.Point(167, 50);
+            this.textBoxDailyUpdate_time.Location = new System.Drawing.Point(177, 67);
             this.textBoxDailyUpdate_time.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDailyUpdate_time.Name = "textBoxDailyUpdate_time";
             this.textBoxDailyUpdate_time.Size = new System.Drawing.Size(61, 31);
@@ -9891,7 +9891,7 @@ namespace Server_GUI
             // 
             // button_ChangeUpdateTime
             // 
-            this.button_ChangeUpdateTime.Location = new System.Drawing.Point(239, 50);
+            this.button_ChangeUpdateTime.Location = new System.Drawing.Point(246, 63);
             this.button_ChangeUpdateTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_ChangeUpdateTime.Name = "button_ChangeUpdateTime";
             this.button_ChangeUpdateTime.Size = new System.Drawing.Size(216, 38);
@@ -9903,7 +9903,7 @@ namespace Server_GUI
             // transferLogsDaily_checkBox
             // 
             this.transferLogsDaily_checkBox.AutoSize = true;
-            this.transferLogsDaily_checkBox.Location = new System.Drawing.Point(991, 48);
+            this.transferLogsDaily_checkBox.Location = new System.Drawing.Point(857, 123);
             this.transferLogsDaily_checkBox.Name = "transferLogsDaily_checkBox";
             this.transferLogsDaily_checkBox.Size = new System.Drawing.Size(186, 29);
             this.transferLogsDaily_checkBox.TabIndex = 12;
@@ -9914,7 +9914,7 @@ namespace Server_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1666, 1564);
+            this.ClientSize = new System.Drawing.Size(1636, 1641);
             this.Controls.Add(this.button_ChangeUpdateTime);
             this.Controls.Add(this.textBoxDailyUpdate_time);
             this.Controls.Add(this.labelDailyUpdateTime);
