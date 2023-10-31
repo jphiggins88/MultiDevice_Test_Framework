@@ -1,16 +1,16 @@
 # MultiDevice_Test_Framework
-This Windows (.NET Core) program is a versatile and customizable framework designed for initiating and monitoring multiple tests on various devices through socket communication. The application is comprised of two main components – the Server and the Client. This program is currently setup to simulate fake tests since the goal is to provide a generic and modifiable framework for testing. The user will need to incorporate their specific tests by modifying the source code. (Modification documentation coming soon). 
+This Windows (.NET Core) program is a versatile and customizable framework designed for initiating and monitoring multiple tests on various devices through socket communication. The application is comprised of two main components – the Server and the Client. This program is currently programmed to simulate fake tests since the goal is to provide a generic and modifiable framework for testing. The user will need to incorporate their specific tests by modifying the source code. (Modification documentation coming soon). 
 
 <img width="1654" alt="Server and Client" src="https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/4e81bc66-b7d3-4863-9da9-0feb9929d295">
 
 ## Server
-The Server acts as a central hub for monitoring all connected clients. Currently the server is designed to run on a System with dual network cards. The dual network cards are needed to connect to an isolated test network in which all client programs will be run. The 2nd network card allows the system to connect to the internet in order to send emails and store log files in cloud based storage if desired. The main selling point of this setup is the fact that all test PCs are isolated withing a LAN. Only the Server PC has access to the WAN. This network configuration can me modified rather easily in the source code.
+The Server acts as a central hub for monitoring all connected clients. Currently the server is designed to run on a System with dual network cards. The dual network cards are needed to connect to an isolated test network in which all client programs will be run. The 2nd network card allows the Server to connect to the internet in order to send emails and store log files in cloud based storage if desired. The main selling point of this setup is the fact that all test PCs are isolated withing a LAN. Only the Server PC has access to the WAN. This network configuration can be modified rather easily in the source code.
 
 ## Client
-Clients are responsible for executing tests on multiple remote systems. The current setup includes simulations of three hardware-based test types: Voltage Check, Power Test, and Boot Test. These simulation tests are intentionally configured to fail randomly, showcasing the error logging capabilities of the framework. However, these test simulations should be replaced with real tests relevant to the user's needs.
+Clients are responsible for executing tests on multiple remote systems. The current setup includes simulations of three hardware-based test types: Voltage Check, Power Test, and Boot Test. These simulation tests are intentionally configured to fail randomly, showcasing the error logging and alert capabilities of the framework. However, these test simulations should be replaced with real tests relevant to the user's needs.
 
 # Features
-* Scalable Configuration: The Server can efficiently handle up to 120 tests in total, organized into 4 PC Groups. Each PC Group consists of 3 PCs, and each PC can accommodate 10 tests. This organization is analogous to a rack of servers/PCs, where individual PCs are uniquely named, and groups are designated by their "PC Group" name. See the Network Setup diagram for an example of the Server/CLient layout.
+* Scalable Configuration: The Server can efficiently handle up to 120 tests in total, organized into 4 PC Groups. Each PC Group consists of 3 PCs, and each PC can accommodate 10 tests. This organization is analogous to a rack of servers/PCs, where individual PCs are uniquely named, and groups are designated by their "PC Group" name. See the Network Setup diagram for an example of the Server/Client layout.
 
 * Test Device Customization: Each Test Device is assigned a "Test Group ID" name, allowing users to group specific tests for comprehensive logging. The default name is "GenericTests," and users can select the desired "Slot Number," "PC Name," and "PC Group" from the Client GUI.
 
@@ -20,21 +20,22 @@ Clients are responsible for executing tests on multiple remote systems. The curr
 The Server is currently configured to manage slot numbers 1-10. If utilizing hardware devices, ensure that the COM ports of each test device are set to the corresponding slot number through Windows Device Manager.
 Feel free to adapt and extend this framework to suit your specific testing needs. Explore the flexibility and scalability of this automated testing solution for efficient and reliable test execution.
 
-# Network Setup
+## Network Setup
 ![NetworkLayout_2](https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/ba55c828-3924-4e6b-ac21-2f5b62d1b91a)
 
-# Instructions:
+## LAN Shared Folder:
 The LAN shared folder is to be accessible by both the Server PC and all clients running the Client program. The shared folder is used to accumulate all clients logs in one central place. It is also accessed by the Server to send error logs and daily update logs as email attachments to desired recipients.
 
-# Example of a successful test cycle
+## Example of a successful test cycle
 In the diagram below, the Server and Client establish a socket connection and a single successful test cycle is completed by the client.
 All Socket messages and file transfers can be seen in the diagram.
-![SuccessfulTestExample (2)](https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/ea10769d-088c-447d-bbcc-b4d1b682c007)
+![SuccessfulTestExample (3)](https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/14be6c4f-e59f-45a8-931b-8b36347ac720)
 
 
 
 
-# Documentation in progress
+
+## ...Documentation in progress
 * Daily triggers (Client and Server)
 Each client will transfer its daily log to LAN Shared Folder at midnight, as well as send a transfer command to tell the Server to copy the log from the LAN Shared Folder to the WAN Shared Folder. This is a necessary process to keep the test environemnt isolated within its own LAN. Only the Server has access to the outside world. The Server will send out Daily updates at specified times to specified email addresses. 
 * Email list
