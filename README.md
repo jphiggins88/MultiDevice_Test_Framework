@@ -2,6 +2,9 @@
 
 This Windows (.NET Core) program is a versatile and customizable framework designed for initiating and monitoring multiple tests on various devices through socket communication. The application is comprised of two main components – the Server and the Client. This program is currently setup to simulate fake tests since the goal is to provide a generic and modifiable framework for testing. The user will need to incorporate their specific tests by modifying the source code. (Modification documentation coming soon). 
 
+<img width="1654" alt="Server and Client" src="https://github.com/jphiggins88/MultiDevice_Test_Framework/assets/26196159/4e81bc66-b7d3-4863-9da9-0feb9929d295">
+
+
 ## Server
 The Server acts as a central hub for monitoring all connected clients. Currently the server is designed to run on a System with dual network cards. The dual network cards are needed to connect to an isolated test network in which all client programs will be run. The 2nd network card allows the system to connect to the internet in order to send emails and store log files in cloud based storage if desired. The main selling point of this setup is the fact that all test PCs are isolated withing a LAN. Only the Server PC has access to the WAN. This network configuration can me modified rather easily in the source code.
 
